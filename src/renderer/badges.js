@@ -56,33 +56,33 @@ window.mayhem.onBadgesClear(() => {
 const strip = document.getElementById('strip');
 
 window.mayhem.onBuildStrip((data) => {
-  if (!data || !data.items?.length) { strip.style.display = 'none'; return; }
+  const rows = data?.rows ?? [];
+  if (!rows.length) { strip.style.display = 'none'; return; }
   strip.innerHTML = '';
-  const lbl = document.createElement('span');
-  lbl.className = 'lbl';
-  lbl.textContent = 'NEXT';
-  strip.append(lbl);
-  data.items.forEach((it, i) => {
-    if (i) {
-      const a = document.createElement('span');
-      a.className = 'arrow';
-      a.textContent = '›';
-      strip.append(a);
-    }
-    const img = document.createElement('img');
-    img.src = it.icon;
-    img.title = `${it.name} (${it.price}g)`;
-    if (i === 0) {
-      img.classList.add('next');
-      if (it.affordable) img.classList.add('affordable');
-    }
-    strip.append(img);
-  });
-  if (data.src) {
-    const s = document.createElement('span');
-    s.className = 'src';
-    s.textContent = data.src;
-    strip.append(s);
+  for (const row of rows) {
+    const r = document.createElement('div');
+    r.className = 'srow';
+    const lbl = document.createElement('span');
+    lbl.className = 'lbl';
+    lbl.textContent = row.label;
+    r.append(lbl);
+    row.items.forEach((it, i) => {
+      if (i) {
+        const a = document.createElement('span');
+        a.className = 'arrow';
+        a.textContent = '›';
+        r.append(a);
+      }
+      const img = document.createElement('img');
+      img.src = it.icon;
+      img.title = `${it.name} (${it.price}g)`;
+      if (i === 0) {
+        img.classList.add('next');
+        if (it.affordable) img.classList.add('affordable');
+      }
+      r.append(img);
+    });
+    strip.append(r);
   }
   strip.style.left = `${Math.round(window.innerWidth * data.pos.x)}px`;
   strip.style.top = `${Math.round(window.innerHeight * data.pos.y)}px`;
