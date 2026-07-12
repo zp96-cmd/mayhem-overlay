@@ -76,16 +76,34 @@ function maybeAutoInstall() {
 }
 
 let updateDownloadedNotified = false;
+let manualUpdateRequested = false;
+
+function installNow(version) {
+  notify('Mayhem Overlay', `v${version} downloaded. Restarting now…`);
+  setTimeout(() => {
+    try {
+      const { autoUpdater } = require('electron-updater');
+      autoUpdater.quitAndInstall(true, true);
+    } catch (e) { console.log('[update] install failed:', e.message); }
+  }, 3000);
+}
+
 async function checkAppUpdate(manual) {
   if (!app.isPackaged) {
     if (manual) notify('Mayhem Overlay', `Running from source (v${app.getVersion()}). App updates apply to installed copies only.`);
     return;
   }
+  manualUpdateRequested = manual; // a manual check means "update me now"
   try {
     const { autoUpdater } = require('electron-updater');
     if (!updateDownloadedNotified) {
       updateDownloadedNotified = true;
       autoUpdater.on('update-downloaded', (info) => {
+        if (manualUpdateRequested) {
+          installNow(info.version);
+          return;
+        }
+        // background download: wait for an idle minute before restarting
         pendingInstallVersion = info.version;
         updateSafeTicks = 0;
         notify('Mayhem Overlay update ready',
@@ -98,7 +116,7 @@ async function checkAppUpdate(manual) {
     const latest = result?.updateInfo?.version;
     if (manual) {
       if (latest && latest !== app.getVersion()) {
-        notify('Mayhem Overlay', `Update v${latest} found, downloading now…`);
+        notify('Mayhem Overlay', `Update v${latest} found, downloading. Restarts when ready…`);
       } else {
         notify('Mayhem Overlay', `You're up to date (v${app.getVersion()}).`);
       }
