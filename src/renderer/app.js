@@ -16,6 +16,7 @@ const state = {
   builds: [],
   ratings: {},
   live: null,          // last live-client snapshot
+  lastGame: null,      // { players, team, at } captured when a game ends
   phase: { connected: false, phase: 'None' },
   filterTier: 'all',
   fitOnly: false,
@@ -525,50 +526,51 @@ function myWinningPath(champId) {
   return ids.length ? { ids, wins: wins.length } : null;
 }
 
-// Compute the "what to build next" list shared by the Build tab and the
-// in-game bottom-HUD strip: my wins -> aramgg core/situationals -> heuristic.
-function nextItemsSuggestion() {
-  if (!state.live) return null;
+// The in-game strip shows BOTH paths side by side when both exist:
+// my winning consensus and the matched aramgg build. Owned items skipped,
+// first item of each row flagged when affordable right now.
+function stripRows() {
+  if (!state.live) return [];
   const owned = ownedItemIds();
-  const cb = pickCommunityBuild();
-  const community = cb
-    ? (() => { const { coreIds, situationalIds } = communityPath(cb); return [...coreIds, ...situationalIds]; })()
-    : [];
+  const gold = state.live?.activePlayer?.gold ?? 0;
+  const mk = (ids) => ids
+    .filter((id) => !owned.has(id))
+    .slice(0, 4)
+    .map((id, i) => {
+      const it = state.itemById.get(id);
+      return it ? {
+        icon: it.icon, name: it.name, price: it.price,
+        affordable: i === 0 && it.price <= gold,
+      } : null;
+    })
+    .filter(Boolean);
 
+  const rows = [];
   const mine = myWinningPath(myChampion()?.id);
   if (mine) {
-    // my proven items first, aramgg fills the remaining slots
-    const ids = [...mine.ids, ...community.filter((id) => !mine.ids.includes(id))]
-      .filter((id) => !owned.has(id));
-    if (ids.length) return { ids, src: `my ${mine.wins} win${mine.wins > 1 ? 's' : ''}` };
+    const items = mk(mine.ids);
+    if (items.length) rows.push({ label: `MINE ${mine.wins}W`, items });
   }
-  if (community.length) {
-    const ids = community.filter((id) => !owned.has(id));
-    if (ids.length) return { ids, src: `aramgg ${(cb.tags ?? []).join('/')}` };
+  const cb = pickCommunityBuild();
+  if (cb) {
+    const { coreIds, situationalIds } = communityPath(cb);
+    const items = mk([...coreIds, ...situationalIds]);
+    if (items.length) rows.push({ label: `ARAMGG ${(cb.tags ?? []).join('/')}`.trim(), items });
   }
-  return null; // no personal or community data — suggest nothing
+  return rows;
 }
 
 let lastStripKey = null;
 function updateBuildStrip() {
-  const s = nextItemsSuggestion();
-  const gold = state.live?.activePlayer?.gold ?? 0;
-  if (!s) {
+  const rows = stripRows();
+  if (!rows.length) {
     if (lastStripKey !== null) { lastStripKey = null; window.mayhem.clearBuildStrip(); }
     return;
   }
-  const items = s.ids.slice(0, 4).map((id, i) => {
-    const it = state.itemById.get(id);
-    return it ? {
-      icon: it.icon, name: it.name, price: it.price,
-      affordable: i === 0 && it.price <= gold,
-    } : null;
-  }).filter(Boolean);
-  if (!items.length) return;
-  const key = JSON.stringify(items.map((i) => [i.name, i.affordable]));
+  const key = JSON.stringify(rows.map((r) => [r.label, r.items.map((i) => [i.name, i.affordable])]));
   if (key === lastStripKey) return;
   lastStripKey = key;
-  window.mayhem.showBuildStrip({ items, src: s.src });
+  window.mayhem.showBuildStrip({ rows });
 }
 
 function renderBuildTab() {
@@ -644,37 +646,114 @@ function buildBlockSafe(box, label, items, note) {
   if (items?.length) box.append(buildBlock(label, items, note));
 }
 
+function playerRow({ championName, riotId, ally, itemIds, augmentIds, saveBuild }) {
+  const row = el('div', `player-row ${ally ? 'ally' : 'enemy'}`);
+  row.append(el('span', 'champ', esc(championName)));
+  const mid = el('span', 'items');
+  itemIds.forEach((id) => mid.append(itemImg(id, 22)));
+  if (augmentIds?.length) {
+    for (const id of augmentIds) {
+      const a = state.augById.get(id);
+      if (a?.icon) {
+        const img = el('img');
+        img.src = a.icon; img.title = a.name;
+        img.style.cssText = 'width:18px;height:18px;border-radius:4px;margin-left:2px;opacity:0.85';
+        mid.append(img);
+      }
+    }
+  }
+  row.append(mid);
+  const save = el('button', 'mini-btn save', '💾');
+  save.title = 'Save this build';
+  save.addEventListener('click', async () => {
+    state.builds = await saveBuild();
+    save.textContent = '✓';
+    setTimeout(() => (save.textContent = '💾'), 1500);
+    renderSaved();
+  });
+  row.append(save);
+  return row;
+}
+
 function renderLivePlayers() {
   const box = $('#live-players');
   box.innerHTML = '';
-  if (!state.live?.players?.length) {
-    box.append(el('div', 'empty', 'Player builds show here during a game.'));
+
+  // 1) live game
+  if (state.live?.players?.length) {
+    const myTeam = state.live.me?.team;
+    for (const p of state.live.players) {
+      box.append(playerRow({
+        championName: p.championName,
+        riotId: p.riotId,
+        ally: p.team === myTeam,
+        itemIds: p.items.map((i) => i.id),
+        augmentIds: p.augments ?? [],
+        saveBuild: () => window.mayhem.saveBuild({
+          championName: p.championName,
+          playerName: p.riotId,
+          items: p.items.map((i) => i.id),
+          augments: p.augments ?? [],
+          note: `saved live · ${Math.floor((state.live.gameTime ?? 0) / 60)}min`,
+        }),
+      }));
+    }
     return;
   }
-  const myTeam = state.live.me?.team;
-  for (const p of state.live.players) {
-    const row = el('div', `player-row ${p.team === myTeam ? 'ally' : 'enemy'}`);
-    row.append(el('span', 'champ', esc(p.championName)));
-    const items = el('span', 'items');
-    p.items.forEach((it) => items.append(itemImg(it.id, 22)));
-    row.append(items);
-    const save = el('button', 'mini-btn save', '💾');
-    save.title = 'Save this build';
-    save.addEventListener('click', async () => {
-      state.builds = await window.mayhem.saveBuild({
-        championName: p.championName,
-        playerName: p.riotId,
-        items: p.items.map((i) => i.id),
-        augments: p.augments ?? [],
-        note: `saved live · ${Math.floor((state.live.gameTime ?? 0) / 60)}min`,
-      });
-      save.textContent = '✓';
-      setTimeout(() => (save.textContent = '💾'), 1500);
-      renderSaved();
-    });
-    row.append(save);
-    box.append(row);
+
+  // 2) last game from history (final builds + augments) if it's fresher than
+  //    any live snapshot we captured at game end
+  const hist = state.history[0];
+  const histEnd = hist ? hist.creation + (hist.duration ?? 0) * 1000 : 0;
+  const snapshotFresher = state.lastGame && state.lastGame.at > histEnd + 60 * 1000;
+
+  if (hist?.participants?.length && !snapshotFresher) {
+    box.append(el('div', 'hint',
+      `Last game · ${new Date(hist.creation).toLocaleString()} · final builds & augments`));
+    for (const p of hist.participants) {
+      const c = champById(p.championId);
+      box.append(playerRow({
+        championName: c?.name ?? `Champion ${p.championId}`,
+        riotId: p.riotId,
+        ally: p.win === hist.win, // same result as me = same team
+        itemIds: p.items ?? [],
+        augmentIds: p.augments ?? [],
+        saveBuild: () => window.mayhem.saveBuild({
+          championName: c?.name,
+          playerName: p.riotId,
+          items: p.items ?? [],
+          augments: p.augments ?? [],
+          note: 'saved from last game',
+        }),
+      }));
+    }
+    return;
   }
+
+  // 3) snapshot from the moment the game ended (history not synced yet)
+  if (state.lastGame?.players?.length) {
+    box.append(el('div', 'hint',
+      'Last game (as it ended) · augments fill in once history syncs'));
+    for (const p of state.lastGame.players) {
+      box.append(playerRow({
+        championName: p.championName,
+        riotId: p.riotId,
+        ally: p.team === state.lastGame.team,
+        itemIds: p.items.map((i) => i.id),
+        augmentIds: p.augments ?? [],
+        saveBuild: () => window.mayhem.saveBuild({
+          championName: p.championName,
+          playerName: p.riotId,
+          items: p.items.map((i) => i.id),
+          augments: p.augments ?? [],
+          note: 'saved from last game',
+        }),
+      }));
+    }
+    return;
+  }
+
+  box.append(el('div', 'empty', 'Player builds show here during a game, and stay after it ends so you can still save them.'));
 }
 
 /* ---------------- history tab ---------------- */
@@ -888,6 +967,9 @@ async function init() {
     updateBuildStrip();
   });
   window.mayhem.onLiveEnded(() => {
+    if (state.live?.players?.length) {
+      state.lastGame = { players: state.live.players, team: state.live.me?.team, at: Date.now() };
+    }
     state.live = null;
     lastStripKey = null;
     $('#live-champ').textContent = '';
@@ -915,7 +997,12 @@ async function init() {
     const statsNote = state.augStatsMeta ? ` · stats: aramgg ${state.augStatsMeta.updated}` : '';
     $('#phase').textContent = `client: ${p.connected ? p.phase : 'not running'}${statsNote}`;
   });
-  window.mayhem.onHistoryUpdated((games) => { state.history = games; renderHistory(); });
+  window.mayhem.onHistoryUpdated((games) => {
+    state.history = games;
+    renderHistory();
+    // upgrade the last-game player list to final builds + augments
+    if ($('#tab-build').classList.contains('active')) renderBuildTab();
+  });
   window.mayhem.onBuildsUpdated((builds) => { state.builds = builds; renderSaved(); });
   window.mayhem.onOcrStatus((s) => {
     if (s.trigger === 'verify' || s.trigger === 'reroll') return; // silent background checks

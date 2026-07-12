@@ -77,17 +77,19 @@
     #strip {
       position: absolute;
       display: none;
-      align-items: center;
-      gap: 5px;
+      flex-direction: column;
+      gap: 4px;
       background: var(--surface-0);
       border: 1px solid var(--hairline-strong);
       border-radius: var(--r-container);
-      padding: 5px 10px;
+      padding: 6px 10px;
       box-shadow: var(--shadow-1), inset 0 1px 0 rgba(240, 230, 210, 0.07);
     }
+    #strip .srow { display: flex; align-items: center; gap: 5px; }
     #strip .lbl {
-      font-size: 10px; font-weight: 900; letter-spacing: 2px;
+      font-size: 9.5px; font-weight: 900; letter-spacing: 1.2px;
       color: var(--gold); margin-right: 3px;
+      min-width: 74px;
     }
     #strip img {
       width: 27px; height: 27px; border-radius: 6px;
