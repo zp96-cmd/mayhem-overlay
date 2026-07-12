@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Tray, Menu, globalShortcut, ipcMain, screen, nativeImage } = require('electron');
+const { app, BrowserWindow, Tray, Menu, globalShortcut, ipcMain, screen, nativeImage, Notification } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const { Store } = require('./store');
@@ -40,6 +40,40 @@ function loadDataFile(name) {
     return JSON.parse(fs.readFileSync(path.join(dataDir(), name), 'utf8'));
   } catch {
     return null;
+  }
+}
+
+// ---------- app self-update (GitHub Releases) ----------
+function notify(title, body) {
+  try { new Notification({ title, body }).show(); } catch { /* notifications unavailable */ }
+}
+
+let updateDownloadedNotified = false;
+async function checkAppUpdate(manual) {
+  if (!app.isPackaged) {
+    if (manual) notify('Mayhem Overlay', `Running from source (v${app.getVersion()}). App updates apply to installed copies only.`);
+    return;
+  }
+  try {
+    const { autoUpdater } = require('electron-updater');
+    if (!updateDownloadedNotified) {
+      updateDownloadedNotified = true;
+      autoUpdater.on('update-downloaded', (info) => {
+        notify('Mayhem Overlay update ready', `v${info.version} downloaded. It installs when you quit the overlay.`);
+      });
+    }
+    const result = await autoUpdater.checkForUpdates();
+    const latest = result?.updateInfo?.version;
+    if (manual) {
+      if (latest && latest !== app.getVersion()) {
+        notify('Mayhem Overlay', `Update v${latest} found, downloading now…`);
+      } else {
+        notify('Mayhem Overlay', `You're up to date (v${app.getVersion()}).`);
+      }
+    }
+  } catch (e) {
+    console.log('[update]', e.message);
+    if (manual) notify('Mayhem Overlay', `Update check failed: ${e.message}`);
   }
 }
 
@@ -242,6 +276,7 @@ function createTray() {
     { label: 'Toggle click-through (Ctrl+Alt+X)', click: () => setClickThrough(!clickThrough) },
     { label: 'Prep screen', click: openPrepWindow },
     { label: 'Update patch data', click: () => refreshPatchData('tray') },
+    { label: 'Check for app updates', click: () => checkAppUpdate(true) },
     { type: 'separator' },
     { label: 'Quit', click: () => app.quit() },
   ]));
@@ -697,15 +732,8 @@ app.whenReady().then(() => {
   setTimeout(checkPatchOnStartup, 4000);
 
   // app self-update from GitHub Releases (installed copies only)
-  if (app.isPackaged) {
-    try {
-      const { autoUpdater } = require('electron-updater');
-      autoUpdater.checkForUpdatesAndNotify().catch((e) => console.log('[update]', e.message));
-      setInterval(() => autoUpdater.checkForUpdatesAndNotify().catch(() => {}), 4 * 3600 * 1000);
-    } catch (e) {
-      console.log('[update] unavailable:', e.message);
-    }
-  }
+  checkAppUpdate(false);
+  setInterval(() => checkAppUpdate(false), 4 * 3600 * 1000);
 
   const hotkeys = {};
   hotkeys['Ctrl+Alt+O'] = globalShortcut.register('Control+Alt+O', toggleVisibility);
