@@ -1007,7 +1007,10 @@ async function init() {
 
   // titlebar buttons
   $('#btn-hide').addEventListener('click', () => window.mayhem.hide());
-  $('#btn-collapse').addEventListener('click', () => $('#root').classList.toggle('collapsed'));
+  $('#btn-collapse').addEventListener('click', () => {
+    const collapsed = $('#root').classList.toggle('collapsed');
+    window.mayhem.setCollapsed(collapsed);
+  });
   $('#btn-pin').addEventListener('click', () => window.mayhem.setClickThrough(!state.clickThrough));
   $('#offer-clear').addEventListener('click', () => {
     state.picked = [];

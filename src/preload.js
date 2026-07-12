@@ -39,6 +39,7 @@ contextBridge.exposeInMainWorld('mayhem', {
   onAutoPicked: (cb) => ipcRenderer.on('ocr:auto-picked', (_e, d) => cb(d)),
   setClickThrough: (v) => ipcRenderer.send('overlay:set-clickthrough', v),
   hide: () => ipcRenderer.send('overlay:hide'),
+  setCollapsed: (v) => ipcRenderer.send('overlay:collapse', v),
   onLiveUpdate: (cb) => ipcRenderer.on('live:update', (_e, s) => cb(s)),
   onLiveEnded: (cb) => ipcRenderer.on('live:ended', () => cb()),
   onAugmentBreakpoint: (cb) => ipcRenderer.on('live:augment-breakpoint', (_e, d) => cb(d)),

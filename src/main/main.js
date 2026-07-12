@@ -48,6 +48,33 @@ function notify(title, body) {
   try { new Notification({ title, body }).show(); } catch { /* notifications unavailable */ }
 }
 
+// Auto-install downloaded updates, but never mid-session: wait until the
+// player has been out of game/champ select/queue for a continuous minute
+// (which also lets the post-game history sync finish), then restart.
+let pendingInstallVersion = null;
+let updateSafeTicks = 0;
+const BUSY_PHASES = ['ChampSelect', 'GameStart', 'InProgress', 'ReadyCheck', 'Matchmaking', 'EndOfGame'];
+
+function updateSafeToRestart() {
+  return !poller.inGame && !BUSY_PHASES.includes(lastPhase ?? 'None');
+}
+
+// called from the phase watcher every ~5s
+function maybeAutoInstall() {
+  if (!pendingInstallVersion) return;
+  if (!updateSafeToRestart()) { updateSafeTicks = 0; return; }
+  updateSafeTicks++;
+  if (updateSafeTicks === 12) { // ~60s continuously idle
+    notify('Mayhem Overlay', `Updating to v${pendingInstallVersion} and restarting…`);
+    setTimeout(() => {
+      try {
+        const { autoUpdater } = require('electron-updater');
+        autoUpdater.quitAndInstall(true, true); // silent install, relaunch after
+      } catch (e) { console.log('[update] install failed:', e.message); }
+    }, 2000);
+  }
+}
+
 let updateDownloadedNotified = false;
 async function checkAppUpdate(manual) {
   if (!app.isPackaged) {
@@ -59,7 +86,12 @@ async function checkAppUpdate(manual) {
     if (!updateDownloadedNotified) {
       updateDownloadedNotified = true;
       autoUpdater.on('update-downloaded', (info) => {
-        notify('Mayhem Overlay update ready', `v${info.version} downloaded. It installs when you quit the overlay.`);
+        pendingInstallVersion = info.version;
+        updateSafeTicks = 0;
+        notify('Mayhem Overlay update ready',
+          updateSafeToRestart()
+            ? `v${info.version} downloaded. Restarting in about a minute…`
+            : `v${info.version} downloaded. It installs automatically after your game.`);
       });
     }
     const result = await autoUpdater.checkForUpdates();
@@ -157,9 +189,11 @@ function createWindow() {
   win.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
   win.loadFile(path.join(__dirname, '..', 'renderer', 'index.html'));
 
-  win.on('close', () => settings.set('bounds', win.getBounds()));
-  win.on('moved', () => settings.set('bounds', win.getBounds()));
-  win.on('resized', () => settings.set('bounds', win.getBounds()));
+  // don't persist the tiny collapsed size as the panel's real bounds
+  const remember = () => { if (!panelCollapsed) settings.set('bounds', win.getBounds()); };
+  win.on('close', remember);
+  win.on('moved', remember);
+  win.on('resized', remember);
 }
 
 // Fullscreen, always-click-through layer that draws stat pills over the
@@ -251,6 +285,26 @@ function createScanButton() {
   });
   scanBtn.setAlwaysOnTop(true, 'screen-saver');
   scanBtn.loadFile(path.join(__dirname, '..', 'renderer', 'scanbtn.html'));
+}
+
+// Collapse = shrink the actual window to just the titlebar, not merely hide content
+let panelCollapsed = false;
+let expandedBounds = null;
+const COLLAPSED_HEIGHT = 48;
+
+function setPanelCollapsed(collapsed) {
+  if (!win || collapsed === panelCollapsed) return;
+  panelCollapsed = collapsed;
+  if (collapsed) {
+    expandedBounds = win.getBounds();
+    win.setResizable(false);
+    win.setBounds({ ...expandedBounds, height: COLLAPSED_HEIGHT });
+  } else {
+    win.setResizable(true);
+    const cur = win.getBounds();
+    // keep whatever position it was dragged to while collapsed
+    win.setBounds({ ...(expandedBounds ?? cur), x: cur.x, y: cur.y });
+  }
 }
 
 function setClickThrough(enabled) {
@@ -622,6 +676,7 @@ function startPhaseWatcher() {
       if (phase === 'InProgress' || phase === 'GameStart') closePrepWindow();
     }
     lastPhase = phase;
+    maybeAutoInstall();
   }, 5000);
 }
 
@@ -681,6 +736,7 @@ ipcMain.handle('ratings:set', (_e, { name, score }) => {
 });
 ipcMain.on('overlay:set-clickthrough', (_e, enabled) => setClickThrough(enabled));
 ipcMain.on('overlay:hide', () => win.hide());
+ipcMain.on('overlay:collapse', (_e, collapsed) => setPanelCollapsed(collapsed));
 ipcMain.handle('ocr:scan', async () => {
   const res = await runOcrScan('manual');
   if (res?.matches?.length) {
