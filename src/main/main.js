@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Tray, Menu, globalShortcut, ipcMain, screen, nativeImage, Notification } = require('electron');
+const { app, BrowserWindow, Tray, Menu, globalShortcut, ipcMain, screen, nativeImage, Notification, session } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const { Store } = require('./store');
@@ -722,7 +722,19 @@ app.on('second-instance', () => {
   if (win) { win.show(); win.setAlwaysOnTop(true, 'screen-saver'); }
 });
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
+  // Chromium's disk cache survives app updates and can serve STALE renderer
+  // files from the previous version (same file:// paths, new asar) — which
+  // silently breaks windows whose JS/HTML shape changed. Purge it once per
+  // version change, before any window loads.
+  if (settings.get('lastRunVersion') !== app.getVersion()) {
+    try {
+      await session.defaultSession.clearCache();
+      await session.defaultSession.clearCodeCaches({});
+    } catch (e) { console.log('[cache] clear failed:', e.message); }
+    settings.set('lastRunVersion', app.getVersion());
+  }
+
   createWindow();
   createBadgeWindow();
   createScanButton();
