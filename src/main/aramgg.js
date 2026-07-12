@@ -65,7 +65,8 @@ async function getChampionData(championId) {
   const file = cacheFile(championId);
   try {
     const cached = JSON.parse(fs.readFileSync(file, 'utf8'));
-    if (Date.now() - cached.fetchedAt < TTL_MS) return cached;
+    // 'trios' missing means the cache predates combo support — refetch
+    if (Date.now() - cached.fetchedAt < TTL_MS && 'trios' in cached) return cached;
   } catch { /* no cache */ }
 
   const [pageHtml, augJson] = await Promise.all([
@@ -77,6 +78,7 @@ async function getChampionData(championId) {
 
   // augJson shape: [[championId, statsJsonString, patch, date, _]]
   let augments = null;
+  let trios = null;
   if (augJson) {
     try {
       const row = JSON.parse(augJson)[0];
@@ -90,10 +92,20 @@ async function getChampionData(championId) {
           tier: Number(s.tier),
         };
       }
+      // augment combos: "id:id:id" -> { num_games, win_rate_tier (1 best .. 5 worst) }
+      trios = [];
+      for (const [key, s] of Object.entries(parsed.augment_trios ?? {})) {
+        const ids = key.split(':').map(Number);
+        const games = Number(s.num_games);
+        const tier = Number(s.win_rate_tier);
+        if (ids.length === 3 && ids.every(Number.isFinite) && games > 0 && Number.isFinite(tier)) {
+          trios.push({ ids, games, tier });
+        }
+      }
     } catch { /* leave null */ }
   }
 
-  const data = { fetchedAt: Date.now(), championId, buildSummary, augments };
+  const data = { fetchedAt: Date.now(), championId, buildSummary, augments, trios };
   fs.writeFileSync(file, JSON.stringify(data));
   return data;
 }

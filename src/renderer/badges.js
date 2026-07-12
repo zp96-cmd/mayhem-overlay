@@ -5,7 +5,11 @@ const root = document.getElementById('root');
 const wrClass = (wr) => (wr >= 0.53 ? 'wr-good' : wr < 0.48 ? 'wr-bad' : 'wr-mid');
 const pct = (v) => `${(v * 100).toFixed(1)}%`;
 
-window.mayhem.onBadges((badges) => {
+const comboClass = (t) => (t <= 2 ? 'wr-good' : t >= 4 ? 'wr-bad' : 'wr-mid');
+
+window.mayhem.onBadges((data) => {
+  const badges = Array.isArray(data) ? data : (data?.pills ?? []);
+  const verdict = Array.isArray(data) ? null : data?.verdict;
   root.innerHTML = '';
   for (const b of badges) {
     const d = document.createElement('div');
@@ -15,13 +19,25 @@ window.mayhem.onBadges((badges) => {
       : `<div class="top"><span class="sub">no data</span></div>`;
     const champ = b.champWr != null
       ? `<div class="champ ${wrClass(b.champWr)}">${pct(b.champWr)} on ${b.champName}</div>` : '';
+    const combo = b.comboTier != null
+      ? `<div class="champ ${comboClass(b.comboTier)}">combo T${b.comboTier.toFixed(1)} with your picks</div>` : '';
     d.innerHTML =
-      wr + champ +
+      wr + champ + combo +
       `<div class="sub">#${b.rank} of offer · score ${b.score.toFixed(1)}</div>` +
       (b.best ? `<div class="tag">★ BEST PICK</div>` : '');
     d.style.left = `${b.x + b.w / 2}px`;
     d.style.top = `${b.y}px`;
     root.append(d);
+  }
+  const v = document.getElementById('verdict');
+  if (verdict) {
+    v.className = verdict.action.toLowerCase();
+    v.innerHTML =
+      `<span class="act">${verdict.action === 'KEEP' ? '✓ KEEP' : verdict.action === 'REROLL' ? '⟳ REROLL' : '~ CLOSE CALL'}</span>` +
+      `<span class="nums">best of offer ${verdict.best.toFixed(1)} · reroll expects ${verdict.ev.toFixed(1)}</span>`;
+    v.style.display = 'flex';
+  } else {
+    v.style.display = 'none';
   }
 });
 
@@ -50,6 +66,7 @@ window.mayhem.onPrio((data) => {
 window.mayhem.onBadgesClear(() => {
   root.innerHTML = '';
   prio.style.display = 'none';
+  document.getElementById('verdict').style.display = 'none';
 });
 
 // Persistent build-path strip anchored near the bottom-HUD stats.

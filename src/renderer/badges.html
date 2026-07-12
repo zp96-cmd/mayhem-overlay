@@ -37,6 +37,31 @@
       color: var(--win); margin-top: 4px;
     }
 
+    /* ---------- keep/reroll verdict ---------- */
+    #verdict {
+      position: absolute;
+      left: 50%;
+      top: 9vh;
+      transform: translateX(-50%);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      background: var(--surface-0);
+      border: 2px solid var(--hairline-strong);
+      border-radius: var(--r-container);
+      padding: 10px 26px 12px;
+      box-shadow: var(--shadow-2);
+    }
+    #verdict .act { font-size: 30px; font-weight: 900; letter-spacing: 3px; line-height: 1; }
+    #verdict .nums { font-size: 12px; color: var(--text-dim); font-weight: 600; font-variant-numeric: tabular-nums; }
+    #verdict.keep { border-color: var(--win); box-shadow: 0 0 26px rgba(63, 208, 138, 0.5); }
+    #verdict.keep .act { color: var(--win); }
+    #verdict.reroll { border-color: var(--loss); box-shadow: 0 0 26px rgba(232, 83, 110, 0.5); }
+    #verdict.reroll .act { color: var(--loss); }
+    #verdict.close { border-color: var(--caution); }
+    #verdict.close .act { color: var(--caution); font-size: 22px; }
+
     /* ---------- priority panel ---------- */
     #prio {
       position: absolute;
@@ -125,6 +150,7 @@
 </head>
 <body>
   <div id="root"></div>
+  <div id="verdict"></div>
   <div id="strip"></div>
   <div id="cs"></div>
   <div id="prio"></div>

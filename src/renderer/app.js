@@ -83,6 +83,31 @@ function fitArchetypes() {
   return set;
 }
 
+// Combo signal from aramgg augment trios: how does this candidate pair with
+// what I've already picked this game? Tier 1 (best) .. 5 (worst).
+// 2 picked -> exact trio lookup; 1 or 3+ picked -> games-weighted aggregate
+// over trios containing the candidate plus picked augments.
+function comboStats(aug) {
+  const trios = state.champData?.championId === myChampion()?.id ? state.champData?.trios : null;
+  if (!trios?.length || !aug.id || !state.picked.length) return null;
+  const pickedIds = state.picked
+    .map((n) => state.augByName.get(n)?.id)
+    .filter(Boolean);
+  if (!pickedIds.length) return null;
+  const pickedSet = new Set(pickedIds);
+  const needed = Math.min(2, pickedIds.length); // trio = candidate + 2 others
+  let games = 0, tierSum = 0;
+  for (const t of trios) {
+    if (!t.ids.includes(aug.id)) continue;
+    const others = t.ids.filter((id) => id !== aug.id);
+    const overlap = others.filter((id) => pickedSet.has(id)).length;
+    if (overlap < needed) continue;
+    games += t.games;
+    tierSum += t.tier * t.games;
+  }
+  return games >= 50 ? { tier: tierSum / games, games, exact: needed === 2 } : null;
+}
+
 function historyStats(aug) {
   if (!aug.id) return null;
   let games = 0, wins = 0;
@@ -147,6 +172,14 @@ function scoreAugment(aug) {
         reasons.push(`${(pair.winRate * 100).toFixed(1)}% on ${myChampion().name}`);
       }
     }
+  }
+
+  // real combo data with my picked augments (aramgg trios, tier 1 best .. 5 worst)
+  const combo = comboStats(aug);
+  if (combo) {
+    const adj = (3 - combo.tier) * 0.6; // T1 +1.2 .. T5 -1.2
+    score += adj;
+    reasons.push(`combo T${combo.tier.toFixed(1)} with your picks (${combo.games.toLocaleString()} games)`);
   }
 
   const hs = historyStats(aug);
@@ -313,6 +346,37 @@ function champWrFor(aug) {
   return champAug?.games >= 200 ? champAug.winRate : null;
 }
 
+// Expected best score of a fresh 3-augment roll from the pool: order
+// statistics of the max of 3 uniform draws over the empirical distribution.
+function rerollEV(scores) {
+  if (!scores.length) return null;
+  const s = [...scores].sort((a, b) => a - b);
+  const n = s.length;
+  let ev = 0;
+  for (let i = 0; i < n; i++) {
+    ev += s[i] * (Math.pow((i + 1) / n, 3) - Math.pow(i / n, 3));
+  }
+  return ev;
+}
+
+// KEEP / REROLL: is the best of this offer better than what a reroll is
+// likely to serve from the remaining pool?
+function computeVerdict(scored, offerNames) {
+  const tiers = offerNames.map((n) => state.augByName.get(n)?.tier).filter(Boolean);
+  const tier = tiers.length && tiers.every((t) => t === tiers[0]) ? tiers[0] : null;
+  const pool = state.augments
+    .filter((a) => !a.disabled)
+    .filter((a) => !tier || a.tier === tier)
+    .filter((a) => !state.seen.has(a.name))
+    .map((a) => scoreAugment(a).score);
+  if (pool.length < 6) return null; // pool too thin to judge
+  const ev = rerollEV(pool);
+  const best = Math.max(...scored.map((o) => o.score));
+  const diff = best - ev;
+  const action = diff >= 0.25 ? 'KEEP' : diff <= -0.25 ? 'REROLL' : 'CLOSE';
+  return { action, best, ev, poolSize: pool.length };
+}
+
 // Draw stat pills over the actual augment cards on screen (OCR gave us where
 // each detected name sits). Best suggestion gets the ★.
 function showOfferBadges(matches) {
@@ -323,11 +387,14 @@ function showOfferBadges(matches) {
     if (!aug) return null;
     const { score } = scoreAugment(aug);
     const cs = aug.id ? state.augStats[aug.id] : null;
+    const combo = comboStats(aug);
     return {
+      name: aug.name,
       x: m.screen.x, y: m.screen.y, w: m.screen.w, h: m.screen.h,
       winRate: cs?.winRate ?? null,
       champWr: champWrFor(aug),
       champName: myChampion()?.name ?? '',
+      comboTier: combo ? combo.tier : null,
       score,
       best: false,
       rank: 0,
@@ -336,7 +403,11 @@ function showOfferBadges(matches) {
   if (!scored.length) return;
   [...scored].sort((a, b) => b.score - a.score).forEach((b, i) => { b.rank = i + 1; });
   scored.find((b) => b.rank === 1).best = true;
-  window.mayhem.showBadges(scored);
+  const verdict = computeVerdict(scored, scored.map((s) => s.name));
+  if (verdict) {
+    $('#offer-msg').textContent += ` · verdict: ${verdict.action} (offer ${verdict.best.toFixed(1)} vs pool ${verdict.ev.toFixed(1)})`;
+  }
+  window.mayhem.showBadges({ pills: scored, verdict });
 }
 
 // Priority list: top augments still in the pool (never offered this game),
