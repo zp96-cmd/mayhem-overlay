@@ -1,29 +1,28 @@
-# Updating Mayhem Overlay to v0.2.0
+# Installing / Updating Mayhem Overlay
 
-## If you're updating from an older version
+## The easy way (recommended)
 
-1. **Close the overlay** (tray icon → Quit).
-2. Unzip this archive **over your existing `LoLmayhemtool` folder**, replacing all files.
-3. Open a terminal in that folder and run:
-   ```
-   npm install
-   ```
-   (Required — this version added OCR and image libraries.)
-4. Start it with `Launch Mayhem Overlay.bat`, or make your own shortcut to
-   `node_modules\electron\dist\electron.exe` with the project folder as the argument.
+Download the latest `Mayhem-Overlay-Setup-<version>.exe` from
+https://github.com/zp96-cmd/mayhem-overlay/releases and run it. That's it:
+no Node.js, no terminal. It creates a desktop shortcut and **updates itself**
+from then on (checks GitHub for new versions automatically).
 
-Your saved builds, history, ratings, and window positions are safe — they live in
-`%APPDATA%\lol-mayhem-overlay\`, not in this folder.
+Windows SmartScreen may warn on first run (the installer is unsigned):
+click "More info" then "Run anyway".
 
-## If this is a fresh install
+Your saved builds, history, and ratings survive every update — they live in
+`%APPDATA%\Mayhem Overlay\`, separate from the app.
 
-1. Install [Node.js](https://nodejs.org) (LTS).
-2. Unzip anywhere, open a terminal in the folder:
-   ```
-   npm install
-   npm start
-   ```
-3. Run League in **Borderless** mode (Settings → Video). See README.md for everything else.
+Run League in **Borderless** mode (Settings → Video) so the overlay can draw over it.
+
+## From source (dev)
+
+```
+git clone https://github.com/zp96-cmd/mayhem-overlay
+cd mayhem-overlay
+npm install
+npm start
+```
 
 ## What's new in v0.2.0
 

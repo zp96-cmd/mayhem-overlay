@@ -15,17 +15,25 @@ installed LoL patch against its data and refreshes automatically when Riot ships
 one. Manual refresh: the **Update patch data** button (History tab) or the tray menu.
 (`npm run fetch-data` still works for dev use.)
 
-## Installer (for sharing)
+## Installing (no Node needed)
+
+Grab the latest `Mayhem-Overlay-Setup-<version>.exe` from
+[Releases](https://github.com/zp96-cmd/mayhem-overlay/releases) and run it.
+Installed copies **self-update** from GitHub Releases and keep their patch data
+fresh through the built-in updater. History, saved builds, and ratings survive
+every update.
+
+## Shipping a new version
 
 ```
-npm run dist
+npm version patch        # or minor
+export GH_TOKEN=$(gh auth token)   # authenticated as zp96-cmd
+npx electron-builder --win --publish always
+git push && git push --tags
 ```
 
-Produces `dist/Mayhem-Overlay-Setup-<version>.exe` — a one-click Windows installer.
-The installed app is fully self-contained (no Node.js needed), creates a desktop
-shortcut, and keeps its patch data fresh through the built-in updater. To ship an
-update to someone, just send them the new Setup exe; installing over the old version
-preserves their history, saved builds, and ratings.
+Every installed copy picks the release up automatically within a few hours
+(or on next launch).
 
 A slim panel appears on the right of your screen. Run League in **Borderless** or
 **Windowed** mode (Settings → Video) — overlays can't draw over Exclusive Fullscreen.
