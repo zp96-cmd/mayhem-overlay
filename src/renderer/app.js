@@ -451,29 +451,26 @@ function itemImg(id, size = 28) {
 }
 
 function buildBlock(srcLabel, itemIds, note, { markProgress = false } = {}) {
+  // suggestion paths never show items already owned
+  const ids = markProgress
+    ? itemIds.filter((id) => !ownedItemIds().has(id))
+    : itemIds;
+  if (!ids.length) return null;
   const b = el('div', 'build-block');
   b.append(el('div', 'src', esc(srcLabel)));
   const wrap = el('div', 'items');
-  const owned = markProgress ? ownedItemIds() : null;
   const gold = state.live?.activePlayer?.gold ?? 0;
-  let nextMarked = false;
-  itemIds.forEach((id, i) => {
+  ids.forEach((id, i) => {
     if (i) wrap.append(el('span', 'arrow', '›'));
     const img = itemImg(id);
-    if (markProgress) {
+    if (markProgress && i === 0) {
       const it = state.itemById.get(id);
-      if (owned.has(id)) {
-        img.classList.add('owned');
-        img.title += ' (owned ✓)';
-      } else if (!nextMarked) {
-        nextMarked = true;
-        img.classList.add('next');
-        if (it && it.price <= gold) {
-          img.classList.add('affordable');
-          img.title += ` (NEXT, affordable: ${it.price}g)`;
-        } else {
-          img.title += ` (NEXT: ${it?.price ?? '?'}g)`;
-        }
+      img.classList.add('next');
+      if (it && it.price <= gold) {
+        img.classList.add('affordable');
+        img.title += ` (NEXT, affordable: ${it.price}g)`;
+      } else {
+        img.title += ` (NEXT: ${it?.price ?? '?'}g)`;
       }
     }
     wrap.append(img);
@@ -489,15 +486,40 @@ function itemIdsFromNames(names) {
     .filter(Boolean);
 }
 
-// Full ARAM Mayhem path for the matched community build: core items in order,
-// then the situational pool for slots 4-6.
+// Full ARAM Mayhem path for the matched community build: best core in order,
+// then items from the build's other core variants, then the situational pool.
 function communityPath(cb) {
   const owned = ownedItemIds();
   const cores = [...(cb.coreItems ?? [])].sort((a, b) => (b.games ?? 0) - (a.games ?? 0));
   const core = cores.find((c) => c.itemIds.some((id) => !owned.has(id))) ?? cores[0];
   const coreIds = core?.itemIds ?? [];
-  const situationalIds = itemIdsFromNames(cb.situationalItems).filter((id) => !coreIds.includes(id));
-  return { core, coreIds, situationalIds };
+  const seen = new Set(coreIds);
+  const extraCoreIds = [];
+  for (const c of cores) {
+    for (const id of c.itemIds) {
+      if (!seen.has(id)) { seen.add(id); extraCoreIds.push(id); }
+    }
+  }
+  const situationalIds = itemIdsFromNames(cb.situationalItems).filter((id) => !seen.has(id));
+  return { core, coreIds, extraCoreIds, situationalIds };
+}
+
+// Deep suggestion pool for the strip: matched build first, then the champion's
+// other aramgg build variants as backfill so suggestions never run dry.
+function communityPool(cb) {
+  const { coreIds, extraCoreIds, situationalIds } = communityPath(cb);
+  const pool = [...coreIds, ...extraCoreIds, ...situationalIds];
+  const seen = new Set(pool);
+  const others = (state.champData?.buildSummary?.builds ?? []).filter((b) => b !== cb);
+  for (const b of others) {
+    for (const c of b.coreItems ?? []) {
+      for (const id of c.itemIds) if (!seen.has(id)) { seen.add(id); pool.push(id); }
+    }
+    for (const id of itemIdsFromNames(b.situationalItems)) {
+      if (!seen.has(id)) { seen.add(id); pool.push(id); }
+    }
+  }
+  return pool;
 }
 
 // Consensus build path from MY winning games on this champion: items that
@@ -522,7 +544,7 @@ function myWinningPath(champId) {
   // staples (in at least half the wins) in build order, then the rest by frequency
   const staples = ranked.filter((r) => r.f >= half).sort((a, b) => a.avgSlot - b.avgSlot);
   const rest = ranked.filter((r) => r.f < half).sort((a, b) => b.f - a.f || a.avgSlot - b.avgSlot);
-  const ids = [...staples, ...rest].map((r) => r.id).slice(0, 6);
+  const ids = [...staples, ...rest].map((r) => r.id).slice(0, 8);
   return ids.length ? { ids, wins: wins.length } : null;
 }
 
@@ -535,7 +557,7 @@ function stripRows() {
   const gold = state.live?.activePlayer?.gold ?? 0;
   const mk = (ids) => ids
     .filter((id) => !owned.has(id))
-    .slice(0, 4)
+    .slice(0, 5)
     .map((id, i) => {
       const it = state.itemById.get(id);
       return it ? {
@@ -553,8 +575,7 @@ function stripRows() {
   }
   const cb = pickCommunityBuild();
   if (cb) {
-    const { coreIds, situationalIds } = communityPath(cb);
-    const items = mk([...coreIds, ...situationalIds]);
+    const items = mk(communityPool(cb));
     if (items.length) rows.push({ label: `ARAMGG ${(cb.tags ?? []).join('/')}`.trim(), items });
   }
   return rows;
@@ -589,9 +610,10 @@ function renderBuildTab() {
     const champId = champ?.id;
     const mine = myWinningPath(champId);
     if (mine) {
-      box.append(buildBlock(
+      const blk = buildBlock(
         `MY WINS · consensus from ${mine.wins} winning game${mine.wins > 1 ? 's' : ''}`,
-        mine.ids, '✓ owned · highlighted = build next', { markProgress: true }));
+        mine.ids, 'highlighted = build next', { markProgress: true });
+      if (blk) box.append(blk);
     }
 
     // 2) saved builds for this champion
@@ -606,7 +628,7 @@ function renderBuildTab() {
     const cb = pickCommunityBuild();
     if (cb) {
       const owned = ownedItemIds();
-      const { core, coreIds, situationalIds } = communityPath(cb);
+      const { core, coreIds, extraCoreIds, situationalIds } = communityPath(cb);
       // starting items, while we're still early
       const startIds = itemIdsFromNames([...new Set(cb.startingItems ?? [])]);
       if (startIds.length && (state.live.me?.items?.length ?? 0) < 2 && (state.live.gameTime ?? 0) < 240) {
@@ -614,14 +636,16 @@ function renderBuildTab() {
       }
       if (core) {
         const dir = Object.keys(ownedArchetypeWeights()).length ? 'matches your items' : 'most popular';
-        box.append(buildBlock(
+        const blk = buildBlock(
           `CORE · ${(cb.tags ?? []).join('/')} (${dir}) · ${((core.winRate ?? cb.winRate) * 100).toFixed(1)}% WR · ${(core.games ?? cb.games).toLocaleString()} games`,
-          coreIds, 'aramgg.com. ✓ owned, highlighted = build next',
-          { markProgress: true }));
+          coreIds, 'aramgg.com · highlighted = build next',
+          { markProgress: true });
+        if (blk) box.append(blk);
       }
-      const situUnowned = situationalIds.filter((id) => !owned.has(id));
+      const situUnowned = [...extraCoreIds, ...situationalIds]
+        .filter((id) => !owned.has(id));
       if (situUnowned.length) {
-        box.append(buildBlock('SITUATIONAL · aramgg (slots 4-6, pick to taste)', situUnowned.slice(0, 6)));
+        box.append(buildBlock('SITUATIONAL · aramgg (pick to taste)', situUnowned.slice(0, 8)));
       }
     } else if (!mine && !saved.length) {
       box.append(el('div', 'empty',
