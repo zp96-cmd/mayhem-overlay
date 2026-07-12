@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' https://raw.communitydragon.org https://cdn.communitydragon.org data:; style-src 'self' 'unsafe-inline'">
+  <title>Mayhem Prep</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { background: var(--abyss); height: 100%; }
+    body {
+      font-family: var(--font-body);
+      color: var(--text); font-size: 14px;
+      overflow-y: auto;
+    }
+    body::-webkit-scrollbar { width: 10px; }
+    body::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: 5px; }
+    .wr-good { color: var(--win); } .wr-bad { color: var(--loss); } .wr-mid { color: var(--caution); }
+    .num { font-variant-numeric: tabular-nums; }
+
+    #waiting {
+      text-align: center; color: var(--text-dim);
+      padding: 140px 40px; font-size: 16px; line-height: 1.9;
+    }
+    #waiting b {
+      font-family: var(--font-display); font-weight: 800; letter-spacing: 3px; font-size: 20px;
+      background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      display: block; margin-bottom: 10px;
+    }
+    #dash { display: none; }
+
+    /* ---------- header with champion splash ---------- */
+    #head-wrap { position: relative; overflow: hidden; }
+    #splash {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center 18%;
+      filter: saturate(0.95);
+      opacity: 0.65;
+    }
+    #head-wrap::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(9,16,24,0.08) 0%, rgba(9,16,24,0.5) 55%, var(--abyss) 100%);
+    }
+    #head {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; gap: 20px;
+      padding: 62px 30px 28px;
+    }
+    #head img.champ {
+      width: 92px; height: 92px; border-radius: var(--r-container);
+      border: 2px solid var(--gold);
+      box-shadow: var(--shadow-2);
+    }
+    #head .name {
+      font-family: var(--font-display);
+      font-size: 34px; font-weight: 900; letter-spacing: 1px;
+      text-shadow: 0 2px 12px rgba(4, 9, 15, 0.8);
+    }
+    #head .bigwr {
+      font-family: var(--font-display);
+      font-size: 46px; font-weight: 900; line-height: 1;
+      font-variant-numeric: tabular-nums;
+      text-shadow: 0 2px 16px rgba(4, 9, 15, 0.9);
+    }
+    #head .meta { color: var(--text-dim); font-size: 13px; margin-top: 5px; }
+    .tierchip {
+      display: inline-block; padding: 2px 11px; border-radius: 999px;
+      font-family: var(--font-display); font-weight: 900; font-size: 14px;
+      background: var(--surface-1); border: 1px solid var(--hairline-strong);
+      margin-left: 10px; vertical-align: middle;
+    }
+    .tier-1 { color: var(--win); } .tier-2 { color: var(--info); } .tier-3 { color: var(--caution); }
+    .tier-4, .tier-5 { color: var(--loss); }
+    #myrec { margin-left: auto; text-align: right; }
+    #myrec .lbl {
+      font-family: var(--font-display);
+      color: var(--gold); font-size: 12px; font-weight: 800; letter-spacing: 2.5px;
+    }
+    #myrec .val { font-family: var(--font-display); font-size: 26px; font-weight: 900; margin-top: 3px; }
+    #myrec .sub { color: var(--text-dim); font-size: 12px; margin-top: 2px; }
+
+    #body { padding: 0 30px 30px; }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: 13px; letter-spacing: 3px; font-weight: 900;
+      background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      margin: 22px 0 10px;
+    }
+
+    /* ---------- bench ---------- */
+    #bench { display: flex; gap: 12px; flex-wrap: wrap; }
+    .bench-card {
+      background: var(--surface-1); border-radius: var(--r-container);
+      padding: 10px 14px;
+      display: flex; align-items: center; gap: 12px;
+      border: 1px solid var(--hairline); min-width: 200px;
+      transition: border-color var(--t-fast) var(--ease);
+    }
+    .bench-card:hover { border-color: var(--hairline-strong); }
+    .bench-card.better { border-color: var(--win); box-shadow: 0 0 16px rgba(63, 208, 138, 0.18); }
+    .bench-card img { width: 46px; height: 46px; border-radius: var(--r-control); border: 1px solid var(--hairline); }
+    .bench-card .nm { font-family: var(--font-display); font-weight: 700; font-size: 14px; }
+    .bench-card .wr { font-family: var(--font-display); font-size: 19px; font-weight: 900; font-variant-numeric: tabular-nums; }
+    .bench-card .mine { font-size: 11px; color: var(--text-dim); }
+    .bench-card .swap {
+      margin-left: auto; font-family: var(--font-display);
+      font-size: 11px; font-weight: 900; color: var(--win); letter-spacing: 1.5px;
+    }
+
+    /* ---------- main grid ---------- */
+    #grid { display: grid; grid-template-columns: 5fr 7fr; gap: 24px; align-items: start; }
+    @media (max-width: 980px) { #grid { grid-template-columns: 1fr; } }
+
+    /* ---------- augment hot list ---------- */
+    .hot-row {
+      display: grid; grid-template-columns: 36px 1fr 74px; gap: 10px; align-items: center;
+      padding: 6px 10px; border-radius: var(--r-control);
+      background: var(--surface-1); margin-bottom: 6px;
+      position: relative; overflow: hidden;
+      border: 1px solid transparent;
+      transition: border-color var(--t-fast) var(--ease);
+    }
+    .hot-row:hover { border-color: var(--hairline); }
+    .hot-row img { width: 32px; height: 32px; border-radius: 7px; background: rgba(4,9,15,0.5); z-index: 1; border: 1px solid var(--hairline); }
+    .hot-row .nm { font-weight: 700; font-size: 13.5px; z-index: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .hot-row .nm .t { font-size: 9.5px; font-weight: 800; margin-left: 7px; letter-spacing: 0.5px; }
+    .hot-row .t.Silver { color: var(--silver); } .hot-row .t.Gold { color: var(--tier-gold); } .hot-row .t.Prismatic { color: var(--prismatic); }
+    .hot-row .wr { font-family: var(--font-display); font-size: 16.5px; font-weight: 900; text-align: right; z-index: 1; font-variant-numeric: tabular-nums; }
+    .hot-row .games { font-size: 10px; color: var(--text-dim); text-align: right; z-index: 1; }
+    .hot-row .bar {
+      position: absolute; left: 0; top: 0; bottom: 0;
+      background: linear-gradient(90deg, rgba(200,170,110,0.15), rgba(200,170,110,0.03));
+      z-index: 0;
+    }
+    .hot-row.pers .bar { background: linear-gradient(90deg, rgba(63,208,138,0.18), rgba(63,208,138,0.03)); }
+    .hot-row .my { font-size: 10px; color: var(--win); z-index: 1; font-weight: 700; }
+
+    /* ---------- builds ---------- */
+    .variant {
+      background: var(--surface-1); border-radius: var(--r-container);
+      padding: 14px 16px; margin-bottom: 14px;
+      border: 1px solid var(--hairline);
+    }
+    .variant.top { border-color: var(--gold); box-shadow: 0 0 18px rgba(200, 170, 110, 0.12); }
+    .variant .vhead { display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px; }
+    .variant .tags {
+      font-family: var(--font-display);
+      font-weight: 900; font-size: 16px;
+      background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .variant .vwr { font-family: var(--font-display); font-size: 21px; font-weight: 900; font-variant-numeric: tabular-nums; }
+    .variant .vgames { color: var(--text-dim); font-size: 12px; }
+    .variant .wrbar { height: 6px; border-radius: 3px; background: var(--surface-3); margin-bottom: 12px; overflow: hidden; }
+    .variant .wrbar > div { height: 100%; border-radius: 3px; }
+    .items { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    .items img {
+      width: 36px; height: 36px; border-radius: var(--r-control);
+      background: rgba(4,9,15,0.5); border: 1px solid var(--hairline);
+    }
+    .items .arrow { color: var(--text-faint); font-size: 14px; }
+    .items.small img { width: 27px; height: 27px; }
+    .ilabel {
+      font-family: var(--font-display);
+      font-size: 10px; font-weight: 800; letter-spacing: 2px;
+      color: var(--text-dim); margin: 10px 0 5px;
+    }
+    .corewr { font-size: 11px; color: var(--text-dim); margin-left: 8px; letter-spacing: 0; }
+    .empty {
+      color: var(--text-dim); font-size: 13px; padding: 18px; text-align: center;
+      border: 1px dashed var(--hairline); border-radius: var(--r-container);
+    }
+  </style>
+</head>
+<body>
+  <div id="waiting">
+    <b>MAYHEM PREP</b>
+    Waiting for champ select…<br>
+    <span style="font-size:13px">This screen fills in as soon as you hold a champion.<br>
+    Park it on your second monitor. Position is remembered.</span>
+  </div>
+  <div id="dash">
+    <div id="head-wrap">
+      <div id="splash"></div>
+      <div id="head">
+        <img class="champ" id="h-icon">
+        <div>
+          <div class="name" id="h-name"></div>
+          <div class="meta" id="h-meta"></div>
+        </div>
+        <div style="margin-left:28px">
+          <div class="bigwr num" id="h-wr"></div>
+          <div class="meta">win rate<span class="tierchip" id="h-tier"></span></div>
+        </div>
+        <div id="myrec">
+          <div class="lbl">MY RECORD</div>
+          <div class="val num" id="h-myrec">-</div>
+          <div class="sub num" id="h-mykda"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="body">
+      <div id="bench-wrap">
+        <h2>BENCH SWAPS</h2>
+        <div id="bench"></div>
+      </div>
+
+      <div id="grid">
+        <div>
+          <h2>AUGMENT HOT LIST</h2>
+          <div id="hotlist"></div>
+        </div>
+        <div>
+          <h2>BUILD PATHS</h2>
+          <div id="builds"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="prep.js"></script>
+</body>
+</html>

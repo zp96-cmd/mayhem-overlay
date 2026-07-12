@@ -1,0 +1,68 @@
+/* Shared design tokens for every Mayhem Overlay surface.
+   Language: Hextech-dark. One accent (gold). Semantic colors reserved for data.
+   Radius system: chips/pills = full · controls = 8px · containers = 12px. */
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('../../assets/fonts/Outfit-Variable.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  /* surfaces — deep abyss navy, layered upward */
+  --abyss: #091018;
+  --surface-0: rgba(9, 16, 24, 0.94);
+  --surface-1: #0d1622;
+  --surface-2: #131f2e;
+  --surface-3: #1a2a3d;
+  --hairline: rgba(200, 170, 110, 0.14);
+  --hairline-strong: rgba(200, 170, 110, 0.38);
+
+  /* text */
+  --text: #ece8dc;
+  --text-dim: #8797ab;
+  --text-faint: #5b6a7d;
+
+  /* the one accent */
+  --gold: #c8aa6e;
+  --gold-bright: #f0e6d2;
+  --gold-glow: rgba(200, 170, 110, 0.35);
+
+  /* semantic (data only, never decoration) */
+  --win: #3fd08a;
+  --loss: #e8536e;
+  --caution: #e2b93b;
+  --info: #63d6e4;
+
+  /* rarity */
+  --silver: #a6bdd1;
+  --tier-gold: #e2b93b;
+  --prismatic: #8be2f0;
+
+  /* type */
+  --font-display: 'Outfit', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Segoe UI', system-ui, sans-serif;
+
+  /* radius system */
+  --r-control: 8px;
+  --r-container: 12px;
+
+  /* navy-tinted elevation, never pure black */
+  --shadow-1: 0 2px 10px rgba(4, 9, 15, 0.55);
+  --shadow-2: 0 6px 24px rgba(4, 9, 15, 0.65);
+
+  /* motion */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast: 140ms;
+}
+
+.num { font-variant-numeric: tabular-nums; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

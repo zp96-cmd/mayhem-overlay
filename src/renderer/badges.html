@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { background: transparent; overflow: hidden; width: 100vw; height: 100vh; }
+    body { font-family: var(--font-display); user-select: none; }
+
+    /* ---------- offer pills ---------- */
+    .badge {
+      position: absolute;
+      transform: translate(-50%, -112%);
+      background: var(--surface-0);
+      border: 1px solid var(--hairline-strong);
+      border-radius: var(--r-container);
+      padding: 8px 18px 9px;
+      color: var(--text);
+      text-align: center;
+      white-space: nowrap;
+      box-shadow: var(--shadow-2), inset 0 1px 0 rgba(240, 230, 210, 0.08);
+    }
+    .badge.best {
+      border-color: var(--win);
+      box-shadow: 0 0 24px rgba(63, 208, 138, 0.5), var(--shadow-2);
+      transform: translate(-50%, -112%) scale(1.08);
+    }
+    .badge .top { font-size: 27px; font-weight: 900; line-height: 1.05; font-variant-numeric: tabular-nums; }
+    .wr-good { color: var(--win); }
+    .wr-bad { color: var(--loss); }
+    .wr-mid { color: var(--caution); }
+    .badge .champ { font-size: 15px; font-weight: 800; margin-top: 2px; font-variant-numeric: tabular-nums; }
+    .badge .sub { font-size: 11.5px; color: var(--text-dim); margin-top: 3px; font-weight: 600; }
+    .badge .tag {
+      font-size: 12.5px; font-weight: 900; letter-spacing: 2.5px;
+      color: var(--win); margin-top: 4px;
+    }
+
+    /* ---------- priority panel ---------- */
+    #prio {
+      position: absolute;
+      left: 1vw;
+      top: 18vh;
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      background: var(--surface-0);
+      border: 1px solid var(--hairline-strong);
+      border-radius: var(--r-container);
+      padding: 12px 14px;
+      box-shadow: var(--shadow-2), inset 0 1px 0 rgba(240, 230, 210, 0.07);
+      max-width: 310px;
+    }
+    #prio .title {
+      font-size: 12.5px; font-weight: 900; letter-spacing: 2.5px;
+      background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+    }
+    #prio .row {
+      display: flex; align-items: center; gap: 9px;
+      color: var(--text); font-size: 14px; font-weight: 700;
+      padding: 2px 4px; border-radius: var(--r-control);
+    }
+    #prio .row img {
+      width: 30px; height: 30px; border-radius: var(--r-control);
+      background: rgba(4, 9, 15, 0.5); border: 1px solid var(--hairline);
+    }
+    #prio .row .nm { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 175px; }
+    #prio .row .pwr { font-size: 15px; font-weight: 900; font-variant-numeric: tabular-nums; }
+    #prio .row.offered { outline: 1.5px solid var(--info); background: rgba(99, 214, 228, 0.08); }
+    #prio .hint { font-size: 10px; color: var(--text-dim); margin-top: 6px; font-family: var(--font-body); }
+
+    /* ---------- build strip ---------- */
+    #strip {
+      position: absolute;
+      display: none;
+      align-items: center;
+      gap: 5px;
+      background: var(--surface-0);
+      border: 1px solid var(--hairline-strong);
+      border-radius: var(--r-container);
+      padding: 5px 10px;
+      box-shadow: var(--shadow-1), inset 0 1px 0 rgba(240, 230, 210, 0.07);
+    }
+    #strip .lbl {
+      font-size: 10px; font-weight: 900; letter-spacing: 2px;
+      color: var(--gold); margin-right: 3px;
+    }
+    #strip img {
+      width: 27px; height: 27px; border-radius: 6px;
+      background: rgba(4, 9, 15, 0.5); border: 1px solid var(--hairline); display: block;
+    }
+    #strip .arrow { color: var(--text-faint); font-size: 11px; }
+    #strip img.next { outline: 2px solid var(--tier-gold); box-shadow: 0 0 8px rgba(226, 185, 59, 0.5); }
+    #strip img.next.affordable { outline-color: var(--win); box-shadow: 0 0 10px rgba(63, 208, 138, 0.6); }
+    #strip .src { font-size: 9px; color: var(--text-dim); margin-left: 5px; font-family: var(--font-body); }
+
+    /* ---------- champ select pills ---------- */
+    .cs-pill {
+      position: absolute;
+      transform: translate(-50%, 0);
+      background: var(--surface-0);
+      border: 1px solid var(--hairline-strong);
+      border-radius: var(--r-control);
+      padding: 2px 8px;
+      font-size: 12.5px;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      box-shadow: var(--shadow-1);
+    }
+    .cs-pill .t { font-size: 9.5px; font-weight: 800; color: var(--text-dim); margin-left: 3px; }
+    .cs-pill.good { color: var(--win); }
+    .cs-pill.bad { color: var(--loss); }
+    .cs-pill.mid { color: var(--caution); }
+    .cs-pill.mine { border-color: var(--info); }
+    .cs-pill.star { border-color: var(--win); box-shadow: 0 0 12px rgba(63, 208, 138, 0.55); }
+    .cs-pill .s { color: var(--win); margin-right: 2px; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <div id="strip"></div>
+  <div id="cs"></div>
+  <div id="prio"></div>
+  <script src="badges.js"></script>
+</body>
+</html>

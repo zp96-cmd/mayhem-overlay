@@ -1,0 +1,2225 @@
+{
+  "fetchedAt": "2026-07-12T04:09:19.296Z",
+  "augments": [
+    {
+      "name": "Adamant",
+      "tier": "Silver",
+      "description": "Immobilizing or grounding an enemy champion grants 10 bonus armor and bonus magic resistance for 10 seconds, stacking up to 10 times for a total of 100 bonus resistances, and refreshing on subsequent triggers (5 second cooldown per cast instance).",
+      "disabled": true,
+      "id": 1327,
+      "nameId": "Adamant",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/adamant_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "ADAPt",
+      "tier": "Silver",
+      "description": "Convert all of your bonus attack damage into ability power at a rate of 1 ability power per 0.6 bonus attack damage. Additionally, increase your ability power by 15%.",
+      "disabled": false,
+      "id": 1205,
+      "nameId": "ARAM_ADAPt",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/adapt_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Adaptive Ward",
+      "tier": "Silver",
+      "description": "Upgrades one of your champion's abilities, empowering the ability to grant you 5 to 10 bonus armor or bonus magic resistance for 6 seconds when it hits an enemy champion (4 second cooldown). This effect can stack up to a number of times.\n\nThe resistance type granted is based on the target's adaptive type: bonus armor for physical and bonus magic resistance for magic.",
+      "disabled": false,
+      "id": 2138,
+      "nameId": "WardingWeapon",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/genericabilityaugmenticon_silver.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "All For You",
+      "tier": "Gold",
+      "description": "Your heals and shields on allied champions are increased in effectiveness by 30%.",
+      "disabled": false,
+      "id": 1141,
+      "nameId": "ARAM_AllForYou",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/allforyou_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Apex Inventor",
+      "tier": "Gold",
+      "description": "Grants 100 item haste, which is equivalent to 50% cooldown reduction for items.",
+      "disabled": false,
+      "id": 1002,
+      "nameId": "ARAM_ApexInventor",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/apexinventor_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Archmage",
+      "tier": "Prismatic",
+      "description": "Whenever you cast an ability, refund the cooldown of another, randomly selected ability by 30% of the casted ability's cooldown.",
+      "disabled": false,
+      "id": 2087,
+      "nameId": "ARAM_Archmage",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/eureka_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Back to Basics",
+      "tier": "Prismatic",
+      "description": "Your champion abilities deal 35% increased damage and you gain 70 ability haste and 35% increased healing and shielding from all sources, but your ultimate ability is permanently sealed.",
+      "disabled": false,
+      "id": 1004,
+      "nameId": "ARAM_BacktoBasics",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/backtobasics_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Big Brain",
+      "tier": "Gold",
+      "description": "Gain a shield that absorbs damage equal to 300% AP and lasts until destroyed. Shield is replenished upon respawn and every 70 seconds.",
+      "disabled": false,
+      "id": 1180,
+      "nameId": "ARAM_BigBrain",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/bigbrain_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Biggest Snowball Ever",
+      "tier": "Prismatic",
+      "description": "Upgrades your Mark into a massive snowball, empowering it with an increased size radius and the ability to pass through non-champions. The snowball additionally explodes upon impact of the target hit to deal 200 to 350 (+ 100% bonus AD) (+ 60% AP) magic damage to all nearby enemies, knock them up for 0.75 seconds, and slow them by 20% for 2 seconds. Additionally, your Mark cooldown is reduced equivalent to 100 ability haste.\n\nIf Mark is not equipped, you will be prompted to replace one of your summoner spells with Mark. Non-champions hit by the snowball are stunned for 1.25 seconds.",
+      "disabled": false,
+      "id": 1329,
+      "nameId": "BiggestSnowballEver",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/biggestsnowballever_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Blade Waltz",
+      "tier": "Prismatic",
+      "description": "Replace a summoner spell with Blade Waltz.\n\nBlade Waltz: Blink to the target enemy champion. You then blink to the nearest other enemy champion every 0.25 seconds over the next 1.75 seconds, blinking up to 7 additional times. The last blink targets the primary target. Each time you blink to an enemy, deal 30 to 150 (+ 10% bonus AD) (+ 6% AP) physical damage to them and apply on-hit effects at 50% effectiveness, up to a total of 30*6 to 150*6 (+ 10*6% bonus AD) (+ 6*6% AP) (45 second cooldown).\n\nWhile Blade Waltz is active, you are untargetable and unable to act. This effect will end prematurely if there are no longer any nearby valid targets to blink to. An enemy can be blinked to more than once if there are no other valid targets in range.",
+      "disabled": false,
+      "id": 1006,
+      "nameId": "ARAM_BladeWaltz",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/bladewaltz_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Blunt Force",
+      "tier": "Silver",
+      "description": "Increases attack damage by 20%.",
+      "disabled": false,
+      "id": 1007,
+      "nameId": "ARAM_BluntForce",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/bluntforce_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Bolstered",
+      "tier": "Silver",
+      "description": "Upgrades one of your champion's abilities that has a shield effect, increasing the strength of the ability's shield by 0 to 60 for 11.",
+      "disabled": false,
+      "id": 2144,
+      "nameId": "DoubleDefense",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/genericabilityaugmenticon_silver.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "BONK!",
+      "tier": "Silver",
+      "description": "Upgrades one of your champion's abilities that has an empowered basic attack effect, further enhancing the attack to deal 30% increased damage to the target and 30% of its damage to nearby enemies.",
+      "disabled": false,
+      "id": 2111,
+      "nameId": "Bonk",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/bonk_large.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Bread And Butter",
+      "tier": "Gold",
+      "description": "Your champion's first basic ability (Q) gains 100 ability haste.",
+      "disabled": false,
+      "id": 1103,
+      "nameId": "ARAM_BreadAndButter",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/genericabilityaugmenticon_gold.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Bread And Cheese",
+      "tier": "Gold",
+      "description": "Your champion's third basic ability (E) gains 100 ability haste.",
+      "disabled": false,
+      "id": 1151,
+      "nameId": "ARAM_BreadAndCheese",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/genericabilityaugmenticon_gold.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Bread And Jam",
+      "tier": "Gold",
+      "description": "Your champion's second basic ability (W) gains 100 ability haste.",
+      "disabled": false,
+      "id": 1150,
+      "nameId": "ARAM_BreadAndJam",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/genericabilityaugmenticon_gold.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Can't Touch This",
+      "tier": "Prismatic",
+      "description": "Casting your ultimate grants you invulnerability for 2 seconds (8 second cooldown).",
+      "disabled": false,
+      "id": 1011,
+      "nameId": "ARAM_CantTouchThis",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/canttouchthis_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Celestial Body",
+      "tier": "Gold",
+      "description": "Gain 1500 bonus health, but reduce your damage output by 10%.",
+      "disabled": false,
+      "id": 1013,
+      "nameId": "ARAM_CelestialBody",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/celestialbody_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Chain Reaction",
+      "tier": "Prismatic",
+      "description": "Upgrades one of your champion's abilities that has a knock back effect, empowering the ability to trigger a chain reaction effect when displaced champions hit other champions or terrain within 200 units. If a knocked back champion collides with another enemy champion during their displacement, the champions they collided with are dealt 100 to 400 magic damage and knocked up for 0.5 seconds. If they collide with terrain during their displacement, they will rebound to take 150 to 800 magic damage and become knocked up for 0.75 seconds and stunned for 0.5 seconds. The knock up duration is increased to up to 1.1 seconds based on how long the ability's cooldown is.",
+      "disabled": false,
+      "id": 2078,
+      "nameId": "ChainReaction",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/genericabilityaugmenticon_prismatic.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Circle of Death",
+      "tier": "Prismatic",
+      "description": "Healing and health regeneration you do causes you to deal 70% of that value in magic damage to the nearest enemy champion within 1000 units.",
+      "disabled": false,
+      "id": 1015,
+      "nameId": "ARAM_CircleofDeath",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/circleofdeath_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Clown College",
+      "tier": "Prismatic",
+      "description": "Gain Shaco Backstab, Deceive and Hallucinate explosion. Replace a summoner spell with Deceive.\n\nPassive - Backstab: Your basic attacks deal 20 to 35 (+ 50% bonus AD) (+ 35% AP) bonus physical damage on-hit when hitting an enemy from behind.\n\nActive - Deceive: Become invisible for up to 3 seconds and blink to the target location within 400 units after a 0.125-second delay. Your next basic attack while in stealth deals 100 (+ 150% bonus AD) (+ 55% AP) bonus physical damage, increased to100*1.55 (+ 150*1.55% bonus AD) (+ 55*1.55% AP) bonus physical damageif Backstab was applied (45 second cooldown).\n\nPassive - Hallucinate Death: Upon your death, release an explosion in a cr 350 radius of your death location, dealing magic damage equal to 25% of target's maximum health to enemies within the area. Additionally, you deploy a Jack in the Box at the location of your death that instantly fears nearby enemies for 1 second. This box does not attack but lasts for 3 seconds.",
+      "disabled": true,
+      "id": 1310,
+      "nameId": "ARAM_ClownCollege",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/clowncollege_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Combusting Interest",
+      "tier": "Gold",
+      "description": "Gain 1 to 3 (+ 0.75% of damage dealt) gold gold for each tick of damage dealt to enemy champions with persistent damage effects as well as damage over time from item effects.",
+      "disabled": false,
+      "id": 2128,
+      "nameId": "BloodMoneyBurn",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/bloodmoney2_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Courage of the Colossus",
+      "tier": "Prismatic",
+      "description": "Immobilizing or grounding an enemy champion grants a shield for 3 seconds that absorbs 150 to 450 (+ 4% maximum health) damage (5 second cooldown per cast instance). Shields can stack between multiple triggers of this effect, though not refreshing the duration of previous shields.",
+      "disabled": false,
+      "id": 1018,
+      "nameId": "ARAM_CourageoftheColossus",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/courageofthecolossus_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Crit 'n Cast",
+      "tier": "Silver",
+      "description": "Gain ability haste equal to 40% of your critical strike chance.",
+      "disabled": false,
+      "id": 2024,
+      "nameId": "CritNCast",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/critncast_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Critical Healing",
+      "tier": "Gold",
+      "description": "Your heals and shields now have a chance equal to your critical strike chance to increase in effectiveness by 40% (5 second cooldown per cast instance). Additionally, gain 25% critical strike chance.",
+      "disabled": false,
+      "id": 1118,
+      "nameId": "ARAM_CriticalHealing",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/criticalhealing_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Critical Missile",
+      "tier": "Gold",
+      "description": "Critical strikes against enemy champions launch 1 (+ 1 per 33.33% critical strike chance) missiles at the target that each deal 20 to 100 magic damage. Additionally, gain 25% critical strike chance.",
+      "disabled": false,
+      "id": 1356,
+      "nameId": "CriticalMissile",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/criticalmissile_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Critical Rhythm",
+      "tier": "Gold",
+      "description": "Your critical strikes grant you 6% bonus attack speed for 6 seconds, stacking up to 10 times for a total of 60%. Additionally, gain 25% critical strike chance.",
+      "disabled": false,
+      "id": 1328,
+      "nameId": "CriticalRhythm",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/criticalrhythm_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Cruelty",
+      "tier": "Prismatic",
+      "description": "Immobilizing or grounding an enemy champion summons a comet above them that lands at their current location after 1 second, dealing 50 to 150 (+ 40% AP) (+ 4% of your maximum health) magic damage to enemies within the area (6 second cooldown per target per cast instance).",
+      "disabled": false,
+      "id": 1323,
+      "nameId": "ARAM_Cruelty",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/cruelty_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Dashing",
+      "tier": "Prismatic",
+      "description": "Abilities with dashes or blinks gain 175 ability haste.",
+      "disabled": false,
+      "id": 1019,
+      "nameId": "ARAM_Dashing",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/dashing_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Dawnbringer's Resolve",
+      "tier": "Gold",
+      "description": "Upon dropping below 50% maximum health, you are healed for 30% maximum health over 3 seconds (45 second cooldown, reset upon death).",
+      "disabled": false,
+      "id": 1020,
+      "nameId": "ARAM_DawnbringersResolve",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/dawnbringersresolve_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Deft",
+      "tier": "Silver",
+      "description": "Grants 60% bonus attack speed.",
+      "disabled": false,
+      "id": 1022,
+      "nameId": "ARAM_Deft",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/deft_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Devil on Your Shoulder",
+      "tier": "Prismatic",
+      "description": "Forge a pact with Teemo, who drains 0.5% of your current health every second, increased to 5% if there are enemy champions within 1000 units. In return, you deal 20% bonus true damage and your basic attacks and abilities summon a Life Remnant nearby for 5 seconds (0.75-second spawn cooldown). You can absorb a Life Remnant by moving over it, healing you for 50 to 150 (+ 50% bonus AD) (+ 25% AP) and granting you 15% bonus movement speed.",
+      "disabled": true,
+      "id": 2007,
+      "nameId": "ARAM_LittleDevil",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/littledevil_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Dimension Shift",
+      "tier": "Prismatic",
+      "description": "Replace a summoner spell with When the Darkness Comes.\n\nWhen the Darkness Comes: geteffect\n\nThe Dark Realm is a battlefield that exists outside of the normal realm in an alternate dimension. It exists only for units hit by the cosmic light. The realm includes any terrain features that would exist in the map of the normal realm, including structures, walls, and brushes.\n\nUnits between realms see each other as glowing stars, considering each other dead and negating any interactions between each other. Only units that were hit by the light will enter the realm; other units cannot follow them. Everything that occurs inside the Dark Realm is hidden to units outside of it, and vice versa.\n\nStructures exist in all realms at the same time, but are untargetable in the Dark Realm. Turrets will behave normally as if all units were in the same realm. Pets still inside the Dark Realm are killed at its end.",
+      "disabled": false,
+      "id": 2063,
+      "nameId": "DimensionShift_Active",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/whenthedarknesscomes_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Dive Bomber",
+      "tier": "Silver",
+      "description": "Upon death, you explode to deal true damage equal to 20% of the target's maximum health to enemies within 500 units.",
+      "disabled": false,
+      "id": 1025,
+      "nameId": "ARAM_DiveBomber",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/divebomber_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Divine Intervention",
+      "tier": "Gold",
+      "description": "Automatically cast Cosmic Radiance, calling down a protective star upon you that descends over 2.5 seconds. Afterwards, you and all allied champions within cr 400 units become invulnerable for 2.5 seconds (35 second cooldown).",
+      "disabled": false,
+      "id": 1301,
+      "nameId": "ARAM_DivineIntervention",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/slowactingpainkillers_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Don't Blink",
+      "tier": "Silver",
+      "description": "Deal 1% increased damage per 10 movement speed you have more than the target.",
+      "disabled": false,
+      "id": 1026,
+      "nameId": "ARAM_DontBlink",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/dontblink_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Don't Change the Channel",
+      "tier": "Silver",
+      "description": "For every second that you channel an ability, you gain a 50 to 200 (+ 50% AD) (+ 25% AP) (+ 10% bonus health) shield. The shield quickly decays once you stop channeling.",
+      "disabled": false,
+      "id": 2131,
+      "nameId": "DontChangeTheChannel",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/dontchangethechannel_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Donation",
+      "tier": "Gold",
+      "description": "Gain 1750 gold upon acquiring this augment.",
+      "disabled": false,
+      "id": 1384,
+      "nameId": "Donation",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/donation_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Double Strike",
+      "tier": "Silver",
+      "description": "Upgrades one of your champion's abilities that has an empowered basic attack effect, further enhancing the attack to apply on-hit effects to targets it hits a second time.",
+      "disabled": false,
+      "id": 2148,
+      "nameId": "DoubleStrike",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/adamant_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Double Tap",
+      "tier": "Gold",
+      "description": "Basic attacks that critically strike apply on-hit effects an additional time. Additionally, gain 25% critical strike chance.",
+      "disabled": false,
+      "id": 2010,
+      "nameId": "ARAM_DoubleTap",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/doubletap_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Draw Your Sword",
+      "tier": "Prismatic",
+      "description": "Become melee, modifying your attack range to 200 (+ 100% bonus attack range from augments) units. Additionally, gain 24% bonus attack damage, 20% bonus attack speed, 24% bonus health, 20% bonus movement speed, and 20% life steal. These bonuses are increased by 0 to 100 for 11.\n\nThis augment is only available for ranged champions.",
+      "disabled": false,
+      "id": 1134,
+      "nameId": "ARAM_DrawYourSword",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/drawyoursword_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "DropBear",
+      "tier": "Prismatic",
+      "description": "Upon death, you summon Tibbers who drops from above and lands onto the location of your death over 0.5 seconds. Upon landing, he deals 250 to 750 (+ 100% AP) (+ 2 per 1 flat magic penetration) (+ 5 per 1% magic penetration) magic damage to nearby enemies and stuns them for 1.5 seconds. Tibbers then chases after and targets the enemy champion that killed you, attacking them once he is in range.\n\nTibbers has all of your augments and lasts for up to 8 to 20 seconds. He gains 80 to 100 bonus attack speed and deals 25 to 150 (+ 50% AP) magic damage every second to enemies within 350 units of him. His stats are:\n1500 to 6000 (+ 15% maximum health) (+ 150% AP) health (rapidly decays over his lifetime) 50 to 300 (+ 75% AD) magic damage (basic attack damage)1.00 attack speed150 attack range50 armor50 magic resistance200 to 300 (+ 20% movement speed) movement speed",
+      "disabled": false,
+      "id": 2031,
+      "nameId": "ARAM_DropBear",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/drop_bear_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Dropkick",
+      "tier": "Prismatic",
+      "description": "Your basic attacks and abilities execute enemy champions below 5% (+ 3.5% per 100 base AD) (+ 2% per 1000 bonus health) of their maximum health, which causes their corpse to be sent flying away in a line. Upon collision with an enemy champion or terrain, the target's corpse explodes to deal 150 to 500 (+ 100% bonus armor) (+ 100% bonus magic resistance) magic damage to nearby enemies. Successful executions heal you for 100 to 300 (+ 25% bonus health).\n\nThe execution may also be triggered by the explosion and goes through shields.",
+      "disabled": false,
+      "id": 2006,
+      "nameId": "ARAM_Dropkick",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/dropkick_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Droppybara",
+      "tier": "Prismatic",
+      "description": "Replace a summoner spell with Droppybara.\n\nDroppybara: geteffect\n\nThis augment is only offered to up to 1 player on each team for a given game.",
+      "disabled": true,
+      "id": 1414,
+      "nameId": "Dropybara_Active",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/orbitallaser_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Dual Wield",
+      "tier": "Prismatic",
+      "description": "Your basic attacks launch a bolt at the target that fires after a 0.225-second delay on-attack, deals 40% of the triggering attack's pre-mitigation damage, and applies on-hit effects at 40% effectiveness. Additionally, increase your total attack speed by 10%.",
+      "disabled": false,
+      "id": 1225,
+      "nameId": "ARAM_DualWield",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/dualwield_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Earthwake",
+      "tier": "Prismatic",
+      "description": "Dashing or blinking causes you to leave behind a trail cr from the location you moved to your destination that detonates after 0.75 seconds in a 300 radius, dealing 70 to 210 (+ 125% bonus AD) (+ 60% AP) physical damage per explosion to enemies hit, reduced to 70% against minions. Enemies can be affected only once every second from all cast instances, and the effect is not triggered if you move beyond 2000 units with the dash or blink.\n\nThis augment is only offered to up to 2 players on each team for a given game.",
+      "disabled": false,
+      "id": 1027,
+      "nameId": "ARAM_Earthwake",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/earthwake_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Echo Cast",
+      "tier": "Prismatic",
+      "description": "Upgrades one of your champion's abilities, empowering the ability's cast to summon a clone of your champion that is untargetable and moves up to 500 units towards your cursor. The clone then casts the ability it was summoned from after a 0.25-second delay, mimicking the active effects of the casted spell and disappearing after it finishes casting.",
+      "disabled": false,
+      "id": 2062,
+      "nameId": "Ability_SelfAOE_DoubleCast",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/genericabilityaugmenticon_prismatic.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Empowered By The Faithful",
+      "tier": "Prismatic",
+      "description": "Granting a heal or shield to an allied champion blesses them for 8 seconds. Whenever a blessed ally damages an enemy champion, you generate a stack of Devotion, stacking up to 50 times. Upon reaching maximum stacks, you unleash a shockwave that deals 50 to 300 (+ 750% heal and shield power) magic damage to nearby enemies. Enemy champions damaged below a percentage of their maximum health equal to 25% of your heal and shield power are executed.",
+      "disabled": false,
+      "id": 2004,
+      "nameId": "ARAM_EmpoweredByTheFaithful",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/empoweredbythefaithful_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Empyrean Promise",
+      "tier": "Prismatic",
+      "description": "Replace a summoner spell with Empyrean Promise Vigilance active. Additionally, gain 15% heal and shield power.\n\nActive - Vigilance: After a 0.25-second delay, dash to the current location of the target allied champion and gain a 100 to 250 (+ 100% AP) (+ 10% bonus health) shield for 3 seconds. Upon arrival, grant the ally the same shield (20 second cooldown; 2000 range).",
+      "disabled": false,
+      "id": 1331,
+      "nameId": "EmpyreanPromise",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/empyreampromise_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "En Passant",
+      "tier": "Prismatic",
+      "description": "You can now identify the Vitals of enemy champions within 2000 units, marked as an arc around them and pointing towards a specific direction. Dealing damage to a target with a basic attack or ability while you are facing in the direction of their exposed Vital will consume it, dealing bonus true damage equal to 6% (+ 1.5% per En Passant stack) of the target's maximum health, healing you for 50 to 200 (+ 5% missing health), and granting you 50% (+ 5% per En Passant stack) bonus movement speed that decays over 2 seconds. Consuming a target's Vital also grants you an En Passant stack for 8 seconds, refreshing on subsequent Vital triggers and stacking up a number of times. Each En Passant stack increases the consumed Vital damage and bonus movement speed.\n\nVitals on targets become exposed instantly once you are within range and remain exposed until you die. Once a target's Vital is consumed, you identify a new Vital on them pointing in a different direction from the previous after 4 seconds.",
+      "disabled": false,
+      "id": 2098,
+      "nameId": "ARAM_EndlessHunt",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/dashing_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Endless Decimation",
+      "tier": "Gold",
+      "description": "Automatically cast an improved version of Q, winding up over 1.25 seconds to slash in a cr 460 radius around you. The slash deals 100 to 400 (+ 60% AD) (+ 40% AP) physical damage to enemies within the area (8 second cooldown). Enemies within the cr 240 inner radius of the slash take50% damage.Additionally, for each enemy champion hit along the outer edge, you heal for 15% of your missing health and the cooldown of this effect is reduced by 10%, down to a minimum of 3 seconds.",
+      "disabled": false,
+      "id": 2091,
+      "nameId": "EndlessDecimation",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/endlessdecimate_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Erosion",
+      "tier": "Silver",
+      "description": "Each instance of damage dealt to an enemy reduces their armor and magic resistance by 1.5% for 4 seconds, stacking up to 20 times for a total of 30% resistances reduction.",
+      "disabled": false,
+      "id": 1028,
+      "nameId": "ARAM_Erosion",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/erosion_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "EscAPADe",
+      "tier": "Silver",
+      "description": "Convert all of your ability power into bonus attack damage at a rate of 1 bonus attack damage per 1.66 ability power. Additionally, increase your total attack damage by 15%.",
+      "disabled": false,
+      "id": 1206,
+      "nameId": "ARAM_escAPADe",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/escapade_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Escape Plan",
+      "tier": "Silver",
+      "description": "Upon dropping below 35% of your maximum health, gain a shield for 65% of your maximum health, 150% bonus movement speed, and reduced size (75 second cooldown). These effects all decay over 5.5 seconds.",
+      "disabled": false,
+      "id": 1333,
+      "nameId": "EscapePlan",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/escapeplan_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Ethereal Weapon",
+      "tier": "Gold",
+      "description": "Your abilities apply on-hit effects (1 second cooldown per target).",
+      "disabled": false,
+      "id": 1029,
+      "nameId": "ARAM_EtherealWeapon",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/etherealweapon_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Eureka",
+      "tier": "Prismatic",
+      "description": "Gain ability haste equal to 30% AP.",
+      "disabled": false,
+      "id": 1030,
+      "nameId": "ARAM_Eureka",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/eureka_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Fan the Hammer",
+      "tier": "Prismatic",
+      "description": "Your next basic attack against an enemy champion in each cardinal direction within 750 range additionally on-attack fires 5 missiles at the target that each deal 8 to 51 (+ 14% bonus AD) physical damage, for a total of 8*5 to 51*5 (+ 14*5% bonus AD) physical damage (5 second cooldown per direction). Missiles' damage is increased by 0 to 50 for 11. Each missile can critically strike for 200 damage and applies on-hit effects at 20% effectiveness.",
+      "disabled": false,
+      "id": 1220,
+      "nameId": "ARAM_FanTheHammer",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/fanthehammer_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Fey Magic",
+      "tier": "Prismatic",
+      "description": "Damaging enemies with your ultimate ability polymorphs them into harmless critters for 2 seconds, during which their base movement speed is reduced by 60, and disarms them for the same duration (15 second cooldown per target).",
+      "disabled": false,
+      "id": 1194,
+      "nameId": "ARAM_FeyMagic",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/feymagic_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Final City Transit",
+      "tier": "Gold",
+      "description": "Upon death, you summon a train over 1 second that launches towards your killer at full speed, travelling in their direction at a global distance and dealing 150 to 750 (+ 65% bonus AD) (+ 50% AP) (+ 15% maximum health) physical damage to enemies it passes through.\n\nThe train is summoned a slight distance away from the front of your killer, based on their facing direction at the time of your death, and launches towards the position they were located at the time of your death.",
+      "disabled": true,
+      "id": 1400,
+      "nameId": "TrainOfTheDead",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/nightstalking_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Final Form",
+      "tier": "Prismatic",
+      "description": "Casting your ultimate ability empowers you for 10 seconds, causing you to gain a shield for 50% of your maximum health, 20% omnivamp, and 30% bonus movement speed for the duration (20 second cooldown).",
+      "disabled": false,
+      "id": 1344,
+      "nameId": "FinalForm",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/finalform_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Firebrand",
+      "tier": "Gold",
+      "description": "Basic attacks apply a Burn for 5 seconds that deals bonus magic damage equal to2/5% of the target's maximum health per second.This Burn stacks infinitely and refreshes with each application.",
+      "disabled": false,
+      "id": 1036,
+      "nameId": "ARAM_Firebrand",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/firebrand_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Firefox",
+      "tier": "Silver",
+      "description": "Automatically cast a modified version of Fox-Fire, gaining 25% bonus movement speed that decays over 2 seconds and conjuring 3 flames that orbit you clockwise for up to 2.5 seconds at a radius of cr 150 units. The flames will fly toward the nearest visible enemies within cr 550 units, dealing 35 to 160 (+ 25% bonus AD (+ 25% AP) adaptive damage, reduced to35*0.3 to 160*0.3 (+ 25*0.3% bonus AD (+ 25*0.3% AP)for enemies hit by subsequent flames from the same cast (7 second cooldown).",
+      "disabled": false,
+      "id": 1308,
+      "nameId": "ARAM_Firefox",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/firfox_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "First-Aid Kit",
+      "tier": "Silver",
+      "description": "Grants 20% heal and shield power.",
+      "disabled": false,
+      "id": 1037,
+      "nameId": "ARAM_FirstAidKit",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/firstaidkit_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Flash 2",
+      "tier": "Silver",
+      "description": "Replace a summoner spell with Flash. Additionally, gain 70 summoner spell haste.",
+      "disabled": false,
+      "id": 1348,
+      "nameId": "Flash2",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/flash2_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Flashbang",
+      "tier": "Silver",
+      "description": "Using Flash creates an explosion around the blink location that deals 70 to 240 (+ 70% AD) (+ 60% AP) magic damage to nearby enemies and slows them by 35% for 1.25 seconds. Additionally, the cooldown of your Flash resets upon your death.\n\nIf Flash is not equipped, you will be prompted to replace one of your summoner spells with Flash.",
+      "disabled": false,
+      "id": 1187,
+      "nameId": "ARAM_Flashbang",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/flashbang_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Flashy",
+      "tier": "Gold",
+      "description": "Your Flash now has 3 charges with a 2-second cooldown between casts (120 seconds recharge time for all 3 charges).\n\nIf Flash is not equipped, you will be prompted to replace one of your summoner spells with Flash.",
+      "disabled": false,
+      "id": 1116,
+      "nameId": "ARAM_Flashy",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/flashy_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Forged By The Master",
+      "tier": "Silver",
+      "description": "Increases the damage dealt by your item effects and augments by 45%.",
+      "disabled": false,
+      "id": 2127,
+      "nameId": "ForgedByTheMaster",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/forgedbythemaster_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "From Beginning to End",
+      "tier": "Gold",
+      "description": "Gain the Dark Harvest and First Strike keystone runes.",
+      "disabled": false,
+      "id": 1038,
+      "nameId": "ARAM_FromBeginningToEnd",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/frombeginningtoend_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "From Downtown",
+      "tier": "Gold",
+      "description": "Quest: Hit enemy champions with abilities while located at least er 700 units away from them (at the time of the hit) 15 times (counts up to 1 hit per champion per cast instance).\n\nReward: Upon completing your Quest, hitting enemy champions with abilities while located at least er 700 units away from them at the time of the hit fires a meteor to their current location, which upon landing deals 75 to 200 (+ 50% bonus AD) (+ 20% AP) magic damage to enemies within the area (8 second cooldown per target per cast instance). The meteor's damage and radius are increased based on your distance to the target at the time of the ability hit, increasing its damage by 0 to 230 for 11 and setting its radius to 120;180;270;405;607.5;911.25;1366.875 units.\n\nMaximum meteor damage is 75*2.3 to 200*2.3 (+ 50*2.3% bonus AD) (+ 20*2.3% AP).",
+      "disabled": false,
+      "id": 2103,
+      "nameId": "ARAM_BangBang",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/questbangbang_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Get Excited",
+      "tier": "Gold",
+      "description": "Scoring a champion takedown grants you 100% bonus movement speed and 15% total attack speed for 4 seconds.",
+      "disabled": false,
+      "id": 1322,
+      "nameId": "ARAM_GetExcited",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/getexcited_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Giant Slayer",
+      "tier": "Prismatic",
+      "description": "Become tiny, reducing your size by 75% and granting you 20% bonus movement speed. Additionally, deal 10;15;25;30 bonus damage against enemy champions with greater size than you.",
+      "disabled": false,
+      "id": 1195,
+      "nameId": "ARAM_GiantSlayer",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/giantslayer_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Glass Cannon",
+      "tier": "Prismatic",
+      "description": "You gain a health threshold equal to 70% maximum health which cannot be modified nor exceeded by any means. In return, you deal bonus true damage equal to 25% / 15% of all of the damage you deal pre-mitigation.",
+      "disabled": false,
+      "id": 1325,
+      "nameId": "GlassCannon",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/glasscannon_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Goldrend",
+      "tier": "Prismatic",
+      "description": "Damaging basic attacks or abilities against enemy champions deal 50 to 150 (+ 40% bonus AD) (+ 20% AP) bonus magic damage, and grant you 30 gold and 25% bonus movement speed for 1.5 seconds (30 second cooldown per champion).",
+      "disabled": false,
+      "id": 1335,
+      "nameId": "Goldrend",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/goldrend_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Goliath",
+      "tier": "Prismatic",
+      "description": "Grants 35% bonus health, 15% adaptive force, and 50% increased size.",
+      "disabled": false,
+      "id": 1041,
+      "nameId": "ARAM_Goliath",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/goliath_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Goredrink",
+      "tier": "Silver",
+      "description": "Gain 15% omnivamp.",
+      "disabled": false,
+      "id": 1138,
+      "nameId": "ARAM_Goredrink",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/goredrink_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Growth Spurt",
+      "tier": "Gold",
+      "description": "Replace a summoner spell with Growth Spurt.\n\nGrowth Spurt: geteffect",
+      "disabled": false,
+      "id": 1401,
+      "nameId": "GrowthSpurt",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/growthspurt_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Guilty Pleasure",
+      "tier": "Silver",
+      "description": "Immobilizing or grounding an enemy champion heals you for 30 to 250 (+ 1.5% maximum health) (5 second cooldown per cast instance).",
+      "disabled": false,
+      "id": 1042,
+      "nameId": "ARAM_GuiltyPleasure",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/guiltypleasure_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Hand of Baron",
+      "tier": "Prismatic",
+      "description": "Gain a modified Hand of Baron, which only grants 25% increased adaptive force and greatly empowers nearby allied minions.",
+      "disabled": false,
+      "id": 1389,
+      "nameId": "HandOfBaron",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/handofbaron_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Heavy Hitter",
+      "tier": "Silver",
+      "description": "Basic attacks deal bonus physical damage equal to 3.5% of your maximum health.",
+      "disabled": false,
+      "id": 1181,
+      "nameId": "ARAM_HeavyHitter",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/heavyhitter_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Hellbent",
+      "tier": "Prismatic",
+      "description": "Generate a stack of Revivemaxxing for each enemy champion you hit with basic attacks or abilities, lasting for 6 seconds, refreshing on subsequent hits, and stacking up to 10 times. At maximum stacks, you become Hellbent.\n\nHellbent: Upon taking lethal damage, you enter resurrection for 4 seconds, during which you are invulnerable, untargetable, and unable to act. Afterwards, you revive with 35 to 75 of your maximum health (120 second cooldown). Additionally, you become empowered for the next 15 seconds, granting you 25*0.6 to 200*0.6 bonus Attack Damage or 25 to 200 Ability Power (Adaptive), 20 to 40 bonus movement speed while facing toward nearby enemy champions, and 15 to 30 omnivamp for the duration.",
+      "disabled": false,
+      "id": 2107,
+      "nameId": "ARAM_Hellbent",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/hellbent_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Hextech Soul",
+      "tier": "Silver",
+      "description": "Grants the Hextech Dragon Soul, or a different Dragon Soul if you aleady have it.",
+      "disabled": false,
+      "id": 1416,
+      "nameId": "HextechSoul",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/infernalsoul_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Hide on Bush",
+      "tier": "Gold",
+      "description": "While in brush, you deal 20% increased damage. This effect lingers for 2 seconds after leaving brush.",
+      "disabled": false,
+      "id": 2042,
+      "nameId": "BrushPower",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/brushpower_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "High Roller",
+      "tier": "Prismatic",
+      "description": "Nearby enemies that die have a 7% chance to drop a Stat Bonus at the location of their death. You can pick up dropped anvils by moving over them. The obtained Stat Bonus will be consumed once the shop is enabled again (after your death).",
+      "disabled": false,
+      "id": 2095,
+      "nameId": "ARAM_HighRoller",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/highroller_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Holy Snowball",
+      "tier": "Prismatic",
+      "description": "After using the Dash spell from Mark, you become invulnerable for 1.5 seconds upon arrival. Additionally, your Mark cooldown is reduced equivalent to 100 ability haste.\n\nIf Mark is not equipped, you will be prompted to replace one of your summoner spells with Mark.",
+      "disabled": false,
+      "id": 1392,
+      "nameId": "GoldenSnowball",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/goldensnowball_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Homeguard",
+      "tier": "Silver",
+      "description": "Gain 100% bonus movement speed. This bonus is lost for 6 seconds after taking damage from champions.",
+      "disabled": false,
+      "id": 1105,
+      "nameId": "ARAM_Homeguard",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/homeguard_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Ice Cold",
+      "tier": "Silver",
+      "description": "Your slowing effects reduce the movement speed of targets by an additional 75.",
+      "disabled": false,
+      "id": 1044,
+      "nameId": "ARAM_IceCold",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/icecold_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Impassable",
+      "tier": "Gold",
+      "description": "Gain the Aftershock and Glacial Augment keystone runes.",
+      "disabled": false,
+      "id": 1149,
+      "nameId": "ARAM_Impassable",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/impassable_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Infernal Conduit",
+      "tier": "Prismatic",
+      "description": "Your ability hits against champions apply a Burn for 3 seconds that deals6/3 to 60/3 (+ 4.6% bonus AD) (+ 6/3% AP) bonus magic damage per second(1 second cooldown per cast instance). This Burn stacks infinitely and refreshes with each application.\n\nAdditionally, all of your Burn effects reduce the cooldowns of all your basic abilities by 0.08 seconds for each tick of damage they deal to a target.",
+      "disabled": false,
+      "id": 1045,
+      "nameId": "ARAM_InfernalConduit",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/infernalconduit_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Infernal Soul",
+      "tier": "Silver",
+      "description": "Grants the Infernal Dragon Soul, or a different Dragon Soul if you aleady have it.",
+      "disabled": false,
+      "id": 1046,
+      "nameId": "ARAM_InfernalSoul",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/infernalsoul_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Infinite Recursion",
+      "tier": "Prismatic",
+      "description": "Gain 60 ability haste, increased by 3 each time you score a champion takedown.",
+      "disabled": false,
+      "id": 1388,
+      "nameId": "InfiniteRecursion",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/infiniterecursion_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "It's Critical",
+      "tier": "Gold",
+      "description": "Grants 50% critical strike chance.",
+      "disabled": false,
+      "id": 1047,
+      "nameId": "ARAM_ItsCritical",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/itscritical_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "It's Go Time",
+      "tier": "Silver",
+      "description": "Upgrades one of your champion's abilities that has a duration-based effect, empowering the ability to grant 25 to 45 bonus movement speed for the effect's duration.",
+      "disabled": false,
+      "id": 2125,
+      "nameId": "ItsGoTime",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/genericabilityaugmenticon_silver.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "It's Killing Time",
+      "tier": "Gold",
+      "description": "Upon casting your ultimate ability, you apply Death Mark to all enemy champions (8 second cooldown). The mark stores 40% of all post-mitigation damage you deal to the affected target, detonating after 5 seconds to deal true damage equal to the damage stored against them.",
+      "disabled": false,
+      "id": 1211,
+      "nameId": "ARAM_ItsKillingTime",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/itskillingtime_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Jeweled Gauntlet",
+      "tier": "Prismatic",
+      "description": "Your abilities can now critically strike for (145% + bonus critical damage) damage. Additionally, gain 25% (+ 4.5% per 100 AP) critical strike chance.\n\nIf both Jeweled Gauntlet and Vulnerability are equipped, only rolls the critical strike chance of the augment that has the higher critical damage (or either if equal).",
+      "disabled": false,
+      "id": 1048,
+      "nameId": "ARAM_JeweledGauntlet",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/jeweledgauntlet_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Juiced",
+      "tier": "Silver",
+      "description": "Basic attacks on-hit against enemy champions consume 2.5% of your maximum mana to deal bonus magic damage equal to 4.5% of your maximum mana. This damage can critically strike for 100 bonus damage.",
+      "disabled": false,
+      "id": 2016,
+      "nameId": "ARAM_Juiced",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/juiced_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Kill Secured",
+      "tier": "Silver",
+      "description": "Gain 60% bonus movement speed towards enemy champions below 40% of their maximum health.",
+      "disabled": false,
+      "id": 2026,
+      "nameId": "KillSecured",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/killsecure_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "King Me",
+      "tier": "Prismatic",
+      "description": "Upon entering the enemy team's gate or Catapult for the first time, either of which are located near their spawn, you become Kinged, causing you to gain one random Prismatic-tier augment and the first eligible Legendary item in your inventory to be upgraded with improved stats. The gold value of all upgradeable stats on the item is increased by exactly 1000 gold.\n\nKing Me prioritize upgrading the first Legendary item eligible for a upgrade based on its position in the inventory, detecting each slot until an eligible item is found.",
+      "disabled": false,
+      "id": 1337,
+      "nameId": "KingMe",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/kingme_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Leg Day",
+      "tier": "Silver",
+      "description": "Gain 50 bonus movement speed and 40% slow resist.",
+      "disabled": false,
+      "id": 1305,
+      "nameId": "ARAM_LegDay",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/legday_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Light 'em Up!",
+      "tier": "Silver",
+      "description": "Basic attacks generate a stack, up to 4. The fourth stack consumes them all to quickly launch 4 missiles at the target that each deal 11 to 80 (+ 35% bonus AD) (+ 19% AP) bonus magic damage on-hit, for a total of 11*4 to 80*4 (+ 35*4% bonus AD) (+ 19*4% AP).",
+      "disabled": false,
+      "id": 1051,
+      "nameId": "ARAM_LightemUp",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/lightemup_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Lil' Extra Help",
+      "tier": "Gold",
+      "description": "Upgrades one of your champion's abilities that has an effect which empowers your basic attacks for a duration, further enhancing the attacks by granting you 150 / 100 bonus attack range and 75% / 40% bonus attack speed while the effect is active.",
+      "disabled": false,
+      "id": 2096,
+      "nameId": "LittleExtraHelp",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/genericabilityaugmenticon_gold.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Mad Scientist",
+      "tier": "Prismatic",
+      "description": "Upon acquiring this augment and each time you respawn, gain either 30% adaptive force, 20% bonus health, and 40% increased size or 70 ability haste, 40% bonus movement speed, and 40% reduced size.",
+      "disabled": false,
+      "id": 1053,
+      "nameId": "ARAM_MadScientist",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/madscientist_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Magic Missile",
+      "tier": "Gold",
+      "description": "Dealing damage to an enemy champion with an ability fires 3 missiles at them that each deal true damage equal to 0.33% of the target's maximum health, increased to up to 1% based on distance travelled (maximum damage reached at 1000 units). This effect can only trigger once every 6 seconds from the same cast.",
+      "disabled": false,
+      "id": 1133,
+      "nameId": "ARAM_MagicMissile",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/maps/particles/kiwi/magicmissile_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Marksmage",
+      "tier": "Gold",
+      "description": "Basic attacks deal bonus physical damage equal to 75% AP.",
+      "disabled": false,
+      "id": 1129,
+      "nameId": "ARAM_Marksmage",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/marksmage_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Master of Duality",
+      "tier": "Prismatic",
+      "description": "Basic attacks on-hit grant 6 to 18 ability power and damaging abilities once per cast instance grant 3 to 9 bonus attack damage, lasting for 5 seconds, with the duration of both refreshing on subsequent hits, and stacking infinitely.",
+      "disabled": false,
+      "id": 1054,
+      "nameId": "ARAM_MasterofDuality",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/masterofduality_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Mercy's Strike",
+      "tier": "Gold",
+      "description": "Upgrades one of your champion's abilities, empowering the ability's cast to enhance your next basic attack within a duration. The enhanced attack has 300 bonus range, gains 75% bonus attack speed, and deals bonus magic damage equal to 3% (+ 2% per 10% heal and shield power) of the target's maximum health.",
+      "disabled": false,
+      "id": 2133,
+      "nameId": "MercysStrike",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/genericabilityaugmenticon_gold.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Mighty Shield",
+      "tier": "Silver",
+      "description": "Gain 40 to 100 adaptive force for 3 seconds upon gaining a shield (5 second cooldown).",
+      "disabled": false,
+      "id": 1314,
+      "nameId": "MightyShield",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/mightyshield_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Mind to Matter",
+      "tier": "Silver",
+      "description": "Grants bonus health equal to 50% maximum mana.",
+      "disabled": false,
+      "id": 1056,
+      "nameId": "ARAM_MindtoMatter",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/mindtomatter_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Minionmancer",
+      "tier": "Gold",
+      "description": "Your pets deal 40% increased damage as well as gain 40% bonus health and size.",
+      "disabled": false,
+      "id": 1104,
+      "nameId": "ARAM_Minionmancer",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/minionmancer_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Mountain Soul",
+      "tier": "Silver",
+      "description": "Grants the Mountain Dragon Soul, or a different Dragon Soul if you aleady have it.",
+      "disabled": false,
+      "id": 1057,
+      "nameId": "ARAM_MountainSoul",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/mountainsoul_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Multishot",
+      "tier": "Prismatic",
+      "description": "Assigns quests that require you to hit enemy champions with a specific ability's missile a number of times (counts up to 1 hit per champion per cast instance). There are six quest tiers, and each completed tier rewards you with an additional missile fired on the ability's cast. The reward effect also modifies the ability to fire all of its missiles in a cone. Subsequent missile hits from the same cast against the same enemy deal 30% damage.",
+      "disabled": false,
+      "id": 2055,
+      "nameId": "ARAM_Multishot",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/genericabilityaugmenticon_prismatic.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Mystic Punch",
+      "tier": "Prismatic",
+      "description": "Basic attacks on-hit reduce the remaining cooldowns of your abilities by 1.25 seconds.",
+      "disabled": false,
+      "id": 1058,
+      "nameId": "ARAM_MysticPunch",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/mysticpunch_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Nature is Healing",
+      "tier": "Gold",
+      "description": "Heal yourself for 0.6 to 2.1 of your maximum health for each second that you are within brush.",
+      "disabled": false,
+      "id": 2043,
+      "nameId": "NatureIsHealing",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/natureishealing_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Nightstalking",
+      "tier": "Gold",
+      "description": "Scoring a takedown against an enemy champion within 3 seconds of damaging them renders you invisible for 1.5 seconds. Attacking or casting abilites ends the stealth immediately.",
+      "disabled": false,
+      "id": 1326,
+      "nameId": "Nightstalking",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/nightstalking_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Ocean Soul",
+      "tier": "Silver",
+      "description": "Grants the Ocean Dragon Soul, which has a modified base heal value of 100, or a different Dragon Soul if you aleady have it.",
+      "disabled": false,
+      "id": 1060,
+      "nameId": "ARAM_OceanSoul",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/oceansoul_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "OK Boomerang",
+      "tier": "Gold",
+      "description": "Automatically cast an improved version of Boomerang Blade at the closest nearby enemy champion within 1250 units, dealing 40 to 200 (+ 30% bonus AD) (+ 20% AP) adaptive damage to enemies hit (10 second cooldown).",
+      "disabled": false,
+      "id": 1061,
+      "nameId": "ARAM_OkBoomerang",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/okboomerang_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Ominous Pact",
+      "tier": "Prismatic",
+      "description": "Your abilities now have a health cost of 5% current health to cast them. In return, you gain ability power based on your missing health, up to 75 to 150 at 70% missing health, 0 to 50 for 11 bonus movement speed, and 0 to 20 for 11 omnivamp.",
+      "disabled": false,
+      "id": 1332,
+      "nameId": "OminousPact",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/wisdomofages_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Omni Soul",
+      "tier": "Prismatic",
+      "description": "Grants 3 random Dragon Soul.",
+      "disabled": false,
+      "id": 1062,
+      "nameId": "ARAM_OmniSoul",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/omnisoul_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Our Healing",
+      "tier": "Gold",
+      "description": "Whenever a nearby unit is healed (excluding yourself), you heal yourself equal to 15% of the amount they healed, doubled to 30% from the heals of enemies.",
+      "disabled": false,
+      "id": 2082,
+      "nameId": "Equilibrium",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/equillibrium_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Outlaw's Grit",
+      "tier": "Gold",
+      "description": "Dashing or blinking grants 12 bonus armor and bonus magic resistance for 15 seconds, stacking up to 5 times for a total of 60 bonus resistances, and refreshing on subsequent triggers.",
+      "disabled": false,
+      "id": 1063,
+      "nameId": "ARAM_OutlawsGrit",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/outlawsgrit_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Overextender",
+      "tier": "Gold",
+      "description": "Your launch with the Cannon Launcher is now empowered, increasing the launch range by 12,000 units and the impact damage by 50%, as well as the travel speed by a significant amount. Additionally, your Recall is now functional and is upgraded to Empowered Recall.\n\nThis augment is only available on the Butcher's Bridge map.\n\nTotal launch range is 18,500 units, reduced to 16,500 after your team's Outer turret is destroyed. Increased impact damage is 120*1.5 to 460*1.5 magic damage.",
+      "disabled": false,
+      "id": 2119,
+      "nameId": "Overextender",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/overextender_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Overflow",
+      "tier": "Gold",
+      "description": "Your abilities' mana costs are doubled, but you also gain 10% (+ 0.5% per 100 maximum mana) increased damage as well as self and outgoing healing and shielding.",
+      "disabled": false,
+      "id": 1311,
+      "nameId": "ARAM_Overflow",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/overflow_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Overloaded",
+      "tier": "Prismatic",
+      "description": "Upgrades one of your champion's abilities, empowering the ability to have its cooldown reset whenever you cast a different ability.",
+      "disabled": false,
+      "id": 2123,
+      "nameId": "Overloaded",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/genericabilityaugmenticon_prismatic.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Pandora's Box",
+      "tier": "Prismatic",
+      "description": "Your current augments transform into an equal number of completely random Prismatic ones.",
+      "disabled": false,
+      "id": 12317,
+      "nameId": "ARAM_PandorasBox",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/pandoras_box_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Pat On The Back",
+      "tier": "Gold",
+      "description": "Whenever you are within 200 units of an allied champion, they pat you on the back, granting you a 50 to 150 (+ 25% bonus movement speed) shield and 30% bonus movement speed for 3 seconds (9 second cooldown). This effect can stack and its duration refreshes with each pass.",
+      "disabled": false,
+      "id": 2137,
+      "nameId": "PatOnTheBack",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/patontheback_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Perseverance",
+      "tier": "Gold",
+      "description": "Grants 1000% base health regeneration, increased to 2000% while below 25% maximum health.",
+      "disabled": true,
+      "id": 1064,
+      "nameId": "ARAM_Perseverance",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/perseverance_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Phenomenal Evil",
+      "tier": "Gold",
+      "description": "Gain Phenomenal Evil Power.\n\nPhenomenal Evil Power: Generate a permanent stack of Phenomenal Evil each time you damage an enemy champion with ability damage. This effect cannot trigger more than once every second globally and once every 3 seconds from the same cast instance. For each stack, gain 1 ability power.\n\nIf this is not your first augment, start with 40 Phenomenal Evil stacks, granting you 40 ability power.",
+      "disabled": false,
+      "id": 1390,
+      "nameId": "ARAM_PhenomenalEvil",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/aram_phenomenalevil_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Pin Cushion",
+      "tier": "Prismatic",
+      "description": "Upgrades one of your champion's abilities that has a duration-based effect, empowering it to cause basic attacks during the ability's effect to apply stacks against enemy champions. At the end of the ability's duration, the stacks on all targets are consumed to grant you 10 bonus movement speed per stack consumed and deal 20 to 60 physical damage to each affected target.",
+      "disabled": false,
+      "id": 2135,
+      "nameId": "Overkill",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/symphonyofwar_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Pinball",
+      "tier": "Gold",
+      "description": "Your Mark is empowered to instead throw a pinball, which deals 100 to 500 bonus true damage and ricochets off of terrain that it collides with. Each time the pinball ricochets, its remaining travel distance is reset, it increases in radius by 25%, deals 20% increased damage, and reduces Mark remaining cooldown by 30%. The pinball can ricochet up to 4 times, for a maximum radius increase of 100% and a damage increase of 80%. Additionally, your Mark cooldown is reduced equivalent to 50 ability haste.\n\nIf Mark is not equipped, you will be prompted to replace one of your summoner spells with Mark.",
+      "disabled": false,
+      "id": 1358,
+      "nameId": "PinballSnowball",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/pinballsnowball_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Poltergeist",
+      "tier": "Silver",
+      "description": "Replace a summoner spell with Poltergeist.\n\nPoltergeist: geteffect",
+      "disabled": false,
+      "id": 1347,
+      "nameId": "Poltergeist",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/poltergeist_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Porcupine",
+      "tier": "Gold",
+      "description": "You build up a burst of needles from within you when taking damage from enemy champions, storing up to 400 to 3900 pre-mitigation damage taken. After reaching the maximum damage stored, you consume the stored damage to burst the needles outward in a 400 radius, dealing 75 to 200 (+ 125% bonus armor) (+ 125% bonus magic resistance) physical damage to enemies hit and slowing them by 30% for 2 seconds.",
+      "disabled": false,
+      "id": 2139,
+      "nameId": "PinCushion",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/pincushion_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Poro Stampede",
+      "tier": "Prismatic",
+      "description": "Poro-Snaxes will now randomly appear around you every 35 to 20 seconds. You can pick up a Poro-Snax by moving over it, granting you a Poro-Snax charge. Poro-Snaxes will not spawn while you are at the maximum number of Poro-Snax charges (2). Feeding a Poro with a Poro-Snax generates a stack of Poro Love. At 5 stacks, you are granted the Poro Charge summoner spell and are prompted to replace one of your summoner spells with it. You are then assigned with quests that require you to reach a certain amount of Poro Love stacks. There are nine quest tiers, and each completed tier rewards you with an additional Poro wave for Poro Charge.\n\nPoro Charge: geteffect",
+      "disabled": false,
+      "id": 2046,
+      "nameId": "PoroCharge_Active",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/questporocharge_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Pressure Cooker",
+      "tier": "Gold",
+      "description": "Surrounds you in flames, causing you to apply a Burn every second to enemy champions within 300 units for 3 seconds that deals magic damage equal to0.5% of your maximum health per second.This Burn stacks infinitely and refreshes with each application.\n\nAdditionally, you are assigned with quests that require you to deal a certain amount of damage with the Burn effect against enemy champions. There are three quest tiers, and each completed tier grants you a reward that improves Pressure Cooker's effect.",
+      "disabled": false,
+      "id": 2102,
+      "nameId": "PressureCooker",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/questpressurecooker_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Prom Queen",
+      "tier": "Prismatic",
+      "description": "Automatically cast a modified version of The Quickness, empowering you to break into a captivating sprint for 6 seconds. While empowered, you gain ghosting and 50% bonus movement speed, and enemies you collide with are knocked down and become charmed for 1.5 seconds (35 second cooldown).\n\nA sparkly tiara will descend upon you 2.5 seconds before the effect activates.",
+      "disabled": false,
+      "id": 1421,
+      "nameId": "PromQueen",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/promqueen_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Protein Shake",
+      "tier": "Prismatic",
+      "description": "Gain 25% (+ 35% per 100 bonus armor) (+ 35% per 100 bonus magic resistance) heal and shield power.",
+      "disabled": false,
+      "id": 1324,
+      "nameId": "ARAM_ProteinShake",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/proteinshake_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Purist - Caster",
+      "tier": "Silver",
+      "description": "Convert all of your bonus attack speed into ability haste at a rate of 0.65 ability haste per 1% bonus attack speed. Additionally, your abilities' total cooldowns are reduced by 10%.",
+      "disabled": false,
+      "id": 2018,
+      "nameId": "ARAM_Purist_Caster",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/puristcaster_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Pursuit of Haste",
+      "tier": "Gold",
+      "description": "Assigns quests that require you to hit enemy champions with a specific ability a number of times (counts up to 1 hit per champion per cast instance). There are two quest tiers, and each completed tier rewards you with ability haste on the ability.",
+      "disabled": false,
+      "id": 2100,
+      "nameId": "ARAM_SpecializedRecursion",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/genericabilityaugmenticon_gold.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Pursuit of Power",
+      "tier": "Gold",
+      "description": "Quest: Hit an enemy champion with a specific ability 10 times (counts up to 1 hit per champion per cast instance).\n\nReward: Upon completing your Quest, increase the damage of the ability by 30%.",
+      "disabled": false,
+      "id": 2116,
+      "nameId": "SpecializedEmpowerment",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/marksmage_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Quantum Computing",
+      "tier": "Prismatic",
+      "description": "Automatically cast an improved version of Tactical Sweep when an enemy champion is within 650 units of you, winding up over 0.75 seconds to slash in a 650 radius around you. The slash deals 200 to 350 (+ 75% bonus AD) (+ 45% AP) physical damage to enemies within the area (30 second cooldown). Enemies hit by the outer edge of the circle take bonus physical damage equal to 10% (+ 2.5% per 100 bonus AD) (+ 1.6% per 100 AP) (+ 0.1% per 100 bonus health) of their maximum health and are slowed by 80% decaying over 2 seconds. Additionally, you are healed for 80% of the bonus post-mitigation damage against enemy champions hit by the outer edge.",
+      "disabled": true,
+      "id": 1066,
+      "nameId": "ARAM_QuantumComputing",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/quantumcomputing_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Quest: Icathia's Fall",
+      "tier": "Prismatic",
+      "description": "Gain Bami's Cinder. You can now purchase Hollow Radiance and Sunfire Aegis in spite of the item limit imposed by Immolate.\n\nQuest: Obtain Hollow Radiance and Sunfire Aegis.\n\nReward: Upon completing your Quest, convert the items you obtained for the quest into Void Immolation.\n\nVoid Immolation counts as 2 Burn effect sources.",
+      "disabled": false,
+      "id": 1361,
+      "nameId": "ARAM_Quest_VoidImmolation",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/quest_voidimmolation_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Quest: Sneakerhead",
+      "tier": "Prismatic",
+      "description": "Assigns quests that require you to perform specific tasks while equipped with a particular [https://wiki.leagueoflegends.com/en-us/Category:Boots_items Boots item], which is granted to you for free during its respective quest. Finish the following quests, which are assigned to you in a random order:\nQuest - Berserker's Greaves: Basic attack 25 times.Quest - Boots of Swiftness: Run 300 steps.Quest - Ionian Boots of Lucidity: Cast 20 abilities.Quest - Mercury's Treads: Become afflicted by crowd control 5 times.Quest - Plated Steelcaps: Reduce a total of 200 damage with Plating.Quest - Sorcerer's Shoes: Deal a total of 1500 damage with abilities.\nReward: Upon completing all of the above quests, you receive Jarvan I's.\n\nYou cannot purchase any Boots items while equipped with this augment. If you already have a Boots item, it is replaced by the Boots granted by this effect. Boots items gained from this effect cannot be sold.",
+      "disabled": true,
+      "id": 1343,
+      "nameId": "Quest_Sneakerhead",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/sneakerhead_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Quest: Steel Your Heart",
+      "tier": "Gold",
+      "description": "Quest: Obtain Heartsteel and accumulate over 300 bonus health from Colossal Consumption.\n\nReward: Upon completing your Quest, increase the bonus health gained from Heartsteel Colossal Consumption by 200%.",
+      "disabled": false,
+      "id": 152,
+      "nameId": "Quest_SteelYourHeart",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/quest_steelyourheart_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Quest: Urf's Champion",
+      "tier": "Prismatic",
+      "description": "Quest: Score 18 champion takedowns.\n\nReward: Upon completing your Quest, you receive The Golden Spatula.\n\nIf your inventory is full at the time of quest completion, the item will be granted as soon as a slot in the inventory is available.",
+      "disabled": false,
+      "id": 154,
+      "nameId": "Quest_UrfsChampion",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/quest_urfschampion_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Quest: Wooglet's Witchcap",
+      "tier": "Prismatic",
+      "description": "Gain a Needlessly Large Rod.\n\nQuest: Obtain Rabadon's Deathcap and Zhonya's Hourglass.\n\nReward: Upon completing your Quest, convert the items you obtained for the quest into Wooglet's Witchcap.",
+      "disabled": false,
+      "id": 156,
+      "nameId": "Quest_WoogletsWitchcap",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/quest_woogletswitchcap_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Quickstep",
+      "tier": "Gold",
+      "description": "Upgrades one of your champion's abilities, empowering the ability's cast to cause you to dash up to 350 units towards your cursor.",
+      "disabled": false,
+      "id": 2064,
+      "nameId": "ARAM_Quickstep",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/genericabilityaugmenticon_gold.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Ravenous Bind",
+      "tier": "Gold",
+      "description": "Upgrades one of your champion's abilities that has a immobilizing or grounding effect, empowering the ability to deal 15 to 90 (+ 10% AP) (+ 0.5% of your maximum health) magic damage to affected targets and heal you for 50 to 200 (+ 5% AP) (+ 10% bonus health). The heal is increased by up to 50% based on how long the ability's cooldown is.",
+      "disabled": false,
+      "id": 2077,
+      "nameId": "DarkWind",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/upgradehubris_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Recursion",
+      "tier": "Gold",
+      "description": "Grants 60 ability haste.",
+      "disabled": false,
+      "id": 1068,
+      "nameId": "ARAM_Recursion",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/recursion_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "ReEnergize",
+      "tier": "Silver",
+      "description": "Your Energized attacks against targets not hit by your previous Energized attack do not consume any Energize stacks on-hit. Additionally, when fully Energized, your next basic attack deals bonus magic damage on-hit equal to 10% of the target's current health.",
+      "disabled": false,
+      "id": 1330,
+      "nameId": "ReEnergize",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/mobiuscoil_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Rejuvenation",
+      "tier": "Gold",
+      "description": "Upgrades one of your champion's abilities, empowering the ability's cast to heal you for 30 to 100 (+ 25% bonus AD) (+ 15% AP) (+ 5% bonus health). This is increased by up to 50% based on how long the ability's cooldown is, for a maximum heal of 30*1.5 to 100*1.5 (+ 25*1.5% bonus AD) (+ 15*1.5% AP) (+ 5*1.5% bonus health).",
+      "disabled": false,
+      "id": 1067,
+      "nameId": "ARAM_RabbleRousing",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/rabblerousing_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Rite of Ascension",
+      "tier": "Prismatic",
+      "description": "Scoring a takedown against an enemy champion within 3 seconds of damaging them causes them to leave behind their Essence for 8 seconds. You can basic attack the Essence to consume it: causing you to blink to its location after winding up for 1 second, during which you are untargetable (except to turrets), displacement immune, and unable to act. Upon consumption of the Essence, you gain 100% bonus movement speed decaying over 2 seconds, heal yourself for 75 to 300 (+ 50% bonus AD) (+ 25% AP), and reset the cooldowns of your basic abilities. The heal is increased by 0 to 100 for 11, for a maximum heal of 75*2 to 300*2 (+ 50*2% bonus AD) (+ 25*2% AP).",
+      "disabled": false,
+      "id": 2099,
+      "nameId": "ARAM_DivineDomain",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/glasscannon_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Scoped Weapons",
+      "tier": "Silver",
+      "description": "Gain 75 / 50 bonus attack range.",
+      "disabled": false,
+      "id": 1170,
+      "nameId": "ARAM_ScopedWeapons",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/scopedweapons_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Scopier Weapons",
+      "tier": "Gold",
+      "description": "Gain 200 / 100 bonus attack range.",
+      "disabled": false,
+      "id": 1071,
+      "nameId": "ARAM_ScopierWeapons",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/scopierweapons_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Scopiest Weapons",
+      "tier": "Prismatic",
+      "description": "Gain 250 / 150 bonus attack range.",
+      "disabled": false,
+      "id": 1115,
+      "nameId": "ARAM_ScopiestWeapons",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/scopiestweapons_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Searing Dawn",
+      "tier": "Gold",
+      "description": "Gain Sunlight.\n\nSunlight: Your damaging abilities mark enemies, causing them to take 40 to 200 bonus magic damage from your ally's next basic attack or ability hit against them (0.75-second cooldown per target).",
+      "disabled": false,
+      "id": 1072,
+      "nameId": "ARAM_SearingDawn",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/searingdawn_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Shadow Runner",
+      "tier": "Silver",
+      "description": "After dashing, blinking, or exiting stealth, gain 300 bonus movement speed for 2 seconds.",
+      "disabled": false,
+      "id": 1073,
+      "nameId": "ARAM_ShadowRunner",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/shadowrunner_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Shark Bait",
+      "tier": "Gold",
+      "description": "Upon taking fatal damage, you become a Shark Bait, causing you to enter a zombie state for 3.5 seconds, during which your movement speed is set to a static 400, you gain ghosting, and enemies within 400 units of you are slowed by 40%. At the end of the duration, a massive shark emerges from beneath you that lets out a powerful chomp (400 radius), dealing 80 to 300 (+ 20% of target's missing health) magic damage to all enemies within the area and knocking them up for 1 second.\n\nWhile under the zombie state, you are able to move and become invulnerable, untargetable, and immune to crowd control, but you are also rendered unable to declare basic attacks, cast abilities, use summoner spells, and activate items.",
+      "disabled": false,
+      "id": 2032,
+      "nameId": "FishBait",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/fishbait_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Shark Tempest",
+      "tier": "Gold",
+      "description": "Your Mark is empowered to circle sharks around it in a 300 radius, dealing 50 to 100 magic damage to enemies it passes through as it travels and slowing targets hit by 30% for 1 second. If the missile hits an enemy champion, the sharks circle around their location in a 425 radius instead for 3 seconds, dealing25 to 75 (+ 20% bonus AD) (+ 12% AP) magic damage every secondto enemies within the area and slowing them by 30% for 3 seconds.\n\nIf Mark is not equipped, you will be prompted to replace one of your summoner spells with Mark.",
+      "disabled": false,
+      "id": 2034,
+      "nameId": "SharkTempest",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/sharktempest_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Shrink Engine",
+      "tier": "Gold",
+      "description": "Scoring a champion takedown generates a stack, stacking infinitely. For each stack, gain 8 ability haste and 1% bonus movement speed, and reduce your size by 4%. Lose 65% of stacks on death.\n\nSize reduction is capped at 80% (20 stacks).",
+      "disabled": false,
+      "id": 1373,
+      "nameId": "ShrinkEngine",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/shrinkengine_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Shrink Ray",
+      "tier": "Gold",
+      "description": "Basic attacks on-hit reduce the target's damage dealt by 15% for 3 seconds, refreshing with each hit. Their size is also reduced significantly for the duration.",
+      "disabled": false,
+      "id": 1074,
+      "nameId": "ARAM_ShrinkRay",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/shrinkray_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Siphon",
+      "tier": "Silver",
+      "description": "Upgrades one of your champion's abilities, empowering the ability to heal you for 30% of its post-mitigation damage dealt to enemy champions.",
+      "disabled": false,
+      "id": 2073,
+      "nameId": "ARAM_SustainingStrike",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/genericabilityaugmenticon_silver.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Skilled Sniper",
+      "tier": "Gold",
+      "description": "Hitting an enemy champion with a basic ability while located at least er 700 units away from them at the time of the hit reduces its current cooldown by 80% of its total cooldown, modified to 65% for damage over time abilities.",
+      "disabled": false,
+      "id": 1113,
+      "nameId": "ARAM_SkilledSniper",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/skilledsniper_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Slap Around",
+      "tier": "Silver",
+      "description": "Immobilizing or grounding an enemy champion grants you 10, stacking infinitely (5 second cooldown per cast instance). Lose 50% of stacks on death.",
+      "disabled": false,
+      "id": 1136,
+      "nameId": "ARAM_SlapAround",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/slaparound_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Snap Back",
+      "tier": "Gold",
+      "description": "Upgrades one of your champion's abilities, empowering the ability with a recast. Using the recast causes you to blink back to your original casting position of the ability and explode to deal 100 to 300 (+ 20% AD) (+ 20% AP) magic damage to nearby enemies.",
+      "disabled": false,
+      "id": 2109,
+      "nameId": "SnapBack",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/genericabilityaugmenticon_gold.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Snowball Upgrade",
+      "tier": "Gold",
+      "description": "Your Mark is empowered to hail a snowstorm at the location where the target was hit for 2 seconds, granting sight of the area and dealing200 (+ 200% bonus AD) (+ 120% AP) magic damageto enemies within over the duration, as well as slowing them by 50% (+ 6% per 100 AP). Additionally, your Mark cooldown is reduced equivalent to 50 ability haste.\n\nIf Mark is not equipped, you will be prompted to replace one of your summoner spells with Mark.",
+      "disabled": true,
+      "id": 1334,
+      "nameId": "SnowballUpgrade",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/snowballupgrade_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Snowblast",
+      "tier": "Gold",
+      "description": "Empowers the Dash spell from Mark to deal 100% increased damage and upon arrival cause you to knock up the target and knock back nearby enemies. Additionally, your Mark cooldown is reduced equivalent to 100 ability haste.\n\nIf Mark is not equipped, you will be prompted to replace one of your summoner spells with Mark.",
+      "disabled": false,
+      "id": 2080,
+      "nameId": "Snowbomb",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/snowbomb_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Snowday",
+      "tier": "Silver",
+      "description": "Your Mark deals bonus magic damage equal to 100% of its damage and has its cooldown reduced equivalent to 100 ability haste.\n\nIf Mark is not equipped, you will be prompted to replace one of your summoner spells with Mark.",
+      "disabled": false,
+      "id": 2088,
+      "nameId": "ARAM_Snowday",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/snowday_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Sonata",
+      "tier": "Gold",
+      "description": "Alternate between automatically casting a modified version of Aria of Perseverance and modified Song of Celerity, with the former being cast first (10 second cooldown).\n\nAria of Perseverance: Heal yourself for 60 (+ 60% AP) and send out a tone to the most wounded allied champion within 1000 units that heals them for the same amount. Additionally, generate an aura that grants you and tagged allied champions a 80 (+ 40% AP) shield for 1.5 seconds.\n\nSong of Celerity: Gain 30% bonus movement speed for 7 seconds. If you take damage during this time, the duration ends prematurely once or if 3 seconds have elapsed. Additionally, generate an aura that grants tagged allied champions 20% bonus movement speed for 3 seconds.",
+      "disabled": false,
+      "id": 1420,
+      "nameId": "Sonata",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/sonata_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Sonic Boom",
+      "tier": "Silver",
+      "description": "Granting a buff, heal, or shield to your ally deals 30 to 150 true damage to enemies within 450 units of them and slows targets by 30% for 2 seconds (2 second cooldown).",
+      "disabled": false,
+      "id": 1076,
+      "nameId": "ARAM_SonicBoom",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/sonicboom_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Soul Eater",
+      "tier": "Gold",
+      "description": "Immobilizing or grounding an enemy champion grants you 20 bonus health, stacking infinitely (5 second cooldown per cast instance).",
+      "disabled": false,
+      "id": 1375,
+      "nameId": "SoulEater",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/souleater_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Soul Siphon",
+      "tier": "Gold",
+      "description": "Heal for 12% of the post-mitigation damage dealt by your critical strikes. Additionally, gain 25% critical strike chance.",
+      "disabled": false,
+      "id": 1077,
+      "nameId": "ARAM_SoulSiphon",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/soulsiphon_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Spell Split",
+      "tier": "Prismatic",
+      "description": "Upgrades one of your champion's abilities that has a missile, empowering the ability's missile to split in two over 0.25 seconds upon hitting an enemy, at maximum range, or when recast. Each of the split missiles fire perpendicularly in opposite directions and apply the same effects to enemies they hit. Subsequent missile hits from the same cast against the same enemy deal 30% damage.\n\nRecast can be used after 0.15 seconds of the initial cast.",
+      "disabled": false,
+      "id": 2072,
+      "nameId": "Missile_Split",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/genericabilityaugmenticon_prismatic.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Spin Me Right Round",
+      "tier": "Silver",
+      "description": "Replace a summoner spell with Heroic Swing (10 second cooldown, starts post-effect).\n\nHeroic Swing - Active: You can activate Heroic Swing three times before the ability goes on cooldown, and you can use the third cast only after 0.5 seconds of the second cast. An attack or movement command may be inputted to use the second and third casts.\n\nFirst Cast: Fire a hook in the target direction that embeds in the first terrain hit for 2 seconds. Heroic Swing's second cast can be used while the hook is attached. If the hook fails to attach or you become immobilized, grounded, or polymorphed within the duration, Heroic Swing is cancelled and placed on full cooldown.\n\nSecond Cast: Swing around the terrain in either a clockwise or counterclockwise direction based on the position of the cursor relative to your facing direction, stopping upon colliding with an enemy champion or terrain. While swinging, fire at the nearest visible enemy within your attack range (minimum 400 units) every 0.2 to deal them 15 to 75 (+ 15% AD) (1 + 0.3 per 100% bonus attack speed) physical damage and apply on-hit effects for each shot, with on-hit damage reduced to 25% effectiveness. The dash will be interrupted if you are affected by any immobilizing or polymorphing crowd control during the dash.\n\nThird Cast: End the swing by jumping to the target location and fire one last shot at a nearby visible enemy.",
+      "disabled": false,
+      "id": 1386,
+      "nameId": "YouSpinMeRightRound",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/youspinmerightround_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Spin To Win",
+      "tier": "Silver",
+      "description": "Your spinning abilities deal 30% increased damage and have their cooldown reduced equivalent to 30 ability haste.",
+      "disabled": false,
+      "id": 1214,
+      "nameId": "ARAM_SpinToWin",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/spintowin_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Spirit Bomb",
+      "tier": "Prismatic",
+      "description": "Your healing and shielding on yourself or allies builds up a Spirit Bomb on top of you. Once you have healed and shielded a combined total of 200 to 2000, you toss the Spirit Bomb onto the most wounded allied champion over 1.1 seconds. Upon impact, the Spirit Bomb explodes in a 475 radius to heal allied champions within the area for 5 to 15 (+ 3% per 100 AP) of their missing health and grants them a shield for 2 seconds that absorbs damage equal to 10 to 25 (+ 2% per 100 AP) of their current health.\n\nHealing and shielding from this effect do not count toward the Spirit Bomb's trigger condition.",
+      "disabled": false,
+      "id": 2104,
+      "nameId": "ARAM_SpiritBomb",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/spiritbomb_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Spiritual Purification",
+      "tier": "Gold",
+      "description": "Scoring a champion takedown causes the area around the slain champion to explode in a 500 unit radius, dealing adaptive damage to enemies within equal to 15% of their current health and leaving behind a zone for 1.5 seconds that slows enemies within by 60%.",
+      "disabled": false,
+      "id": 1345,
+      "nameId": "ARAM_SpiritualPurification",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/spiritualpurification_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Squishy Slappy Grab",
+      "tier": "Prismatic",
+      "description": "When an enemy champion is within 450 units of you, after a 1.5-second delay, you send out Squishy Slappy Hands that latch onto all nearby enemy champions within 800 units, forming a tether between yourself and each target for 4 seconds (45 second cooldown). While the tethers persist (950 tether radius), your next basic attack is empowered to pull all tethered enemies toward you, dealing 30 to 100 (+ 10% bonus health) magic damage to affected targets and stunning them for 0.25 seconds after the pull ends. Targets are pulled over 450 units, reduced to 350 for those farther away from you. Additionally, you gain a 25 to 75 (+ 50% bonus armor) (+ 50% bonus magic resistance) shield for each pulled enemy.",
+      "disabled": false,
+      "id": 2115,
+      "nameId": "SquishySlappyGrab",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/squishyslappygrab_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Stackosaurus Rex",
+      "tier": "Silver",
+      "description": "Increase the number of permanent stacks you gain from abilities, item effects, and augments by 100%.",
+      "disabled": false,
+      "id": 1204,
+      "nameId": "ARAM_StackosaurusRex",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/stackosaurusrex_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Stats on Stats on Stats!",
+      "tier": "Prismatic",
+      "description": "Gain 4 Stat Bonus, with a higher chance of obtaining Gold and Prismatic tier anvils. Additionally, on the next round of augment selection, you gain an additional reroll per augment slot.",
+      "disabled": false,
+      "id": 1402,
+      "nameId": "ARAM_StatsOnStatsOnStats",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/statsonstatsonstats_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Stats on Stats!",
+      "tier": "Gold",
+      "description": "Gain 3 Stat Bonus, with a higher chance of obtaining Gold and Prismatic tier anvils.",
+      "disabled": false,
+      "id": 1403,
+      "nameId": "ARAM_StatsOnStats",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/statsonstats_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Stats!",
+      "tier": "Silver",
+      "description": "Gain 2 Stat Bonus.",
+      "disabled": false,
+      "id": 1404,
+      "nameId": "ARAM_Stats",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/stats_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Stay Resolute",
+      "tier": "Silver",
+      "description": "Upgrades one of your champion's abilities, empowering the ability to grant you 4 to 12 for 3 bonus armor or bonus magic resistance for a duration when it damages an enemy champion (5 second cooldown per target per cast instance). This effect can stack up to a number of times.\n\nThe resistance type granted is based on the target's adaptive type: bonus armor for physical and bonus magic resistance for magic.\n\nIf this is not your first augment, gain 20 bonus armor and bonus magic resistance.",
+      "disabled": false,
+      "id": 2076,
+      "nameId": "TitansPulse",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/genericabilityaugmenticon_silver.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Stuck in Here With Me",
+      "tier": "Prismatic",
+      "description": "Casting your ultimate ability grants you an aura for 2 seconds, growing in size over the duration to up to 500 units. After the duration, you taunt all enemies within the aura for 2 seconds and gain 50% damage reduction for the same duration (30 second cooldown). Additionally, gain 30 ultimate haste.\n\nAura is activated once the ultimate's effect starts or has elapsed.",
+      "disabled": false,
+      "id": 1413,
+      "nameId": "ARAM_StuckInHereWithMe",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/stuckinherewithme_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Surge Field",
+      "tier": "Prismatic",
+      "description": "Upon casting your ultimate ability, you spawn a surge zone beneath you that has a 300 radius and lasts for 6 seconds. While you are within the zone, you gain 50 ability haste and 40% bonus movement speed, and your damage dealt to enemy champions fires missiles at them that deal 20% of the triggering damage instance pre-mitigation as bonus magic damage. The missile effect cannot trigger from itself.\n\nIf you leave the zone's radius for the first time, it moves to your current location. Exiting the zone a second time causes it to disappear if you do not re-enter the area within a short time.",
+      "disabled": false,
+      "id": 2134,
+      "nameId": "SurgeField",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/surgefield_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Swift and Safe",
+      "tier": "Silver",
+      "description": "After dashing or blinking, gain a shield that lasts for 2 seconds and absorbs 65 to 290 (+ 65% AD) (+ 26% AP) damage (5 second cooldown).",
+      "disabled": false,
+      "id": 1315,
+      "nameId": "SwiftAndSafe",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/swiftandsafe_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Symphony of War",
+      "tier": "Prismatic",
+      "description": "Gain the Conqueror and Lethal Tempo keystone runes.",
+      "disabled": false,
+      "id": 1079,
+      "nameId": "ARAM_SymphonyofWar",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/symphonyofwar_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Tank Engine",
+      "tier": "Gold",
+      "description": "Scoring a champion takedown generates a stack, stacking infinitely. For each stack, increase your maximum health and size by 5%. Lose 65% of stacks on death.",
+      "disabled": false,
+      "id": 1353,
+      "nameId": "ARAM_TankEngine",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/tank_engine_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Tank It Or Leave It",
+      "tier": "Silver",
+      "description": "Gain Critical Defend Chance equal to 100% critical strike chance, up to 50%. Additionally, gain 25% critical strike chance.\n\nCritical Defend Chance: Grants you a chance to reduce an instance of damage taken by 20% (5 second cooldown per enemy spell cast instance).",
+      "disabled": false,
+      "id": 1080,
+      "nameId": "ARAM_TankItOrLeaveIt",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/tankitorleaveit_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Tap Dancer",
+      "tier": "Prismatic",
+      "description": "Basic attacks on-hit against enemy champions and minions grant 10 bonus movement speed, lasting for 5 seconds, refreshing on subsequent triggers, and stacking infinitely. Additionally, gain bonus attack speed equal to 10% total movement speed.",
+      "disabled": false,
+      "id": 1081,
+      "nameId": "ARAM_TapDancer",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/tapdancer_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Terrain'd",
+      "tier": "Gold",
+      "description": "Upgrades one of your champion's abilities that spawns terrain, empowering the ability to deal 20 to 180 (+ 20% AP) magic damage to enemies near the terrain. This damage is increasedby 200%if the ability is an ultimate.",
+      "disabled": false,
+      "id": 2129,
+      "nameId": "Terraind",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/lightningstrikes_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Terror",
+      "tier": "Silver",
+      "description": "Upgrades one of your champion's abilities, empowering the ability's cast to fear all enemies within 450 units of you for 1.75 seconds (30 second cooldown).",
+      "disabled": false,
+      "id": 2065,
+      "nameId": "ARAM_Terror",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/desecrator_large.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Thread the Needle",
+      "tier": "Gold",
+      "description": "Grants 18% armor penetration and magic penetration.",
+      "disabled": false,
+      "id": 1084,
+      "nameId": "ARAM_ThreadtheNeedle",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/threadtheneedle_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Titan's Resolve",
+      "tier": "Prismatic",
+      "description": "You generate a stack of Juggernauting for each instance of damage you deal or take (excluding damage over time), lasting for 6 seconds and refreshing on subsequent damage dealt or taken. For every 10 stacks of Juggernauting, you gain 25*0.6 to 50*0.6 bonus Attack Damage or 25 to 50 Ability Power (Adaptive), 4 to 8 bonus armor and bonus magic resistance, 10% increased size, and 8% tenacity.\n\nStacks expire one by one when the duration ends, with the decay rate being faster the more stacks you have.",
+      "disabled": false,
+      "id": 1001,
+      "nameId": "ARAM_ImTheJuggernaut",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/iamthejuggernaut_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Tooth Fairy",
+      "tier": "Gold",
+      "description": "When you deal damage to an enemy champion equal to or more than 25% of their maximum health within 2.5 seconds, they drop a Tooth on the ground (4 second cooldown per target). You can pick up this Tooth by moving over it, granting you a Dental Records stack. For each stack, you gain 4 lethality and flat magic penetration.",
+      "disabled": false,
+      "id": 2083,
+      "nameId": "BurstingTeeth",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/questburstingteeth_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Transmute: Chaos",
+      "tier": "Prismatic",
+      "description": "Gain two completely random augments, excluding the other two offerings in your current assortment.",
+      "disabled": false,
+      "id": 1243,
+      "nameId": "ARAM_TransmuteChaos",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/transmutechaos_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Transmute: Gold",
+      "tier": "Silver",
+      "description": "Gain one random Gold augment, excluding the other two offerings in your current assortment.",
+      "disabled": false,
+      "id": 1237,
+      "nameId": "ARAM_TransmuteGold",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/transmutegold_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Transmute: Prismatic",
+      "tier": "Gold",
+      "description": "Gain one random Prismatic augment, excluding the other two offerings in your current assortment.",
+      "disabled": false,
+      "id": 1238,
+      "nameId": "ARAM_TransmutePrismatic",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/transmuteprismatic_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Triggered Inferno",
+      "tier": "Prismatic",
+      "description": "Your damaging basic attacks and abilities against at least one enemy champion unique from the previous damaging hit made against champions generate a stack of Style for 6 seconds, refreshing on subsequent unique or non-unique hits and stacking up to 6 times. For each stack, gain 4.25 to 5 for 4 bonus movement speed, up to a maximum of 25.5 to 30 for 4.\n\nUpon reaching maximum Style stacks, you unleash a torrent of shots for 2.25, during which you rapidly shoot at nearby enemies over 2 at sporadic times in 0.2-second intervals each (up to 10 times per enemy), dealing 20 to 40 (+ 40% AD) (+ 25% AP) physical damage with each shot, reduced by 75% against minions. Enemies below 30% of their maximum health are critically struck fordouble damage(15 second cooldown). This effect ends prematurely if you become affected by cast-inhibiting crowd control.\n\nShot damage applies life steal. Style stacks are consumed at the end of the shooting effect.",
+      "disabled": false,
+      "id": 2005,
+      "nameId": "ARAM_InfernoTriggered",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/madscientist_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Tripleshot",
+      "tier": "Prismatic",
+      "description": "Upgrades one of your champion's abilities that is unit-targeted and fires a missile, empowering the ability to fire its missiles at two additional enemies in front of you. Subsequent hits from the same cast against the same enemy deal 30% damage.",
+      "disabled": false,
+      "id": 2054,
+      "nameId": "SpellVolley",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/genericabilityaugmenticon_prismatic.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Trusty Weapon",
+      "tier": "Silver",
+      "description": "Upgrades one of your champion's abilities, empowering the ability to generate a Friendship stack for 6 seconds when it hits an enemy champion. For each Friendship stack you have, the ability deals 5% increased damage. This effect can stack up to a number of times.",
+      "disabled": false,
+      "id": 2136,
+      "nameId": "TrustyWeapon",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/genericabilityaugmenticon_silver.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Twin Fire",
+      "tier": "Silver",
+      "description": "Damaging abilities against enemy champions launch 1 (+ 1 per 33.33% critical strike chance) missiles at the target that each deal 10 to 30 (+ 7% bonus AD) (+ 7% AP) magic damage (5 second cooldown). Additionally, gain 25% critical strike chance.",
+      "disabled": false,
+      "id": 1415,
+      "nameId": "Twinfire",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/twinfire_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Typhoon",
+      "tier": "Silver",
+      "description": "Basic attacks launch a missile at a nearby enemy champion that deals 30% AD physical damage and applies on-hit effects.",
+      "disabled": false,
+      "id": 1087,
+      "nameId": "ARAM_Typhoon",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/typhoon_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Ult Bot",
+      "tier": "Prismatic",
+      "description": "Your ability haste now only applies to the cooldown of your ultimate ability. In return, increase your ability haste by 150% and gain 100 ability haste.",
+      "disabled": false,
+      "id": 2118,
+      "nameId": "SkipTheBasics",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/skipthebasic_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Ultimate Awakening",
+      "tier": "Prismatic",
+      "description": "Casting your ultimate ability resets the cooldowns of all your basic abilities and grants you 300 basic ability haste for 15 seconds (20 second cooldown). Additionally, gain 30 ultimate haste.",
+      "disabled": false,
+      "id": 1349,
+      "nameId": "UltimateAwakening",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/zerohour_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Ultimate Revolution",
+      "tier": "Prismatic",
+      "description": "Casting your ultimate ability resets its cooldown once its effect starts or has elapsed (75 second cooldown, reset upon death).",
+      "disabled": false,
+      "id": 1088,
+      "nameId": "ARAM_UltimateRevolution",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/ultimaterevolution_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Ultimate Unstoppable",
+      "tier": "Silver",
+      "description": "Casting your ultimate ability grants you crowd control immunity for 3 seconds (8 second cooldown).",
+      "disabled": false,
+      "id": 1112,
+      "nameId": "ARAM_UltimateUnstoppable",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/ultimateunstoppable_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Upgrade Collector",
+      "tier": "Silver",
+      "description": "Upgrades The Collector, empowering Death to have its execution threshold increased by 0.5% each time you kill an enemy champion, capped at a threshold of 12.5% of the target's maximum health, and Taxes to generate a further 25 gold (total 50 gold) from kills. Additionally, gain 250 gold.",
+      "disabled": false,
+      "id": 1320,
+      "nameId": "ARAM_Upgrade_Collector",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/upgradecollector_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Upgrade Immolate",
+      "tier": "Silver",
+      "description": "Upgrades Bami's Cinder, Hollow Radiance, Sunfire Aegis, and Void Immolation, empowering Immolate to additionally grant you 12 gold per tick for each enemy champion afflicted by its effect. Additionally, gain 250 gold.",
+      "disabled": false,
+      "id": 1319,
+      "nameId": "ARAM_Upgrade_Immolate",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/upgradeimmolate_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Upgrade Infinity Edge",
+      "tier": "Gold",
+      "description": "Upgrades Infinity Edge, empowering it to gain Sword of the Divine Excoriate. Additionally, gain 500 gold and 25% critical strike chance.\n\nExcoriate: Gain a random amount of bonus critical strike damage that scales up to 50% of your critical strike chance, with the value of this amount changing every 0.25 seconds.",
+      "disabled": false,
+      "id": 1336,
+      "nameId": "ARAM_Upgrade_IE",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/upgradeie_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Upgrade Sheen",
+      "tier": "Gold",
+      "description": "Upgrades all Spellblade items, empowering the passive effect to deal additional bonus physical damage equal to 4% of the target's maximum health and heal you for 3.5% of your maximum health. Additionally, gain 250 gold.",
+      "disabled": false,
+      "id": 1996,
+      "nameId": "ARAM_Upgrade_Sheen",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/upgradesheen_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Upgrade Sword of Blossoming Dawn",
+      "tier": "Prismatic",
+      "description": "Upgrades Sword of Blossoming Dawn, empowering Peppermint to have its healing increased by 250%. Additionally, you gain 100% bonus attack speed.",
+      "disabled": false,
+      "id": 1379,
+      "nameId": "Upgrade_SwordOfBlossom",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/upgrademikaelsblessing_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Upgrade Zhonya's",
+      "tier": "Silver",
+      "description": "Upgrades Seeker's Armguard, Wooglet's Witchcap, and Zhonya's Hourglass, empowering Stasis to allow you to move during its active effect, during which time you also gain 50% bonus movement speed. Additionally, the cooldown of Zhonya's Hourglass Stasis is reduced to 45 seconds.",
+      "disabled": false,
+      "id": 1318,
+      "nameId": "ARAM_Upgrade_ZH",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/upgradezh_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Vampirism",
+      "tier": "Gold",
+      "description": "You can no longer be healed by allies and your health regeneration is set to 0. Gain 25% omnivamp.",
+      "disabled": true,
+      "id": 1346,
+      "nameId": "Vampirism",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/vampired_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Veil of Warding",
+      "tier": "Silver",
+      "description": "Grants a spell shield that blocks the next hostile ability (30 second cooldown, timer does not restart from champion damage taken).",
+      "disabled": false,
+      "id": 1034,
+      "nameId": "VeilOfWarding",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/poltergeist_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Virtuous Cycle",
+      "tier": "Silver",
+      "description": "Your heals grant a shield for 5 seconds that is equal to 20% of the healing value, and your shields grant a heal equal to 20% of the shield's strength. This effect cannot trigger from itself.",
+      "disabled": false,
+      "id": 91,
+      "nameId": "VirtuousCycle",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/virtuouscycle_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "Void Dash",
+      "tier": "Gold",
+      "description": "Upgrades one of your champion's abilities that has a dash, empowering the ability to spawn a void zone (250 radius) at the dash's destination after a 0.3-second delay. Enemy champions within the zone are dealt 80 to 400 (+ 100% ability haste) magic damage and are slowed by 35% for 1 second.",
+      "disabled": true,
+      "id": 2097,
+      "nameId": "VoidDash",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/genericabilityaugmenticon_gold.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Vulnerability",
+      "tier": "Gold",
+      "description": "Damage dealt by items and damage over time effects can now critically strike for (145% + bonus critical damage) damage (5 second cooldown per cast instance). Additionally, gain 25% critical strike chance.\n\nIf both Jeweled Gauntlet and Vulnerability are equipped, only rolls the critical strike chance of the augment that has the higher critical damage (or either if equal).",
+      "disabled": false,
+      "id": 1092,
+      "nameId": "ARAM_Vulnerability",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/vulnerability_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Warlock Juicebox",
+      "tier": "Gold",
+      "description": "Gain 10% (+ 3% per 100 AP) omnivamp.",
+      "disabled": false,
+      "id": 2132,
+      "nameId": "WarlockJuicebox",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/warlockjuicebox_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Wee Woo Wee Woo",
+      "tier": "Gold",
+      "description": "Gain 0 to 50 for 11 (based on target ally's missing health) bonus movement speed while facing toward nearby allied champions, lingering for 2 seconds after no longer facing them. Your heals and shields are also increased by 0 to 50 for 11.",
+      "disabled": false,
+      "id": 1005,
+      "nameId": "ARAM_WeeWooWeeWoo",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/weewooweewoo_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Windspeaker's Blessing",
+      "tier": "Prismatic",
+      "description": "Your or allies' heals and shields on yourself, or your heals and shields on allies, grant the target 30 to 60 bonus armor and bonus magic resistance for 3 seconds.",
+      "disabled": false,
+      "id": 1095,
+      "nameId": "ARAM_WindspeakersBlessing",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/windspeakersblessing_small.png",
+      "rarity": "kPrismatic"
+    },
+    {
+      "name": "Witchful Thinking",
+      "tier": "Silver",
+      "description": "Grants 20 to 80 ability power.",
+      "disabled": false,
+      "id": 1097,
+      "nameId": "ARAM_WitchfulThinking",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/witchfulthinking_small.png",
+      "rarity": "kSilver"
+    },
+    {
+      "name": "With Haste",
+      "tier": "Gold",
+      "description": "Grants bonus movement speed equal to 70% ability haste.",
+      "disabled": false,
+      "id": 1098,
+      "nameId": "ARAM_WithHaste",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/cherry/augments/icons/withhaste_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Yowch, My Coins!",
+      "tier": "Gold",
+      "description": "Enemy champions that you score a takedown against drop 6 to 10 coins, with each coin landing 500 units away from the location of their death and lasting 10 seconds. You or allied champions can collect the coins by moving over them, granting 15 gold for each coin collected.",
+      "disabled": false,
+      "id": 2089,
+      "nameId": "ARAM_YowchMyCoins",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/youchmycoins_small.png",
+      "rarity": "kGold"
+    },
+    {
+      "name": "Zealot",
+      "tier": "Silver",
+      "description": "Gain 35% (+ 5% per 100 AP) bonus attack speed and 25% (+ 5% per 100 AP) critical strike chance.",
+      "disabled": false,
+      "id": 2009,
+      "nameId": "ARAM_Zealot",
+      "icon": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/ux/kiwi/augments/icons/zealot_small.png",
+      "rarity": "kSilver"
+    }
+  ]
+}

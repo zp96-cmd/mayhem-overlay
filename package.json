@@ -1,0 +1,59 @@
+{
+  "name": "lol-mayhem-overlay",
+  "version": "0.2.0",
+  "description": "ARAM Mayhem overlay: augment suggestions, build paths, history and saved builds",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "start:mock": "node scripts/start-mock.mjs",
+    "fetch-data": "node scripts/fetch-data.mjs",
+    "mock": "node scripts/mock-liveclient.mjs",
+    "dist": "electron-builder --win"
+  },
+  "author": "Zac Pitts",
+  "license": "MIT",
+  "build": {
+    "appId": "gg.zac.mayhem-overlay",
+    "productName": "Mayhem Overlay",
+    "publish": {
+      "provider": "github",
+      "owner": "zp96-cmd",
+      "repo": "mayhem-overlay"
+    },
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "data/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "runAfterFinish": true,
+      "artifactName": "Mayhem-Overlay-Setup-${version}.${ext}"
+    }
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.9",
+    "jimp": "^1.6.0",
+    "tesseract.js": "^7.0.0"
+  }
+}

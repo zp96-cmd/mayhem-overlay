@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { background: transparent; overflow: hidden; }
+    #btn {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+      background: var(--surface-0);
+      border: 1px solid var(--hairline-strong);
+      border-radius: 999px;
+      color: var(--gold);
+      font-family: var(--font-display);
+      font-size: 11.5px; font-weight: 800; letter-spacing: 1.5px;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: var(--shadow-1), inset 0 1px 0 rgba(240, 230, 210, 0.08);
+      transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+    }
+    #btn:hover { color: var(--gold-bright); border-color: var(--gold); box-shadow: 0 0 12px var(--gold-glow); }
+    #btn:active { transform: translateY(1px); }
+    #btn.busy { color: var(--info); border-color: var(--info); pointer-events: none; }
+  </style>
+</head>
+<body>
+  <div id="btn">📷 SCAN</div>
+  <script>
+    const btn = document.getElementById('btn');
+    btn.addEventListener('click', () => {
+      btn.classList.add('busy');
+      btn.textContent = 'SCANNING…';
+      window.mayhem.scanClick();
+    });
+    window.mayhem.onOcrStatus((s) => {
+      if (!s.busy) {
+        btn.classList.remove('busy');
+        btn.innerHTML = '📷 SCAN';
+      }
+    });
+  </script>
+</body>
+</html>

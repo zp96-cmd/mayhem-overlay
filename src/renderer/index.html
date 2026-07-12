@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; img-src 'self' https://raw.communitydragon.org data:; style-src 'self' 'unsafe-inline'">
+  <title>Mayhem Overlay</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="root" class="panel">
+    <header id="titlebar">
+      <span id="status-dot" class="dot dot-off" title="Client status"></span>
+      <span id="title">MAYHEM</span>
+      <span id="live-champ"></span>
+      <span class="spacer"></span>
+      <button id="btn-pin" class="icon-btn" title="Click-through (Ctrl+Alt+X)">👆</button>
+      <button id="btn-collapse" class="icon-btn" title="Collapse">▁</button>
+      <button id="btn-hide" class="icon-btn" title="Hide (Ctrl+Alt+O)">✕</button>
+    </header>
+
+    <div id="offer-banner" class="hidden">
+      <b>Augment choice!</b> <span id="offer-msg">Scan or type to filter what you're offered.</span>
+      <button id="offer-scan" class="mini-btn">📷 scan screen</button>
+      <button id="offer-clear" class="mini-btn">clear picks</button>
+    </div>
+
+    <div id="my-augments" class="strip hidden"></div>
+
+    <nav id="tabs">
+      <button data-tab="augments" class="tab active">Augments</button>
+      <button data-tab="build" class="tab">Build</button>
+      <button data-tab="history" class="tab">History</button>
+      <button data-tab="saved" class="tab">Saved</button>
+    </nav>
+
+    <main id="content">
+      <section id="tab-augments" class="tabpane active">
+        <div class="controls">
+          <input id="aug-search" type="text" placeholder="Search augments… (Ctrl+Alt+A)" autocomplete="off">
+          <div class="chips">
+            <button class="chip active" data-tier="all">All</button>
+            <button class="chip tier-silver" data-tier="Silver">Silver</button>
+            <button class="chip tier-gold" data-tier="Gold">Gold</button>
+            <button class="chip tier-prismatic" data-tier="Prismatic">Prismatic</button>
+            <button class="chip" id="chip-fit">Fit my champ</button>
+          </div>
+        </div>
+        <div id="compare-tray" class="hidden"></div>
+        <div id="aug-list" class="list"></div>
+      </section>
+
+      <section id="tab-build" class="tabpane">
+        <div id="build-suggest"></div>
+        <h3>Players in game <span class="hint">(click 💾 to save a build)</span></h3>
+        <div id="live-players" class="list"></div>
+      </section>
+
+      <section id="tab-history" class="tabpane">
+        <div class="controls row">
+          <button id="btn-sync" class="btn">Sync from client</button>
+          <button id="btn-update" class="btn">Update patch data</button>
+          <span id="sync-status" class="hint"></span>
+        </div>
+        <div id="history-list" class="list"></div>
+      </section>
+
+      <section id="tab-saved" class="tabpane">
+        <div id="saved-list" class="list"></div>
+      </section>
+    </main>
+
+    <footer id="footer">
+      <span id="phase" class="hint">client: -</span>
+      <span class="spacer"></span>
+      <span class="hint">Ctrl+Alt+O hide · Ctrl+Alt+X click-through</span>
+    </footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
