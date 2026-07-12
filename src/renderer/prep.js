@@ -130,6 +130,46 @@ function renderHotList(champId) {
   }
 }
 
+// Best augment trios for this champion (aramgg combo data: tier 1 best .. 5 worst)
+function renderCombos(champId) {
+  const box = $('#combos');
+  box.innerHTML = '';
+  const trios = state.champData?.championId === champId ? state.champData?.trios : null;
+  if (!trios?.length) {
+    box.append(el('div', 'empty', 'Combo data loads with the champion…'));
+    return;
+  }
+  const rows = trios
+    .filter((t) => t.games >= 100 && t.ids.every((id) => {
+      const a = state.augById.get(id);
+      return a && !a.disabled;
+    }))
+    .sort((a, b) => a.tier - b.tier || b.games - a.games)
+    .slice(0, 10);
+  if (!rows.length) {
+    box.append(el('div', 'empty', 'Not enough combo data for this champion.'));
+    return;
+  }
+  const tCls = (t) => (t <= 2 ? 't-good' : t >= 4 ? 't-bad' : 't-mid');
+  for (const t of rows) {
+    const augs = t.ids.map((id) => state.augById.get(id));
+    const row = el('div', 'combo-row');
+    const icons = el('div', 'augs');
+    for (const a of augs) {
+      const img = el('img');
+      if (a.icon) img.src = a.icon;
+      img.title = a.name;
+      img.loading = 'lazy';
+      icons.append(img);
+    }
+    row.append(icons);
+    row.append(el('div', 'names', augs.map((a) => esc(a.name)).join(' + ')));
+    row.append(el('span', `tchip ${tCls(t.tier)}`, `T${t.tier}`));
+    row.append(el('div', 'cgames num', `${t.games.toLocaleString()} games`));
+    box.append(row);
+  }
+}
+
 function itemImg(id, small = false) {
   const it = state.itemById.get(id);
   const img = el('img');
@@ -244,6 +284,7 @@ function render() {
   renderHeader(champId);
   renderBench();
   renderHotList(champId);
+  renderCombos(champId);
   renderBuilds(champId);
 }
 
