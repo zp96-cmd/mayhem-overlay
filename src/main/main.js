@@ -240,14 +240,35 @@ function createBadgeWindow() {
   badgeWin.loadFile(path.join(__dirname, '..', 'renderer', 'badges.html'));
 }
 
+// Interactive build-strip window: clickable (per-variant minimise buttons)
+// but focusable:false so it never steals focus from the game.
+let stripWin = null;
+function createStripWindow() {
+  const d = screen.getPrimaryDisplay();
+  const pos = settings.get('buildStripPos') ?? { x: 0.245, y: 0.895 };
+  stripWin = new BrowserWindow({
+    width: 380, height: 96,
+    x: Math.round(d.bounds.x + d.bounds.width * pos.x),
+    y: Math.round(d.bounds.y + d.bounds.height * pos.y),
+    frame: false, transparent: true, resizable: false, movable: false,
+    focusable: false, alwaysOnTop: true, skipTaskbar: true, hasShadow: false, show: false,
+    webPreferences: {
+      preload: path.join(__dirname, '..', 'preload.js'),
+      contextIsolation: true,
+      nodeIntegration: false,
+    },
+  });
+  stripWin.setAlwaysOnTop(true, 'screen-saver');
+  stripWin.loadFile(path.join(__dirname, '..', 'renderer', 'strip.html'));
+}
+
 let badgeTimeout = null;
 let badgesActive = false;
-let stripActive = false;
 let csActive = false;
 
 function syncBadgeWinVisibility() {
   if (!badgeWin) return;
-  if (badgesActive || stripActive || csActive) badgeWin.showInactive();
+  if (badgesActive || csActive) badgeWin.showInactive();
   else badgeWin.hide();
 }
 
@@ -267,19 +288,17 @@ function clearBadges() {
   syncBadgeWinVisibility();
 }
 function showBuildStrip(data) {
-  if (!badgeWin) return;
-  stripActive = true;
-  badgeWin.webContents.send('buildstrip:data', {
+  if (!stripWin) return;
+  stripWin.webContents.send('buildstrip:data', {
     ...data,
-    pos: settings.get('buildStripPos') ?? { x: 0.245, y: 0.895 },
+    locked: settings.get('stripLocked', true),
   });
-  syncBadgeWinVisibility();
+  stripWin.showInactive();
 }
 function clearBuildStrip() {
-  if (!badgeWin) return;
-  stripActive = false;
-  badgeWin.webContents.send('buildstrip:clear');
-  syncBadgeWinVisibility();
+  if (!stripWin) return;
+  stripWin.webContents.send('buildstrip:clear');
+  stripWin.hide();
 }
 
 // Small clickable SCAN button parked at the top of the screen during games.
@@ -787,6 +806,26 @@ ipcMain.on('scanbtn:click', async () => {
 });
 ipcMain.on('buildstrip:show', (_e, data) => showBuildStrip(data));
 ipcMain.on('buildstrip:clear', () => clearBuildStrip());
+ipcMain.on('strip:resize', (_e, { w, h }) => {
+  if (!stripWin) return;
+  const b = stripWin.getBounds();
+  stripWin.setBounds({ x: b.x, y: b.y, width: Math.max(120, w), height: Math.max(40, h) });
+});
+ipcMain.on('strip:lock', (_e, v) => settings.set('stripLocked', !!v));
+ipcMain.on('strip:dragby', (_e, { dx, dy }) => {
+  if (!stripWin) return;
+  const [x, y] = stripWin.getPosition();
+  stripWin.setPosition(x + Math.round(dx), y + Math.round(dy));
+});
+ipcMain.on('strip:dragend', () => {
+  if (!stripWin) return;
+  const b = stripWin.getBounds();
+  const d = screen.getPrimaryDisplay();
+  settings.set('buildStripPos', {
+    x: (b.x - d.bounds.x) / d.bounds.width,
+    y: (b.y - d.bounds.y) / d.bounds.height,
+  });
+});
 
 // double-launching (e.g. from the desktop shortcut) focuses the running overlay
 if (!app.requestSingleInstanceLock()) {
@@ -811,6 +850,7 @@ app.whenReady().then(async () => {
 
   createWindow();
   createBadgeWindow();
+  createStripWindow();
   createScanButton();
   createTray();
   startPhaseWatcher();

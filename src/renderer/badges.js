@@ -69,44 +69,7 @@ window.mayhem.onBadgesClear(() => {
   document.getElementById('verdict').style.display = 'none';
 });
 
-// Persistent build-path strip anchored near the bottom-HUD stats.
-const strip = document.getElementById('strip');
-
-window.mayhem.onBuildStrip((data) => {
-  const rows = data?.rows ?? [];
-  if (!rows.length) { strip.style.display = 'none'; return; }
-  strip.innerHTML = '';
-  for (const row of rows) {
-    const r = document.createElement('div');
-    r.className = 'srow';
-    const lbl = document.createElement('span');
-    lbl.className = 'lbl';
-    lbl.textContent = row.label;
-    r.append(lbl);
-    row.items.forEach((it, i) => {
-      if (i) {
-        const a = document.createElement('span');
-        a.className = 'arrow';
-        a.textContent = '›';
-        r.append(a);
-      }
-      const img = document.createElement('img');
-      img.src = it.icon;
-      img.title = `${it.name} (${it.price}g)`;
-      if (i === 0) {
-        img.classList.add('next');
-        if (it.affordable) img.classList.add('affordable');
-      }
-      r.append(img);
-    });
-    strip.append(r);
-  }
-  strip.style.left = `${Math.round(window.innerWidth * data.pos.x)}px`;
-  strip.style.top = `${Math.round(window.innerHeight * data.pos.y)}px`;
-  strip.style.display = 'flex';
-});
-
-window.mayhem.onBuildStripClear(() => { strip.style.display = 'none'; });
+// (The build strip lives in its own interactive window now — see strip.js.)
 
 // Champ select: win-rate pills under the bench + team champion portraits.
 const cs = document.getElementById('cs');

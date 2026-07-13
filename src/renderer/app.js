@@ -462,51 +462,6 @@ function renderMyAugments() {
 
 /* ---------------- build tab ---------------- */
 
-// What am I building? Weight each owned item's categories by its price —
-// a finished Deathcap says "AP" much louder than an Amp Tome.
-const CAT2ARCH = {
-  SpellDamage: 'ap', Damage: 'ad', AttackSpeed: 'as', CriticalStrike: 'crit',
-  Armor: 'tank', SpellBlock: 'tank', Health: 'tank',
-  LifeSteal: 'heal', SpellVamp: 'heal', AbilityHaste: 'haste', CooldownReduction: 'haste',
-};
-
-function ownedArchetypeWeights() {
-  const w = {};
-  for (const it of state.live?.me?.items ?? []) {
-    const item = state.itemById.get(it.id);
-    if (!item) continue;
-    for (const c of item.categories) {
-      const a = CAT2ARCH[c];
-      if (a) w[a] = (w[a] || 0) + item.price;
-    }
-  }
-  return w;
-}
-
-// aramgg build tags -> our archetype keys
-const TAG2ARCH = {
-  ad: ['ad'], ap: ['ap'], crit: ['crit'], tank: ['tank'], bruiser: ['ad', 'tank'],
-  onhit: ['as'], as: ['as'], attackspeed: ['as'], lethality: ['ad'],
-  support: ['heal'], enchanter: ['heal'], haste: ['haste'], hybrid: ['ad', 'ap'],
-};
-
-function pickCommunityBuild() {
-  const builds = state.champData?.buildSummary?.builds;
-  if (!builds?.length) return null;
-  const owned = ownedArchetypeWeights();
-  const hasDirection = Object.keys(owned).length > 0;
-  let best = null, bestScore = -Infinity;
-  for (const b of builds) {
-    const archs = new Set((b.tags ?? []).flatMap((t) => TAG2ARCH[t.toLowerCase().replace(/[^a-z]/g, '')] ?? []));
-    const dirScore = hasDirection
-      ? [...archs].reduce((s, a) => s + (owned[a] || 0), 0)
-      : 0;
-    const score = dirScore + (b.pickRate ?? 0) * 1000; // popularity as tiebreak
-    if (score > bestScore) { bestScore = score; best = b; }
-  }
-  return best;
-}
-
 function ownedItemIds() {
   return new Set((state.live?.me?.items ?? []).map((i) => i.id));
 }
@@ -557,42 +512,6 @@ function itemIdsFromNames(names) {
     .filter(Boolean);
 }
 
-// Full ARAM Mayhem path for the matched community build: best core in order,
-// then items from the build's other core variants, then the situational pool.
-function communityPath(cb) {
-  const owned = ownedItemIds();
-  const cores = [...(cb.coreItems ?? [])].sort((a, b) => (b.games ?? 0) - (a.games ?? 0));
-  const core = cores.find((c) => c.itemIds.some((id) => !owned.has(id))) ?? cores[0];
-  const coreIds = core?.itemIds ?? [];
-  const seen = new Set(coreIds);
-  const extraCoreIds = [];
-  for (const c of cores) {
-    for (const id of c.itemIds) {
-      if (!seen.has(id)) { seen.add(id); extraCoreIds.push(id); }
-    }
-  }
-  const situationalIds = itemIdsFromNames(cb.situationalItems).filter((id) => !seen.has(id));
-  return { core, coreIds, extraCoreIds, situationalIds };
-}
-
-// Deep suggestion pool for the strip: matched build first, then the champion's
-// other aramgg build variants as backfill so suggestions never run dry.
-function communityPool(cb) {
-  const { coreIds, extraCoreIds, situationalIds } = communityPath(cb);
-  const pool = [...coreIds, ...extraCoreIds, ...situationalIds];
-  const seen = new Set(pool);
-  const others = (state.champData?.buildSummary?.builds ?? []).filter((b) => b !== cb);
-  for (const b of others) {
-    for (const c of b.coreItems ?? []) {
-      for (const id of c.itemIds) if (!seen.has(id)) { seen.add(id); pool.push(id); }
-    }
-    for (const id of itemIdsFromNames(b.situationalItems)) {
-      if (!seen.has(id)) { seen.add(id); pool.push(id); }
-    }
-  }
-  return pool;
-}
-
 // Consensus build path from MY winning games on this champion: items that
 // keep showing up in wins, ordered by how early they sit in the inventory.
 function myWinningPath(champId) {
@@ -619,9 +538,31 @@ function myWinningPath(champId) {
   return ids.length ? { ids, wins: wins.length } : null;
 }
 
-// The in-game strip shows BOTH paths side by side when both exist:
-// my winning consensus and the matched aramgg build. Owned items skipped,
-// first item of each row flagged when affordable right now.
+// Ordered item pool for ONE aramgg build variant: most-played core, then its
+// other core variants' items, then that build's situational pool.
+function variantPool(b) {
+  const cores = [...(b.coreItems ?? [])].sort((x, y) => (y.games ?? 0) - (x.games ?? 0));
+  const coreIds = cores[0]?.itemIds ?? [];
+  const seen = new Set(coreIds);
+  const pool = [...coreIds];
+  for (const c of cores) {
+    for (const id of c.itemIds) if (!seen.has(id)) { seen.add(id); pool.push(id); }
+  }
+  for (const id of itemIdsFromNames(b.situationalItems)) {
+    if (!seen.has(id)) { seen.add(id); pool.push(id); }
+  }
+  return pool;
+}
+
+function champVariants() {
+  const builds = state.champData?.championId === myChampion()?.id
+    ? state.champData?.buildSummary?.builds ?? [] : [];
+  return [...builds].sort((a, b) => (b.games ?? 0) - (a.games ?? 0)).slice(0, 3);
+}
+
+// The in-game strip shows every path at once: my winning consensus plus one
+// row per aramgg build variant (tank/AP/AD/...), each minimisable in the
+// strip window. Owned items skipped, first item flagged when affordable.
 function stripRows() {
   if (!state.live) return [];
   const owned = ownedItemIds();
@@ -642,12 +583,14 @@ function stripRows() {
   const mine = myWinningPath(myChampion()?.id);
   if (mine) {
     const items = mk(mine.ids);
-    if (items.length) rows.push({ label: `MINE ${mine.wins}W`, items });
+    if (items.length) rows.push({ id: 'mine', label: `MINE ${mine.wins}W`, items });
   }
-  const cb = pickCommunityBuild();
-  if (cb) {
-    const items = mk(communityPool(cb));
-    if (items.length) rows.push({ label: `ARAMGG ${(cb.tags ?? []).join('/')}`.trim(), items });
+  for (const b of champVariants()) {
+    const items = mk(variantPool(b));
+    if (!items.length) continue;
+    const tags = ((b.tags ?? []).join('/') || 'BUILD').toUpperCase();
+    const label = b.winRate != null ? `${tags} ${(b.winRate * 100).toFixed(0)}%` : tags;
+    rows.push({ id: tags, label, items });
   }
   return rows;
 }
@@ -695,28 +638,20 @@ function renderBuildTab() {
         augNames.length ? `augments: ${augNames.join(', ')}` : b.note);
     }
 
-    // 3) community build matched to what I'm actually building (aramgg)
-    const cb = pickCommunityBuild();
-    if (cb) {
-      const owned = ownedItemIds();
-      const { core, coreIds, extraCoreIds, situationalIds } = communityPath(cb);
-      // starting items, while we're still early
-      const startIds = itemIdsFromNames([...new Set(cb.startingItems ?? [])]);
+    // 3) every aramgg build variant for this champion, side by side
+    const variants = champVariants();
+    if (variants.length) {
+      const top = variants[0];
+      const startIds = itemIdsFromNames([...new Set(top.startingItems ?? [])]);
       if (startIds.length && (state.live.me?.items?.length ?? 0) < 2 && (state.live.gameTime ?? 0) < 240) {
         box.append(buildBlock('START · aramgg', startIds));
       }
-      if (core) {
-        const dir = Object.keys(ownedArchetypeWeights()).length ? 'matches your items' : 'most popular';
+      for (const b of variants) {
+        const tags = ((b.tags ?? []).join('/') || 'BUILD').toUpperCase();
         const blk = buildBlock(
-          `CORE · ${(cb.tags ?? []).join('/')} (${dir}) · ${((core.winRate ?? cb.winRate) * 100).toFixed(1)}% WR · ${(core.games ?? cb.games).toLocaleString()} games`,
-          coreIds, 'aramgg.com · highlighted = build next',
-          { markProgress: true });
+          `${tags} · ${(b.winRate * 100).toFixed(1)}% WR · ${(b.games ?? 0).toLocaleString()} games`,
+          variantPool(b).slice(0, 8), null, { markProgress: true });
         if (blk) box.append(blk);
-      }
-      const situUnowned = [...extraCoreIds, ...situationalIds]
-        .filter((id) => !owned.has(id));
-      if (situUnowned.length) {
-        box.append(buildBlock('SITUATIONAL · aramgg (pick to taste)', situUnowned.slice(0, 8)));
       }
     } else if (!mine && !saved.length) {
       box.append(el('div', 'empty',

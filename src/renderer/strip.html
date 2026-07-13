@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { background: transparent; overflow: hidden; }
+    body { font-family: var(--font-display); user-select: none; }
+    #wrap {
+      display: inline-flex;
+      gap: 7px;
+      background: var(--surface-0);
+      border: 1px solid var(--hairline-strong);
+      border-radius: var(--r-container);
+      padding: 7px 10px;
+      box-shadow: var(--shadow-1), inset 0 1px 0 rgba(240, 230, 210, 0.07);
+    }
+    #wrap.unlocked { border-style: dashed; border-color: var(--gold); cursor: move; }
+    #side { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    #lock {
+      background: none; border: 1px solid var(--hairline);
+      border-radius: 5px; cursor: pointer; font-size: 10px;
+      width: 20px; height: 20px; line-height: 1; padding: 0;
+    }
+    #lock:hover { border-color: var(--gold); }
+    #grip { color: var(--text-faint); font-size: 10px; letter-spacing: 1px; display: none; }
+    #wrap.unlocked #grip { display: block; }
+    #content { display: flex; flex-direction: column; gap: 4px; }
+    .srow { display: flex; align-items: center; gap: 5px; }
+    .srow .lbl {
+      font-size: 9.5px; font-weight: 900; letter-spacing: 1px;
+      color: var(--gold); min-width: 86px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .srow img {
+      width: 27px; height: 27px; border-radius: 6px;
+      background: rgba(4, 9, 15, 0.5); border: 1px solid var(--hairline); display: block;
+    }
+    .srow .arrow { color: var(--text-faint); font-size: 11px; }
+    .srow img.next { outline: 2px solid var(--tier-gold); box-shadow: 0 0 8px rgba(226, 185, 59, 0.5); }
+    .srow img.next.affordable { outline-color: var(--win); box-shadow: 0 0 10px rgba(63, 208, 138, 0.6); }
+    .srow .min {
+      margin-left: 4px;
+      background: none; border: 1px solid var(--hairline);
+      color: var(--text-dim); border-radius: 5px;
+      width: 18px; height: 18px; line-height: 1;
+      font-size: 12px; cursor: pointer; flex-shrink: 0;
+    }
+    .srow .min:hover { color: var(--loss); border-color: var(--loss); }
+    #mini { display: none; gap: 5px; align-items: center; }
+    #mini .chip {
+      font-size: 9px; font-weight: 900; letter-spacing: 0.8px;
+      color: var(--text-dim); background: var(--surface-2);
+      border: 1px solid var(--hairline); border-radius: 999px;
+      padding: 2px 9px; cursor: pointer;
+    }
+    #mini .chip:hover { color: var(--gold); border-color: var(--gold); }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <div id="side">
+      <button id="lock" title="Unlock to drag">🔒</button>
+      <div id="grip">⋮⋮</div>
+    </div>
+    <div id="content">
+      <div id="rows"></div>
+      <div id="mini"></div>
+    </div>
+  </div>
+  <script src="strip.js"></script>
+</body>
+</html>

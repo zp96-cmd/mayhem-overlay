@@ -98,33 +98,6 @@
     #prio .row.offered { outline: 1.5px solid var(--info); background: rgba(99, 214, 228, 0.08); }
     #prio .hint { font-size: 10px; color: var(--text-dim); margin-top: 6px; font-family: var(--font-body); }
 
-    /* ---------- build strip ---------- */
-    #strip {
-      position: absolute;
-      display: none;
-      flex-direction: column;
-      gap: 4px;
-      background: var(--surface-0);
-      border: 1px solid var(--hairline-strong);
-      border-radius: var(--r-container);
-      padding: 6px 10px;
-      box-shadow: var(--shadow-1), inset 0 1px 0 rgba(240, 230, 210, 0.07);
-    }
-    #strip .srow { display: flex; align-items: center; gap: 5px; }
-    #strip .lbl {
-      font-size: 9.5px; font-weight: 900; letter-spacing: 1.2px;
-      color: var(--gold); margin-right: 3px;
-      min-width: 74px;
-    }
-    #strip img {
-      width: 27px; height: 27px; border-radius: 6px;
-      background: rgba(4, 9, 15, 0.5); border: 1px solid var(--hairline); display: block;
-    }
-    #strip .arrow { color: var(--text-faint); font-size: 11px; }
-    #strip img.next { outline: 2px solid var(--tier-gold); box-shadow: 0 0 8px rgba(226, 185, 59, 0.5); }
-    #strip img.next.affordable { outline-color: var(--win); box-shadow: 0 0 10px rgba(63, 208, 138, 0.6); }
-    #strip .src { font-size: 9px; color: var(--text-dim); margin-left: 5px; font-family: var(--font-body); }
-
     /* ---------- champ select pills ---------- */
     .cs-pill {
       position: absolute;
@@ -151,7 +124,6 @@
 <body>
   <div id="root"></div>
   <div id="verdict"></div>
-  <div id="strip"></div>
   <div id="cs"></div>
   <div id="prio"></div>
   <script src="badges.js"></script>

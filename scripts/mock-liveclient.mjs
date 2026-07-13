@@ -9,27 +9,28 @@
 import http from 'node:http';
 import { execSync } from 'node:child_process';
 
-function realGameRunning() {
+function leagueOpen() {
+  // Any part of League being open is disqualifying: a queue can pop and the
+  // game will try (once, without retry) to bind 2999 within seconds — a poll
+  // interval is not fast enough to reliably lose that race on purpose.
   try {
-    const out = execSync('tasklist /FI "IMAGENAME eq League of Legends.exe" /NH', {
-      encoding: 'utf8', windowsHide: true,
-    });
-    return out.includes('League of Legends.exe');
+    const out = execSync('tasklist /NH', { encoding: 'utf8', windowsHide: true });
+    return out.includes('League of Legends.exe') || out.includes('LeagueClientUx.exe');
   } catch {
     return false;
   }
 }
 
-if (realGameRunning()) {
-  console.error('refusing to start: a real League game is running and needs port 2999');
+if (leagueOpen()) {
+  console.error('refusing to start: the League client is open (a game could claim port 2999 at any moment)');
   process.exit(1);
 }
 setInterval(() => {
-  if (realGameRunning()) {
-    console.error('real game detected: freeing port 2999 and exiting');
+  if (leagueOpen()) {
+    console.error('League opened: freeing port 2999 and exiting');
     process.exit(0);
   }
-}, 5000);
+}, 1000);
 setTimeout(() => {
   console.error('mock TTL (30 min) reached, exiting');
   process.exit(0);
