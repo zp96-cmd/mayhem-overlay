@@ -1,6 +1,6 @@
 {
   "name": "lol-mayhem-overlay",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "ARAM Mayhem overlay: augment suggestions, build paths, history and saved builds",
   "main": "src/main/main.js",
   "scripts": {
