@@ -24,6 +24,7 @@ const state = {
   compare: [],         // augment names selected for comparison
   picked: [],          // augment names picked this game
   seen: new Set(),     // augments that have appeared in any offer this game (can't reappear)
+  hiddenItems: new Set(), // items right-clicked away from suggestions this game
   clickThrough: false,
 };
 
@@ -476,10 +477,18 @@ function itemImg(id, size = 28) {
   return img;
 }
 
+function hideItemForGame(id) {
+  if (state.hiddenItems.has(id)) state.hiddenItems.delete(id);
+  else state.hiddenItems.add(id);
+  if ($('#tab-build').classList.contains('active')) renderBuildTab();
+  lastStripKey = null;
+  updateBuildStrip();
+}
+
 function buildBlock(srcLabel, itemIds, note, { markProgress = false } = {}) {
-  // suggestion paths never show items already owned
+  // suggestion paths never show items already owned or hidden this game
   const ids = markProgress
-    ? itemIds.filter((id) => !ownedItemIds().has(id))
+    ? itemIds.filter((id) => !ownedItemIds().has(id) && !state.hiddenItems.has(id))
     : itemIds;
   if (!ids.length) return null;
   const b = el('div', 'build-block');
@@ -489,14 +498,21 @@ function buildBlock(srcLabel, itemIds, note, { markProgress = false } = {}) {
   ids.forEach((id, i) => {
     if (i) wrap.append(el('span', 'arrow', '›'));
     const img = itemImg(id);
-    if (markProgress && i === 0) {
-      const it = state.itemById.get(id);
-      img.classList.add('next');
-      if (it && it.price <= gold) {
-        img.classList.add('affordable');
-        img.title += ` (NEXT, affordable: ${it.price}g)`;
-      } else {
-        img.title += ` (NEXT: ${it?.price ?? '?'}g)`;
+    if (markProgress) {
+      img.title += ' · right-click hides this game';
+      img.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        hideItemForGame(id);
+      });
+      if (i === 0) {
+        const it = state.itemById.get(id);
+        img.classList.add('next');
+        if (it && it.price <= gold) {
+          img.classList.add('affordable');
+          img.title += ` (NEXT, affordable: ${it.price}g)`;
+        } else {
+          img.title += ` (NEXT: ${it?.price ?? '?'}g)`;
+        }
       }
     }
     wrap.append(img);
@@ -568,11 +584,12 @@ function stripRows() {
   const owned = ownedItemIds();
   const gold = state.live?.activePlayer?.gold ?? 0;
   const mk = (ids) => ids
-    .filter((id) => !owned.has(id))
+    .filter((id) => !owned.has(id) && !state.hiddenItems.has(id))
     .slice(0, 5)
     .map((id, i) => {
       const it = state.itemById.get(id);
       return it ? {
+        id,
         icon: it.icon, name: it.name, price: it.price,
         affordable: i === 0 && it.price <= gold,
       } : null;
@@ -602,10 +619,19 @@ function updateBuildStrip() {
     if (lastStripKey !== null) { lastStripKey = null; window.mayhem.clearBuildStrip(); }
     return;
   }
-  const key = JSON.stringify(rows.map((r) => [r.label, r.items.map((i) => [i.name, i.affordable])]));
+  const hidden = [...state.hiddenItems]
+    .map((id) => {
+      const it = state.itemById.get(id);
+      return it ? { id, icon: it.icon, name: it.name } : null;
+    })
+    .filter(Boolean);
+  const key = JSON.stringify([
+    rows.map((r) => [r.label, r.items.map((i) => [i.name, i.affordable])]),
+    hidden.map((h) => h.id),
+  ]);
   if (key === lastStripKey) return;
   lastStripKey = key;
-  window.mayhem.showBuildStrip({ rows });
+  window.mayhem.showBuildStrip({ rows, hidden });
 }
 
 function renderBuildTab() {
@@ -995,7 +1021,7 @@ async function init() {
     $('#status-dot').className = 'dot dot-game';
     const me = live.me;
     $('#live-champ').textContent = me ? `${me.championName} · lvl ${live.activePlayer?.level ?? me.level}` : '';
-    if (firstUpdate) { state.picked = []; state.seen = new Set(); renderMyAugments(); renderAugments(); }
+    if (firstUpdate) { state.picked = []; state.seen = new Set(); state.hiddenItems = new Set(); renderMyAugments(); renderAugments(); }
     if ($('#tab-build').classList.contains('active')) renderBuildTab();
     updateBuildStrip();
   });
@@ -1037,6 +1063,8 @@ async function init() {
     if ($('#tab-build').classList.contains('active')) renderBuildTab();
   });
   window.mayhem.onBuildsUpdated((builds) => { state.builds = builds; renderSaved(); });
+  // right-click in the strip window hides/restores an item for this game
+  window.mayhem.onHideItem((id) => hideItemForGame(id));
   window.mayhem.onOcrStatus((s) => {
     if (s.trigger === 'verify' || s.trigger === 'reroll') return; // silent background checks
     const msg = $('#offer-msg');

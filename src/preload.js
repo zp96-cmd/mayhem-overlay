@@ -30,6 +30,8 @@ contextBridge.exposeInMainWorld('mayhem', {
   onBuildStripClear: (cb) => ipcRenderer.on('buildstrip:clear', () => cb()),
   stripResize: (w, h) => ipcRenderer.send('strip:resize', { w, h }),
   stripLock: (v) => ipcRenderer.send('strip:lock', v),
+  stripHideItem: (id) => ipcRenderer.send('strip:hideitem', id),
+  onHideItem: (cb) => ipcRenderer.on('suggest:hide-item', (_e, id) => cb(id)),
   stripDragBy: (dx, dy) => ipcRenderer.send('strip:dragby', { dx, dy }),
   stripDragEnd: () => ipcRenderer.send('strip:dragend'),
   onCsPills: (cb) => ipcRenderer.on('cs:data', (_e, d) => cb(d)),

@@ -7,6 +7,7 @@ const wrap = document.getElementById('wrap');
 const lockBtn = document.getElementById('lock');
 
 let rows = [];
+let hiddenItems = [];
 const minimised = new Set();
 
 /* ---- drag + lock ---- */
@@ -79,7 +80,11 @@ function render() {
       }
       const img = document.createElement('img');
       img.src = it.icon;
-      img.title = `${it.name} (${it.price}g)`;
+      img.title = `${it.name} (${it.price}g) · right-click hides this game`;
+      img.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        window.mayhem.stripHideItem(it.id);
+      });
       if (i === 0) {
         img.classList.add('next');
         if (it.affordable) img.classList.add('affordable');
@@ -95,7 +100,7 @@ function render() {
     rowsBox.append(r);
   }
 
-  if (hidden.length) {
+  if (hidden.length || hiddenItems.length) {
     miniBox.style.display = 'flex';
     for (const row of hidden) {
       const chip = document.createElement('span');
@@ -103,6 +108,16 @@ function render() {
       chip.textContent = row.label;
       chip.title = 'Show again';
       chip.addEventListener('click', () => { minimised.delete(row.id); render(); });
+      miniBox.append(chip);
+    }
+    for (const it of hiddenItems) {
+      const chip = document.createElement('span');
+      chip.className = 'chip item';
+      const img = document.createElement('img');
+      img.src = it.icon;
+      chip.append(img);
+      chip.title = `${it.name} hidden · click to restore`;
+      chip.addEventListener('click', () => window.mayhem.stripHideItem(it.id));
       miniBox.append(chip);
     }
   } else {
@@ -114,6 +129,7 @@ function render() {
 let lockInitialised = false;
 window.mayhem.onBuildStrip((data) => {
   rows = data?.rows ?? [];
+  hiddenItems = data?.hidden ?? [];
   if (!lockInitialised && data && 'locked' in data) {
     lockInitialised = true;
     applyLocked(!!data.locked, false);
@@ -123,6 +139,7 @@ window.mayhem.onBuildStrip((data) => {
 
 window.mayhem.onBuildStripClear(() => {
   rows = [];
+  hiddenItems = [];
   minimised.clear(); // fresh set of builds next game
   render();
 });

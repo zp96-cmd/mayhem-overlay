@@ -812,6 +812,8 @@ ipcMain.on('strip:resize', (_e, { w, h }) => {
   stripWin.setBounds({ x: b.x, y: b.y, width: Math.max(120, w), height: Math.max(40, h) });
 });
 ipcMain.on('strip:lock', (_e, v) => settings.set('stripLocked', !!v));
+// hide/restore a suggested item: the panel renderer owns the per-game set
+ipcMain.on('strip:hideitem', (_e, id) => win?.webContents.send('suggest:hide-item', id));
 ipcMain.on('strip:dragby', (_e, { dx, dy }) => {
   if (!stripWin) return;
   const [x, y] = stripWin.getPosition();
