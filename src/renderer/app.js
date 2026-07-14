@@ -312,13 +312,22 @@ function renderCompare() {
 // picking one of these gets the full confetti-and-fanfare treatment
 const CELEBRATION_AUGMENTS = new Set(['Tank Engine', 'Steel Your Heart', 'Dropkick']);
 
-// ...as does landing the #1-ranked augment for the current champion (aramgg)
+// ...as does landing the champion's #1-ranked augment OF THAT TIER (aramgg):
+// each offer is tier-locked, so Silver/Gold/Prismatic each have a best pick
 function isChampRankOne(name) {
   const aug = state.augByName.get(name);
   if (!aug?.id) return false;
-  const champId = myChampion()?.id;
-  return state.champData?.championId === champId &&
-    state.champData?.augments?.[aug.id]?.rank === 1;
+  if (state.champData?.championId !== myChampion()?.id) return false;
+  const stats = state.champData?.augments ?? {};
+  const mine = stats[aug.id];
+  if (!mine?.rank || (mine.games ?? 0) < 100) return false;
+  for (const [id, s] of Object.entries(stats)) {
+    if (Number(id) === aug.id || (s.games ?? 0) < 100) continue;
+    const other = state.augById.get(Number(id));
+    if (!other || other.disabled || other.tier !== aug.tier) continue;
+    if ((s.rank ?? Infinity) < mine.rank) return false; // someone better in this tier
+  }
+  return true;
 }
 
 function pickAugment(name) {
