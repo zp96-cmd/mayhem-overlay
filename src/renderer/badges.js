@@ -12,8 +12,9 @@ window.mayhem.onBadges((data) => {
   const verdict = Array.isArray(data) ? null : data?.verdict;
   root.innerHTML = '';
   for (const b of badges) {
+    const isRerollTarget = verdict?.action === 'REROLL' && b.name === verdict.target;
     const d = document.createElement('div');
-    d.className = `badge${b.best ? ' best' : ''}`;
+    d.className = `badge${b.best ? ' best' : ''}${isRerollTarget ? ' reroll-mode' : ''}`;
     const wr = b.winRate != null
       ? `<div class="top"><span class="${wrClass(b.winRate)}">${pct(b.winRate)}</span></div>`
       : `<div class="top"><span class="sub">no data</span></div>`;
@@ -21,10 +22,18 @@ window.mayhem.onBadges((data) => {
       ? `<div class="champ ${wrClass(b.champWr)}">${pct(b.champWr)} on ${b.champName}</div>` : '';
     const combo = b.comboTier != null
       ? `<div class="champ ${comboClass(b.comboTier)}">combo T${b.comboTier.toFixed(1)} with your picks</div>` : '';
+    let tag = '';
+    if (isRerollTarget) {
+      tag = `<div class="tag reroll">⟳ REROLL THIS</div>`;
+    } else if (b.best) {
+      if (verdict?.action === 'PICK') tag = `<div class="tag">★ PICK THIS</div>`;
+      else if (verdict?.action === 'REROLL') tag = `<div class="tag">★ BEST · reroll first</div>`;
+      else tag = `<div class="tag">★ BEST OF OFFER</div>`;
+    }
     d.innerHTML =
       wr + champ + combo +
       `<div class="sub">#${b.rank} of offer · score ${b.score.toFixed(1)}</div>` +
-      (b.best ? `<div class="tag">★ BEST PICK</div>` : '');
+      tag;
     d.style.left = `${b.x + b.w / 2}px`;
     d.style.top = `${b.y}px`;
     root.append(d);
@@ -32,9 +41,22 @@ window.mayhem.onBadges((data) => {
   const v = document.getElementById('verdict');
   if (verdict) {
     v.className = verdict.action.toLowerCase();
-    v.innerHTML =
-      `<span class="act">${verdict.action === 'KEEP' ? '✓ KEEP' : verdict.action === 'REROLL' ? '⟳ REROLL' : '~ CLOSE CALL'}</span>` +
-      `<span class="nums">best of offer ${verdict.best.toFixed(1)} · reroll expects ${verdict.ev.toFixed(1)}</span>`;
+    const math = verdict.penalty > 0.005
+      ? `+${verdict.upside.toFixed(2)} upside − ${verdict.penalty.toFixed(2)} pool cost = +${verdict.net.toFixed(2)}`
+      : `+${verdict.net.toFixed(2)} expected`;
+    if (verdict.action === 'REROLL') {
+      v.innerHTML =
+        `<span class="act">⟳ REROLL ${verdict.target.toUpperCase()}</span>` +
+        `<span class="nums">${math} · keep ${verdict.bestName}</span>`;
+    } else if (verdict.action === 'PICK') {
+      v.innerHTML =
+        `<span class="act">✓ PICK ${verdict.bestName.toUpperCase()}</span>` +
+        `<span class="nums">reroll not worth it (${math})</span>`;
+    } else {
+      v.innerHTML =
+        `<span class="act">~ CLOSE CALL</span>` +
+        `<span class="nums">${verdict.bestName} is best here · reroll ${math}</span>`;
+    }
     v.style.display = 'flex';
   } else {
     v.style.display = 'none';

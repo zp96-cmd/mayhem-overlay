@@ -153,23 +153,24 @@ function scoreAugment(aug) {
     }
   }
 
-  // community stats (aramgg.com): global win rate + my-champion pairing
+  // community stats (aramgg.com): champion-specific win rate DOMINATES;
+  // the global rate is only a small tiebreak
   const cs = aug.id ? state.augStats[aug.id] : null;
   if (cs && cs.games >= 1000 && Number.isFinite(cs.winRate)) {
-    const adj = Math.max(-1.5, Math.min(1.5, (cs.winRate - 0.5) * 10));
+    const adj = Math.max(-0.6, Math.min(0.6, (cs.winRate - 0.5) * 4));
     score += adj;
     reasons.push(`${(cs.winRate * 100).toFixed(1)}% WR global`);
     const champId = myChampion()?.id;
     // full per-champion stats (fetched when the game starts) beat the top-5 pairings
     const champAug = state.champData?.championId === champId ? state.champData?.augments?.[aug.id] : null;
     if (champAug && champAug.games >= 200) {
-      const padj = Math.max(-1.5, Math.min(1.5, (champAug.winRate - 0.5) * 10));
+      const padj = Math.max(-2.5, Math.min(2.5, (champAug.winRate - 0.5) * 16));
       score += padj;
       reasons.push(`${(champAug.winRate * 100).toFixed(1)}% on ${myChampion().name} (${champAug.games} games)`);
     } else {
       const pair = champId ? cs.topChampions?.find((c) => c.championId === champId) : null;
       if (pair && pair.games >= 300) {
-        const padj = Math.max(-1.5, Math.min(1.5, (pair.winRate - 0.5) * 10));
+        const padj = Math.max(-2, Math.min(2, (pair.winRate - 0.5) * 12));
         score += padj;
         reasons.push(`${(pair.winRate * 100).toFixed(1)}% on ${myChampion().name}`);
       }
@@ -315,6 +316,7 @@ function pickAugment(name) {
   window.mayhem.notifyPicked();
   lastStripKey = null;
   updateBuildStrip();
+  saveSession();
   $('#offer-banner').classList.add('hidden');
   renderCompare();
   renderMyAugments();
@@ -340,6 +342,10 @@ function applyOcrOffer(res) {
   renderAugments();
   showOfferBadges(good);
   showPriorityList(good.map((m) => m.name));
+  // newly-seen augments can kill reachable combos — refresh the BIS tracker
+  lastStripKey = null;
+  updateBuildStrip();
+  saveSession();
 }
 
 function champWrFor(aug) {
@@ -348,21 +354,36 @@ function champWrFor(aug) {
   return champAug?.games >= 200 ? champAug.winRate : null;
 }
 
-// Expected best score of a fresh 3-augment roll from the pool: order
-// statistics of the max of 3 uniform draws over the empirical distribution.
-function rerollEV(scores) {
-  if (!scores.length) return null;
-  const s = [...scores].sort((a, b) => a - b);
-  const n = s.length;
+// E[best of 3 draws] over a sorted-ascending score array (order statistics)
+function emax3(sorted) {
+  const n = sorted.length;
   let ev = 0;
   for (let i = 0; i < n; i++) {
-    ev += s[i] * (Math.pow((i + 1) / n, 3) - Math.pow(i / n, 3));
+    ev += sorted[i] * (Math.pow((i + 1) / n, 3) - Math.pow(i / n, 3));
   }
   return ev;
 }
 
-// KEEP / REROLL: is the best of this offer better than what a reroll is
-// likely to serve from the remaining pool?
+// Augments never repeat in a game, so every reroll permanently consumes one
+// random augment from the pool. This is the expected drop in a FUTURE offer's
+// best-of-3 quality caused by that consumption.
+function burnCost(pool) {
+  if (pool.length < 7) return 0;
+  const sorted = [...pool].sort((a, b) => a - b);
+  const base = emax3(sorted);
+  let acc = 0;
+  for (let i = 0; i < sorted.length; i++) {
+    acc += base - emax3(sorted.slice(0, i).concat(sorted.slice(i + 1)));
+  }
+  return acc / sorted.length;
+}
+
+// Mayhem rerolls replace ONE card (you keep the other two). Decision: pick
+// your best now, or reroll your WORST card hoping the fresh draw beats it?
+//   gain    = E[max(0, draw - currentBest)] over the remaining pool
+//   penalty = pool depletion cost against future offers (no repeats per game)
+// If the best card is already strong, gain collapses toward 0 and the penalty
+// tips it further toward keeping — a good hand is worth banking.
 function computeVerdict(scored, offerNames) {
   const tiers = offerNames.map((n) => state.augByName.get(n)?.tier).filter(Boolean);
   const tier = tiers.length && tiers.every((t) => t === tiers[0]) ? tiers[0] : null;
@@ -372,11 +393,24 @@ function computeVerdict(scored, offerNames) {
     .filter((a) => !state.seen.has(a.name))
     .map((a) => scoreAugment(a).score);
   if (pool.length < 6) return null; // pool too thin to judge
-  const ev = rerollEV(pool);
-  const best = Math.max(...scored.map((o) => o.score));
-  const diff = best - ev;
-  const action = diff >= 0.25 ? 'KEEP' : diff <= -0.25 ? 'REROLL' : 'CLOSE';
-  return { action, best, ev, poolSize: pool.length };
+  const best = scored.reduce((a, b) => (b.score > a.score ? b : a));
+  const worst = scored.reduce((a, b) => (b.score < a.score ? b : a));
+  const upside = pool.reduce((s, x) => s + Math.max(0, x - best.score), 0) / pool.length;
+  // conservatively assume one more offer of this tier later in the game
+  const level = state.live?.activePlayer?.level ?? 18;
+  const penalty = level < 15 ? burnCost(pool) : 0;
+  const net = upside - penalty;
+  const action = net >= 0.2 ? 'REROLL' : net <= 0.08 ? 'PICK' : 'CLOSE';
+  return {
+    action,
+    best: best.score,
+    bestName: best.name,
+    target: worst.name,
+    upside,
+    penalty,
+    net,
+    poolSize: pool.length,
+  };
 }
 
 // Draw stat pills over the actual augment cards on screen (OCR gave us where
@@ -407,7 +441,9 @@ function showOfferBadges(matches) {
   scored.find((b) => b.rank === 1).best = true;
   const verdict = computeVerdict(scored, scored.map((s) => s.name));
   if (verdict) {
-    $('#offer-msg').textContent += ` · verdict: ${verdict.action} (offer ${verdict.best.toFixed(1)} vs pool ${verdict.ev.toFixed(1)})`;
+    $('#offer-msg').textContent += verdict.action === 'REROLL'
+      ? ` · verdict: reroll ${verdict.target} (+${verdict.net.toFixed(2)} net)`
+      : ` · verdict: ${verdict.action.toLowerCase()} ${verdict.bestName}`;
   }
   window.mayhem.showBadges({ pills: scored, verdict });
 }
@@ -468,6 +504,78 @@ function ownedItemIds() {
   return new Set((state.live?.me?.items ?? []).map((i) => i.id));
 }
 
+// Mode-balanced item variants use classicId + an offset (ARAM: 320000,
+// Arena/Mayhem: 220000). Live inventory reports 323119 / 223089 while aramgg
+// suggests 3119 / 3089 — treat variant and classic as the same item.
+const canonItemId = (id) => {
+  for (const base of [320000, 220000]) {
+    if (id >= base && id < base + 10000) {
+      const classic = id - base;
+      if (state.itemById.has(classic)) return classic;
+    }
+  }
+  return id;
+};
+
+// Quest-upgrade items have NO lineage in Riot's data — confirmed mappings only.
+// Extend this as more upgrades are identified in real games.
+const MODE_UPGRADE_BASE = new Map([
+  [228002, 3089], // Wooglet's Witchcap <- Rabadon's Deathcap
+]);
+
+// Resolve any item to something actually buyable in the shop: its classic
+// form, its quest-upgrade base, or the nearest purchasable ancestor
+// (transforms like Fimbulwinter -> Winter's Approach). Null = never suggest
+// (anvils, vouchers, unmapped quest items).
+function purchasableForm(id) {
+  // breadth-first so the nearest purchasable form wins (a transform resolves
+  // to its base item, never down into that base's components)
+  const seen = new Set();
+  const queue = [id];
+  while (queue.length) {
+    const cur = queue.shift();
+    if (seen.has(cur)) continue;
+    seen.add(cur);
+    const it = state.itemById.get(cur);
+    if (it && it.inStore && it.price > 0 && cur < 220000) return cur;
+    const canon = canonItemId(cur);
+    if (canon !== cur) queue.push(canon);
+    if (MODE_UPGRADE_BASE.has(cur)) queue.push(MODE_UPGRADE_BASE.get(cur));
+    for (const f of it?.from ?? []) queue.push(f);
+  }
+  return null;
+}
+
+// Map a suggestion pool to purchasable base forms, deduped, order preserved.
+function normalizeSuggestionIds(ids) {
+  const out = [];
+  const seen = new Set();
+  for (const id of ids) {
+    const r = purchasableForm(id);
+    if (r && !seen.has(r)) { seen.add(r); out.push(r); }
+  }
+  return out;
+}
+
+// Items covered by what I own: the items themselves (in both classic and ARAM
+// id forms) plus everything in their build/transform ancestry. Owning
+// Fimbulwinter covers Winter's Approach, Muramana covers Manamune, upgraded
+// boots cover their base boots — a suggestion never shows an item whose
+// evolved or variant form is already in my inventory.
+function coveredItemIds() {
+  const covered = new Set();
+  const add = (id) => {
+    for (const v of [id, canonItemId(id)]) {
+      if (covered.has(v)) continue;
+      covered.add(v);
+      if (MODE_UPGRADE_BASE.has(v)) add(MODE_UPGRADE_BASE.get(v));
+      for (const f of state.itemById.get(v)?.from ?? []) add(f);
+    }
+  };
+  for (const i of state.live?.me?.items ?? []) add(i.id);
+  return covered;
+}
+
 function itemImg(id, size = 28) {
   const it = state.itemById.get(id);
   const img = el('img');
@@ -486,18 +594,54 @@ function suggestable(id) {
   return !state.hiddenItems.has(id) && (state.showBoots || !isBoots(id));
 }
 
+// ---- restart-safe session: picked/seen augments + hidden items survive an
+// overlay restart into the same game (matched by champion + game clock) ----
+let sessionSaveTimer = null;
+function saveSession() {
+  clearTimeout(sessionSaveTimer);
+  sessionSaveTimer = setTimeout(() => {
+    if (!state.live?.me) return;
+    window.mayhem.saveSession({
+      championName: state.live.me.championName,
+      gameTime: state.live.gameTime ?? 0,
+      capturedAt: Date.now(),
+      picked: state.picked,
+      seen: [...state.seen],
+      hiddenItems: [...state.hiddenItems],
+    });
+  }, 400);
+}
+
+async function restoreSession(live) {
+  try {
+    const s = await window.mayhem.getSession();
+    if (s &&
+        s.championName === live.me?.championName &&
+        (s.gameTime ?? 0) <= (live.gameTime ?? 0) + 180 &&
+        Date.now() - (s.capturedAt ?? 0) < 100 * 60 * 1000) {
+      state.picked = s.picked ?? [];
+      state.seen = new Set(s.seen ?? []);
+      state.hiddenItems = new Set(s.hiddenItems ?? []);
+      return true;
+    }
+  } catch { /* fall through to fresh state */ }
+  return false;
+}
+
 function hideItemForGame(id) {
   if (state.hiddenItems.has(id)) state.hiddenItems.delete(id);
   else state.hiddenItems.add(id);
   if ($('#tab-build').classList.contains('active')) renderBuildTab();
   lastStripKey = null;
   updateBuildStrip();
+  saveSession();
 }
 
 function buildBlock(srcLabel, itemIds, note, { markProgress = false } = {}) {
   // suggestion paths never show items already owned or hidden this game
+  const covered = markProgress ? coveredItemIds() : null;
   const ids = markProgress
-    ? itemIds.filter((id) => !ownedItemIds().has(id) && suggestable(id))
+    ? itemIds.filter((id) => !covered.has(id) && suggestable(id))
     : itemIds;
   if (!ids.length) return null;
   const b = el('div', 'build-block');
@@ -547,7 +691,10 @@ function myWinningPath(champId) {
   if (!wins.length) return null;
   const freq = new Map(), slotSum = new Map();
   for (const g of wins) {
-    g.items.forEach((id, idx) => {
+    g.items.forEach((rawId, idx) => {
+      // count upgraded/variant forms as their purchasable base
+      const id = purchasableForm(rawId);
+      if (!id) return;
       const it = state.itemById.get(id);
       if (!it || it.price < 900) return; // skip components/consumables
       freq.set(id, (freq.get(id) ?? 0) + 1);
@@ -576,7 +723,8 @@ function variantPool(b) {
   for (const id of itemIdsFromNames(b.situationalItems)) {
     if (!seen.has(id)) { seen.add(id); pool.push(id); }
   }
-  return pool;
+  // only ever suggest purchasable base forms (Wooglet's -> Rabadon's, etc.)
+  return normalizeSuggestionIds(pool);
 }
 
 function champVariants() {
@@ -590,7 +738,7 @@ function champVariants() {
 // strip window. Owned items skipped, first item flagged when affordable.
 function stripRows() {
   if (!state.live) return [];
-  const owned = ownedItemIds();
+  const owned = coveredItemIds();
   const gold = state.live?.activePlayer?.gold ?? 0;
   const mk = (ids) => ids
     .filter((id) => !owned.has(id) && suggestable(id))
@@ -621,6 +769,37 @@ function stripRows() {
   return rows;
 }
 
+// Top best-in-slot trios still REACHABLE this game: a combo is dead the
+// moment any non-picked member has been seen in an offer (no repeats per
+// game). Sorted by how far along I am, then combo tier, then sample size.
+function bisCombos() {
+  const trios = state.champData?.championId === myChampion()?.id ? state.champData?.trios : null;
+  if (!trios?.length) return [];
+  const pickedIds = new Set(state.picked.map((n) => state.augByName.get(n)?.id).filter(Boolean));
+  const seenUnpickedIds = new Set(
+    [...state.seen]
+      .filter((n) => !state.picked.includes(n))
+      .map((n) => state.augByName.get(n)?.id)
+      .filter(Boolean)
+  );
+  return trios
+    .filter((t) => t.games >= 150)
+    .filter((t) => t.ids.every((id) => state.augById.get(id) && !state.augById.get(id).disabled))
+    .filter((t) => !t.ids.some((id) => seenUnpickedIds.has(id))) // still reachable
+    .map((t) => ({ ...t, have: t.ids.filter((id) => pickedIds.has(id)).length }))
+    .sort((a, b) => b.have - a.have || a.tier - b.tier || b.games - a.games)
+    .slice(0, 3)
+    .map((t) => ({
+      tier: t.tier,
+      games: t.games,
+      have: t.have,
+      augs: t.ids.map((id) => {
+        const a = state.augById.get(id);
+        return { name: a.name, icon: a.icon, picked: pickedIds.has(id) };
+      }),
+    }));
+}
+
 let lastStripKey = null;
 function updateBuildStrip() {
   const rows = stripRows();
@@ -634,14 +813,16 @@ function updateBuildStrip() {
       return it ? { id, icon: it.icon, name: it.name } : null;
     })
     .filter(Boolean);
+  const combos = bisCombos();
   const key = JSON.stringify([
     rows.map((r) => [r.label, r.items.map((i) => [i.name, i.affordable])]),
     hidden.map((h) => h.id),
     state.showBoots,
+    combos.map((c) => [c.tier, c.have, c.augs.map((a) => a.name)]),
   ]);
   if (key === lastStripKey) return;
   lastStripKey = key;
-  window.mayhem.showBuildStrip({ rows, hidden, showBoots: state.showBoots });
+  window.mayhem.showBuildStrip({ rows, hidden, combos, showBoots: state.showBoots });
 }
 
 function renderBuildTab() {
@@ -678,7 +859,7 @@ function renderBuildTab() {
     const variants = champVariants();
     if (variants.length) {
       const top = variants[0];
-      const startIds = itemIdsFromNames([...new Set(top.startingItems ?? [])]);
+      const startIds = normalizeSuggestionIds(itemIdsFromNames([...new Set(top.startingItems ?? [])]));
       if (startIds.length && (state.live.me?.items?.length ?? 0) < 2 && (state.live.gameTime ?? 0) < 240) {
         box.append(buildBlock('START · aramgg', startIds));
       }
@@ -986,6 +1167,7 @@ async function init() {
   $('#offer-clear').addEventListener('click', () => {
     state.picked = [];
     renderMyAugments(); renderAugments(); renderBuildTab();
+    saveSession();
   });
   $('#offer-scan').addEventListener('click', async () => {
     const res = await window.mayhem.scanScreen();
@@ -1031,7 +1213,19 @@ async function init() {
     $('#status-dot').className = 'dot dot-game';
     const me = live.me;
     $('#live-champ').textContent = me ? `${me.championName} · lvl ${live.activePlayer?.level ?? me.level}` : '';
-    if (firstUpdate) { state.picked = []; state.seen = new Set(); state.hiddenItems = new Set(); renderMyAugments(); renderAugments(); }
+    if (firstUpdate) {
+      state.picked = []; state.seen = new Set(); state.hiddenItems = new Set();
+      renderMyAugments(); renderAugments();
+      restoreSession(live).then((restored) => {
+        if (restored) {
+          renderMyAugments();
+          renderAugments();
+          lastStripKey = null;
+          updateBuildStrip();
+          if ($('#tab-build').classList.contains('active')) renderBuildTab();
+        }
+      });
+    }
     if ($('#tab-build').classList.contains('active')) renderBuildTab();
     updateBuildStrip();
   });

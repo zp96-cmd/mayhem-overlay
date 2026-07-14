@@ -33,6 +33,8 @@ contextBridge.exposeInMainWorld('mayhem', {
   stripHideItem: (id) => ipcRenderer.send('strip:hideitem', id),
   onHideItem: (cb) => ipcRenderer.on('suggest:hide-item', (_e, id) => cb(id)),
   getShowBoots: () => ipcRenderer.invoke('boots:get'),
+  getSession: () => ipcRenderer.invoke('session:get'),
+  saveSession: (s) => ipcRenderer.send('session:save', s),
   stripToggleBoots: () => ipcRenderer.send('strip:boots'),
   onShowBoots: (cb) => ipcRenderer.on('suggest:show-boots', (_e, v) => cb(v)),
   stripDragBy: (dx, dy) => ipcRenderer.send('strip:dragby', { dx, dy }),

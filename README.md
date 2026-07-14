@@ -138,8 +138,9 @@ swap or reroll:
   augments), then aramgg's variants: win-rate bar, most-played core (with its own WR),
   starting items, and the situational pool.
 
-The window closes itself when the game starts (the in-game overlay takes over). Set
-`prepAutoOpen: false` in settings.json to only open it from the tray.
+The window stays open through the game as a second-monitor reference (hot list,
+combos, build paths); close it any time. Set `prepAutoOpen: false` in settings.json
+to only open it from the tray.
 
 ## Champ select
 

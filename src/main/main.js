@@ -18,6 +18,9 @@ const settings = new Store('settings', {
   bounds: null,
   opacity: 0.94,
 });
+// in-game session state (picked/seen augments, hidden items) so an overlay
+// restart mid-game doesn't wipe progress; cleared when the game ends
+const sessionStore = new Store('session', { current: null });
 const historyStore = new Store('history', { games: [] });
 const buildsStore = new Store('builds', { saved: [] });
 const ratingsStore = new Store('ratings', { overrides: {} });
@@ -158,8 +161,19 @@ async function refreshPatchData(reason) {
   }
 }
 
+// Bump when the shape of the generated data files changes (e.g. items.json
+// gaining transform items) so existing installs refresh once after updating.
+const DATA_SCHEMA = 2;
+
 // On startup: if Riot shipped a new patch since our data was fetched, refresh.
 async function checkPatchOnStartup() {
+  if (fs.existsSync(path.join(userDataDir(), 'augments.json')) &&
+      settings.get('dataSchema') !== DATA_SCHEMA) {
+    const r = await refreshPatchData('data schema upgrade');
+    if (r.ok) settings.set('dataSchema', DATA_SCHEMA);
+    return;
+  }
+  settings.set('dataSchema', DATA_SCHEMA);
   try {
     const versions = await (await fetch('https://ddragon.leagueoflegends.com/api/versions.json')).json();
     const latest = versions[0];
@@ -452,10 +466,11 @@ async function verifyOffer(trigger) {
   if (!res || !offerActive) return;
   const prevNames = new Set(offerMatches.map((m) => m.name));
   const good = res.matches.filter((m) => m.score >= 0.7);
-  const stillUp = good.filter((m) => prevNames.has(m.name)).length;
 
-  if (good.length >= 2 && stillUp <= 1) {
-    // different augments on screen — they rerolled: refresh the pills
+  // Mayhem rerolls replace individual cards, so even ONE new name means the
+  // offer changed and the pills need refreshing
+  const changed = good.length >= 2 && good.some((m) => !prevNames.has(m.name));
+  if (changed) {
     rememberOffer(res);
     win?.webContents.send('ocr:offer', res);
     activateOffer();
@@ -581,6 +596,7 @@ const poller = new LiveClientPoller(
     clearBuildStrip();
     scanBtnShown = false;
     scanBtn?.hide();
+    sessionStore.set('current', null); // game over: next game starts fresh
     win?.webContents.send('live:ended');
     // game over -> try to ingest the match into history shortly after
     setTimeout(async () => {
@@ -710,7 +726,8 @@ function startPhaseWatcher() {
     } else if (lastPhase === 'ChampSelect') {
       stopChampSelectWatch();
       prepChampFor = null;
-      if (phase === 'InProgress' || phase === 'GameStart') closePrepWindow();
+      // prep window intentionally stays open through the game as a reference;
+      // the user closes it whenever they like
     }
     lastPhase = phase;
     maybeAutoInstall();
@@ -814,6 +831,8 @@ ipcMain.on('strip:resize', (_e, { w, h }) => {
 ipcMain.on('strip:lock', (_e, v) => settings.set('stripLocked', !!v));
 // hide/restore a suggested item: the panel renderer owns the per-game set
 ipcMain.on('strip:hideitem', (_e, id) => win?.webContents.send('suggest:hide-item', id));
+ipcMain.handle('session:get', () => sessionStore.get('current', null));
+ipcMain.on('session:save', (_e, s) => sessionStore.set('current', s));
 // boots preference: persistent, main is the source of truth
 ipcMain.handle('boots:get', () => settings.get('showBoots', true));
 ipcMain.on('strip:boots', () => {

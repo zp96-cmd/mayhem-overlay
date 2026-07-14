@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-07-12T04:09:19.296Z",
+  "fetchedAt": "2026-07-14T10:55:39.152Z",
   "augments": [
     {
       "name": "Adamant",
@@ -424,7 +424,7 @@
     {
       "name": "Dropkick",
       "tier": "Prismatic",
-      "description": "Your basic attacks and abilities execute enemy champions below 5% (+ 3.5% per 100 base AD) (+ 2% per 1000 bonus health) of their maximum health, which causes their corpse to be sent flying away in a line. Upon collision with an enemy champion or terrain, the target's corpse explodes to deal 150 to 500 (+ 100% bonus armor) (+ 100% bonus magic resistance) magic damage to nearby enemies. Successful executions heal you for 100 to 300 (+ 25% bonus health).\n\nThe execution may also be triggered by the explosion and goes through shields.",
+      "description": "Your basic attacks and abilities execute enemy champions below 5% (+ 3.5% per 100 base AD) (+ 2% per 1000 bonus health) of their maximum health, which causes their corpse to be sent flying away in a line. Upon collision with an enemy champion or terrain, the target's corpse explodes to deal 150 to 500 (+ 100% bonus armor) (+ 100% bonus magic resistance) magic damage to nearby enemies. Successful executions heal you for 100 to 300 (+ 25% bonus health).\n\nThe execution may also be triggered by the explosion and ignores shields.",
       "disabled": false,
       "id": 2006,
       "nameId": "ARAM_Dropkick",
@@ -1234,7 +1234,7 @@
     {
       "name": "Pat On The Back",
       "tier": "Gold",
-      "description": "Whenever you are within 200 units of an allied champion, they pat you on the back, granting you a 50 to 150 (+ 25% bonus movement speed) shield and 30% bonus movement speed for 3 seconds (9 second cooldown). This effect can stack and its duration refreshes with each pass.",
+      "description": "Whenever you are within 200 units of an allied champion, they pat you on the back, granting you a 50 to 150 (+ 25% bonus movement speed) shield and 30% bonus movement speed for 3 seconds (9 second cooldown). Subsequent passes only refresh the duration of the effects.",
       "disabled": false,
       "id": 2137,
       "nameId": "PatOnTheBack",
@@ -1634,7 +1634,7 @@
     {
       "name": "Snowblast",
       "tier": "Gold",
-      "description": "Empowers the Dash spell from Mark to deal 100% increased damage and upon arrival cause you to knock up the target and knock back nearby enemies. Additionally, your Mark cooldown is reduced equivalent to 100 ability haste.\n\nIf Mark is not equipped, you will be prompted to replace one of your summoner spells with Mark.",
+      "description": "Empowers the Dash spell from Mark to deal 100% increased damage and upon arrival cause you to knock up the target for 0.5 seconds and knock back nearby enemies. Additionally, your Mark cooldown is reduced equivalent to 100 ability haste.\n\nIf Mark is not equipped, you will be prompted to replace one of your summoner spells with Mark.",
       "disabled": false,
       "id": 2080,
       "nameId": "Snowbomb",
@@ -1814,7 +1814,7 @@
     {
       "name": "Surge Field",
       "tier": "Prismatic",
-      "description": "Upon casting your ultimate ability, you spawn a surge zone beneath you that has a 300 radius and lasts for 6 seconds. While you are within the zone, you gain 50 ability haste and 40% bonus movement speed, and your damage dealt to enemy champions fires missiles at them that deal 20% of the triggering damage instance pre-mitigation as bonus magic damage. The missile effect cannot trigger from itself.\n\nIf you leave the zone's radius for the first time, it moves to your current location. Exiting the zone a second time causes it to disappear if you do not re-enter the area within a short time.",
+      "description": "Upon casting your ultimate ability, you spawn a surge zone beneath you that has a 300 radius. While you are within the zone, you gain 50 ability haste and 40% bonus movement speed, and your damage dealt to enemy champions fires missiles at them that deal 20% of the triggering damage instance pre-mitigation as bonus magic damage. The missile effect cannot trigger from itself.\n\nThe zone lasts indefinitely as long as you stay within its radius. If you leave the zone's radius for the first time, it moves to your current location. Exiting the zone a second time causes it to disappear if you do not re-enter the area within 1.25 seconds.",
       "disabled": false,
       "id": 2134,
       "nameId": "SurgeField",

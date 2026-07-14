@@ -165,12 +165,18 @@ async function fetchAllData(dataDir, log = () => {}) {
       icon: iconUrl(c.squarePortraitPath), roles: c.roles || [],
     }));
 
+  // include non-purchasable items too (Muramana, Fimbulwinter, Seraph's, ...):
+  // they appear in inventories as transforms and must resolve for icon lookup
+  // and owned-item ancestry (owning the transform covers its base item)
   const items = itemsRaw
-    .filter((i) => i.inStore && i.priceTotal > 0)
+    .filter((i) => i.id > 0 && i.name)
     .map((i) => ({
       id: i.id, name: i.name, categories: i.categories || [],
-      from: i.from || [], to: i.to || [],
-      price: i.priceTotal, icon: iconUrl(i.iconPath),
+      // specialRecipe is how transforms point at their base item
+      // (Fimbulwinter -> Winter's Approach, Muramana -> Manamune)
+      from: [...new Set([...(i.from || []), ...(i.specialRecipe > 0 ? [i.specialRecipe] : [])])],
+      to: i.to || [],
+      price: i.priceTotal, inStore: !!i.inStore, icon: iconUrl(i.iconPath),
     }));
 
   const fetchedAt = new Date().toISOString();

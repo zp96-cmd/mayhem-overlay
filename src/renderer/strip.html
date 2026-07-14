@@ -60,6 +60,24 @@
     #mini .chip.item { display: inline-flex; align-items: center; padding: 1px 5px; opacity: 0.75; }
     #mini .chip.item img { width: 15px; height: 15px; border-radius: 3px; display: block; }
     #mini .chip.item:hover { opacity: 1; border-color: var(--gold); }
+    #bis { display: flex; flex-direction: column; gap: 3px; border-top: 1px solid var(--hairline); padding-top: 4px; margin-top: 2px; }
+    .crow { display: flex; align-items: center; gap: 5px; }
+    .crow .tch {
+      font-size: 9px; font-weight: 900; min-width: 30px;
+      padding: 1px 5px; border-radius: 999px; text-align: center;
+      background: var(--surface-2); border: 1px solid var(--hairline);
+    }
+    .crow .tch.t-good { color: var(--win); }
+    .crow .tch.t-mid { color: var(--caution); }
+    .crow .tch.t-bad { color: var(--loss); }
+    .crow img {
+      width: 24px; height: 24px; border-radius: 5px;
+      background: rgba(4, 9, 15, 0.5); border: 1px solid var(--hairline);
+    }
+    .crow img.picked { outline: 2px solid var(--gold); box-shadow: 0 0 6px var(--gold-glow); }
+    .crow img.open { opacity: 0.55; }
+    .crow .prog { font-size: 9.5px; font-weight: 900; color: var(--text-dim); margin-left: 2px; }
+    .crow .prog.done { color: var(--win); }
   </style>
 </head>
 <body>
@@ -71,6 +89,7 @@
     </div>
     <div id="content">
       <div id="rows"></div>
+      <div id="bis"></div>
       <div id="mini"></div>
     </div>
   </div>
