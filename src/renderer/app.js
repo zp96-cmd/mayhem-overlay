@@ -25,6 +25,7 @@ const state = {
   picked: [],          // augment names picked this game
   seen: new Set(),     // augments that have appeared in any offer this game (can't reappear)
   hiddenItems: new Set(), // items right-clicked away from suggestions this game
+  showBoots: true,        // persistent preference: include boots in suggestions
   clickThrough: false,
 };
 
@@ -477,6 +478,14 @@ function itemImg(id, size = 28) {
   return img;
 }
 
+function isBoots(id) {
+  return state.itemById.get(id)?.categories?.includes('Boots') ?? false;
+}
+
+function suggestable(id) {
+  return !state.hiddenItems.has(id) && (state.showBoots || !isBoots(id));
+}
+
 function hideItemForGame(id) {
   if (state.hiddenItems.has(id)) state.hiddenItems.delete(id);
   else state.hiddenItems.add(id);
@@ -488,7 +497,7 @@ function hideItemForGame(id) {
 function buildBlock(srcLabel, itemIds, note, { markProgress = false } = {}) {
   // suggestion paths never show items already owned or hidden this game
   const ids = markProgress
-    ? itemIds.filter((id) => !ownedItemIds().has(id) && !state.hiddenItems.has(id))
+    ? itemIds.filter((id) => !ownedItemIds().has(id) && suggestable(id))
     : itemIds;
   if (!ids.length) return null;
   const b = el('div', 'build-block');
@@ -584,7 +593,7 @@ function stripRows() {
   const owned = ownedItemIds();
   const gold = state.live?.activePlayer?.gold ?? 0;
   const mk = (ids) => ids
-    .filter((id) => !owned.has(id) && !state.hiddenItems.has(id))
+    .filter((id) => !owned.has(id) && suggestable(id))
     .slice(0, 5)
     .map((id, i) => {
       const it = state.itemById.get(id);
@@ -628,10 +637,11 @@ function updateBuildStrip() {
   const key = JSON.stringify([
     rows.map((r) => [r.label, r.items.map((i) => [i.name, i.affordable])]),
     hidden.map((h) => h.id),
+    state.showBoots,
   ]);
   if (key === lastStripKey) return;
   lastStripKey = key;
-  window.mayhem.showBuildStrip({ rows, hidden });
+  window.mayhem.showBuildStrip({ rows, hidden, showBoots: state.showBoots });
 }
 
 function renderBuildTab() {
@@ -1065,6 +1075,14 @@ async function init() {
   window.mayhem.onBuildsUpdated((builds) => { state.builds = builds; renderSaved(); });
   // right-click in the strip window hides/restores an item for this game
   window.mayhem.onHideItem((id) => hideItemForGame(id));
+  // boots preference toggled from the strip window
+  window.mayhem.onShowBoots((v) => {
+    state.showBoots = v;
+    if ($('#tab-build').classList.contains('active')) renderBuildTab();
+    lastStripKey = null;
+    updateBuildStrip();
+  });
+  state.showBoots = await window.mayhem.getShowBoots();
   window.mayhem.onOcrStatus((s) => {
     if (s.trigger === 'verify' || s.trigger === 'reroll') return; // silent background checks
     const msg = $('#offer-msg');

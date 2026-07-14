@@ -18,12 +18,13 @@
     }
     #wrap.unlocked { border-style: dashed; border-color: var(--gold); cursor: move; }
     #side { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-    #lock {
+    #lock, #boots {
       background: none; border: 1px solid var(--hairline);
       border-radius: 5px; cursor: pointer; font-size: 10px;
       width: 20px; height: 20px; line-height: 1; padding: 0;
     }
-    #lock:hover { border-color: var(--gold); }
+    #lock:hover, #boots:hover { border-color: var(--gold); }
+    #boots.off { opacity: 0.35; border-style: dashed; }
     #grip { color: var(--text-faint); font-size: 10px; letter-spacing: 1px; display: none; }
     #wrap.unlocked #grip { display: block; }
     #content { display: flex; flex-direction: column; gap: 4px; }
@@ -65,6 +66,7 @@
   <div id="wrap">
     <div id="side">
       <button id="lock" title="Unlock to drag">🔒</button>
+      <button id="boots" title="Toggle boots in suggestions">👢</button>
       <div id="grip">⋮⋮</div>
     </div>
     <div id="content">

@@ -814,6 +814,13 @@ ipcMain.on('strip:resize', (_e, { w, h }) => {
 ipcMain.on('strip:lock', (_e, v) => settings.set('stripLocked', !!v));
 // hide/restore a suggested item: the panel renderer owns the per-game set
 ipcMain.on('strip:hideitem', (_e, id) => win?.webContents.send('suggest:hide-item', id));
+// boots preference: persistent, main is the source of truth
+ipcMain.handle('boots:get', () => settings.get('showBoots', true));
+ipcMain.on('strip:boots', () => {
+  const next = !settings.get('showBoots', true);
+  settings.set('showBoots', next);
+  win?.webContents.send('suggest:show-boots', next);
+});
 ipcMain.on('strip:dragby', (_e, { dx, dy }) => {
   if (!stripWin) return;
   const [x, y] = stripWin.getPosition();

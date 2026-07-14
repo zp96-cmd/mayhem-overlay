@@ -27,6 +27,17 @@ lockBtn.addEventListener('click', (e) => {
   applyLocked(!locked, true);
 });
 
+/* ---- boots toggle ---- */
+const bootsBtn = document.getElementById('boots');
+function applyBoots(show) {
+  bootsBtn.classList.toggle('off', !show);
+  bootsBtn.title = show ? 'Boots shown in suggestions · click to hide' : 'Boots hidden from suggestions · click to show';
+}
+bootsBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  window.mayhem.stripToggleBoots();
+});
+
 let dragging = false;
 let last = null;
 wrap.addEventListener('pointerdown', (e) => {
@@ -134,6 +145,7 @@ window.mayhem.onBuildStrip((data) => {
     lockInitialised = true;
     applyLocked(!!data.locked, false);
   }
+  if (data && 'showBoots' in data) applyBoots(!!data.showBoots);
   render();
 });
 
