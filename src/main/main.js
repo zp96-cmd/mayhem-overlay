@@ -279,10 +279,11 @@ function createStripWindow() {
 let badgeTimeout = null;
 let badgesActive = false;
 let csActive = false;
+let celebrateUntil = 0;
 
 function syncBadgeWinVisibility() {
   if (!badgeWin) return;
-  if (badgesActive || csActive) badgeWin.showInactive();
+  if (badgesActive || csActive || Date.now() < celebrateUntil) badgeWin.showInactive();
   else badgeWin.hide();
 }
 
@@ -805,6 +806,13 @@ ipcMain.on('ocr:picked', () => {
 });
 ipcMain.on('badges:show', (_e, badges) => showBadges(badges));
 ipcMain.on('badges:clear', () => clearBadges());
+ipcMain.on('celebrate', (_e, name) => {
+  if (!badgeWin) return;
+  celebrateUntil = Date.now() + 4500;
+  badgeWin.webContents.send('celebrate:go', name);
+  badgeWin.showInactive();
+  setTimeout(syncBadgeWinVisibility, 4600);
+});
 ipcMain.on('prio:show', (_e, data) => {
   if (!badgeWin) return;
   badgesActive = true; // priority panel rides the same layer/lifecycle as the pills

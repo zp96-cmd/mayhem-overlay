@@ -91,6 +91,113 @@ window.mayhem.onBadgesClear(() => {
   document.getElementById('verdict').style.display = 'none';
 });
 
+/* ---------- celebration: confetti + fanfare for hype augment picks ---------- */
+function playFanfare() {
+  // Zac's chosen sound; synth fanfare only as fallback
+  try {
+    const audio = new Audio('../../assets/sounds/celebrate.mp3');
+    audio.volume = 0.7;
+    const p = audio.play();
+    if (p?.catch) p.catch(() => playSynthFanfare());
+    return;
+  } catch {
+    /* fall through to synth */
+  }
+  playSynthFanfare();
+}
+
+function playSynthFanfare() {
+  try {
+    const ac = new AudioContext();
+    const play = (freq, at, dur, gainPeak, type) => {
+      const o = ac.createOscillator();
+      const g = ac.createGain();
+      o.type = type;
+      o.frequency.value = freq;
+      g.gain.setValueAtTime(0.0001, ac.currentTime + at);
+      g.gain.exponentialRampToValueAtTime(gainPeak, ac.currentTime + at + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + at + dur);
+      o.connect(g);
+      g.connect(ac.destination);
+      o.start(ac.currentTime + at);
+      o.stop(ac.currentTime + at + dur + 0.05);
+    };
+    // rising arpeggio, then a held chord: C5 E5 G5 -> C6 major
+    [523.25, 659.25, 783.99].forEach((f, i) => play(f, i * 0.09, 0.35, 0.22, 'triangle'));
+    [523.25, 659.25, 783.99, 1046.5].forEach((f) => play(f, 0.3, 1.1, 0.16, 'triangle'));
+    [1046.5].forEach((f) => play(f, 0.3, 1.1, 0.1, 'square'));
+    setTimeout(() => ac.close(), 2200);
+  } catch { /* audio unavailable */ }
+}
+
+window.mayhem.onCelebrate((name) => {
+  playFanfare();
+
+  const canvas = document.createElement('canvas');
+  canvas.style.cssText = 'position:absolute;inset:0;pointer-events:none;z-index:99';
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  document.body.append(canvas);
+  const ctx = canvas.getContext('2d');
+
+  const colors = ['#c8aa6e', '#f0e6d2', '#3fd08a', '#63d6e4', '#e2b93b', '#e8536e'];
+  const parts = [];
+  for (let i = 0; i < 220; i++) {
+    const side = i % 3; // left cannon, right cannon, top rain
+    parts.push({
+      x: side === 0 ? -10 : side === 1 ? canvas.width + 10 : Math.random() * canvas.width,
+      y: side === 2 ? -10 : canvas.height * (0.55 + Math.random() * 0.3),
+      vx: side === 0 ? 5 + Math.random() * 11 : side === 1 ? -(5 + Math.random() * 11) : (Math.random() - 0.5) * 3,
+      vy: side === 2 ? 1 + Math.random() * 3 : -(9 + Math.random() * 13),
+      s: 5 + Math.random() * 7,
+      r: Math.random() * Math.PI,
+      vr: (Math.random() - 0.5) * 0.35,
+      col: colors[i % colors.length],
+    });
+  }
+
+  const banner = document.createElement('div');
+  banner.textContent = `${name.toUpperCase()}!`;
+  banner.style.cssText = [
+    'position:absolute', 'left:50%', 'top:34%', 'transform:translate(-50%,-50%)',
+    'font-family:var(--font-display)', 'font-size:64px', 'font-weight:900',
+    'letter-spacing:4px', 'color:var(--gold-bright)', 'z-index:100',
+    'text-shadow:0 0 24px var(--gold-glow), 0 4px 12px rgba(4,9,15,0.9)',
+    'pointer-events:none', 'white-space:nowrap',
+  ].join(';');
+  document.body.append(banner);
+  banner.animate([
+    { transform: 'translate(-50%,-50%) scale(0.3)', opacity: 0 },
+    { transform: 'translate(-50%,-50%) scale(1.15)', opacity: 1, offset: 0.18 },
+    { transform: 'translate(-50%,-50%) scale(1)', opacity: 1, offset: 0.3 },
+    { transform: 'translate(-50%,-50%) scale(1)', opacity: 1, offset: 0.8 },
+    { transform: 'translate(-50%,-50%) scale(1.05)', opacity: 0 },
+  ], { duration: 3200, easing: 'ease-out' });
+
+  const t0 = performance.now();
+  (function frame(t) {
+    const alive = (t - t0) < 3400;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const fade = Math.max(0, 1 - (t - t0) / 3400);
+    for (const p of parts) {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.32;
+      p.vx *= 0.99;
+      p.r += p.vr;
+      ctx.save();
+      ctx.globalAlpha = fade;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.r);
+      ctx.fillStyle = p.col;
+      ctx.fillRect(-p.s / 2, -p.s / 2, p.s, p.s * 0.6);
+      ctx.restore();
+    }
+    if (alive) requestAnimationFrame(frame);
+    else { canvas.remove(); banner.remove(); }
+  })(t0);
+});
+
 // (The build strip lives in its own interactive window now — see strip.js.)
 
 // Champ select: win-rate pills under the bench + team champion portraits.

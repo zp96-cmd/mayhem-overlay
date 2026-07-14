@@ -309,8 +309,13 @@ function renderCompare() {
   for (const r of rows) tray.append(augRow(r, { pickBtn: true }));
 }
 
+// picking one of these gets the full confetti-and-fanfare treatment
+const CELEBRATION_AUGMENTS = new Set(['Tank Engine', 'Steel Your Heart', 'Dropkick']);
+
 function pickAugment(name) {
-  if (!state.picked.includes(name)) state.picked.push(name);
+  const isNew = !state.picked.includes(name);
+  if (isNew) state.picked.push(name);
+  if (isNew && CELEBRATION_AUGMENTS.has(name)) window.mayhem.celebrate(name);
   state.seen.add(name);
   state.compare = [];
   window.mayhem.notifyPicked();

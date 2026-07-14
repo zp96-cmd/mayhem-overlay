@@ -20,6 +20,8 @@ contextBridge.exposeInMainWorld('mayhem', {
   setRating: (name, score) => ipcRenderer.invoke('ratings:set', { name, score }),
   scanScreen: () => ipcRenderer.invoke('ocr:scan'),
   notifyPicked: () => ipcRenderer.send('ocr:picked'),
+  celebrate: (name) => ipcRenderer.send('celebrate', name),
+  onCelebrate: (cb) => ipcRenderer.on('celebrate:go', (_e, name) => cb(name)),
   showBadges: (badges) => ipcRenderer.send('badges:show', badges),
   clearBadges: () => ipcRenderer.send('badges:clear'),
   onBadges: (cb) => ipcRenderer.on('badges:data', (_e, b) => cb(b)),
