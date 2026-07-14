@@ -312,10 +312,21 @@ function renderCompare() {
 // picking one of these gets the full confetti-and-fanfare treatment
 const CELEBRATION_AUGMENTS = new Set(['Tank Engine', 'Steel Your Heart', 'Dropkick']);
 
+// ...as does landing the #1-ranked augment for the current champion (aramgg)
+function isChampRankOne(name) {
+  const aug = state.augByName.get(name);
+  if (!aug?.id) return false;
+  const champId = myChampion()?.id;
+  return state.champData?.championId === champId &&
+    state.champData?.augments?.[aug.id]?.rank === 1;
+}
+
 function pickAugment(name) {
   const isNew = !state.picked.includes(name);
   if (isNew) state.picked.push(name);
-  if (isNew && CELEBRATION_AUGMENTS.has(name)) window.mayhem.celebrate(name);
+  if (isNew && (CELEBRATION_AUGMENTS.has(name) || isChampRankOne(name))) {
+    window.mayhem.celebrate(name);
+  }
   state.seen.add(name);
   state.compare = [];
   window.mayhem.notifyPicked();
