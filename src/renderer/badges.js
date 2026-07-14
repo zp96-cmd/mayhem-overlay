@@ -96,7 +96,7 @@ function playFanfare() {
   // Zac's chosen sound; synth fanfare only as fallback
   try {
     const audio = new Audio('../../assets/sounds/celebrate.mp3');
-    audio.volume = 0.7;
+    audio.volume = 0.35;
     const p = audio.play();
     if (p?.catch) p.catch(() => playSynthFanfare());
     return;
