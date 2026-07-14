@@ -381,6 +381,12 @@ function createTray() {
     { label: 'Show/Hide (Ctrl+Alt+O)', click: toggleVisibility },
     { label: 'Toggle click-through (Ctrl+Alt+X)', click: () => setClickThrough(!clickThrough) },
     { label: 'Prep screen', click: openPrepWindow },
+    {
+      label: 'Celebration sound',
+      type: 'checkbox',
+      checked: settings.get('celebrationSound', true),
+      click: (item) => settings.set('celebrationSound', item.checked),
+    },
     { label: 'Update patch data', click: () => refreshPatchData('tray') },
     { label: 'Check for app updates', click: () => checkAppUpdate(true) },
     { type: 'separator' },
@@ -809,7 +815,10 @@ ipcMain.on('badges:clear', () => clearBadges());
 ipcMain.on('celebrate', (_e, name) => {
   if (!badgeWin) return;
   celebrateUntil = Date.now() + 4500;
-  badgeWin.webContents.send('celebrate:go', name);
+  badgeWin.webContents.send('celebrate:go', {
+    name,
+    sound: settings.get('celebrationSound', true),
+  });
   badgeWin.showInactive();
   setTimeout(syncBadgeWinVisibility, 4600);
 });

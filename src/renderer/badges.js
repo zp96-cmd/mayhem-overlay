@@ -130,8 +130,10 @@ function playSynthFanfare() {
   } catch { /* audio unavailable */ }
 }
 
-window.mayhem.onCelebrate((name) => {
-  playFanfare();
+window.mayhem.onCelebrate((payload) => {
+  const name = typeof payload === 'string' ? payload : payload.name;
+  const sound = typeof payload === 'string' ? true : payload.sound !== false;
+  if (sound) playFanfare();
 
   const canvas = document.createElement('canvas');
   canvas.style.cssText = 'position:absolute;inset:0;pointer-events:none;z-index:99';
