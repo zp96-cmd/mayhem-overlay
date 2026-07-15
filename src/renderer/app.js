@@ -1302,7 +1302,8 @@ async function init() {
   });
   state.showBoots = await window.mayhem.getShowBoots();
   window.mayhem.onOcrStatus((s) => {
-    if (s.trigger === 'verify' || s.trigger === 'reroll') return; // silent background checks
+    // background watch-loop scans stay silent; only user-initiated ones speak
+    if (s.trigger !== 'manual' && s.trigger !== 'button') return;
     const msg = $('#offer-msg');
     if (s.busy) {
       $('#offer-banner').classList.remove('hidden');

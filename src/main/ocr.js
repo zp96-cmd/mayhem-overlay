@@ -32,11 +32,18 @@ async function captureScreen() {
   return source.thumbnail; // NativeImage at full resolution
 }
 
-// The augment cards occupy the middle of the screen. Crop generously: middle
-// 76% of width, 22%..78% of height. Overridable via settings for odd layouts.
+// The augment cards sit centered on screen. Crop TIGHT to that area: the
+// kill feed / chat (bottom-left) announces other players' augment and item
+// picks by name, and a generous crop reads those as offers. Overridable via
+// settings.ocrRegion for odd layouts.
+// Card NAMES sit around y 45-58% of the screen; the kill feed / chat lives
+// below y~60%. Excluding vertically keeps wide card layouts intact while
+// cutting every chat line out of the scan.
+const DEFAULT_REGION = { x: 0.15, y: 0.28, w: 0.70, h: 0.32 };
+
 function cropBand(img, region) {
   const { width, height } = img.getSize();
-  const r = region ?? { x: 0.12, y: 0.22, w: 0.76, h: 0.56 };
+  const r = region ?? DEFAULT_REGION;
   return img.crop({
     x: Math.round(width * r.x),
     y: Math.round(height * r.y),
@@ -47,6 +54,35 @@ function cropBand(img, region) {
 
 const { matchAugments, normText } = require('./ocr-match');
 const { preprocess } = require('./ocr-preprocess');
+
+// Group matches by vertical proximity of their bbox centers; return the
+// biggest group (ties broken by total match score). Matches without a bbox
+// pass through untouched.
+function filterToCardRow(matches, ocrData) {
+  const withBox = matches.filter((m) => m.bbox);
+  if (withBox.length < 2) return matches;
+  const imgH = ocrData?.blocks?.length
+    ? Math.max(...ocrData.blocks.map((b) => b.bbox?.y1 ?? 0), 1)
+    : Math.max(...withBox.map((m) => m.bbox.y1), 1);
+  const tol = Math.max(18, imgH * 0.05);
+  const groups = [];
+  for (const m of withBox) {
+    const cy = (m.bbox.y0 + m.bbox.y1) / 2;
+    const g = groups.find((grp) => Math.abs(grp.cy - cy) <= tol);
+    if (g) {
+      g.items.push(m);
+      g.cy = g.items.reduce((s, x) => s + (x.bbox.y0 + x.bbox.y1) / 2, 0) / g.items.length;
+    } else {
+      groups.push({ cy, items: [m] });
+    }
+  }
+  groups.sort((a, b) =>
+    b.items.length - a.items.length ||
+    b.items.reduce((s, x) => s + x.score, 0) - a.items.reduce((s, x) => s + x.score, 0));
+  const best = groups[0]?.items ?? [];
+  const noBox = matches.filter((m) => !m.bbox);
+  return [...best, ...noBox];
+}
 
 async function scanForAugments(augmentNames, { saveDebugImage = true, region = null } = {}) {
   const t0 = Date.now();
@@ -61,7 +97,7 @@ async function scanForAugments(augmentNames, { saveDebugImage = true, region = n
   } else {
     const shot = await captureScreen();
     const { width, height } = shot.getSize();
-    const r = region ?? { x: 0.12, y: 0.22, w: 0.76, h: 0.56 };
+    const r = region ?? DEFAULT_REGION;
     offset.x = Math.round(width * r.x);
     offset.y = Math.round(height * r.y);
     png = cropBand(shot, region).toPNG();
@@ -73,8 +109,9 @@ async function scanForAugments(augmentNames, { saveDebugImage = true, region = n
     fs.writeFileSync(debugPath, png);
   }
 
+  const DOWNSCALE = 0.6; // large card text OCRs fine downscaled, ~3x faster
   const worker = await getWorker();
-  const { data } = await worker.recognize(await preprocess(png), {}, { blocks: true, text: true });
+  const { data } = await worker.recognize(await preprocess(png, DOWNSCALE), {}, { blocks: true, text: true });
   // collect line-level text + bbox from the block tree; fall back to plain text
   const lines = [];
   for (const block of data.blocks ?? []) {
@@ -86,14 +123,17 @@ async function scanForAugments(augmentNames, { saveDebugImage = true, region = n
   }
   if (!lines.length) (data.text ?? '').split('\n').forEach((t) => lines.push({ text: t, bbox: null }));
 
-  const matches = matchAugments(lines, augmentNames).map((m) => ({
+  // Real offer cards sit on one horizontal row; chat/kill-feed hits stack
+  // vertically. When 2+ matches exist, keep only the largest same-row group.
+  const rowFiltered = filterToCardRow(matchAugments(lines, augmentNames), data);
+  const matches = rowFiltered.map((m) => ({
     ...m,
-    // screen position in DIPs (Electron window coordinates)
+    // screen position in DIPs: bboxes are in downscaled px, so scale back up
     screen: m.bbox ? {
-      x: (offset.x + m.bbox.x0) / offset.scale,
-      y: (offset.y + m.bbox.y0) / offset.scale,
-      w: (m.bbox.x1 - m.bbox.x0) / offset.scale,
-      h: (m.bbox.y1 - m.bbox.y0) / offset.scale,
+      x: (offset.x + m.bbox.x0 / DOWNSCALE) / offset.scale,
+      y: (offset.y + m.bbox.y0 / DOWNSCALE) / offset.scale,
+      w: ((m.bbox.x1 - m.bbox.x0) / DOWNSCALE) / offset.scale,
+      h: ((m.bbox.y1 - m.bbox.y0) / DOWNSCALE) / offset.scale,
     } : null,
   }));
   return {

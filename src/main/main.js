@@ -429,28 +429,33 @@ async function runOcrScan(trigger) {
   }
 }
 
-// ---------- offer interaction watcher ----------
-// While an offer is on screen:
-//  - cursor dwell+exit over the reroll button zone  -> rescan (cards changed)
-//  - cursor visits an augment card, cards then gone -> that card was picked:
-//    tell the panel and clear the pills
-//  - periodic verify scan as backstop (pick made without detectable hover)
+// ---------- continuous offer watcher ----------
+// Scans are cheap (~0.5s at half res), so instead of waiting for events we
+// POLL the whole time an offer is pending (waiting for the choice screen to
+// appear) or active (pills up): the screen appearing, a single-card reroll,
+// or a pick are all caught within a scan cycle. The mouse watcher remains
+// only for pick attribution (which card was hovered) and as an instant kick
+// when the cursor leaves the reroll zone or the cards.
 let offerActive = false;
-let offerScans = 0;
 let rerollTimer = null;
 let lastScanAt = 0;
 let inZoneSince = null;
 let offerMatches = [];   // matches from the last scan we showed pills for
 let lastHoveredCard = null; // { name, at }
 let wasInCard = false;
+let pendingSince = 0;
+
+const PENDING_SCAN_GAP = 2200;  // ms between scans while waiting for the screen
+const ACTIVE_SCAN_GAP = 1300;   // ms between scans while pills are up
+const PENDING_TIMEOUT = 4 * 60 * 1000;
 
 function rememberOffer(res) {
   offerMatches = (res?.matches ?? []).filter((m) => m.screen && m.score >= 0.62);
+  goneStreak = 0;
 }
 
 function setOfferActive(active) {
   offerActive = active;
-  offerScans = 0;
   if (active && !rerollTimer) {
     rerollTimer = setInterval(watchOfferInteraction, 150);
   } else if (!active && rerollTimer) {
@@ -464,32 +469,68 @@ function setOfferActive(active) {
   }
 }
 
-async function verifyOffer(trigger) {
-  if (!offerActive || ocrBusy) return;
-  if (Date.now() - lastScanAt < 2200 || offerScans >= 16) return;
-  lastScanAt = Date.now();
-  offerScans++;
-  const res = await runOcrScan(trigger);
-  if (!res || !offerActive) return;
-  const prevNames = new Set(offerMatches.map((m) => m.name));
-  const good = res.matches.filter((m) => m.score >= 0.7);
+// One place decides what a scan result means, whatever triggered the scan.
+// A single noisy scan must never clear the pills: we only conclude "picked"
+// after TWO consecutive scans that neither find an offer nor weakly re-match
+// any card we know is up.
+let goneStreak = 0;
 
-  // Mayhem rerolls replace individual cards, so even ONE new name means the
-  // offer changed and the pills need refreshing
-  const changed = good.length >= 2 && good.some((m) => !prevNames.has(m.name));
-  if (changed) {
-    rememberOffer(res);
-    win?.webContents.send('ocr:offer', res);
-    activateOffer();
-  } else if (good.length <= 1) {
-    // cards are gone — an augment was taken
-    const picked = lastHoveredCard && Date.now() - lastHoveredCard.at < 20000
-      ? lastHoveredCard.name : null;
+function handleScanResult(res, { manual = false } = {}) {
+  if (!res) return;
+  const good = res.matches.filter((m) => m.score >= 0.7);
+  const prevNames = new Set(offerMatches.map((m) => m.name));
+  // a known card re-matching even weakly means the screen is still up
+  const stillUp = res.matches.some((m) => prevNames.has(m.name) && m.score >= 0.55);
+
+  if (good.length >= 2) {
+    goneStreak = 0;
+    // an offer is on screen; single-card rerolls mean ONE new name = changed
+    const changed = !offerActive || good.some((m) => !prevNames.has(m.name));
     pendingOffer = false;
-    win?.webContents.send('ocr:auto-picked', { name: picked });
-    setOfferActive(false);
+    if (changed) {
+      rememberOffer(res);
+      win?.webContents.send('ocr:offer', res);
+      activateOffer();
+    } else if (manual) {
+      win?.webContents.send('ocr:offer', res); // explicit ask: refresh anyway
+    }
+  } else if (offerActive) {
+    if (stillUp) {
+      goneStreak = 0; // noisy read, offer's still there — leave pills alone
+    } else {
+      goneStreak++;
+      if (goneStreak >= 2) {
+        // two clean misses in a row — an augment was taken
+        const picked = lastHoveredCard && Date.now() - lastHoveredCard.at < 20000
+          ? lastHoveredCard.name : null;
+        pendingOffer = false;
+        goneStreak = 0;
+        win?.webContents.send('ocr:auto-picked', { name: picked });
+        setOfferActive(false);
+      }
+    }
+  } else if (manual) {
+    win?.webContents.send('ocr:offer', res); // let the panel say "nothing found"
   }
-  // else: same offer still up — leave the pills alone
+}
+
+// the always-on scan loop; a no-op unless something is pending or active
+setInterval(async () => {
+  if (ocrBusy) return;
+  if (pendingOffer && Date.now() - pendingSince > PENDING_TIMEOUT) {
+    pendingOffer = false;
+    return;
+  }
+  if (!pendingOffer && !offerActive) return;
+  const gap = offerActive ? ACTIVE_SCAN_GAP : PENDING_SCAN_GAP;
+  if (Date.now() - lastScanAt < gap) return;
+  lastScanAt = Date.now();
+  const res = await runOcrScan(offerActive ? 'verify' : 'watch');
+  handleScanResult(res);
+}, 300);
+
+function kickScan() {
+  lastScanAt = 0; // next loop tick (≤300ms) scans immediately
 }
 
 function watchOfferInteraction() {
@@ -498,7 +539,7 @@ function watchOfferInteraction() {
   const p = screen.getCursorScreenPoint();
   const b = display.bounds;
 
-  // reroll zone: dwell + exit -> rescan after the new cards animate in
+  // reroll zone: leaving it likely means a reroll click — scan right away
   const zone = settings.get('rerollZone') ?? { x: 0.38, y: 0.72, w: 0.24, h: 0.18 };
   const inZone =
     p.x >= b.x + b.width * zone.x && p.x <= b.x + b.width * (zone.x + zone.w) &&
@@ -506,7 +547,7 @@ function watchOfferInteraction() {
   if (inZone && !inZoneSince) inZoneSince = Date.now();
   if (!inZone && inZoneSince) {
     inZoneSince = null;
-    setTimeout(() => verifyOffer('reroll'), 900);
+    setTimeout(kickScan, 500); // brief beat for the new card to animate in
   }
 
   // augment cards: name bbox expanded to roughly the full card
@@ -523,20 +564,15 @@ function watchOfferInteraction() {
     lastHoveredCard = { name: inCard, at: Date.now() };
     wasInCard = true;
   } else if (wasInCard) {
-    // left the cards — maybe they clicked one; check shortly
     wasInCard = false;
-    setTimeout(() => verifyOffer('verify'), 800);
+    setTimeout(kickScan, 400); // maybe they picked — check quickly
   }
-
-  // backstop: if nothing triggered a check in a while, verify the offer is still up
-  if (Date.now() - lastScanAt > 7000) verifyOffer('verify');
 }
 
 // ---------- live game + client polling ----------
 let lastLevel = 0;
 let wasDead = false;
 let pendingOffer = false;
-let autoScanAttempts = 0;
 const AUGMENT_LEVELS = [3, 7, 11, 15];
 
 let offerActiveTimeout = null;
@@ -544,19 +580,6 @@ function activateOffer() {
   setOfferActive(true);
   clearTimeout(offerActiveTimeout);
   offerActiveTimeout = setTimeout(() => setOfferActive(false), 90000);
-}
-
-async function autoScan() {
-  autoScanAttempts++;
-  const res = await runOcrScan('auto');
-  if (res && res.matches.filter((m) => m.score >= 0.7).length >= 2) {
-    pendingOffer = false;
-    rememberOffer(res);
-    win?.webContents.send('ocr:offer', res);
-    activateOffer();
-  } else if (autoScanAttempts >= 6) {
-    pendingOffer = false; // stop trying this offer; manual scan still available
-  }
 }
 
 // fetch aramgg champion data once per game when my champion is known
@@ -588,12 +611,13 @@ const poller = new LiveClientPoller(
     if (crossed) {
       win?.webContents.send('live:augment-breakpoint', { level: crossed });
       pendingOffer = true;
-      autoScanAttempts = 0;
+      pendingSince = Date.now();
+      kickScan(); // watch loop takes it from here
     }
     lastLevel = lvl;
-    // Mayhem shows the augment choice on your next death — scan while dead
+    // dying often opens the choice screen — scan immediately
     const dead = !!state.me?.isDead;
-    if (pendingOffer && dead && !wasDead) setTimeout(() => autoScan(), 1000);
+    if (pendingOffer && dead && !wasDead) setTimeout(kickScan, 600);
     wasDead = dead;
   },
   async () => {
@@ -800,10 +824,7 @@ ipcMain.on('overlay:hide', () => win.hide());
 ipcMain.on('overlay:collapse', (_e, collapsed) => setPanelCollapsed(collapsed));
 ipcMain.handle('ocr:scan', async () => {
   const res = await runOcrScan('manual');
-  if (res?.matches?.length) {
-    rememberOffer(res);
-    activateOffer();
-  }
+  handleScanResult(res, { manual: true });
   return res;
 });
 ipcMain.on('ocr:picked', () => {
@@ -830,13 +851,7 @@ ipcMain.on('prio:show', (_e, data) => {
 });
 ipcMain.on('scanbtn:click', async () => {
   const res = await runOcrScan('button');
-  if (res) {
-    win?.webContents.send('ocr:offer', res);
-    if (res.matches?.length) {
-      rememberOffer(res);
-      activateOffer();
-    }
-  }
+  handleScanResult(res, { manual: true });
 });
 ipcMain.on('buildstrip:show', (_e, data) => showBuildStrip(data));
 ipcMain.on('buildstrip:clear', () => clearBuildStrip());
@@ -918,14 +933,8 @@ app.whenReady().then(async () => {
   // scan screen for the offered augments
   hotkeys['Ctrl+Alt+S'] = globalShortcut.register('Control+Alt+S', async () => {
     win.show();
-    const res = await runOcrScan('hotkey');
-    if (res) {
-      win.webContents.send('ocr:offer', res);
-      if (res.matches?.length) {
-        rememberOffer(res);
-        activateOffer();
-      }
-    }
+    const res = await runOcrScan('manual');
+    handleScanResult(res, { manual: true });
   });
   console.log('hotkey registration:', hotkeys);
   win.webContents.on('did-finish-load', () => win.webContents.send('hotkeys:status', hotkeys));
