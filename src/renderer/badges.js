@@ -15,11 +15,11 @@ window.mayhem.onBadges((data) => {
     const isRerollTarget = verdict?.action === 'REROLL' && b.name === verdict.target;
     const d = document.createElement('div');
     d.className = `badge${b.best ? ' best' : ''}${isRerollTarget ? ' reroll-mode' : ''}`;
-    const wr = b.winRate != null
-      ? `<div class="top"><span class="${wrClass(b.winRate)}">${pct(b.winRate)}</span></div>`
-      : `<div class="top"><span class="sub">no data</span></div>`;
-    const champ = b.champWr != null
-      ? `<div class="champ ${wrClass(b.champWr)}">${pct(b.champWr)} on ${b.champName}</div>` : '';
+    // champion-specific win rate only — global % is deliberately not shown
+    const wr = b.champWr != null
+      ? `<div class="top"><span class="${wrClass(b.champWr)}">${pct(b.champWr)}</span></div>` +
+        `<div class="sub">on ${b.champName}</div>`
+      : `<div class="top"><span class="sub">no ${b.champName || 'champion'} data</span></div>`;
     const combo = b.comboTier != null
       ? `<div class="champ ${comboClass(b.comboTier)}">combo T${b.comboTier.toFixed(1)} with your picks</div>` : '';
     let tag = '';
@@ -31,7 +31,7 @@ window.mayhem.onBadges((data) => {
       else tag = `<div class="tag">★ BEST OF OFFER</div>`;
     }
     d.innerHTML =
-      wr + champ + combo +
+      wr + combo +
       `<div class="sub">#${b.rank} of offer · score ${b.score.toFixed(1)}</div>` +
       tag;
     d.style.left = `${b.x + b.w / 2}px`;

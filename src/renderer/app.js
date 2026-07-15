@@ -488,10 +488,9 @@ function showPriorityList(offerNames = []) {
     .filter((a) => !state.seen.has(a.name) || offerSet.has(a.name))
     .map((a) => {
       const { score } = scoreAugment(a);
-      const cs = a.id ? state.augStats[a.id] : null;
       return {
         name: a.name, icon: a.icon,
-        wr: champWrFor(a) ?? cs?.winRate ?? null,
+        wr: champWrFor(a), // champion-specific only, no global fallback
         score,
         offered: offerSet.has(a.name),
       };
