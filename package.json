@@ -42,7 +42,8 @@
     "nsis": {
       "oneClick": true,
       "perMachine": false,
-      "createDesktopShortcut": true,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
       "runAfterFinish": true,
       "artifactName": "Mayhem-Overlay-Setup-${version}.${ext}"
     }
