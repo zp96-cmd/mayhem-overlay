@@ -163,8 +163,10 @@ function scoreAugment(aug) {
     const champId = myChampion()?.id;
     // full per-champion stats (fetched when the game starts) beat the top-5 pairings
     const champAug = state.champData?.championId === champId ? state.champData?.augments?.[aug.id] : null;
-    if (champAug && champAug.games >= 200) {
-      const padj = Math.max(-2.5, Math.min(2.5, (champAug.winRate - 0.5) * 16));
+    if (champAug && champAug.games >= 30) {
+      // weight small samples less: full strength at 300+ games, scaled below
+      const conf = Math.min(1, champAug.games / 300);
+      const padj = Math.max(-2.5, Math.min(2.5, (champAug.winRate - 0.5) * 16)) * conf;
       score += padj;
       reasons.push(`${(champAug.winRate * 100).toFixed(1)}% on ${myChampion().name} (${champAug.games} games)`);
     } else {
@@ -373,10 +375,11 @@ function applyOcrOffer(res) {
   saveSession();
 }
 
+const CHAMP_WR_MIN_GAMES = 30; // below this the win rate is too noisy to show
 function champWrFor(aug) {
   const champId = myChampion()?.id;
   const champAug = state.champData?.championId === champId ? state.champData?.augments?.[aug.id] : null;
-  return champAug?.games >= 200 ? champAug.winRate : null;
+  return champAug?.games >= CHAMP_WR_MIN_GAMES ? champAug.winRate : null;
 }
 
 // E[best of 3 draws] over a sorted-ascending score array (order statistics)

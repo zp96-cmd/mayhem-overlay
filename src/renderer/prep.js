@@ -104,7 +104,7 @@ function renderHotList(champId) {
   };
   const rows = Object.entries(perChamp)
     .map(([id, s]) => ({ aug: state.augById.get(Number(id)), ...s }))
-    .filter((r) => r.aug && !r.aug.disabled && r.games >= 200)
+    .filter((r) => r.aug && !r.aug.disabled && r.games >= 100)
     .sort((a, b) => b.winRate - a.winRate)
     .slice(0, 14);
   if (!rows.length) {
