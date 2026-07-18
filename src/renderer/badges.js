@@ -130,6 +130,44 @@ function playSynthFanfare() {
   } catch { /* audio unavailable */ }
 }
 
+/* ---------- death portal warning + airhorn ---------- */
+function playAirhorn() {
+  try {
+    const ac = new AudioContext();
+    const master = ac.createGain();
+    master.gain.value = 0.3;
+    master.connect(ac.destination);
+    // three stabs of a buzzy sawtooth chord = airhorn
+    const stab = (at, dur) => {
+      [233, 349, 466].forEach((freq) => {
+        const o = ac.createOscillator();
+        const g = ac.createGain();
+        o.type = 'sawtooth';
+        o.frequency.setValueAtTime(freq * 0.98, ac.currentTime + at);
+        o.frequency.linearRampToValueAtTime(freq, ac.currentTime + at + 0.05);
+        g.gain.setValueAtTime(0.0001, ac.currentTime + at);
+        g.gain.exponentialRampToValueAtTime(0.9, ac.currentTime + at + 0.02);
+        g.gain.setValueAtTime(0.9, ac.currentTime + at + dur - 0.05);
+        g.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + at + dur);
+        o.connect(g); g.connect(master);
+        o.start(ac.currentTime + at);
+        o.stop(ac.currentTime + at + dur + 0.02);
+      });
+    };
+    stab(0, 0.18);
+    stab(0.24, 0.18);
+    stab(0.48, 0.5);
+    setTimeout(() => ac.close(), 1400);
+  } catch { /* audio unavailable */ }
+}
+
+const portal = document.getElementById('portal');
+window.mayhem.onPortalShow((d) => {
+  portal.style.display = 'flex';
+  if (d?.sound !== false) playAirhorn();
+});
+window.mayhem.onPortalHide(() => { portal.style.display = 'none'; });
+
 window.mayhem.onCelebrate((payload) => {
   const name = typeof payload === 'string' ? payload : payload.name;
   const sound = typeof payload === 'string' ? true : payload.sound !== false;

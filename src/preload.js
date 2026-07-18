@@ -22,6 +22,8 @@ contextBridge.exposeInMainWorld('mayhem', {
   notifyPicked: () => ipcRenderer.send('ocr:picked'),
   celebrate: (name) => ipcRenderer.send('celebrate', name),
   onCelebrate: (cb) => ipcRenderer.on('celebrate:go', (_e, name) => cb(name)),
+  onPortalShow: (cb) => ipcRenderer.on('portal:show', (_e, d) => cb(d)),
+  onPortalHide: (cb) => ipcRenderer.on('portal:hide', () => cb()),
   showBadges: (badges) => ipcRenderer.send('badges:show', badges),
   clearBadges: () => ipcRenderer.send('badges:clear'),
   onBadges: (cb) => ipcRenderer.on('badges:data', (_e, b) => cb(b)),

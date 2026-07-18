@@ -280,10 +280,11 @@ let badgeTimeout = null;
 let badgesActive = false;
 let csActive = false;
 let celebrateUntil = 0;
+let portalActive = false;
 
 function syncBadgeWinVisibility() {
   if (!badgeWin) return;
-  if (badgesActive || csActive || Date.now() < celebrateUntil) badgeWin.showInactive();
+  if (badgesActive || csActive || portalActive || Date.now() < celebrateUntil) badgeWin.showInactive();
   else badgeWin.hide();
 }
 
@@ -386,6 +387,12 @@ function createTray() {
       type: 'checkbox',
       checked: settings.get('celebrationSound', true),
       click: (item) => settings.set('celebrationSound', item.checked),
+    },
+    {
+      label: 'Portal warning (on death)',
+      type: 'checkbox',
+      checked: settings.get('portalWarning', true),
+      click: (item) => settings.set('portalWarning', item.checked),
     },
     { label: 'Update patch data', click: () => refreshPatchData('tray') },
     { label: 'Check for app updates', click: () => checkAppUpdate(true) },
@@ -618,6 +625,18 @@ const poller = new LiveClientPoller(
     // dying often opens the choice screen — scan immediately
     const dead = !!state.me?.isDead;
     if (pendingOffer && dead && !wasDead) setTimeout(kickScan, 600);
+    // death portal warning: fires on the dead transition, clears on respawn
+    if (badgeWin) {
+      if (dead && !wasDead && settings.get('portalWarning', true)) {
+        portalActive = true;
+        badgeWin.webContents.send('portal:show', { sound: settings.get('celebrationSound', true) });
+        badgeWin.showInactive();
+      } else if (!dead && wasDead) {
+        portalActive = false;
+        badgeWin.webContents.send('portal:hide');
+        syncBadgeWinVisibility();
+      }
+    }
     wasDead = dead;
   },
   async () => {
