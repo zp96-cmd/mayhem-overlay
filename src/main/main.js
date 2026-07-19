@@ -250,6 +250,8 @@ function createBadgeWindow() {
     },
   });
   badgeWin.setAlwaysOnTop(true, 'screen-saver');
+  // Always fully click-through, no mouse forwarding (forwarding lags the
+
   badgeWin.setIgnoreMouseEvents(true);
   badgeWin.loadFile(path.join(__dirname, '..', 'renderer', 'badges.html'));
 }
@@ -280,11 +282,10 @@ let badgeTimeout = null;
 let badgesActive = false;
 let csActive = false;
 let celebrateUntil = 0;
-let portalActive = false;
 
 function syncBadgeWinVisibility() {
   if (!badgeWin) return;
-  if (badgesActive || csActive || portalActive || Date.now() < celebrateUntil) badgeWin.showInactive();
+  if (badgesActive || csActive || Date.now() < celebrateUntil) badgeWin.showInactive();
   else badgeWin.hide();
 }
 
@@ -340,6 +341,7 @@ function createScanButton() {
   scanBtn.loadFile(path.join(__dirname, '..', 'renderer', 'scanbtn.html'));
 }
 
+
 // Collapse = shrink the actual window to just the titlebar, not merely hide content
 let panelCollapsed = false;
 let expandedBounds = null;
@@ -389,10 +391,10 @@ function createTray() {
       click: (item) => settings.set('celebrationSound', item.checked),
     },
     {
-      label: 'Portal warning (on death)',
+      label: 'Multikill celebrations',
       type: 'checkbox',
-      checked: settings.get('portalWarning', true),
-      click: (item) => settings.set('portalWarning', item.checked),
+      checked: settings.get('killCelebrations', true),
+      click: (item) => settings.set('killCelebrations', item.checked),
     },
     { label: 'Update patch data', click: () => refreshPatchData('tray') },
     { label: 'Check for app updates', click: () => checkAppUpdate(true) },
@@ -606,11 +608,58 @@ async function maybeFetchChampData(state) {
   }
 }
 
+// ---------- multikill celebrations from the event feed ----------
+let lastEventId = -1;
+let eventsSeen = false;
+const KILL_LABELS = { 2: 'DOUBLE KILL', 3: 'TRIPLE KILL', 4: 'QUADRA KILL', 5: 'PENTAKILL' };
+
+function nameMatchesMe(evName, myRiotId) {
+  if (!evName || !myRiotId) return false;
+  const a = evName.toLowerCase();
+  const b = myRiotId.toLowerCase();
+  return a === b || a === b.split('#')[0] || b.startsWith(a + '#');
+}
+
+function detectMultikills(state) {
+  const events = state.events ?? [];
+  if (!events.length) return;
+  const maxId = Math.max(...events.map((e) => e.EventID ?? -1));
+  // first poll of a game: absorb history without firing
+  if (!eventsSeen) { eventsSeen = true; lastEventId = maxId; return; }
+  const myId = state.me?.riotId || state.activePlayer?.riotId;
+  for (const ev of events) {
+    if ((ev.EventID ?? -1) <= lastEventId) continue;
+    if (ev.EventName === 'Multikill' &&
+        ev.KillStreak >= 2 &&
+        nameMatchesMe(ev.KillerName, myId) &&
+        settings.get('killCelebrations', true)) {
+      fireMultikill(Math.min(5, ev.KillStreak));
+    }
+  }
+  lastEventId = maxId;
+}
+
+let killCelebrateTimeout = null;
+function fireMultikill(streak) {
+  if (!badgeWin) return;
+  const dur = streak >= 5 ? 6500 : 4500;
+  celebrateUntil = Math.max(celebrateUntil, Date.now() + dur);
+  badgeWin.webContents.send('multikill:go', {
+    streak,
+    label: KILL_LABELS[streak] ?? 'MULTIKILL',
+    sound: settings.get('celebrationSound', true),
+  });
+  badgeWin.showInactive();
+  clearTimeout(killCelebrateTimeout);
+  killCelebrateTimeout = setTimeout(syncBadgeWinVisibility, dur + 100);
+}
+
 let scanBtnShown = false;
 const poller = new LiveClientPoller(
   (state) => {
     win?.webContents.send('live:update', state);
     maybeFetchChampData(state);
+    detectMultikills(state);
     if (!scanBtnShown) { scanBtnShown = true; scanBtn?.showInactive(); }
     const lvl = state.activePlayer?.level ?? 0;
     // crossing an augment breakpoint -> nudge the augment picker open
@@ -625,23 +674,13 @@ const poller = new LiveClientPoller(
     // dying often opens the choice screen — scan immediately
     const dead = !!state.me?.isDead;
     if (pendingOffer && dead && !wasDead) setTimeout(kickScan, 600);
-    // death portal warning: fires on the dead transition, clears on respawn
-    if (badgeWin) {
-      if (dead && !wasDead && settings.get('portalWarning', true)) {
-        portalActive = true;
-        badgeWin.webContents.send('portal:show', { sound: settings.get('celebrationSound', true) });
-        badgeWin.showInactive();
-      } else if (!dead && wasDead) {
-        portalActive = false;
-        badgeWin.webContents.send('portal:hide');
-        syncBadgeWinVisibility();
-      }
-    }
     wasDead = dead;
   },
   async () => {
     lastLevel = 0;
     champDataFor = null;
+    eventsSeen = false;
+    lastEventId = -1;
     setOfferActive(false);
     clearBuildStrip();
     scanBtnShown = false;

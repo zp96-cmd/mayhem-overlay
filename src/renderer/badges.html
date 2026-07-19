@@ -20,6 +20,7 @@
       text-align: center;
       white-space: nowrap;
       box-shadow: var(--shadow-2), inset 0 1px 0 rgba(240, 230, 210, 0.08);
+      z-index: 160;
     }
     .badge.best {
       border-color: var(--win);
@@ -42,38 +43,6 @@
       box-shadow: 0 0 18px rgba(232, 83, 110, 0.45), var(--shadow-2);
     }
 
-    /* ---------- death portal warning ---------- */
-    #portal {
-      position: absolute; inset: 0;
-      display: none;
-      align-items: center; justify-content: center;
-      pointer-events: none;
-      z-index: 200;
-    }
-    #portal-msg {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: 88px;
-      line-height: 1.02;
-      text-align: center;
-      letter-spacing: 2px;
-      max-width: 80vw;
-      color: #fff;
-      text-shadow:
-        0 0 18px rgba(232, 83, 110, 0.9),
-        0 0 40px rgba(232, 83, 110, 0.7),
-        0 6px 16px rgba(4, 9, 15, 0.95);
-      -webkit-text-stroke: 3px var(--loss);
-      animation: portalPulse 0.6s ease-in-out infinite alternate;
-    }
-    @keyframes portalPulse {
-      from { transform: scale(1); }
-      to { transform: scale(1.06); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      #portal-msg { animation: none; }
-    }
-
     /* ---------- keep/reroll verdict ---------- */
     #verdict {
       position: absolute;
@@ -84,6 +53,7 @@
       flex-direction: column;
       align-items: center;
       gap: 2px;
+      z-index: 160;
       background: var(--surface-0);
       border: 2px solid var(--hairline-strong);
       border-radius: var(--r-container);
@@ -107,6 +77,7 @@
       display: none;
       flex-direction: column;
       gap: 4px;
+      z-index: 160;
       background: var(--surface-0);
       border: 1px solid var(--hairline-strong);
       border-radius: var(--r-container);
@@ -163,7 +134,6 @@
   <div id="verdict"></div>
   <div id="cs"></div>
   <div id="prio"></div>
-  <div id="portal"><div id="portal-msg">DON'T CLICK THE FUCKING PORTAL</div></div>
   <script src="badges.js"></script>
 </body>
 </html>

@@ -130,43 +130,114 @@ function playSynthFanfare() {
   } catch { /* audio unavailable */ }
 }
 
-/* ---------- death portal warning + airhorn ---------- */
-function playAirhorn() {
+/* ---------- multikill celebrations ---------- */
+function playKillFanfare(streak) {
   try {
     const ac = new AudioContext();
     const master = ac.createGain();
-    master.gain.value = 0.3;
+    master.gain.value = 0.28;
     master.connect(ac.destination);
-    // three stabs of a buzzy sawtooth chord = airhorn
-    const stab = (at, dur) => {
-      [233, 349, 466].forEach((freq) => {
-        const o = ac.createOscillator();
-        const g = ac.createGain();
-        o.type = 'sawtooth';
-        o.frequency.setValueAtTime(freq * 0.98, ac.currentTime + at);
-        o.frequency.linearRampToValueAtTime(freq, ac.currentTime + at + 0.05);
-        g.gain.setValueAtTime(0.0001, ac.currentTime + at);
-        g.gain.exponentialRampToValueAtTime(0.9, ac.currentTime + at + 0.02);
-        g.gain.setValueAtTime(0.9, ac.currentTime + at + dur - 0.05);
-        g.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + at + dur);
-        o.connect(g); g.connect(master);
-        o.start(ac.currentTime + at);
-        o.stop(ac.currentTime + at + dur + 0.02);
-      });
+    const note = (freq, at, dur, peak, type = 'triangle') => {
+      const o = ac.createOscillator();
+      const g = ac.createGain();
+      o.type = type;
+      o.frequency.value = freq;
+      g.gain.setValueAtTime(0.0001, ac.currentTime + at);
+      g.gain.exponentialRampToValueAtTime(peak, ac.currentTime + at + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + at + dur);
+      o.connect(g); g.connect(master);
+      o.start(ac.currentTime + at);
+      o.stop(ac.currentTime + at + dur + 0.05);
     };
-    stab(0, 0.18);
-    stab(0.24, 0.18);
-    stab(0.48, 0.5);
-    setTimeout(() => ac.close(), 1400);
+    // ascending run whose length/height grows with the streak
+    const scale = [523.25, 659.25, 783.99, 1046.5, 1318.5, 1568]; // C5 E5 G5 C6 E6 G6
+    const steps = Math.min(scale.length, streak + 1);
+    for (let i = 0; i < steps; i++) note(scale[i], i * 0.1, 0.3, 0.5);
+    // triumphant chord on arrival
+    const chordAt = steps * 0.1;
+    [523.25, 659.25, 783.99, 1046.5].forEach((f) => note(f, chordAt, 1.3, 0.35));
+    if (streak >= 5) {
+      // pentakill: add a low power blast + shimmering octave
+      note(130.81, chordAt, 1.6, 0.5, 'sawtooth');
+      note(2093, chordAt + 0.1, 1.2, 0.18, 'square');
+    }
+    setTimeout(() => ac.close(), 3000);
   } catch { /* audio unavailable */ }
 }
 
-const portal = document.getElementById('portal');
-window.mayhem.onPortalShow((d) => {
-  portal.style.display = 'flex';
-  if (d?.sound !== false) playAirhorn();
+function killConfetti(streak) {
+  const canvas = document.createElement('canvas');
+  canvas.style.cssText = 'position:absolute;inset:0;pointer-events:none;z-index:150';
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  document.body.append(canvas);
+  const ctx = canvas.getContext('2d');
+  const gold = ['#c8aa6e', '#f0e6d2', '#e2b93b'];
+  const rainbow = ['#c8aa6e', '#f0e6d2', '#3fd08a', '#63d6e4', '#e2b93b', '#e8536e', '#b57edc'];
+  const colors = streak >= 5 ? rainbow : gold;
+  const count = 120 + streak * 90;
+  const parts = [];
+  for (let i = 0; i < count; i++) {
+    const side = i % 3;
+    parts.push({
+      x: side === 0 ? -10 : side === 1 ? canvas.width + 10 : Math.random() * canvas.width,
+      y: side === 2 ? -10 : canvas.height * (0.5 + Math.random() * 0.35),
+      vx: side === 0 ? 6 + Math.random() * 13 : side === 1 ? -(6 + Math.random() * 13) : (Math.random() - 0.5) * 3,
+      vy: side === 2 ? 1 + Math.random() * 3 : -(10 + Math.random() * 15),
+      s: 5 + Math.random() * 8,
+      r: Math.random() * Math.PI,
+      vr: (Math.random() - 0.5) * 0.4,
+      col: colors[i % colors.length],
+    });
+  }
+  const life = streak >= 5 ? 5200 : 3600;
+  const t0 = performance.now();
+  (function frame(t) {
+    const alive = (t - t0) < life;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const fade = Math.max(0, 1 - (t - t0) / life);
+    for (const p of parts) {
+      p.x += p.vx; p.y += p.vy; p.vy += 0.32; p.vx *= 0.99; p.r += p.vr;
+      ctx.save();
+      ctx.globalAlpha = fade;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.r);
+      ctx.fillStyle = p.col;
+      ctx.fillRect(-p.s / 2, -p.s / 2, p.s, p.s * 0.6);
+      ctx.restore();
+    }
+    if (alive) requestAnimationFrame(frame);
+    else canvas.remove();
+  })(t0);
+}
+
+window.mayhem.onMultikill((d) => {
+  const { streak, label, sound } = d;
+  if (sound !== false) playKillFanfare(streak);
+  killConfetti(streak);
+
+  const size = { 2: 58, 3: 72, 4: 90, 5: 118 }[streak] ?? 58;
+  const color = streak >= 5 ? '#e8536e' : streak >= 4 ? '#63d6e4' : 'var(--gold-bright)';
+  const banner = document.createElement('div');
+  banner.textContent = label;
+  banner.style.cssText = [
+    'position:absolute', 'left:50%', 'top:40%', 'transform:translate(-50%,-50%)',
+    'font-family:var(--font-display)', `font-size:${size}px`, 'font-weight:900',
+    'letter-spacing:4px', `color:${color}`, 'z-index:170', 'pointer-events:none',
+    'white-space:nowrap',
+    `text-shadow:0 0 26px ${streak >= 5 ? 'rgba(232,83,110,0.9)' : 'var(--gold-glow)'}, 0 4px 14px rgba(4,9,15,0.95)`,
+  ].join(';');
+  document.body.append(banner);
+  const hold = streak >= 5 ? 4600 : 3200;
+  banner.animate([
+    { transform: 'translate(-50%,-50%) scale(0.2) rotate(-6deg)', opacity: 0 },
+    { transform: 'translate(-50%,-50%) scale(1.2)', opacity: 1, offset: 0.16 },
+    { transform: 'translate(-50%,-50%) scale(1)', opacity: 1, offset: 0.28 },
+    { transform: 'translate(-50%,-50%) scale(1)', opacity: 1, offset: 0.82 },
+    { transform: 'translate(-50%,-50%) scale(1.08)', opacity: 0 },
+  ], { duration: hold, easing: 'ease-out' });
+  setTimeout(() => banner.remove(), hold);
 });
-window.mayhem.onPortalHide(() => { portal.style.display = 'none'; });
 
 window.mayhem.onCelebrate((payload) => {
   const name = typeof payload === 'string' ? payload : payload.name;
