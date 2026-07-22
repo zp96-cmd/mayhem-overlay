@@ -50,15 +50,15 @@
       background: linear-gradient(96deg, var(--gold-deep), var(--gold-bright) 45%, var(--gold) 62%, var(--gold-deep));
       background-size: 200% 100%;
       -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-      animation: goldSheen 7s linear infinite;
+      /* static gradient (no anim for perf) */
     }
     .srow img {
       width: 27px; height: 27px; border-radius: 6px;
       background: rgba(4, 9, 15, 0.5); border: 1px solid var(--hairline-strong); display: block;
     }
     .srow .arrow { color: var(--gold); opacity: 0.5; font-size: 11px; }
-    .srow img.next { outline: 2px solid var(--tier-gold); animation: nextPulse 2.2s var(--ease) infinite; }
-    .srow img.next.affordable { outline-color: var(--win); animation: nextPulseWin 2.2s var(--ease) infinite; }
+    .srow img.next { outline: 2px solid var(--tier-gold); box-shadow: 0 0 12px rgba(226,185,59,0.65); }
+    .srow img.next.affordable { outline-color: var(--win); box-shadow: 0 0 12px rgba(226,185,59,0.65); }
     .srow .min {
       margin-left: 4px;
       background: none; border: 1px solid var(--hairline);

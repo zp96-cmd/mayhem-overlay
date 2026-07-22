@@ -501,8 +501,14 @@ function showPriorityList(offerNames = []) {
     })
     .sort((x, y) => y.score - x.score)
     .slice(0, 8);
+  // only push when something actually changed — this runs every live tick and
+  // rebuilding the panel + resizing its window each time was causing lag
+  const key = JSON.stringify([tier, rows.map((r) => [r.name, r.offered, Math.round((r.wr ?? 0) * 1000)])]);
+  if (key === lastPrioKey) return;
+  lastPrioKey = key;
   window.mayhem.showPrio({ tier, items: rows });
 }
+let lastPrioKey = null;
 
 function renderMyAugments() {
   const strip = $('#my-augments');
@@ -1267,6 +1273,7 @@ async function init() {
     renderBuildTab();
     window.mayhem.clearCombos();
     window.mayhem.clearPrio();
+    lastPrioKey = null;
   });
   window.mayhem.onAugmentBreakpoint(({ level, manual }) => {
     $('#offer-banner').classList.remove('hidden');

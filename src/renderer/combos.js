@@ -15,9 +15,13 @@ const tierClass = (t) => {
   return 't-c';
 };
 
+let lastW = 0, lastH = 0;
 function reportSize() {
   const r = wrap.getBoundingClientRect();
-  window.mayhem.combosResize(Math.ceil(r.width) + 4, Math.ceil(r.height) + 4);
+  const w = Math.ceil(r.width) + 4, h = Math.ceil(r.height) + 4;
+  if (w === lastW && h === lastH) return; // avoid needless window resizes
+  lastW = w; lastH = h;
+  window.mayhem.combosResize(w, h);
 }
 
 window.mayhem.onCombos((data) => {

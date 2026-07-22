@@ -23,15 +23,13 @@
       border-radius: var(--r-container);
       background:
         var(--hexweave),
-        linear-gradient(180deg, rgba(16, 26, 40, 0.94), rgba(8, 13, 22, 0.96));
+        linear-gradient(180deg, rgba(17, 27, 42, 0.98), rgba(8, 13, 22, 0.99));
       background-size: 56px 96px, cover;
       border: 1px solid var(--hairline-strong);
       box-shadow:
         0 18px 48px rgba(0, 0, 0, 0.55),
         0 0 0 1px rgba(0, 0, 0, 0.35),
         inset 0 1px 0 rgba(240, 230, 210, 0.09);
-      backdrop-filter: blur(14px) saturate(1.1);
-      -webkit-backdrop-filter: blur(14px) saturate(1.1);
       overflow: hidden;
     }
     /* gold accent rail */
@@ -67,7 +65,7 @@
       background: linear-gradient(96deg, var(--gold-deep), var(--gold-bright) 42%, var(--gold) 60%, var(--gold-deep));
       background-size: 200% 100%;
       -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-      animation: goldSheen 6s linear infinite;
+      /* static gradient (no anim for perf) */
     }
     .row {
       display: flex; align-items: center; gap: 9px;

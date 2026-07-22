@@ -9,9 +9,13 @@ const lockBtn = document.getElementById('lock');
 const wrClass = (wr) => (wr >= 0.53 ? 'wr-good' : wr < 0.48 ? 'wr-bad' : 'wr-mid');
 const pct = (v) => `${(v * 100).toFixed(1)}%`;
 
+let lastW = 0, lastH = 0;
 function reportSize() {
   const r = wrap.getBoundingClientRect();
-  window.mayhem.prioResize(Math.ceil(r.width) + 4, Math.ceil(r.height) + 4);
+  const w = Math.ceil(r.width) + 4, h = Math.ceil(r.height) + 4;
+  if (w === lastW && h === lastH) return; // avoid needless window resizes
+  lastW = w; lastH = h;
+  window.mayhem.prioResize(w, h);
 }
 
 window.mayhem.onPrio((data) => {

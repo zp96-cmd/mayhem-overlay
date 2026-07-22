@@ -50,7 +50,7 @@ body {
   background-size: 200% 100%;
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: goldSheen 6s linear infinite;
+  /* static gradient (no anim for perf) */
 }
 #live-champ { color: var(--text-dim); font-size: 12px; font-weight: 600; }
 .spacer { flex: 1; }

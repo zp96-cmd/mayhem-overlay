@@ -39,7 +39,7 @@
     .badge.best {
       border-color: rgba(63, 208, 138, 0.65);
       transform: translate(-50%, -112%) scale(1.09);
-      animation: bestPulse 2.4s var(--ease) infinite;
+      box-shadow: 0 0 24px var(--win-glow), var(--shadow-3);
     }
     /* gold star pip on the best pill */
     .badge.best::after {
@@ -63,7 +63,7 @@
     .badge .tag.reroll { color: var(--loss); }
     .badge.reroll-mode {
       border-color: rgba(232, 83, 110, 0.6);
-      animation: rrPulse 2.4s var(--ease) infinite;
+      box-shadow: 0 0 22px var(--loss-glow), var(--shadow-3);
     }
 
     /* ---------- keep/reroll verdict ---------- */
@@ -85,9 +85,9 @@
     }
     #verdict .act { font-size: 30px; font-weight: 900; letter-spacing: 3px; line-height: 1; }
     #verdict .nums { font-size: 12px; color: var(--text-dim); font-weight: 600; font-variant-numeric: tabular-nums; }
-    #verdict.pick { border-color: rgba(63, 208, 138, 0.65); animation: bestPulse 2.6s var(--ease) infinite; }
+    #verdict.pick { border-color: rgba(63, 208, 138, 0.65); box-shadow: 0 0 24px var(--win-glow), var(--shadow-3); }
     #verdict.pick .act { color: var(--win); text-shadow: 0 0 18px var(--win-glow); }
-    #verdict.reroll { border-color: rgba(232, 83, 110, 0.6); animation: rrPulse 2.6s var(--ease) infinite; }
+    #verdict.reroll { border-color: rgba(232, 83, 110, 0.6); box-shadow: 0 0 22px var(--loss-glow), var(--shadow-3); }
     #verdict.reroll .act { color: var(--loss); text-shadow: 0 0 18px var(--loss-glow); }
     #verdict.close { border-color: var(--hairline-strong); box-shadow: var(--shadow-3); }
     #verdict.close .act { color: var(--caution); font-size: 22px; }
