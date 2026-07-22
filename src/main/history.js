@@ -63,6 +63,7 @@ async function ingestRecentMayhemGames(lcu, store, { maxGames = 40 } = {}) {
       duration: g.gameDuration,
       queueId: g.queueId,
       championId: me.championId,
+      myRiotId: idToRiot.get(me.participantId) ?? null,
       win: me.stats?.win ?? false,
       augments: extractAugments(me.stats),
       items: extractItems(me.stats),

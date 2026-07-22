@@ -70,6 +70,28 @@ function renderKillHero(hk, champById) {
   attachTilt($('#hk .kill-hero'));
 }
 
+const MATE_MIN_GAMES = 5; // only show people you've played with at least this many times
+function renderSquad(squad) {
+  if (!squad.length) return;
+  const cards = squad.slice(0, 8).map((m, i) => {
+    const wr = m.wins / m.games;
+    const pct = Math.round(wr * 100);
+    const cls = wrCls(wr);
+    const [name, tag] = m.id.split('#');
+    return `<div class="mate${i === 0 ? ' best' : ''}">
+      <div class="mn">${esc(name)}${tag ? `<span class="tag">#${esc(tag)}</span>` : ''}</div>
+      <div class="mwr ${cls}"><b data-count="${pct}">0</b><span>%</span></div>
+      <div class="mbar"><span class="fill ${cls}" data-w="${pct}"></span></div>
+      <div class="mg"><span class="rec">${m.wins}W ${m.games - m.wins}L</span> · ${m.games} together</div>
+    </div>`;
+  }).join('');
+  $('#squad').innerHTML =
+    `<div class="sec-h"><span class="g">SQUAD</span> · win rate playing together (${MATE_MIN_GAMES}+ games)</div>` +
+    `<div class="mates">${cards}</div>`;
+  // animate the bars after paint
+  requestAnimationFrame(() => $('#squad').querySelectorAll('.fill').forEach((f) => { f.style.width = `${f.dataset.w}%`; }));
+}
+
 /* ---- flourishes ---- */
 function countUp(el, to, dur = 1200) {
   const start = performance.now();
@@ -171,8 +193,26 @@ async function init() {
     if (hk === null || (g.kills ?? 0) > (hk.kills ?? 0)) hk = g;
   }
 
+  // teammates: on ARAM Mayhem your whole team shares the result, so a participant
+  // with the same win as me is a teammate (exclude myself by riotId / champion)
+  const mates = new Map();
+  for (const g of list) {
+    for (const p of (g.participants ?? [])) {
+      if (!p.riotId || p.win !== g.win) continue;
+      if (p.riotId === g.myRiotId || p.championId === g.championId) continue;
+      let e = mates.get(p.riotId);
+      if (!e) { e = { id: p.riotId, games: 0, wins: 0 }; mates.set(p.riotId, e); }
+      e.games++;
+      if (g.win) e.wins++;
+    }
+  }
+  const squad = [...mates.values()]
+    .filter((m) => m.games >= MATE_MIN_GAMES)
+    .sort((a, b) => (b.wins / b.games) - (a.wins / a.games) || b.games - a.games);
+
   renderPodium(ranked, champById, augById);
   renderKillHero(hk, champById);
+  renderSquad(squad);
   runCounters();
   $('#foot').textContent = `${list.length} games recorded · ${byChamp.size} champions played`;
 }
