@@ -1207,6 +1207,7 @@ async function init() {
     window.mayhem.setCollapsed(collapsed);
   });
   $('#btn-pin').addEventListener('click', () => window.mayhem.setClickThrough(!state.clickThrough));
+  $('#btn-podium').addEventListener('click', () => window.mayhem.openPodium());
   $('#offer-clear').addEventListener('click', () => {
     state.picked = [];
     renderMyAugments(); renderAugments(); renderBuildTab();

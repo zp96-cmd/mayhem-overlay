@@ -496,6 +496,7 @@ function createTray() {
     { label: 'Show/Hide (Ctrl+Alt+O)', click: toggleVisibility },
     { label: 'Toggle click-through (Ctrl+Alt+X)', click: () => setClickThrough(!clickThrough) },
     { label: 'Prep screen', click: openPrepWindow },
+    { label: 'Hall of Fame', click: openPodiumWindow },
     {
       label: 'Move combos panel',
       click: () => {
@@ -853,6 +854,31 @@ function closePrepWindow() {
   if (prepWin && !prepWin.isDestroyed()) prepWin.close();
 }
 
+// Hall of Fame podium — frameless standalone window (opened from the overlay).
+let podiumWin = null;
+function openPodiumWindow() {
+  if (podiumWin && !podiumWin.isDestroyed()) { podiumWin.show(); podiumWin.focus(); return; }
+  const bounds = settings.get('podiumBounds') ?? { width: 1160, height: 820 };
+  podiumWin = new BrowserWindow({
+    ...bounds,
+    minWidth: 900, minHeight: 640,
+    title: 'Mayhem Hall of Fame',
+    frame: false,
+    backgroundColor: '#070c14',
+    webPreferences: {
+      preload: path.join(__dirname, '..', 'preload.js'),
+      contextIsolation: true,
+      nodeIntegration: false,
+    },
+  });
+  podiumWin.setMenuBarVisibility(false);
+  podiumWin.loadFile(path.join(__dirname, '..', 'renderer', 'podium.html'));
+  const remember = () => settings.set('podiumBounds', podiumWin.getBounds());
+  podiumWin.on('moved', remember);
+  podiumWin.on('resized', remember);
+  podiumWin.on('closed', () => { podiumWin = null; });
+}
+
 // Combos over the fullscreen loading screen. The prep window isn't
 // always-on-top, so it's hidden behind the game while loading — the combos
 // window (always-on-top) is the only surface that renders on top. We push the
@@ -1119,6 +1145,9 @@ ipcMain.on('prio:dragend', () => {
   });
 });
 ipcMain.on('prio:lock', (_e, v) => setPrioLocked(!!v));
+ipcMain.on('podium:open', openPodiumWindow);
+ipcMain.on('podium:close', () => { if (podiumWin && !podiumWin.isDestroyed()) podiumWin.close(); });
+ipcMain.on('podium:minimize', () => podiumWin?.minimize());
 ipcMain.on('combos:show', (_e, data) => {
   if (!combosWin) return;
   liveCombosOwner = true; // live game (app.js) now owns the panel
