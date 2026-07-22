@@ -960,15 +960,16 @@ async function champSelectTick() {
 
   const display = screen.getPrimaryDisplay();
   const scale = display.scaleFactor;
-  const pills = buildChampSelectPills(session, csRect, csStats, settings.get('csLayout') ?? undefined)
-    .map((p) => ({
-      ...p,
-      x: p.x / scale - display.bounds.x,
-      y: p.y / scale - display.bounds.y,
-    }));
-  if (pills.length) {
+  const toDip = (x, y) => ({ x: x / scale - display.bounds.x, y: y / scale - display.bounds.y });
+  const built = buildChampSelectPills(session, csRect, csStats, settings.get('csLayout') ?? undefined);
+  const pills = built.pills.map((p) => ({ ...p, ...toDip(p.x, p.y) }));
+  const blackouts = (built.blackouts ?? []).map((b) => {
+    const tl = toDip(b.x, b.y);
+    return { x: tl.x, y: tl.y, w: b.w / scale, h: b.h / scale };
+  });
+  if (pills.length || blackouts.length) {
     csActive = true;
-    badgeWin?.webContents.send('cs:data', pills);
+    badgeWin?.webContents.send('cs:data', { pills, blackouts });
     syncBadgeWinVisibility();
   }
 }

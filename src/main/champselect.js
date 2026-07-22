@@ -34,7 +34,12 @@ const DEFAULT_LAYOUT = {
   teamY0: 0.189,   // first team row centre
   teamDY: 0.1105,  // row spacing
   teamYOff: 0.052, // pill anchor below the portrait
+  benchIcon: 0.047, // bench portrait size (fraction of client width, square px)
+  teamIcon: 0.055,  // team portrait size (fraction of client width, square px)
 };
+
+// champions to hide behind a black box in champ select (by numeric id)
+const BLACKOUT_IDS = new Set([115]); // Ziggs
 
 // -> [{ x, y, winRate, tier, mine, star }] in physical px, screen coords
 function buildChampSelectPills(session, rect, stats, layout = DEFAULT_LAYOUT) {
@@ -46,13 +51,22 @@ function buildChampSelectPills(session, rect, stats, layout = DEFAULT_LAYOUT) {
   const myEntry = team.find((p) => p.cellId === myCell);
   const myWr = statFor(myEntry?.championId)?.winRate ?? null;
 
+  const blackouts = [];
+  const benchIcon = (layout.benchIcon ?? 0.047) * rect.width;
+  const teamIcon = (layout.teamIcon ?? 0.055) * rect.width;
+
   const bench = (session.benchChampions ?? []).map((b) => b.championId).filter((id) => id > 0);
   let bestBench = null;
   bench.forEach((id, i) => {
+    const cx = rect.left + rect.width * (layout.benchX0 + i * layout.benchDX);
+    if (BLACKOUT_IDS.has(id)) {
+      // box sits over the icon, just above the pill anchor
+      blackouts.push({ x: cx - benchIcon / 2, y: rect.top + rect.height * layout.benchY - benchIcon, w: benchIcon, h: benchIcon });
+    }
     const s = statFor(id);
     if (!s) return;
     const pill = {
-      x: rect.left + rect.width * (layout.benchX0 + i * layout.benchDX),
+      x: cx,
       y: rect.top + rect.height * layout.benchY,
       winRate: s.winRate, tier: s.tier, games: s.games,
       mine: false, star: false, championId: id,
@@ -64,16 +78,21 @@ function buildChampSelectPills(session, rect, stats, layout = DEFAULT_LAYOUT) {
   if (bestBench && (myWr === null || bestBench.winRate > myWr)) bestBench.star = true;
 
   team.forEach((p, idx) => {
+    const cx = rect.left + rect.width * layout.teamX;
+    const cy = rect.top + rect.height * (layout.teamY0 + idx * layout.teamDY);
+    if (BLACKOUT_IDS.has(p.championId)) {
+      blackouts.push({ x: cx - teamIcon / 2, y: cy - teamIcon / 2, w: teamIcon, h: teamIcon });
+    }
     const s = statFor(p.championId);
     if (!s) return;
     pills.push({
-      x: rect.left + rect.width * layout.teamX,
-      y: rect.top + rect.height * (layout.teamY0 + idx * layout.teamDY + layout.teamYOff),
+      x: cx,
+      y: cy + rect.height * layout.teamYOff,
       winRate: s.winRate, tier: s.tier, games: s.games,
       mine: p.cellId === myCell, star: false, championId: p.championId,
     });
   });
-  return pills;
+  return { pills, blackouts };
 }
 
 module.exports = { getClientRect, buildChampSelectPills, DEFAULT_LAYOUT };

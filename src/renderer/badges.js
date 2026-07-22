@@ -293,8 +293,22 @@ window.mayhem.onCelebrate((payload) => {
 // Champ select: win-rate pills under the bench + team champion portraits.
 const cs = document.getElementById('cs');
 
-window.mayhem.onCsPills((pills) => {
+window.mayhem.onCsPills((data) => {
+  // payload is { pills, blackouts } (older shape was a bare pills array)
+  const pills = Array.isArray(data) ? data : (data?.pills ?? []);
+  const blackouts = Array.isArray(data) ? [] : (data?.blackouts ?? []);
   cs.innerHTML = '';
+  // black boxes over champions we'd rather not look at (e.g. Ziggs)
+  for (const b of blackouts) {
+    const box = document.createElement('div');
+    box.className = 'cs-blackout';
+    box.textContent = '💩';
+    box.style.left = `${b.x}px`;
+    box.style.top = `${b.y}px`;
+    box.style.width = `${b.w}px`;
+    box.style.height = `${b.h}px`;
+    cs.append(box);
+  }
   for (const p of pills) {
     const d = document.createElement('div');
     const wrCls = p.winRate >= 0.53 ? 'good' : p.winRate < 0.48 ? 'bad' : 'mid';

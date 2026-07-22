@@ -113,6 +113,17 @@
     .cs-pill.mine { border-color: var(--arcane); box-shadow: 0 0 12px var(--arcane-glow); }
     .cs-pill.star { border-color: var(--win); box-shadow: 0 0 14px var(--win-glow); }
     .cs-pill .s { color: var(--win); margin-right: 2px; }
+
+    /* black box over champions we don't want to see (e.g. Ziggs) */
+    .cs-blackout {
+      position: absolute;
+      background: #000;
+      border-radius: 6px;
+      z-index: 165;
+      display: grid; place-items: center;
+      font-size: 22px; line-height: 1;
+      box-shadow: 0 0 0 2px #000, 0 0 10px rgba(0, 0, 0, 0.8);
+    }
   </style>
 </head>
 <body>
