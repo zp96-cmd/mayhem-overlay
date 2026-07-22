@@ -54,7 +54,7 @@
       color: var(--text-dim); border-radius: 7px; cursor: pointer; font-size: 12px;
       opacity: 0; transition: opacity 0.15s var(--ease), color 0.15s, border-color 0.15s, box-shadow 0.15s;
     }
-    body.hovering #lock, body.unlocked #lock { opacity: 1; }
+    body.unlocked #lock { opacity: 1; }
     #lock:hover { color: var(--gold); border-color: var(--gold); box-shadow: 0 0 10px var(--gold-glow); }
 
     /* drag hint — only visible when unlocked */

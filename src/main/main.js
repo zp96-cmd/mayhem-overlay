@@ -311,9 +311,9 @@ function createCombosWindow() {
     },
   });
   combosWin.setAlwaysOnTop(true, 'screen-saver');
-  // click-through, but forward move events so the renderer can reveal + capture
-  // its lock button on hover
-  combosWin.setIgnoreMouseEvents(true, { forward: true });
+  // fully click-through when locked — NO mouse-event forwarding (that floods the
+  // renderer with move events all game and lags the game). Unlock (tray) to drag.
+  combosWin.setIgnoreMouseEvents(true);
   combosWin.loadFile(path.join(__dirname, '..', 'renderer', 'combos.html'));
 }
 
@@ -336,7 +336,7 @@ function createPrioWindow() {
     },
   });
   prioWin.setAlwaysOnTop(true, 'screen-saver');
-  prioWin.setIgnoreMouseEvents(true, { forward: true });
+  prioWin.setIgnoreMouseEvents(true);
   prioWin.loadFile(path.join(__dirname, '..', 'renderer', 'prio.html'));
 }
 
@@ -362,9 +362,8 @@ function syncCombosWinVisibility() {
 function setCombosLocked(locked) {
   combosLocked = locked;
   if (!combosWin) return;
-  // locked → click-through but forwarding moves (for hover-capture of the lock
-  // button); unlocked → fully interactive so the whole panel can be dragged
-  if (locked) combosWin.setIgnoreMouseEvents(true, { forward: true });
+  // locked → fully click-through (no forwarding); unlocked → interactive to drag
+  if (locked) combosWin.setIgnoreMouseEvents(true);
   else combosWin.setIgnoreMouseEvents(false);
   combosWin.webContents.send('combos:lock-state', locked);
   if (locked) {
@@ -389,7 +388,7 @@ function syncPrioWinVisibility() {
 function setPrioLocked(locked) {
   prioLocked = locked;
   if (!prioWin) return;
-  if (locked) prioWin.setIgnoreMouseEvents(true, { forward: true });
+  if (locked) prioWin.setIgnoreMouseEvents(true);
   else prioWin.setIgnoreMouseEvents(false);
   prioWin.webContents.send('prio:lock-state', locked);
   if (locked) {
@@ -861,8 +860,11 @@ function closePrepWindow() {
 // game starts, app.js takes over the same panel (adding "have" markers).
 let loadingChampId = null;
 let liveCombosOwner = false; // true once the live game (app.js) drives the panel
+let loadingPushedFor = null; // champ we've already pushed loading combos for
 function pushLoadingCombos(champId) {
   if (!combosWin || combosWin.isDestroyed() || !champId) return;
+  if (loadingPushedFor === champId) return; // don't re-read JSON every 5s tick
+  loadingPushedFor = champId;
   const byChampion = loadDataFile('champion-combos.json')?.byChampion ?? {};
   const combos = byChampion[champId] || byChampion[String(champId)];
   if (!combos?.length) return;
@@ -885,6 +887,7 @@ function pushLoadingCombos(champId) {
 
 function clearLoadingCombos() {
   loadingChampId = null;
+  loadingPushedFor = null;
   if (!combosActive) return;
   combosActive = false;
   combosWin?.webContents.send('combos:clear');
@@ -1115,11 +1118,6 @@ ipcMain.on('prio:dragend', () => {
   });
 });
 ipcMain.on('prio:lock', (_e, v) => setPrioLocked(!!v));
-ipcMain.on('prio:mouse-capture', (_e, on) => {
-  if (!prioWin || !prioLocked) return;
-  if (on) prioWin.setIgnoreMouseEvents(false);
-  else prioWin.setIgnoreMouseEvents(true, { forward: true });
-});
 ipcMain.on('combos:show', (_e, data) => {
   if (!combosWin) return;
   liveCombosOwner = true; // live game (app.js) now owns the panel
@@ -1153,13 +1151,6 @@ ipcMain.on('combos:dragend', () => {
   });
 });
 ipcMain.on('combos:lock', (_e, v) => setCombosLocked(!!v));
-// while locked, the renderer captures the mouse only over its lock button so
-// game clicks pass through everywhere else
-ipcMain.on('combos:mouse-capture', (_e, on) => {
-  if (!combosWin || !combosLocked) return;
-  if (on) combosWin.setIgnoreMouseEvents(false);
-  else combosWin.setIgnoreMouseEvents(true, { forward: true });
-});
 ipcMain.on('scanbtn:click', async () => {
   const res = await runOcrScan('button');
   handleScanResult(res, { manual: true });

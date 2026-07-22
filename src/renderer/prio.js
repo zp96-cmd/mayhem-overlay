@@ -41,16 +41,15 @@ window.mayhem.onPrioClear(() => {
 });
 
 /* ---- lock / drag (identical pattern to the combos panel) ---- */
+// Locked = fully click-through (no mouse forwarding). Unlock from the tray
+// ("Move priority panel") to drag; the 🔓 button appears — click it to re-lock.
 let locked = true;
-let captured = false;
-let hideTimer = null;
 
 function applyLocked(v) {
   locked = v;
-  captured = false;
   document.body.classList.toggle('unlocked', !v);
   lockBtn.textContent = v ? '🔒' : '🔓';
-  lockBtn.title = v ? 'Move panel' : 'Lock panel in place';
+  lockBtn.title = v ? 'Locked' : 'Lock panel in place';
   if (!v && !content.children.length) {
     content.innerHTML =
       `<div class="title">PRIORITY</div>` +
@@ -59,29 +58,6 @@ function applyLocked(v) {
   requestAnimationFrame(reportSize);
 }
 window.mayhem.onPrioLock((v) => applyLocked(!!v));
-
-function setCapture(on) {
-  if (on === captured) return;
-  captured = on;
-  window.mayhem.prioMouseCapture(on);
-}
-function overLock(x, y) {
-  const r = lockBtn.getBoundingClientRect();
-  return x >= r.left - 3 && x <= r.right + 3 && y >= r.top - 3 && y <= r.bottom + 3;
-}
-
-document.addEventListener('mousemove', (e) => {
-  if (!locked) return;
-  document.body.classList.add('hovering');
-  clearTimeout(hideTimer);
-  hideTimer = setTimeout(() => document.body.classList.remove('hovering'), 1800);
-  setCapture(overLock(e.clientX, e.clientY));
-});
-document.addEventListener('mouseleave', () => {
-  if (!locked) return;
-  document.body.classList.remove('hovering');
-  setCapture(false);
-});
 
 lockBtn.addEventListener('click', (e) => {
   e.stopPropagation();

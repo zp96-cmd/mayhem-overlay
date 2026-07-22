@@ -54,17 +54,16 @@ window.mayhem.onCombosClear(() => {
 });
 
 /* ---- lock / drag ---- */
+// Locked = fully click-through (no mouse forwarding, zero cost in game). Unlock
+// from the tray ("Move combos panel") → the panel becomes interactive and the
+// 🔓 button appears; drag it, then click 🔓 to lock again.
 let locked = true;
-let captured = false; // whether main is currently NOT ignoring the mouse
-let hideTimer = null;
 
 function applyLocked(v) {
   locked = v;
-  captured = false; // resync capture state after any lock change
   document.body.classList.toggle('unlocked', !v);
   lockBtn.textContent = v ? '🔒' : '🔓';
-  lockBtn.title = v ? 'Move panel' : 'Lock panel in place';
-  // if unlocked with nothing to show, give them something to grab onto
+  lockBtn.title = v ? 'Locked' : 'Lock panel in place';
   if (!v && !content.children.length) {
     content.innerHTML =
       `<div class="title"><span class="lead">TOP COMBOS</span></div>` +
@@ -73,32 +72,6 @@ function applyLocked(v) {
   requestAnimationFrame(reportSize);
 }
 window.mayhem.onCombosLock((v) => applyLocked(!!v));
-
-// tell main to capture the mouse (only meaningful while locked)
-function setCapture(on) {
-  if (on === captured) return;
-  captured = on;
-  window.mayhem.combosMouseCapture(on);
-}
-function overLock(x, y) {
-  const r = lockBtn.getBoundingClientRect();
-  return x >= r.left - 3 && x <= r.right + 3 && y >= r.top - 3 && y <= r.bottom + 3;
-}
-
-// forwarded move events (main uses setIgnoreMouseEvents(true,{forward:true}))
-// let us reveal the button and grab the mouse only over it while locked
-document.addEventListener('mousemove', (e) => {
-  if (!locked) return;
-  document.body.classList.add('hovering');
-  clearTimeout(hideTimer);
-  hideTimer = setTimeout(() => document.body.classList.remove('hovering'), 1800);
-  setCapture(overLock(e.clientX, e.clientY));
-});
-document.addEventListener('mouseleave', () => {
-  if (!locked) return;
-  document.body.classList.remove('hovering');
-  setCapture(false);
-});
 
 lockBtn.addEventListener('click', (e) => {
   e.stopPropagation();
