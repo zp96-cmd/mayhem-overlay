@@ -104,7 +104,12 @@ const tierClass = (t) => {
 window.mayhem.onCombos((data) => {
   const rows = data?.rows ?? [];
   if (!rows.length) { combosBox.style.display = 'none'; return; }
-  combosBox.innerHTML = `<div class="title">${data.champName ? data.champName.toUpperCase() + ' ' : ''}COMBOS</div>`;
+  combosBox.innerHTML =
+    `<div class="title">` +
+      `<span class="lead">TOP COMBOS</span>` +
+      (data.champName ? `<span class="champ">${data.champName.toUpperCase()}</span>` : '') +
+      `<span class="spark">⚡</span>` +
+    `</div>`;
   for (const c of rows) {
     const row = document.createElement('div');
     row.className = `crow${c.have ? ' have' : ''}`;
