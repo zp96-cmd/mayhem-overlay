@@ -3,8 +3,31 @@
    match-history store. Fully animated (this window isn't over the game). */
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const splash = (id) => `https://cdn.communitydragon.org/latest/champion/${id}/splash-art/centered`;
 const wrCls = (wr) => (wr >= 0.55 ? 'good' : wr < 0.45 ? 'bad' : 'mid');
+
+// Not every champion has a "centered" splash crop on CommunityDragon (e.g. Brand),
+// and background-image can't fall back on error — so try each source in turn and
+// use the first that actually loads.
+function hydrateSplashes(root) {
+  root.querySelectorAll('.splash[data-champ]').forEach((el) => {
+    const id = el.dataset.champ;
+    const sources = [
+      `https://cdn.communitydragon.org/latest/champion/${id}/splash-art/centered`,
+      `https://cdn.communitydragon.org/latest/champion/${id}/splash-art`,
+      `https://cdn.communitydragon.org/latest/champion/${id}/tile`,
+      el.dataset.icon || '',
+    ].filter(Boolean);
+    let i = 0;
+    (function tryNext() {
+      if (i >= sources.length) return;
+      const url = sources[i++];
+      const img = new Image();
+      img.onload = () => { el.style.backgroundImage = `url('${url}')`; };
+      img.onerror = tryNext;
+      img.src = url;
+    })();
+  });
+}
 const medal = (rank) => (rank === 1 ? '🥇' : rank === 2 ? '🥈' : '🥉');
 
 $('#min').addEventListener('click', () => window.mayhem.minimizePodium());
@@ -28,7 +51,7 @@ function colHtml(e, rank, champById, augById) {
     ${rank === 1 ? '<div class="crown">👑</div>' : ''}
     <div class="medal">${medal(rank)}</div>
     <div class="card">
-      <div class="splash" style="background-image:url('${splash(e.id)}')"></div>
+      <div class="splash" data-champ="${e.id}" data-icon="${esc(c?.icon ?? '')}"></div>
       <div class="shine"></div><div class="gloss"></div>
       <div class="scrim">
         <div class="cname">${esc(c?.name ?? 'Champion ' + e.id)}</div>
@@ -48,13 +71,14 @@ function renderPodium(ranked, champById, augById) {
   if (ranked[2]) cols.push(colHtml(ranked[2], 3, champById, augById)); // 3rd on the right
   $('#stage').innerHTML = cols.join('');
   $('#stage').querySelectorAll('.card').forEach(attachTilt);
+  hydrateSplashes($('#stage'));
 }
 
 function renderKillHero(hk, champById) {
   if (!hk) return;
   const c = champById.get(hk.championId);
   $('#hk').innerHTML = `<div class="kill-hero">
-    <div class="splash" style="background-image:url('${splash(hk.championId)}')"></div>
+    <div class="splash" data-champ="${hk.championId}" data-icon="${esc(c?.icon ?? '')}"></div>
     <div class="scrim">
       <div style="text-align:center">
         <div class="big" data-count="${hk.kills ?? 0}">0</div>
@@ -68,6 +92,7 @@ function renderKillHero(hk, champById) {
     </div>
   </div>`;
   attachTilt($('#hk .kill-hero'));
+  hydrateSplashes($('#hk'));
 }
 
 const WRBAR_MIN_GAMES = 3; // champs need this many games to appear in the win-rate rail
