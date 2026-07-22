@@ -56,6 +56,11 @@ function notify(title, body) {
 // (which also lets the post-game history sync finish), then restart.
 let pendingInstallVersion = null;
 let updateSafeTicks = 0;
+const startupAt = Date.now();
+// Right after launch the player is in menus, so applying a freshly-downloaded
+// update immediately is safe — this stops fast-queuers from falling behind
+// waiting for a rare idle minute mid-session.
+const LAUNCH_INSTALL_WINDOW_MS = 4 * 60 * 1000;
 const BUSY_PHASES = ['ChampSelect', 'GameStart', 'InProgress', 'ReadyCheck', 'Matchmaking', 'EndOfGame'];
 
 function updateSafeToRestart() {
@@ -67,7 +72,7 @@ function maybeAutoInstall() {
   if (!pendingInstallVersion) return;
   if (!updateSafeToRestart()) { updateSafeTicks = 0; return; }
   updateSafeTicks++;
-  if (updateSafeTicks === 12) { // ~60s continuously idle
+  if (updateSafeTicks === 6) { // ~30s continuously idle
     notify('Mayhem Overlay', `Updating to v${pendingInstallVersion} and restarting…`);
     setTimeout(() => {
       try {
@@ -106,12 +111,17 @@ async function checkAppUpdate(manual) {
           installNow(info.version);
           return;
         }
-        // background download: wait for an idle minute before restarting
+        // fresh launch (player's in menus) → apply now so nobody falls behind
+        if (Date.now() - startupAt < LAUNCH_INSTALL_WINDOW_MS && updateSafeToRestart()) {
+          installNow(info.version);
+          return;
+        }
+        // otherwise wait for a short idle stretch before restarting
         pendingInstallVersion = info.version;
         updateSafeTicks = 0;
         notify('Mayhem Overlay update ready',
           updateSafeToRestart()
-            ? `v${info.version} downloaded. Restarting in about a minute…`
+            ? `v${info.version} downloaded. Restarting shortly…`
             : `v${info.version} downloaded. It installs automatically after your game.`);
       });
     }
