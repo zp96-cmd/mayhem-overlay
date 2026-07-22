@@ -63,7 +63,30 @@
     header .win button:hover { color: var(--text); border-color: var(--hairline-strong); }
     header .win .close:hover { color: var(--loss); border-color: var(--loss); background: rgba(232,83,110,0.12); }
 
-    .wrap { max-width: 1080px; margin: 0 auto; padding: 10px 30px 64px; }
+    .layout { max-width: 1240px; margin: 0 auto; display: flex; align-items: flex-start; gap: 28px; padding: 10px 30px 64px; }
+    .wrap { flex: 1; min-width: 0; }
+    @media (max-width: 1060px) { .layout { flex-direction: column; } .rail { width: 100% !important; position: static !important; } }
+
+    /* ---------- win-rate rail ---------- */
+    .rail { width: 236px; flex: none; position: sticky; top: 66px; }
+    .rail-h { font-size: 11px; letter-spacing: 2px; color: var(--text-dim); font-weight: 800; margin-bottom: 15px; }
+    .rail-h .g { font-size: 13px; letter-spacing: 2.5px;
+      background: linear-gradient(96deg, var(--gold-deep), #fff3d0 40%, var(--gold-bright) 55%, var(--gold-deep));
+      background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      animation: sheen 5s linear infinite; }
+    #wrbars { display: flex; flex-direction: column; gap: 11px; }
+    @media (max-width: 1060px) { #wrbars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 20px; } }
+    .wrbar { animation: riseIn .5s var(--ease) both; }
+    .wrbar .top { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+    .wrbar img { width: 22px; height: 22px; border-radius: 6px; flex: none; background: rgba(4,9,15,0.5); border: 1px solid var(--hairline); }
+    .wrbar .nm { flex: 1; font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .wrbar .pc { font-size: 12.5px; font-weight: 900; font-variant-numeric: tabular-nums; }
+    .wrbar .track { height: 7px; border-radius: 999px; background: var(--surface-3); overflow: hidden; }
+    .wrbar .fill { display: block; height: 100%; width: 0; border-radius: 999px; transition: width 1s var(--ease); }
+    .pc.good { color: var(--win); } .pc.mid { color: var(--caution); } .pc.bad { color: var(--loss); }
+    .fill.good { background: linear-gradient(90deg, var(--win), #7ef0b8); }
+    .fill.mid { background: linear-gradient(90deg, var(--caution), #f0d675); }
+    .fill.bad { background: linear-gradient(90deg, var(--loss), #f088a0); }
 
     /* ---------- podium ---------- */
     .stage { display: flex; align-items: flex-end; justify-content: center; gap: 26px; margin-top: 22px; perspective: 1400px; }
@@ -119,20 +142,17 @@
     .card .rec { color: var(--text); font-weight: 800; }
 
     .augs { margin-top: 14px; width: 100%; animation: riseIn .6s var(--ease) both; animation-delay: .5s; }
-    .augs .h { font-size: 9.5px; letter-spacing: 2px; color: var(--gold); font-weight: 800; text-align: center; margin-bottom: 8px; }
-    .augs .row { display: flex; justify-content: center; gap: 8px; }
-    .augs .a { position: relative; transition: transform .18s var(--ease); }
-    .augs .a:hover { transform: translateY(-4px) scale(1.08); }
-    .augs .a img {
-      width: 40px; height: 40px; border-radius: 9px; display: block;
-      background: rgba(4,9,15,0.6); border: 1px solid var(--hairline-strong);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    .augs .h { font-size: 9.5px; letter-spacing: 2px; color: var(--gold); font-weight: 800; text-align: center; margin-bottom: 9px; }
+    .augs .alist { display: flex; flex-direction: column; gap: 6px; }
+    .augs .ar {
+      display: flex; align-items: center; gap: 9px; padding: 5px 8px; border-radius: 9px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+      border: 1px solid var(--hairline); transition: border-color .16s var(--ease), transform .16s var(--ease);
     }
-    .augs .a .ct {
-      position: absolute; bottom: -5px; right: -5px; font-size: 9.5px; font-weight: 900;
-      background: linear-gradient(180deg, var(--gold-bright), var(--gold)); color: #0a0f14;
-      border-radius: 999px; padding: 1px 5px; box-shadow: 0 2px 6px rgba(0,0,0,0.6); font-variant-numeric: tabular-nums;
-    }
+    .augs .ar:hover { border-color: var(--hairline-strong); transform: translateX(2px); }
+    .augs .ar img { width: 28px; height: 28px; border-radius: 7px; flex: none; background: rgba(4,9,15,0.6); border: 1px solid var(--hairline-strong); }
+    .augs .ar .an { flex: 1; font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: var(--font-body); }
+    .augs .ar .ac { font-size: 11px; font-weight: 900; color: var(--gold); font-variant-numeric: tabular-nums; flex: none; }
     .augs .empty { text-align: center; font-size: 10.5px; color: var(--text-faint); font-family: var(--font-body); }
 
     .pedestal {
@@ -223,15 +243,21 @@
       <button id="close" class="close" title="Close">✕</button>
     </span>
   </header>
-  <div class="wrap">
-    <div id="stage" class="stage"></div>
-    <div id="hk"></div>
-    <div id="squad"></div>
-    <div id="empty">
-      <div class="t"><span class="g">NO GAMES YET</span></div>
-      <p>Play some ARAM Mayhem games, then open the overlay and hit<br><b>Sync from client</b> on the History tab to populate your podium.</p>
-    </div>
-    <div class="foot" id="foot"></div>
+  <div class="layout">
+    <aside class="rail" id="rail">
+      <div class="rail-h"><span class="g">WIN RATES</span></div>
+      <div id="wrbars"></div>
+    </aside>
+    <main class="wrap">
+      <div id="stage" class="stage"></div>
+      <div id="hk"></div>
+      <div id="squad"></div>
+      <div id="empty">
+        <div class="t"><span class="g">NO GAMES YET</span></div>
+        <p>Play some ARAM Mayhem games, then open the overlay and hit<br><b>Sync from client</b> on the History tab to populate your podium.</p>
+      </div>
+      <div class="foot" id="foot"></div>
+    </main>
   </div>
   <script src="podium.js"></script>
 </body>

@@ -16,12 +16,12 @@ function colHtml(e, rank, champById, augById) {
   const pct = Math.round(wr * 100);
   const topAugs = [...e.aug.entries()]
     .sort((a, b) => b[1] - a[1])
-    .slice(0, 4)
+    .slice(0, 3)
     .map(([aid, ct]) => ({ aug: augById.get(aid), ct }))
     .filter((x) => x.aug);
   const augRow = topAugs.length
-    ? `<div class="row">${topAugs.map((t) =>
-        `<span class="a"><img src="${t.aug.icon}" title="${esc(t.aug.name)}">${t.ct > 1 ? `<span class="ct">${t.ct}</span>` : ''}</span>`
+    ? `<div class="alist">${topAugs.map((t) =>
+        `<div class="ar"><img src="${t.aug.icon}" alt=""><span class="an">${esc(t.aug.name)}</span>${t.ct > 1 ? `<span class="ac">×${t.ct}</span>` : ''}</div>`
       ).join('')}</div>`
     : `<div class="empty">no augment data yet</div>`;
   return `<div class="col rank-${rank}">
@@ -68,6 +68,22 @@ function renderKillHero(hk, champById) {
     </div>
   </div>`;
   attachTilt($('#hk .kill-hero'));
+}
+
+const WRBAR_MIN_GAMES = 3; // champs need this many games to appear in the win-rate rail
+function renderWrBars(champWr, champById) {
+  const box = document.getElementById('wrbars');
+  box.innerHTML = champWr.map((e, i) => {
+    const wr = e.wins / e.games;
+    const pct = Math.round(wr * 100);
+    const cls = wrCls(wr);
+    const c = champById.get(e.id);
+    return `<div class="wrbar" style="animation-delay:${(i * 0.04).toFixed(2)}s">
+      <div class="top">${c?.icon ? `<img src="${c.icon}" alt="">` : ''}<span class="nm">${esc(c?.name ?? 'Champ ' + e.id)}</span><span class="pc ${cls}">${pct}%</span></div>
+      <div class="track"><span class="fill ${cls}" data-w="${pct}"></span></div>
+    </div>`;
+  }).join('');
+  requestAnimationFrame(() => box.querySelectorAll('.fill').forEach((f) => { f.style.width = `${f.dataset.w}%`; }));
 }
 
 const MATE_MIN_GAMES = 5; // only show people you've played with at least this many times
@@ -170,7 +186,7 @@ async function init() {
   const champById = new Map((champData?.champions ?? []).map((c) => [c.id, c]));
   const list = Array.isArray(games) ? games : [];
 
-  if (!list.length) { $('#empty').style.display = 'block'; return; }
+  if (!list.length) { $('#empty').style.display = 'block'; $('#rail').style.display = 'none'; return; }
 
   const byChamp = new Map();
   for (const g of list) {
@@ -210,6 +226,13 @@ async function init() {
     .filter((m) => m.games >= MATE_MIN_GAMES)
     .sort((a, b) => (b.wins / b.games) - (a.wins / a.games) || b.games - a.games);
 
+  // win-rate rail: champs with enough games, best win rate first (descending)
+  const champWr = [...byChamp.values()]
+    .filter((e) => e.games >= WRBAR_MIN_GAMES)
+    .sort((a, b) => (b.wins / b.games) - (a.wins / a.games) || b.games - a.games)
+    .slice(0, 12);
+
+  renderWrBars(champWr, champById);
   renderPodium(ranked, champById, augById);
   renderKillHero(hk, champById);
   renderSquad(squad);

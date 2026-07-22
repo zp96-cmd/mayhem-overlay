@@ -858,7 +858,7 @@ function closePrepWindow() {
 let podiumWin = null;
 function openPodiumWindow() {
   if (podiumWin && !podiumWin.isDestroyed()) { podiumWin.show(); podiumWin.focus(); return; }
-  const bounds = settings.get('podiumBounds') ?? { width: 1160, height: 820 };
+  const bounds = settings.get('podiumBounds') ?? { width: 1300, height: 840 };
   podiumWin = new BrowserWindow({
     ...bounds,
     minWidth: 900, minHeight: 640,
