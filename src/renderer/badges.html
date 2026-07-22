@@ -106,115 +106,6 @@
     #prio .row.offered { outline: 1.5px solid var(--info); background: rgba(99, 214, 228, 0.08); }
     #prio .hint { font-size: 10px; color: var(--text-dim); margin-top: 6px; font-family: var(--font-body); }
 
-    /* ---------- combos side panel (left, premium) ---------- */
-    @keyframes comboIn {
-      from { opacity: 0; transform: translateX(-18px); }
-      to   { opacity: 1; transform: translateX(0); }
-    }
-    @keyframes comboRowIn {
-      from { opacity: 0; transform: translateX(-10px); }
-      to   { opacity: 1; transform: translateX(0); }
-    }
-    @keyframes goldSheen {
-      0%   { background-position: -140% 0; }
-      100% { background-position: 240% 0; }
-    }
-    #combos {
-      position: absolute;
-      left: 1vw;
-      top: 15vh;
-      display: none;
-      flex-direction: column;
-      gap: 6px;
-      z-index: 160;
-      width: 322px;
-      padding: 14px 15px 13px 18px;
-      border-radius: var(--r-container);
-      /* frosted abyss glass */
-      background:
-        linear-gradient(180deg, rgba(16, 26, 40, 0.94), rgba(8, 13, 22, 0.96));
-      border: 1px solid var(--hairline-strong);
-      box-shadow:
-        0 18px 48px rgba(0, 0, 0, 0.55),
-        0 0 0 1px rgba(0, 0, 0, 0.35),
-        inset 0 1px 0 rgba(240, 230, 210, 0.09);
-      backdrop-filter: blur(14px) saturate(1.1);
-      -webkit-backdrop-filter: blur(14px) saturate(1.1);
-      overflow: hidden;
-      animation: comboIn 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-    /* gold accent rail down the left edge */
-    #combos::before {
-      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-      background: linear-gradient(180deg, var(--gold-bright), var(--gold) 55%, rgba(201,158,72,0.15));
-      box-shadow: 0 0 14px var(--gold-glow);
-    }
-    #combos .title {
-      position: relative;
-      font-size: 13px; font-weight: 900; letter-spacing: 2.6px;
-      display: flex; align-items: baseline; gap: 7px;
-      padding-bottom: 9px; margin-bottom: 3px;
-      border-bottom: 1px solid var(--hairline);
-    }
-    #combos .title .lead {
-      background: linear-gradient(96deg, var(--gold) 0%, #fff3d0 40%, var(--gold-bright) 55%, var(--gold) 75%);
-      background-size: 220% 100%;
-      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-      animation: goldSheen 4.5s linear infinite;
-    }
-    #combos .title .champ {
-      font-size: 10.5px; letter-spacing: 1.5px; font-weight: 800; color: var(--text-dim);
-    }
-    #combos .title .spark { margin-left: auto; font-size: 12px; filter: drop-shadow(0 0 5px var(--gold-glow)); }
-    #combos .crow {
-      position: relative;
-      display: grid; grid-template-columns: 38px 34px 1fr; gap: 9px; align-items: center;
-      padding: 6px 7px; border-radius: var(--r-control);
-      background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.01));
-      border: 1px solid var(--hairline);
-      animation: comboRowIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-    #combos .crow:nth-child(2) { animation-delay: 0.05s; }
-    #combos .crow:nth-child(3) { animation-delay: 0.10s; }
-    #combos .crow:nth-child(4) { animation-delay: 0.15s; }
-    #combos .crow:nth-child(5) { animation-delay: 0.20s; }
-    #combos .crow:nth-child(6) { animation-delay: 0.25s; }
-    #combos .crow:nth-child(7) { animation-delay: 0.30s; }
-    #combos .crow.have {
-      border-color: rgba(63, 208, 138, 0.55);
-      background: linear-gradient(180deg, rgba(63,208,138,0.16), rgba(63,208,138,0.05));
-      box-shadow: inset 0 0 12px rgba(63,208,138,0.12);
-    }
-    #combos .crow img {
-      width: 34px; height: 34px; border-radius: 7px; grid-row: span 1;
-      background: rgba(4,9,15,0.5); border: 1px solid var(--hairline-strong);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-    }
-    #combos .crow .tier {
-      font-family: var(--font-display); font-weight: 900; font-size: 15px;
-      text-align: center; border-radius: 7px; padding: 5px 0; line-height: 1;
-      border: 1px solid transparent;
-    }
-    #combos .tier.t-splus {
-      color: #0a0f14; background: linear-gradient(160deg, #ffe58a, var(--gold));
-      border-color: var(--gold-bright); box-shadow: 0 0 12px var(--gold-glow);
-    }
-    #combos .tier.t-s { color: var(--win); background: rgba(63,208,138,0.16); border-color: rgba(63,208,138,0.4); }
-    #combos .tier.t-a { color: var(--info); background: rgba(99,214,228,0.13); border-color: rgba(99,214,228,0.35); }
-    #combos .tier.t-b { color: var(--caution); background: rgba(226,185,59,0.13); border-color: rgba(226,185,59,0.3); }
-    #combos .tier.t-c { color: var(--text-dim); background: var(--surface-3); }
-    #combos .crow .body { min-width: 0; }
-    #combos .crow .nm { font-size: 12.5px; font-weight: 800; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    #combos .crow .nm .chk { color: var(--win); margin-left: 5px; filter: drop-shadow(0 0 4px rgba(63,208,138,0.6)); }
-    #combos .crow .desc {
-      font-size: 10px; color: var(--text-dim); line-height: 1.32; margin-top: 2px;
-      font-family: var(--font-body);
-      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-    }
-    #combos .hint {
-      font-size: 9.5px; color: var(--text-dim); margin-top: 5px; letter-spacing: 0.3px;
-      font-family: var(--font-body); opacity: 0.75;
-    }
 
     /* ---------- champ select pills ---------- */
     .cs-pill {
@@ -244,7 +135,6 @@
   <div id="verdict"></div>
   <div id="cs"></div>
   <div id="prio"></div>
-  <div id="combos"></div>
   <script src="badges.js"></script>
 </body>
 </html>

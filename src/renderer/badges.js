@@ -91,44 +91,6 @@ window.mayhem.onBadgesClear(() => {
   document.getElementById('verdict').style.display = 'none';
 });
 
-/* ---------- combos side panel (arammayhem champion+augment synergies) ---------- */
-const combosBox = document.getElementById('combos');
-const tierClass = (t) => {
-  const k = String(t).toUpperCase();
-  if (k === 'S+') return 't-splus';
-  if (k === 'S') return 't-s';
-  if (k === 'A') return 't-a';
-  if (k === 'B') return 't-b';
-  return 't-c';
-};
-window.mayhem.onCombos((data) => {
-  const rows = data?.rows ?? [];
-  if (!rows.length) { combosBox.style.display = 'none'; return; }
-  combosBox.innerHTML =
-    `<div class="title">` +
-      `<span class="lead">TOP COMBOS</span>` +
-      (data.champName ? `<span class="champ">${data.champName.toUpperCase()}</span>` : '') +
-      `<span class="spark">⚡</span>` +
-    `</div>`;
-  for (const c of rows) {
-    const row = document.createElement('div');
-    row.className = `crow${c.have ? ' have' : ''}`;
-    row.innerHTML =
-      `<div class="tier ${tierClass(c.tier)}">${c.tier}</div>` +
-      (c.icon ? `<img src="${c.icon}">` : '<div></div>') +
-      `<div class="body">` +
-        `<div class="nm">${c.augmentName}${c.have ? '<span class="chk">✓</span>' : ''}</div>` +
-        (c.description ? `<div class="desc">${c.description}</div>` : '') +
-      `</div>`;
-    combosBox.append(row);
-  }
-  combosBox.append(Object.assign(document.createElement('div'), {
-    className: 'hint', textContent: 'arammayhem.com · ✓ = augment you have',
-  }));
-  combosBox.style.display = 'flex';
-});
-window.mayhem.onCombosClear(() => { combosBox.style.display = 'none'; });
-
 /* ---------- celebration: confetti + fanfare for hype augment picks ---------- */
 function playFanfare() {
   // Zac's chosen sound; synth fanfare only as fallback

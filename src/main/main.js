@@ -279,6 +279,31 @@ function createStripWindow() {
   stripWin.loadFile(path.join(__dirname, '..', 'renderer', 'strip.html'));
 }
 
+// Draggable combos panel: its own window so it can catch a mouse. Locked by
+// default → click-through (never blocks game clicks); unlock from the tray to
+// reposition, then it re-locks. Auto-sizes to its content.
+let combosWin = null;
+let combosLocked = true;
+function createCombosWindow() {
+  const d = screen.getPrimaryDisplay();
+  const pos = settings.get('combosPos') ?? { x: 0.012, y: 0.15 };
+  combosWin = new BrowserWindow({
+    width: 344, height: 520,
+    x: Math.round(d.bounds.x + d.bounds.width * pos.x),
+    y: Math.round(d.bounds.y + d.bounds.height * pos.y),
+    frame: false, transparent: true, resizable: false, movable: false,
+    focusable: false, alwaysOnTop: true, skipTaskbar: true, hasShadow: false, show: false,
+    webPreferences: {
+      preload: path.join(__dirname, '..', 'preload.js'),
+      contextIsolation: true,
+      nodeIntegration: false,
+    },
+  });
+  combosWin.setAlwaysOnTop(true, 'screen-saver');
+  combosWin.setIgnoreMouseEvents(true); // locked by default → click-through
+  combosWin.loadFile(path.join(__dirname, '..', 'renderer', 'combos.html'));
+}
+
 let badgeTimeout = null;
 let badgesActive = false;
 let csActive = false;
@@ -287,8 +312,31 @@ let celebrateUntil = 0;
 
 function syncBadgeWinVisibility() {
   if (!badgeWin) return;
-  if (badgesActive || csActive || combosActive || Date.now() < celebrateUntil) badgeWin.showInactive();
+  if (badgesActive || csActive || Date.now() < celebrateUntil) badgeWin.showInactive();
   else badgeWin.hide();
+}
+
+// combosActive = real combos are present; the window is also shown while
+// unlocked so it can be grabbed and repositioned even in menus.
+function syncCombosWinVisibility() {
+  if (!combosWin) return;
+  if (combosActive || !combosLocked) combosWin.showInactive();
+  else combosWin.hide();
+}
+function setCombosLocked(locked) {
+  combosLocked = locked;
+  if (!combosWin) return;
+  combosWin.setIgnoreMouseEvents(locked);
+  combosWin.webContents.send('combos:lock-state', locked);
+  if (locked) {
+    const b = combosWin.getBounds();
+    const d = screen.getPrimaryDisplay();
+    settings.set('combosPos', {
+      x: (b.x - d.bounds.x) / d.bounds.width,
+      y: (b.y - d.bounds.y) / d.bounds.height,
+    });
+  }
+  syncCombosWinVisibility();
 }
 
 function showBadges(badges) {
@@ -385,6 +433,13 @@ function createTray() {
     { label: 'Show/Hide (Ctrl+Alt+O)', click: toggleVisibility },
     { label: 'Toggle click-through (Ctrl+Alt+X)', click: () => setClickThrough(!clickThrough) },
     { label: 'Prep screen', click: openPrepWindow },
+    {
+      label: 'Move combos panel',
+      click: () => {
+        setCombosLocked(false);
+        notify('Mayhem Overlay', 'Drag the combos panel where you want it, then click LOCK.');
+      },
+    },
     {
       label: 'Celebration sound',
       type: 'checkbox',
@@ -729,14 +784,14 @@ function closePrepWindow() {
 }
 
 // Combos over the fullscreen loading screen. The prep window isn't
-// always-on-top, so it's hidden behind the game while loading — the badge
-// overlay is the only surface that renders on top. We push the locked-in
-// champion's combos there as soon as loading begins; once the live game
-// starts, app.js takes over the same panel (adding "have" markers).
+// always-on-top, so it's hidden behind the game while loading — the combos
+// window (always-on-top) is the only surface that renders on top. We push the
+// locked-in champion's combos there as soon as loading begins; once the live
+// game starts, app.js takes over the same panel (adding "have" markers).
 let loadingChampId = null;
 let liveCombosOwner = false; // true once the live game (app.js) drives the panel
 function pushLoadingCombos(champId) {
-  if (!badgeWin || badgeWin.isDestroyed() || !champId) return;
+  if (!combosWin || combosWin.isDestroyed() || !champId) return;
   const byChampion = loadDataFile('champion-combos.json')?.byChampion ?? {};
   const combos = byChampion[champId] || byChampion[String(champId)];
   if (!combos?.length) return;
@@ -753,16 +808,16 @@ function pushLoadingCombos(champId) {
     have: false,
   }));
   combosActive = true;
-  badgeWin.webContents.send('combos:data', { champName, rows });
-  syncBadgeWinVisibility();
+  combosWin.webContents.send('combos:data', { champName, rows });
+  syncCombosWinVisibility();
 }
 
 function clearLoadingCombos() {
   loadingChampId = null;
   if (!combosActive) return;
   combosActive = false;
-  badgeWin?.webContents.send('combos:clear');
-  syncBadgeWinVisibility();
+  combosWin?.webContents.send('combos:clear');
+  syncCombosWinVisibility();
 }
 
 let prepChampFor = null;
@@ -965,18 +1020,38 @@ ipcMain.on('prio:show', (_e, data) => {
   syncBadgeWinVisibility();
 });
 ipcMain.on('combos:show', (_e, data) => {
-  if (!badgeWin) return;
+  if (!combosWin) return;
   liveCombosOwner = true; // live game (app.js) now owns the panel
   combosActive = true;
-  badgeWin.webContents.send('combos:data', data);
-  syncBadgeWinVisibility();
+  combosWin.webContents.send('combos:data', data);
+  syncCombosWinVisibility();
 });
 ipcMain.on('combos:clear', () => {
   liveCombosOwner = false;
   combosActive = false;
-  badgeWin?.webContents.send('combos:clear');
-  syncBadgeWinVisibility();
+  combosWin?.webContents.send('combos:clear');
+  syncCombosWinVisibility();
 });
+ipcMain.on('combos:resize', (_e, { w, h }) => {
+  if (!combosWin) return;
+  const b = combosWin.getBounds();
+  combosWin.setBounds({ x: b.x, y: b.y, width: Math.max(180, w), height: Math.max(60, h) });
+});
+ipcMain.on('combos:dragby', (_e, { dx, dy }) => {
+  if (!combosWin) return;
+  const [x, y] = combosWin.getPosition();
+  combosWin.setPosition(x + Math.round(dx), y + Math.round(dy));
+});
+ipcMain.on('combos:dragend', () => {
+  if (!combosWin) return;
+  const b = combosWin.getBounds();
+  const d = screen.getPrimaryDisplay();
+  settings.set('combosPos', {
+    x: (b.x - d.bounds.x) / d.bounds.width,
+    y: (b.y - d.bounds.y) / d.bounds.height,
+  });
+});
+ipcMain.on('combos:lock', (_e, v) => setCombosLocked(!!v));
 ipcMain.on('scanbtn:click', async () => {
   const res = await runOcrScan('button');
   handleScanResult(res, { manual: true });
@@ -1039,6 +1114,7 @@ app.whenReady().then(async () => {
   createWindow();
   createBadgeWindow();
   createStripWindow();
+  createCombosWindow();
   createScanButton();
   createTray();
   startPhaseWatcher();
