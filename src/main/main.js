@@ -281,11 +281,12 @@ function createStripWindow() {
 let badgeTimeout = null;
 let badgesActive = false;
 let csActive = false;
+let combosActive = false;
 let celebrateUntil = 0;
 
 function syncBadgeWinVisibility() {
   if (!badgeWin) return;
-  if (badgesActive || csActive || Date.now() < celebrateUntil) badgeWin.showInactive();
+  if (badgesActive || csActive || combosActive || Date.now() < celebrateUntil) badgeWin.showInactive();
   else badgeWin.hide();
 }
 
@@ -829,6 +830,7 @@ ipcMain.handle('data:champions', () => loadDataFile('champions.json'));
 ipcMain.handle('data:items', () => loadDataFile('items.json'));
 ipcMain.handle('data:augment-stats', () => loadDataFile('augment-stats.json'));
 ipcMain.handle('data:champion-stats', () => loadDataFile('champion-stats.json'));
+ipcMain.handle('data:champion-combos', () => loadDataFile('champion-combos.json'));
 ipcMain.handle('data:refresh', () => refreshPatchData('manual'));
 ipcMain.handle('history:get', () => historyStore.get('games', []));
 let champIdByNameCache = null;
@@ -905,6 +907,17 @@ ipcMain.on('prio:show', (_e, data) => {
   if (!badgeWin) return;
   badgesActive = true; // priority panel rides the same layer/lifecycle as the pills
   badgeWin.webContents.send('prio:data', data);
+  syncBadgeWinVisibility();
+});
+ipcMain.on('combos:show', (_e, data) => {
+  if (!badgeWin) return;
+  combosActive = true;
+  badgeWin.webContents.send('combos:data', data);
+  syncBadgeWinVisibility();
+});
+ipcMain.on('combos:clear', () => {
+  combosActive = false;
+  badgeWin?.webContents.send('combos:clear');
   syncBadgeWinVisibility();
 });
 ipcMain.on('scanbtn:click', async () => {

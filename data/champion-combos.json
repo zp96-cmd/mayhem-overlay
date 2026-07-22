@@ -1,0 +1,4661 @@
+{
+  "fetchedAt": "2026-07-22T11:15:06.440Z",
+  "source": "arammayhem.com",
+  "total": 666,
+  "byChampion": {
+    "1": [
+      {
+        "augmentName": "It's Killing Time",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "After casting R, press R again to control the bear — Killing Time still triggers. Stack CDR for seamless bear chains and Killing Time uptime; stored damage explodes as true damage, huge amp."
+      },
+      {
+        "augmentName": "It's Killing Time",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Commanding Tibbers to move also triggers It's Killing Time."
+      }
+    ],
+    "3": [
+      {
+        "augmentName": "Soul Eater",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 1,
+        "description": "Galio W reduces both physical and magic damage — stack AP, MR, and HP and your reduction can hit 100%. After taunt lands, the reduction extends 2s beyond channel; with 300+ haste you're effectively immune full time."
+      },
+      {
+        "augmentName": "Magic Missile",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Build. Numbers: 12457348464. ?"
+      },
+      {
+        "augmentName": "Grandma's Chili Oil",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Chili Oil build — just cast abilities."
+      },
+      {
+        "augmentName": "Biggest Snowball Ever",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Snowball man."
+      },
+      {
+        "augmentName": "Cruelty",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Use W, E, and R's CC for full damage. With Cruelty, build mage damage amps — Void Rift combo is insane."
+      },
+      {
+        "augmentName": "Executioner",
+        "tier": "B",
+        "tierScore": 40,
+        "upvotes": 0,
+        "description": "Killing during W charge or release doesn't reset W."
+      }
+    ],
+    "4": [
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Huge AP — Q from afar, instant W up close, will the yellow card and the yellow card will come."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 0,
+        "description": "W pick-a-card doesn't get triggered by Q."
+      }
+    ],
+    "5": [
+      {
+        "augmentName": "Master of Duality",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 5,
+        "description": "Xin is a physical bruiser, so Master of Duality's AD isn't wasted, plus his E, R, and passive heal scale heavily with AP. Stacking MoD gives huge AP, making heals absurd, and with tank items you sustain forever as long as you don't get one-shot. Stay alive and keep stacking via autos and abilities."
+      },
+      {
+        "augmentName": "Mad Scientist",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Immortal AP Xin Zhao."
+      },
+      {
+        "augmentName": "Mystic Punch",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "AP bounce-back Xin Zhao. Main E, sub Q. Prioritize AS and AP, runes prefer on-hit."
+      },
+      {
+        "augmentName": "Master of Duality",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 7,
+        "description": "Build Guinsoo's then full tank. Passive scales with AP for healing."
+      }
+    ],
+    "6": [
+      {
+        "augmentName": "Slow And Steady",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 15,
+        "description": "Locks attack speed, but W is unaffected."
+      },
+      {
+        "augmentName": "Blade Waltz",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 6,
+        "description": "One press pops all 4 passive legs. Massive damage."
+      },
+      {
+        "augmentName": "Tap Dancer",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "Speed run build. 1."
+      },
+      {
+        "augmentName": "Draw Your Sword",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Damage maxed — one leg one kid."
+      },
+      {
+        "augmentName": "Quest: Steel Your Heart",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Just roam. No tricks, just go."
+      }
+    ],
+    "7": [
+      {
+        "augmentName": "Quantum Computing",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 4,
+        "description": "Trigger Quantum Computing, then W in to deliver it."
+      },
+      {
+        "augmentName": "Dashing",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "If R copies W when you pick this augment, the copy also gets the bonus."
+      },
+      {
+        "augmentName": "Buff Buddies",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Archmage bond, W in then QRQE — reliable squishy deletes. Damage mainly from multi-Q passive marks. Once Archmage is up, swap to other damage amps. (Archmage is a massive boost for LeBlanc in real economy.) Once cooldowns are up, harass; squishies get bursted fast."
+      }
+    ],
+    "8": [
+      {
+        "augmentName": "Infernal Conduit",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "Use Infernal Conduit's CDR refund — stack 160+ haste with runes/items, and W on 2+ enemies refreshes seamlessly = infinite W. W must hit at least 2 enemies for the loop; early on, stack basic haste via Lost Chapter and Blasting Wand."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 7,
+        "description": "Ethereal Weapon keyboard-mash to proc Mystic Punch — autopilot. Take it if offered."
+      },
+      {
+        "augmentName": "Infernal Conduit",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "The essential ingredient for Vlad's shoe-stepping playstyle."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "W hits multiple → multiple Void Rifts spawn. EW into pile multi-procs Rifts for huge damage; forge flat magic pen first."
+      },
+      {
+        "augmentName": "Circle of Death",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Vlad's Q and R heals each proc 5x Circle of Death damage — late-game team-wipe nukes. Do NOT build Rift Maker — its omnivamp interaction overrides Q's heal, killing the trigger."
+      },
+      {
+        "augmentName": "ADAPt",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Stack Heartsteel for infinite HP growth, then convert via Overlord's Bloodmail, Riftmaker, and Vlad's passive into AD and AP, paired with Adapt and Tank Engine for explosive stats — late, AP easily hits 10000. Requires Adapt + Heartsteel — don't play without them. Once online, with Bloodmail and Rabadon's, two empowered Q's delete a 10k-HP Mundo."
+      },
+      {
+        "augmentName": "Goliath",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Convert HP to AP via Adapt + Riftmaker for a closed loop — more HP = more AP. Goliath, Dropkick, Eureka all work — Adapt is core; Heartsteel and Tank Engine are bonuses."
+      },
+      {
+        "augmentName": "Purist - Caster",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Convert attack speed to CDR."
+      }
+    ],
+    "9": [
+      {
+        "augmentName": "ADAPt",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "[Hard to scale] Fiddle's Q deals % max-HP magic damage, doubled on feared targets. At 1467 AP, one fear+Q = 100% max HP. Forge: AD (with Adapt) > AP > magic pen. Hide in bush, one Q scares them dead."
+      },
+      {
+        "augmentName": "Blade Waltz",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Ult in and burn everything."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Fiddle's R is a sustained AoE — multiple Void Rift procs, devastating damage and visuals. Find a clean ult spot, fear lock + 99% Void Rift slow keeps everyone locked in the ult."
+      },
+      {
+        "augmentName": "Quest: Wooglet's Witchcap",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Without Adapt, use Overflow + Rabadon's + Giant Slayer instead. Key is stacking AP, then Q an enemy already feared by ER; cast Cosmic Drive before R."
+      },
+      {
+        "augmentName": "Upgrade Zhonya's",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 4,
+        "description": "Can move during Zhonya's while ulting."
+      },
+      {
+        "augmentName": "Clown College",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 2,
+        "description": "R in, then go invisible and burn them."
+      },
+      {
+        "augmentName": "Light 'em Up!",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 0,
+        "description": "Natural health regen triggers combat state, which prevents fear passive. Bad synergy."
+      }
+    ],
+    "10": [
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 17,
+        "description": "Auto attack flame waves trigger Ethereal Weapon."
+      },
+      {
+        "augmentName": "Magic Missile",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 3,
+        "description": "Passive flame waves trigger Magic Missile. After level 16, you melt tanks."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Empowered auto after E procs Void Rift, and the 99% slow means there's no escape."
+      },
+      {
+        "augmentName": "Master of Duality",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Kayle's ascended passive bonus fire makes autos count as two hits, so Master of Duality stacks both AD and AP at once. W heals scale massively with AP, and Kayle scales into a god — half-tank for survival. Survive long enough to ramp, then take over."
+      },
+      {
+        "augmentName": "Marksmage",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 11,
+        "description": "Marksmage is consistently strong on AP auto-attack Kayle and boosts sustained DPS significantly."
+      },
+      {
+        "augmentName": "Infernal Conduit",
+        "tier": "B",
+        "tierScore": 40,
+        "upvotes": 0,
+        "description": "Auto attack flame waves trigger Infernal Conduit."
+      },
+      {
+        "augmentName": "Draw Your Sword",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 0,
+        "description": "After picking Draw Your Sword, E also becomes melee range."
+      }
+    ],
+    "11": [
+      {
+        "augmentName": "Mystic Punch",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "Mystic Punch + huge ability haste makes Q effectively zero-CD — infinite Q untargetable + dodging every attack. Threshold is usually 190 haste plus Mystic Punch; absolutely grab Essence Reaver or mana runs out fast."
+      },
+      {
+        "augmentName": "Mystic Punch",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 19,
+        "description": "Pick this and enjoy. Q applies on-hit effects and every tick triggers Mystic Punch."
+      },
+      {
+        "augmentName": "Dual Wield",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "On-hit DPS — with Master Yi's E, you cut through anything."
+      },
+      {
+        "augmentName": "Executioner",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Burst build."
+      },
+      {
+        "augmentName": "Executioner",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "When enemies are squishy, crit-build is a vacuum cleaner — one shot one kid."
+      },
+      {
+        "augmentName": "Upgrade Hubris",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Practiced in real games — see lots of squishies on the enemy team, take Hubris. Hubris → Collector → Profane Hydra."
+      },
+      {
+        "augmentName": "Upgrade Collector",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Nothing."
+      },
+      {
+        "augmentName": "Dual Wield",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "R build. Infinite R from start to finish."
+      }
+    ],
+    "12": [
+      {
+        "augmentName": "Courage of the Colossus",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Alistar's Q is group CC and procs Colossus multiple times for an instantly huge shield — high haste means frequent Q, basically unkillable. Build full tank; Colossus has 5s CD, so dump full combo each fight, then Q to proc Colossus — bigger shield per enemy hit."
+      },
+      {
+        "augmentName": "Executioner",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Non-stop CC all teamfight long."
+      },
+      {
+        "augmentName": "Infinite Recursion",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Archmage + ~190 haste enables infinite WQ knockup. Don't cast E — just WQ on loop."
+      },
+      {
+        "augmentName": "Executioner",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Very ability-reliant — prioritize stacking ability haste."
+      },
+      {
+        "augmentName": "Quest: Steel Your Heart",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Tanky enough that no one dies. Operation + luck = win."
+      }
+    ],
+    "13": [
+      {
+        "augmentName": "ADAPt",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "Use Ryze's passive AP-mana cross-scaling with specific items and hexes to loop mana/HP/AD conversions for infinite stat growth. Must take Adapt + Mind to Matter; Ryze lacks mobility, so don't sell boots without MS hexes; vs tanks build Void Staff; multiple Tear items stack slowly — pace your farm."
+      },
+      {
+        "augmentName": "ADAPt",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 78,
+        "description": "Ascension combo."
+      },
+      {
+        "augmentName": "Mind to Matter",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 21,
+        "description": "Ascension combo."
+      },
+      {
+        "augmentName": "Overflow",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 19,
+        "description": "Ryze Overflow damage. If you know, you know."
+      },
+      {
+        "augmentName": "Quest: Wooglet's Witchcap",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 13,
+        "description": "Alternative ascension path."
+      },
+      {
+        "augmentName": "Goliath",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 9,
+        "description": "Ascension combo."
+      },
+      {
+        "augmentName": "Mad Scientist",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 8,
+        "description": "Ascension combo (go big)."
+      },
+      {
+        "augmentName": "Mind to Matter",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "100+ haste + Archmage = infinite Q."
+      }
+    ],
+    "14": [
+      {
+        "augmentName": "Tank Engine",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 3,
+        "description": "Nobody can resist the joy of getting bigger."
+      },
+      {
+        "augmentName": "Ultimate Revolution",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Sion's R code conflicts with Ultimate Revolution: after casting R, he's CC-immune for the rest of that life — even his zombie state stays immune. Pair with crit items and dive freely. Cast R early to lock in the permanent CC-immunity buff, then go ham."
+      },
+      {
+        "augmentName": "Fan The Hammer",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Sion's zombie form triggers the damage too."
+      },
+      {
+        "augmentName": "Back To Basics",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Sion's fully-charged Q hits like a truck; pair with damage hexes for absurd burst. Only try this when the enemy lacks reliable CC."
+      }
+    ],
+    "15": [
+      {
+        "augmentName": "Erosion",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 1,
+        "description": "Use QW to clear waves, E to block CC for teammates, R for team MS."
+      },
+      {
+        "augmentName": "Skilled Sniper",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "W bounces trigger Skilled Sniper."
+      },
+      {
+        "augmentName": "Vulnerability",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 5,
+        "description": "W doesn't proc Vulnerability."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 5,
+        "description": "Only Q triggers it. W bounces don't proc on-hit. Skip."
+      }
+    ],
+    "16": [
+      {
+        "augmentName": "Protein Shake",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "Support uses Moonstone + Protein Shake multiplicatively for 3.5x healing. Even a squishy enchanter outputs absurd heals when stacked with double-resist items like Jaksho."
+      },
+      {
+        "augmentName": "Empowered By The Faithful",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Heal then poison-shockwave for the win. Stack heal first; with Protein Shake, swap to tanky."
+      },
+      {
+        "augmentName": "Tank Engine",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Endless tank-heal + damage. Take HP and regen runes."
+      }
+    ],
+    "17": [
+      {
+        "augmentName": "Eureka",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Stack CDR and plant shrooms everywhere."
+      },
+      {
+        "augmentName": "Mystic Punch",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Runaan's + Mystic Punch — one auto reduces all CDs by 3.75s — basically infinite blind via Q."
+      },
+      {
+        "augmentName": "Marksmage",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 4,
+        "description": "Marksmage is a reliable power spike for AP Teemo, strengthening both autos and poke patterns."
+      }
+    ],
+    "18": [
+      {
+        "augmentName": "Fan The Hammer",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 11,
+        "description": "E procs on a single auto."
+      },
+      {
+        "augmentName": "Draw Your Sword",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 6,
+        "description": "Passive bonus attack range still works even with Draw Your Sword."
+      }
+    ],
+    "19": [
+      {
+        "augmentName": "Circle of Death",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 4,
+        "description": "Warwick's auto and Q heals both proc 5x Circle of Death; Q has 100% AP scaling + % damage. Cast Q at half HP for max heal = max CoD damage."
+      },
+      {
+        "augmentName": "Quantum Computing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Don't know."
+      }
+    ],
+    "20": [
+      {
+        "augmentName": "Circle of Death",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 7,
+        "description": "Q deals massive damage, but don't build Rod of Ages."
+      },
+      {
+        "augmentName": "Circle of Death",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "CoD Nunu can deal massive damage to enemies via huge minion-Q heals. Avoid Rylai's — once you build it, Q on enemies stops dealing damage."
+      },
+      {
+        "augmentName": "Overflow",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 4,
+        "description": "E drains mana multiple times. Be careful."
+      }
+    ],
+    "21": [
+      {
+        "augmentName": "Mind to Matter",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "W and E have very short CDs and Archmage chains them — W reduces E, E reduces W — full-screen bullet hell. Needs 200+ haste; pair with haste hexes."
+      },
+      {
+        "augmentName": "Skilled Sniper",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 26,
+        "description": "AP Miss Fortune with Skilled Sniper is stronger than AD."
+      },
+      {
+        "augmentName": "Eureka",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "Infinite raining bullets."
+      },
+      {
+        "augmentName": "Quest: Wooglet's Witchcap",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Quest: Wooglet's Witchcap is huge on AP Miss Fortune. At high AP, E slow and base damage scale to extreme levels."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Fire E into the pile."
+      },
+      {
+        "augmentName": "Eureka",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "After picking Eureka, step back after casting E so Eureka triggers — otherwise it doesn't proc."
+      }
+    ],
+    "22": [
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 8,
+        "description": "Ult has high AP scaling and deals magic damage."
+      },
+      {
+        "augmentName": "Infinite Recursion",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 5,
+        "description": "Stack ult-CDR to the extreme. Not particularly strong, but extremely satisfying."
+      }
+    ],
+    "23": [
+      {
+        "augmentName": "Circle of Death",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "Circle of Death converts heal into magic damage; Trynd Q has huge AP scaling — late Q hits 3000+ damage, deletes squishies. Stack AP and magic pen. Forge: AP > magic pen > MS. Stack fury before Q'ing; CoD has 1000 range, get close."
+      },
+      {
+        "augmentName": "Scopier Weapons",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Short range gets him kited — Scoped Weapons is mandatory."
+      },
+      {
+        "augmentName": "Master of Duality",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Trynd's Q has huge AP scaling (1.2x) plus heal scaling; Master of Duality's AP enables full-HP heals. Navori cuts Q CD — extreme survivability. Weave autos and abilities to constantly proc heals and keep MoD stacks up."
+      },
+      {
+        "augmentName": "Giant Slayer",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Hex priority numbers. Final item. Clown College → Youmuu's. Upgrade Infinity Edge → IE. Vs tanks → Bork. Vs CC → QSS."
+      },
+      {
+        "augmentName": "Dual Wield",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Cut R CD. Just go."
+      },
+      {
+        "augmentName": "Ultimate Revolution",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Best Scope ADC."
+      },
+      {
+        "augmentName": "Master of Duality",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Q heals scale with AP. Build Guinsoo's + Nashor's then full tank. One Q heals to full — disgusting."
+      }
+    ],
+    "24": [
+      {
+        "augmentName": "Mystic Punch",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "Mystic Punch + Dusk and Dawn slashes CDs — keep E up full uptime for permanent block."
+      },
+      {
+        "augmentName": "Upgrade Sheen",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "With Upgrade Sheen, build Duskblade for double Sheen proc + healing. Works on other champs too."
+      },
+      {
+        "augmentName": "Soul Eater",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "With 4-stack Shrink Engine (3x multiplier), all scaling hexes give 3x value. Combined with Soul Eater for HP and Infinite Recursion for haste, you can hit 110k HP and 3000 AD — pure stat monster. Heavily reliant on stacking scaling hexes; survive early to bank the snowball."
+      },
+      {
+        "augmentName": "Upgrade Sheen",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Use Dusk and Dawn's all-around stats (AP, HP, haste, AS) with Jax's E and R AP scaling for instant Mayhem clears. Combo: E up, leap-strike Q in, manually drop E for the stun, R + W to dump damage; Zhonya's covers the long CD."
+      },
+      {
+        "augmentName": "Gash",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Tanky and high damage."
+      }
+    ],
+    "25": [
+      {
+        "augmentName": "Executioner",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 10,
+        "description": "Must-pick. Kill one, CC the next. Use it and see."
+      },
+      {
+        "augmentName": "Ocean Soul",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Morgana's Q and W cooldowns overlap heavily. With Archmage's Q-reduces-W / W-reduces-Q loop, you can perma-root and burn enemies. Only ~80 ability haste needed for infinite QW — high tolerance, miserable to play against."
+      },
+      {
+        "augmentName": "Skilled Sniper",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 16,
+        "description": "Enemies stepping on W at max range still counts for the cooldown reduction."
+      },
+      {
+        "augmentName": "Infernal Conduit",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 7,
+        "description": "CC a group or drop W for rapid Infernal Conduit stacking."
+      },
+      {
+        "augmentName": "Ice Cold",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Be a useful person."
+      }
+    ],
+    "26": [
+      {
+        "augmentName": "Mind to Matter",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "With Archmage's bond, Q reduces W's CD while W's mechanic reduces Q. At 110 ability haste, infinite QW. Just alternate QW endlessly and chain-control to death."
+      },
+      {
+        "augmentName": "Ultimate Revolution",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 3,
+        "description": "Zilean R on himself: while waiting to revive, Ultimate Revolution treats him as already revived, immediately refreshing R. Cast it in time and you can perma-revive yourself, untouchable. R-on-self is mandatory to keep the loop; extra ability haste goes into Q poke."
+      }
+    ],
+    "27": [
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 17,
+        "description": "Build Ethereal Weapon before Dropkick — Dropkick first isn't great."
+      },
+      {
+        "augmentName": "Infernal Conduit",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 11,
+        "description": "Q stacks multiple layers of Infernal Conduit."
+      },
+      {
+        "augmentName": "Devil on Your Shoulder",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Singed's poison Q drops fragments wildly; his ult gives huge resists so you tank fine — pop ult, run through, leave a fragment trail, chase the fragments."
+      },
+      {
+        "augmentName": "Slap Around",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Core: Goliath + Slap Around + Soul Eater + Infinite Recursion. Cheese a couple waves."
+      },
+      {
+        "augmentName": "Shrink Engine",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Shrink Engine or Infinite Recursion + any Stack Dragon bond + Colossus's Courage."
+      },
+      {
+        "augmentName": "Dropkick",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Q triggers Dropkick. Q alone procs Dropkick for executes."
+      }
+    ],
+    "28": [
+      {
+        "augmentName": "Bread And Butter",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Infinite Q across the whole map. Pure fun."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Evelynn casts very frequently — Void Rift dumps massive damage; forge flat magic pen first."
+      }
+    ],
+    "29": [
+      {
+        "augmentName": "Fey Magic",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 18,
+        "description": "Ult autos also trigger the polymorph. They can't even fight back."
+      },
+      {
+        "augmentName": "Tap Dancer",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "For backline picks — Black Cleaver opener."
+      },
+      {
+        "augmentName": "Marksmage",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 3,
+        "description": "Marksmage performs very well on AP Twitch, improving both sustained pressure and cleanup damage."
+      },
+      {
+        "augmentName": "Magic Missile",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 1,
+        "description": "AP build amps Twitch's passive true damage and E burst; W's huge slow locks enemies down. Slows don't stack — no Rylai's. Twitch's passive can't proc Liandry's or Ethereal Weapon — don't pick those."
+      },
+      {
+        "augmentName": "Infernal Conduit",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 4,
+        "description": "Only E stacks it. Passive doesn't apply layers. Skip."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 3,
+        "description": "Passive doesn't trigger Ethereal Weapon and E doesn't stack passive. Never pick this."
+      }
+    ],
+    "30": [
+      {
+        "augmentName": "Ultimate Revolution",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 9,
+        "description": "Ultimate Revolution makes Karthus game-warping with near-constant double-ult windows."
+      },
+      {
+        "augmentName": "Infinite Recursion",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 8,
+        "description": "Infinite Recursion lets Karthus cycle Requiem absurdly fast and constantly pressure team HP bars."
+      },
+      {
+        "augmentName": "Clown College",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Turn on E, then use Clown College to walk in and burn them. The fear box after death traps people in your E."
+      },
+      {
+        "augmentName": "Glass Cannon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Glass Cannon is core to the suicide Karthus build. Main-E is more reliable AoE than Q, and Liandry's + Liandry's burn benefits from the Glass Cannon amp. Karthus already trades HP to position, so the % HP cost matters little; maximize damage before death."
+      },
+      {
+        "augmentName": "Mind to Matter",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "W reduces R's CD via Archmage's CDR refund. After casting R, spam W and Q to slash R's CD for full-map ults. R then W, spam Q during both cooldowns, recast W, repeat — about 16s per ult."
+      },
+      {
+        "augmentName": "Ultimate Revolution",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Ultimate Revolution bug is patched (no more 4 R's), but you still get one R per life — pair with the suicide build for monster output. This style doesn't need Plague's ult haste — build pure magic pen / AP for max R damage. Strongly recommend Final City Transit synergy."
+      },
+      {
+        "augmentName": "Devil on Your Shoulder",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Max E, sub W — E burn drops fragments wildly; chase fragments, find enemies dead and you're at full HP."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Once Void Rift is in hand, stack magic pen — damage explodes. Pop E snowball into the pile; main damage comes from Void Rift, so magic pen is priority. Liandry's can be skipped for Rabadon's."
+      }
+    ],
+    "31": [
+      {
+        "augmentName": "Quest: Steel Your Heart",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "With Adapt, 1 AD → 1.6 AP — prioritize AD in forge. Late, huge AP + huge HP makes R's execute threshold massive."
+      },
+      {
+        "augmentName": "Tank Engine",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Use R-stack HP + Heartsteel + Tank Engine for instant 10k+ HP and absurd survival/damage. Pure tank doesn't lack damage; for more damage add a magic Sunfire (Radiant Echoes)."
+      },
+      {
+        "augmentName": "Shrink Engine",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Shrink Engine massively cuts R's CD. Stack Soul Eater for HP, and Triple-Stack Dragon bond × 2.5x means hex and champ stacks both ramp absurdly fast. R CD drops to ~10s. Triple-Stack Dragon means one feast = 3 stacks. Since E's % damage scales with R stacks, late damage is huge."
+      }
+    ],
+    "32": [
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 22,
+        "description": "Ethereal Weapon with W on. Pair with on-hit items and ability haste for maximum effect."
+      },
+      {
+        "augmentName": "Phenomenal Evil",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Stack Triple-Stack Dragon. Forge: take omnivamp."
+      },
+      {
+        "augmentName": "Goliath",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Tanky and damaging."
+      }
+    ],
+    "33": [
+      {
+        "augmentName": "Upgrade Thornmail",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Build around the Upgrade: Thornmail hex. Use W's huge resists with Heartsteel and Warmog's for HP, then stack magic pen via Void Staff, Abyssal Mask, and forge. Once enemy MR is fully penetrated, Thornmail damage becomes near-true. Forge: magic pen > resists > HP. W also benefits from Jak'sho's % resist scaling. If enemies refuse to attack you, taunt with E to force the reflect."
+      },
+      {
+        "augmentName": "Protein Shake",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Protein Shake Rammus — full tank, AS easily hits 5.0. Protein Shake fits perfectly with W."
+      },
+      {
+        "augmentName": "Gash",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Rammus W perfectly procs Ethereal Weapon; W also procs Gash. Core items: Heartsteel, Thornmail, Sterak's. When attacked, you trigger W damage + Thornmail damage + Gash damage + Heartsteel stacks and damage."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 10,
+        "description": "W reflect damage procs on-hit effects."
+      },
+      {
+        "augmentName": "Grandma's Chili Oil",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Chili Oil for sustain — W instantly procs Chili Oil, stand and heal; if low, Q to back and heal during reset. Items: Bramble Vest first, then Sunfire; with extra AP go Radiant Echoes; third item Abyssal Mask; rest is tank stuff for the lineup. Easy early lead."
+      }
+    ],
+    "34": [
+      {
+        "augmentName": "Fey Magic",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "Use Fey Magic's polymorph for CC-burst damage. Fey Magic + Killing Time = absurd."
+      },
+      {
+        "augmentName": "Skilled Sniper",
+        "tier": "B",
+        "tierScore": 40,
+        "upvotes": 0,
+        "description": "Stack CDR to the extreme and chain infinite walls with W. Just for fun."
+      }
+    ],
+    "35": [
+      {
+        "augmentName": "Executioner",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 16,
+        "description": "Kills reset all basic abilities for clean backline assassinations. Note: if you can one-shot with autos during Q, use other abilities first — otherwise Q won't reset."
+      },
+      {
+        "augmentName": "Clown College",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 9,
+        "description": "Shaco's best augment. More mobility plus backstab damage that stacks with his innate backstab. Double Q nearly one-shots backliners. Death explosion deals massive true damage. Strong early for picks and late for frontline."
+      },
+      {
+        "augmentName": "Clown College",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Use heavy armor pen and % damage amp to convert Final City Transit and Dive Bomber into pseudo-true damage. Hubris scales late AD, Profane Hydra + Collector enable execute on death for huge AoE self-destruct. Whole build converts physical scaling into massive true-damage burst."
+      },
+      {
+        "augmentName": "Clown College",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Hubris stacks too slowly early; pair with Collector for pure lifesteal — works for sneaky players. Hide early until IE comes online; pre-level-6 use kills to ramp, otherwise late falls off."
+      },
+      {
+        "augmentName": "Bread And Jam",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Use W's CC and damage to torture enemies. Once W-CDR + Eureka spawn, it's good to go."
+      },
+      {
+        "augmentName": "Back To Basics",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 2,
+        "description": "Solid damage and haste boost, but you lose R's safety. Compensate with Shadow Runner, Executioner, Guilty Pleasure, or Escape Plan."
+      },
+      {
+        "augmentName": "Quantum Computing",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Maximize Quantum Computing damage with Q. Gives your team a huge early lead and solves the late-game tank problem."
+      },
+      {
+        "augmentName": "Don't Blink",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Without E active, autos slow enemies. Q + backstab first strike also triggers the slow. Great damage boost. Pair with Shadow Runner, Tailwind, etc. for more combos."
+      }
+    ],
+    "36": [
+      {
+        "augmentName": "Tank Engine",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Mundo's E converts HP into huge AD — with stacked Heartsteel, you're both tanky and can one-shot squishies. Mundo's hex pool is exceptionally clean — top-tier tank hexes spawn often."
+      },
+      {
+        "augmentName": "Heavy Hitter",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 22,
+        "description": "One slap deletes squishies, but ult healing can't crit."
+      },
+      {
+        "augmentName": "Vulnerability",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 1,
+        "description": "Tank champs with Vulnerable make Sunfire, Unending Despair, Thornmail, and Heartsteel item damage crit. Build Atma's for 50% crit and turn all your tank items into damage."
+      },
+      {
+        "augmentName": "Protein Shake",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 18,
+        "description": "Ult doesn't benefit from Protein Shake. Skip."
+      },
+      {
+        "augmentName": "Vampirism",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 13,
+        "description": "Ult stops healing after picking this. Avoid."
+      }
+    ],
+    "37": [
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Just stack damage — with enough stats, even Sona QA deletes targets."
+      }
+    ],
+    "38": [
+      {
+        "augmentName": "Dashing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Need a dash-boosting hex."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Kassadin's E and R are AoE — multi-hits proc multiple Void Rifts."
+      },
+      {
+        "augmentName": "Don't Blink",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Kassadin E has a 90% slow — during the slow, he opens up 400+ MS gaps, locking in Don't Blink's 40% damage amp on the rest of his combo. Lead with E slow for max amp."
+      }
+    ],
+    "39": [
+      {
+        "augmentName": "Mystic Punch",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Around 300 ability haste plus Mystic Punch enables infinite Q."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "AP Irelia — damage from EWR."
+      }
+    ],
+    "40": [
+      {
+        "augmentName": "Skilled Sniper",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Frequent knockups rival AP Miss Fortune with Skilled Sniper."
+      },
+      {
+        "augmentName": "Circle of Death",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "R is sustained AoE healing — pair with Circle of Death for huge damage."
+      }
+    ],
+    "41": [
+      {
+        "augmentName": "Back To Basics",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "Back to Basics massively boosts barrel damage for one-shot kills — barrels have innate 40% armor pen, so they hurt tanks too. Need solid barrel-chain skill; watch positioning vs long-range poke."
+      },
+      {
+        "augmentName": "Back To Basics",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 23,
+        "description": "Each barrel chain adds 35% damage, scaling exponentially."
+      },
+      {
+        "augmentName": "Don't Blink",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 19,
+        "description": "Barrels have 0 move speed, so it's a flat 33%+ damage boost."
+      },
+      {
+        "augmentName": "Mystic Punch",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Mystic Punch enables infinite Q; Dusk and Dawn lets Q proc Sheen, so it's perfect for players who can't barrel-chain — just max Q."
+      },
+      {
+        "augmentName": "Don't Blink",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "80% of GP's damage comes from barrels (E), which the system treats as zero-MS enemy targets. When firing barrels, he gains MS and slows enemies, opening up a huge MS gap and locking E into its 40% damage cap. Post-explosion bonus MS keeps the gap up for sustained huge damage."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Auto-procs the fire blade. Good for less experienced players."
+      }
+    ],
+    "42": [
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 12,
+        "description": "All abilities can crit. Damage is nuts."
+      },
+      {
+        "augmentName": "Critical Missile",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Activate Mythic Flame bond + 3 burn items = happy launch."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Corki's E and W are high-frequency DoTs. After crit-damage changes, DoTs proc both Jeweled Gauntlet and Vulnerable — multiplicative amps. As a mixed-damage champ, Shadowflame and triple-amp logic fit perfectly. W's gattling fire trail and E reliably amplify crit damage."
+      },
+      {
+        "augmentName": "Triggered Inferno",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Only ranged AD that should grab Triggered Inferno. Corki's W and E are sustained DoTs that ping-pong rank stacking. Pop E + W into a pile to instantly stack TI; build properly and one self-destruct caps the damage. Find a window: turn on E, W into face for instant stack + AoE detonation."
+      },
+      {
+        "augmentName": "Vulnerability",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 5,
+        "description": "W and E benefit from Vulnerability."
+      }
+    ],
+    "43": [
+      {
+        "augmentName": "I'm a Baby Kitty Where is Mama",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "RE gives a large AoE shield — stack CDR and healing power."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Play this when the enemy lineup is squishy. RQ for explosive damage."
+      }
+    ],
+    "45": [
+      {
+        "augmentName": "Eureka",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 21,
+        "description": "Pairs with passive for massive AP and ability haste."
+      },
+      {
+        "augmentName": "Marksmage",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Weave autos between abilities — no more downtime."
+      },
+      {
+        "augmentName": "Infinite Recursion",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Once CDR is high, infinite E permanently jails enemies."
+      },
+      {
+        "augmentName": "Phenomenal Evil",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Phenomenal Evil + Veigar passive + Shrink Engine — rapid AP stacking and damage."
+      },
+      {
+        "augmentName": "OrbitalLaser",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Pairs well with E cage for easy hits."
+      }
+    ],
+    "48": [
+      {
+        "augmentName": "Cruelty",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "Cruelty + Archmage = infinite pillar build. Archmage + Cruelty, minimize CDs for endless pillars."
+      },
+      {
+        "augmentName": "Slap Around",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "R deals % magic damage — level 3 base is 30%, +16% at 800 AP, and 3500 AP hits 100% max HP."
+      },
+      {
+        "augmentName": "Slap Around",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Ult build. R build."
+      },
+      {
+        "augmentName": "Scopiest Weapons",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Save W for kill secures, fast item stacking. I'm a marksman — chomp from range."
+      },
+      {
+        "augmentName": "Scopier Weapons",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "I'm a marksman. Save W for kill secures, fast item stacking."
+      },
+      {
+        "augmentName": "Purist - Caster",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Pillar emperor."
+      },
+      {
+        "augmentName": "Infinite Recursion",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Stack CDR to the limit and spam pillars with main-E for max meme value."
+      },
+      {
+        "augmentName": "Skilled Sniper",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 0,
+        "description": "Pillar displacement counts for the cooldown reduction."
+      }
+    ],
+    "50": [
+      {
+        "augmentName": "Slap Around",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 11,
+        "description": "E root stacks one layer, then the pull stacks another."
+      },
+      {
+        "augmentName": "Dropkick",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Crow emperor. Full tank — use W and E for HP."
+      },
+      {
+        "augmentName": "Cruelty",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 8,
+        "description": "Same idea — triggers Cruelty twice."
+      }
+    ],
+    "51": [
+      {
+        "augmentName": "Scopier Weapons",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 10,
+        "description": "Caitlyn already has the longest ADC range — with Scopier Weapons, you can auto across the screen."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 7,
+        "description": "Jeweled Gauntlet amps ability damage — armor-pen build is huge."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Cleanup build — one R kill."
+      },
+      {
+        "augmentName": "Fan The Hammer",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Fan the Hammer + Conditioning combo — one auto = chain damage. Don't take Conditioning without Fan the Hammer."
+      },
+      {
+        "augmentName": "Twice Thrice",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 0,
+        "description": "Caitlyn barely has on-hit effects. Not worth picking."
+      }
+    ],
+    "53": [
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 6,
+        "description": "Blitz's R passive chains lightning between autos — Ethereal Weapon procs on that lightning, which procs the passive again in an infinite loop. Core is Dusk and Dawn for the extra on-hit (otherwise EW's CD breaks the chain). Must take Twin Flames — its bonus damage spawns firecrackers that proc R passive again, infinite knockup chain. NEVER cast R — once used, the passive ends. Use E off CD; EW procs E knockups; theoretically infinite knockups at 150+ haste."
+      },
+      {
+        "augmentName": "Upgrade Infinity Edge",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 8,
+        "description": "Play when hexes are absurd and the enemy is squishy — one punch, one kid."
+      },
+      {
+        "augmentName": "Mind to Matter",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Combine Archmage with ~300 ability haste for infinite R."
+      },
+      {
+        "augmentName": "Mystic Punch",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Mystic Punch infinite knockup build."
+      },
+      {
+        "augmentName": "Final City Transit",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "If first hex has suicide build, go pure AP. Blow up — with Self-Destruct close to detonation, drop Hook; with Clown College, dive into pile and ult."
+      },
+      {
+        "augmentName": "Clown College",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Full AP nuke for huge burst damage — good vs squishy comps."
+      },
+      {
+        "augmentName": "Executioner",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Executioner refreshes Q after a participation kill — extremely fun, normal tank build."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "B",
+        "tierScore": 40,
+        "upvotes": 11,
+        "description": "E then Q launches them straight up. R passive zaps 3 times in a row."
+      }
+    ],
+    "54": [
+      {
+        "augmentName": "Ultimate Revolution",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 8,
+        "description": "Double nuke."
+      },
+      {
+        "augmentName": "Eureka",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Use hexes to slash R's CD. Take any R-CDR hex; Ultimate Revolution is even better."
+      }
+    ],
+    "55": [
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 15,
+        "description": "R normally applies only 25/30/35% on-hit damage. With this, it becomes 50/60/70%."
+      },
+      {
+        "augmentName": "Slow And Steady",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 15,
+        "description": "Locks attack speed, but R attack speed scaling is unaffected."
+      },
+      {
+        "augmentName": "Vulnerability",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 14,
+        "description": "R procs Vulnerability."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Katarina's ult counts as a high-frequency channeled DPS ability and triggers on-hit. Pair with Kraken Slayer, Bloodthirster/Bork, and Jeweled Gauntlet + Vulnerable for the highest single-second DPS in the game. Every dagger thrown during her spin triggers a 7.17x damage multiplier."
+      },
+      {
+        "augmentName": "Mystic Punch",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Katarina's R procs on-hits, so Mystic Punch slashes her cooldowns mid-spin, enabling near-perpetual ult reaping."
+      },
+      {
+        "augmentName": "Triggered Inferno",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Katarina's R synergizes uniquely with Triggered Inferno's stacks — hitting multiple enemies with R instantly reaches S-rank for a double-spin AoE burst. Both R and Triggered Inferno get interrupted by CC, so pick your engage carefully."
+      },
+      {
+        "augmentName": "Protein Shake",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Protein Shake plus Statikk Shiv gives huge attack speed; Slow and Steady converts it into AD. Katarina's ult attack-speed isn't affected, and she still benefits from the converted AD."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Katarina's R throws many daggers across three enemies in a short window — every dagger procs Void Rift, and one ult can trigger 70+ Void Rifts. Insane. The ult also triggers Void Rift's 99% slow, locking enemies in for the full damage."
+      }
+    ],
+    "56": [
+      {
+        "augmentName": "Quantum Computing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Use heavy armor pen + Axiom Arc's CDR return + damage amps to focus-kill enemy backline squishies. Watch mana early; Q is low-accuracy so grab Tear; this is a squishy cleanup assassin — engage after a teammate or enemy initiates, never first."
+      },
+      {
+        "augmentName": "Dive Bomber",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Maximum revive-time-reduction route with specific hex synergies — Nocturne becomes a flying bomb that detonates and respawns instantly. Build armor pen + crit for huge damage on entry, no backline survives. Core is fast revive + Axiom Arc — once ult is up, fly in."
+      },
+      {
+        "augmentName": "Quantum Computing",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Balances survival and sustained fighting via attack-speed items and defensive items — kite in the pile. Pick AS-related hexes; W blocks key CC, Snowball chases dashers."
+      }
+    ],
+    "57": [
+      {
+        "augmentName": "Courage of the Colossus",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "Q grants a shield stack per hit — multi-target Q = huge shield."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Void Rift is magic damage, so it fits AP champions with high magic pen — % magic pen amplifies it, and Pridestalker's ability damage procs it many times. Forge: magic pen > AP > MS."
+      },
+      {
+        "augmentName": "Circle of Death",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Maokai's best augment. One auto = full health."
+      },
+      {
+        "augmentName": "Protein Shake",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Protein Shake gives huge sustain — combined with Maokai's % HP regen passive, you never die."
+      },
+      {
+        "augmentName": "Protein Shake",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Maokai's QWR all proc Colossus's Courage shield; Protein Shake amps shield and passive heal — just stick W on enemies and chain QWR."
+      }
+    ],
+    "59": [
+      {
+        "augmentName": "Dive Bomber",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "Dive bomb and self-destruct. That's the whole plan."
+      },
+      {
+        "augmentName": "Tank Engine",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Mega-tank J4 with damage. Take Tank Engine + Heartsteel and cruise."
+      },
+      {
+        "augmentName": "Dive Bomber",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Use Jarvan's R to lock down enemies, then chain Dive Bomber's set with the death-revive timer to trigger Final City Transit + Dive Bomber for huge self-destruct damage. R should hit multiple targets; flag-stack with the barricade to nail the boom. Best for aggressive players trading lives for teamfight damage. Gold lead is key — Gold Rain set helps the transition."
+      },
+      {
+        "augmentName": "Clown College",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 9,
+        "description": "Middle Eastern Jarvan — Clown College + Dive Bomber + Self-Destruct + Orbital Laser."
+      }
+    ],
+    "60": [
+      {
+        "augmentName": "Dashing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 11,
+        "description": "In spider form after dying, Q and E gain 175 ability haste each death. Three deaths maxes out 500 haste — human form benefits too. Swapping via Pandora's Box keeps the haste!"
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Use enormous AP and magic pen to amp spider-form Q's % damage. When damage is high enough, Elise triggers a special hidden 'true form' visual — a huge spider phantom. Visual works only on default, SKT T1, and Withered series skins — others just sparkle. Highly economy-dependent for AP/pen forge shards; in fights, target highest-HP tanks for max % damage effect."
+      }
+    ],
+    "62": [
+      {
+        "augmentName": "Blade Waltz",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Blade Waltz ult Wukong. CC the whole team!"
+      }
+    ],
+    "63": [
+      {
+        "augmentName": "Infernal Conduit",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "Centered on Infernal Conduit — burn applies CDR continuously. In 5v5 Mayhem, burning multiple enemies = effectively infinite cast. With Infernal Conduit + sustained-damage items, you spam abilities nonstop."
+      },
+      {
+        "augmentName": "Infernal Conduit",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 92,
+        "description": "Brand's best augment. A single ability stacks 4 layers of Infernal Conduit."
+      },
+      {
+        "augmentName": "Magic Missile",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 25,
+        "description": "Brand's passive triggers it — first ability hit procs Magic Missile twice."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Void Rift as core, paired with Dice Master for flat magic pen forge. Brand's passive also counts as ability cast — he can proc Void Rift with one ability hit, paired with huge AoE for screen-wide Rifts. Dice Master + flat magic pen forge for damage."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Once you grab Vulnerable, use it so item DoTs (Liandry's, Rylai's, etc.) and abilities crit. Add Jeweled Gauntlet's 45% crit chance for 70% total — DoTs become real damage. Shadowflame doubles up the crit. Once Vulnerable lands, go double-DoT: Shadowflame + Vulnerable doubles up crit damage on abilities."
+      }
+    ],
+    "64": [
+      {
+        "augmentName": "Crack Open That Egg",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Crack Open That Egg W stick-on style."
+      }
+    ],
+    "67": [
+      {
+        "augmentName": "Fan The Hammer",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "Fan the Hammer applies 5 on-hits per auto plus the auto itself triggers two triple-ring procs. With Dual Wield + Tap Dancer + Runaan's, a single auto deletes most of an enemy's HP. Vayne is a top focus target — build defense and lifesteal later; if enemy is squishy, single-Q route works fine."
+      },
+      {
+        "augmentName": "Dual Wield",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 51,
+        "description": "Rapid three-ring procs."
+      },
+      {
+        "augmentName": "Fan The Hammer",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 12,
+        "description": "Every bolt triggers W passive and on-hit effects."
+      },
+      {
+        "augmentName": "Twice Thrice",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 12,
+        "description": "Procs stack W passive."
+      },
+      {
+        "augmentName": "Shadow Runner",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 5,
+        "description": "Use Tumble's empowered auto, Runaan's, and crit effects to max single-auto damage. Use R+Q stealth to reliably trigger reveals. Bad vs tanky comps — no way to chew through front lines. Q-auto-Q-auto, hitting different targets to maintain Conditioning."
+      },
+      {
+        "augmentName": "Double Tap",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Cruise control. Jeweled Gauntlet lets Double Tap work like Ethereal Weapon. Silver: Typhoon, Escape Plan. Gold: Conditioning, Lightning Strike, Vampirism. Prismatic: Dual Wield, Tap Dancer, Master of Duality."
+      },
+      {
+        "augmentName": "Protein Shake",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 1,
+        "description": "Protein Shake + Statikk Shiv gives high AS, paired with Conditioning for huge ally heals; meanwhile use W passive for damage."
+      },
+      {
+        "augmentName": "Tank It Or Leave It",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Burst build for long-range enemy comps — focus instant high physical damage. Best for poke-vs-poke matchups; pick crit-related hexes."
+      }
+    ],
+    "68": [
+      {
+        "augmentName": "Vulnerability",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 10,
+        "description": "Vulnerability + Shadowflame creates an 8x multiplicative damage amp with Prismatic."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "In Danger Zone, Q and E proc the passive damage."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Void Rift deals magic damage, so it fits AP champs with high magic pen — % magic pen amplifies it, and Pridestalker's ability damage procs it many times. Forge: magic pen > AP > MS."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Rumble's Q and R are extremely high-frequency DoTs. With Jeweled Gauntlet + Vulnerable + Infinity Edge + Shadowflame, each burn tick gets amplified 7.17x — annihilates even tanks. As an AP champion, Jeweled Gauntlet's AP-to-crit ratio is excellent — late, you hit full crit without crit items."
+      }
+    ],
+    "69": [
+      {
+        "augmentName": "Cruelty",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Cass W ground triggers Cruelty over a large sustained area — even enemies who walk in late retrigger it. R petrify enables huge burst. W+R combo dumps multiple Cruelty procs for cleanup."
+      }
+    ],
+    "72": [
+      {
+        "augmentName": "Blade Waltz",
+        "tier": "B",
+        "tierScore": 40,
+        "upvotes": 0,
+        "description": "Casting R while Blade Waltz is active drags the target with you."
+      }
+    ],
+    "74": [
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Turret attacks now proc Void Rift this patch — feel free to take it."
+      },
+      {
+        "augmentName": "It's Killing Time",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 3,
+        "description": "Toggling R on/off both trigger it, but since it only stores your own damage now, limited value."
+      }
+    ],
+    "75": [
+      {
+        "augmentName": "Shrink Engine",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Stack Shrink Engine synergies — Nasus already gets bonus per stack; on a TF Mobi Q stacks 24 normally, 36 with two, 48 with three, 72 with four Shrink Engines."
+      }
+    ],
+    "76": [
+      {
+        "augmentName": "Biggest Snowball Ever",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "After Biggest Snowball Ever knockup, throw Q for guaranteed hits."
+      }
+    ],
+    "77": [
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "Udyr's awakened R deals max-HP magic damage — stack AP and melt enemies with % damage. Drop awakened R right in the pile."
+      },
+      {
+        "augmentName": "Scopiest Weapons",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "Udyr's awakened Q empowered auto deals max-HP physical damage for instant deletes — higher ceiling than AP, but short range hurts. Awakened Q hits 6 lightning bolts dealing max-HP magic damage that bounces between enemies; isolated targets eat the full burst."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 3,
+        "description": "Q and R proc it."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Udyr's awakened R is a sustained AoE — every tick procs Void Rift, melting enemies in under a second. Bring Snowball, engage with it, then drop awakened R in the pile — Void Rift's slow + burst makes for huge damage."
+      },
+      {
+        "augmentName": "Clown College",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Vs tanks, always take Transmute Chaos — snowball in for first-attack one-shot, gold for forge upgrade. Dusk and Dawn lets one auto play two."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 5,
+        "description": "Auto-triggers R's bonus damage on the next two autos."
+      },
+      {
+        "augmentName": "Scopiest Weapons",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 4,
+        "description": "AD Q build. Just claw away."
+      },
+      {
+        "augmentName": "Quest: Steel Your Heart",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Stack HP and convert to damage via items — both tanky and % damage. Classic tank matchup: you're a tank, I'm a tank, but I have % damage."
+      }
+    ],
+    "79": [
+      {
+        "augmentName": "ADAPt",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 1,
+        "description": "Gragas W gives AP-scaling % damage reduction with a 2.5s invuln after channel. At 2050 AP, 100% reduction. But you have to spend the empowered auto before recasting W, so there's a downtime gap — not perma. Forge: AD (with Adapt) > AP > HP > resists."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 8,
+        "description": "W gets triggered by abilities."
+      },
+      {
+        "augmentName": "Grandma's Chili Oil",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Spicy enough to make enemy moms cry — huge sustain."
+      }
+    ],
+    "80": [
+      {
+        "augmentName": "Quest: Steel Your Heart",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "[Hard to scale] Pantheon's W gets bonus health scaling — once you hit ~25,000 HP, W deals 100% max-HP physical damage. Forge: HP > AD. Weak early, scales into tank-heavy matchups; max-rank ult has innate 30% armor pen and his enhanced E grants armor/MR from health."
+      },
+      {
+        "augmentName": "Back To Basics",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 4,
+        "description": "R passive armor pen still works."
+      },
+      {
+        "augmentName": "Vulnerability",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "Mandatory: Vulnerable + Executioner. With Bork, jump anyone — they die; no front-line concept, squishies vaporized. Hexes must have Vulnerable + Executioner; flex rest. Back to Basics and Clown College are huge prismatic upgrades; gold Upgrade Infinity Edge / Vampirism / Transmute Chaos / Soul Siphon all great; silver Adapt / Upgrade Collector / Big Hits / Brute Force / Bloodlust are also solid. Items: Hubris start, then Bork, then Death's Dance, pick from Liandry's / Black Cleaver / Eclipse / Bloodthirster."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Red rage W triggers Ethereal Weapon — pair with Mystic Punch for infinite CC chains."
+      },
+      {
+        "augmentName": "Quest: Steel Your Heart",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Pair with Tank Engine to stack health, then finish with Deathcap and Riftmaker. One W does 100% max HP. Melts tanks."
+      },
+      {
+        "augmentName": "Quantum Computing",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Use Quantum Computing's huge center-zone physical damage with Pantheon's W (Shield Vault) directional dash to drop enemies into the burst zone. With his ult's passive % armor pen plus lethality items, Quantum Computing can full-HP shred. Flash or Snowball into W to land the target in the 4x center-damage area."
+      }
+    ],
+    "81": [
+      {
+        "augmentName": "Draw Your Sword",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 7,
+        "description": "Best-feel build. Damage on open; buy Doran's Shield and Tear, then build in order."
+      },
+      {
+        "augmentName": "Juiced",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Manamune + Muramana + Ezreal's Q on-hit lets him triple-proc Juiced — build crit so all three procs crit; late-game Q tacks on hundreds of bonus magic damage."
+      },
+      {
+        "augmentName": "Purist - Caster",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Ezreal's passive at max stacks gives 50% attack speed, which Purist + Caster converts to 200+ ability haste. Q's hit-reduces-CD means Q has practically no cooldown late, and R refreshes in under 10s. Late, full-screen ult every 10 seconds = enormous pressure."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Q triggers on-hit effects twice."
+      },
+      {
+        "augmentName": "From Beginning To End",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Amp Q damage."
+      }
+    ],
+    "82": [
+      {
+        "augmentName": "Circle of Death",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 2,
+        "description": "Circle of Death deals 70% of heal as damage. Protein Shake amps shield/heal — Morde's W shield's heal-when-broken scales, dealing damage. Late, one W full-heal deletes squishies; W grants gray HP based on damage dealt, so with Executioner you can spam W forever. Never build Rift Maker or any omnivamp item — they override CoD damage. CoD deals magic damage — build magic pen. Enemy Serpent's Fang chunks your shield and damage."
+      },
+      {
+        "augmentName": "Protein Shake",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 12,
+        "description": "W heals based on shield amount, so Protein Shake applies twice. Pair with Circle of Death for one-shots."
+      },
+      {
+        "augmentName": "Grandma's Chili Oil",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Chili Oil stand-fight — pick Chili Oil, dive in, fight via passive."
+      },
+      {
+        "augmentName": "Holy Fire",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Conqueror triggers Holy Fire with no CD."
+      }
+    ],
+    "83": [
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 8,
+        "description": "Ghouls each trigger Ethereal Weapon on attack."
+      },
+      {
+        "augmentName": "Executioner",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Yorick W perfectly fits Capybara airdrop — W locks enemy if no Flash for full airdrop damage. Yorick has huge sustain so play tank-bruiser; airdrop covers damage; CDR hex for added burst."
+      }
+    ],
+    "84": [
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Akali Q is high-frequency AoE — frequent Void Rift procs."
+      },
+      {
+        "augmentName": "Zealot",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Lich Bane post-ability gives 50% AS, converted by Slow and Steady to AD, then converted to AP via Adapt."
+      },
+      {
+        "augmentName": "Scopiest Weapons",
+        "tier": "B",
+        "tierScore": 40,
+        "upvotes": 0,
+        "description": "Passive doubles the bonus range from this augment."
+      }
+    ],
+    "85": [
+      {
+        "augmentName": "Clown College",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 5,
+        "description": "Ult while invisible and electrocute everyone."
+      },
+      {
+        "augmentName": "ADAPt",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "With Adapt active, build Axiom Arc to reduce R's CD."
+      }
+    ],
+    "86": [
+      {
+        "augmentName": "Slow And Steady",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 31,
+        "description": "Locks attack speed, but E spin count is unaffected."
+      },
+      {
+        "augmentName": "Blade Waltz",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Max damage build using Blade Waltz invuln for full damage uptime. Engage with E then Waltz; pick AD/crit damage forge, top up crit chance with shards if you're under cap."
+      },
+      {
+        "augmentName": "Void Immolation",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Invincible. Charge in invuln."
+      },
+      {
+        "augmentName": "Slow And Steady",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Protein Shake + Slow and Steady + Statikk Shiv — left foot on right foot. Dual resist → shield, shield → AS, AS → AD. Cruise to victory."
+      },
+      {
+        "augmentName": "Double Tap",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Crit + on-hit endless E. Double Tap + Tap Dancer — once crit-capped, E stacks Tap Dancer; faster AS = more spins = infinite E. Add Slow and Steady AS-to-AD, throw in any lifesteal hex, you're invincible."
+      },
+      {
+        "augmentName": "Bounce of the Poro King",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Open E then Bounce of the Poro King — full-time damage reduction + CC."
+      },
+      {
+        "augmentName": "Transmute: Prismatic",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "E now scales with shard stats (not sure if bug). With Transmute Prismatic, forge AS."
+      },
+      {
+        "augmentName": "Slow And Steady",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Protein Shake + Statikk Shiv."
+      }
+    ],
+    "89": [
+      {
+        "augmentName": "Infernal Conduit",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Infinite CC chain."
+      },
+      {
+        "augmentName": "Cruelty",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Leona QER are all CC — high frequency Cruelty procs."
+      }
+    ],
+    "90": [
+      {
+        "augmentName": "Infernal Conduit",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 19,
+        "description": "E stacks multiple layers of Infernal Conduit."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 33,
+        "description": "Pair with physical-to-magic conversion and on-hit items for strong output."
+      }
+    ],
+    "91": [
+      {
+        "augmentName": "Transmute: Chaos",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "With Transmute Chaos compensation mechanic — system gives 70 Dark Harvest stacks, W deletes half-HP enemies. Without it, stack Dice bond and forge armor pen. Learn the WQRA full combo; otherwise W brushes for 2-stage QA. Shadow Assault QER all get MS."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Auto-procs the passive, but ult hitting someone breaks stealth. Double-edged."
+      }
+    ],
+    "92": [
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 12,
+        "description": "Abilities don't trigger the passive. Skip."
+      }
+    ],
+    "98": [
+      {
+        "augmentName": "Back To Basics",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Shen's Q empowers his next 3 autos with % max-HP magic damage that scales with AP. Lvl 18 base is 4%; with Q's spirit blade hitting an enemy, it goes to 7% — three autos = 21% max HP. At 400 AP, three autos hit 45% max HP. Spirit-blade pull positioning is huge — hit-vs-miss roughly doubles damage."
+      }
+    ],
+    "99": [
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 24,
+        "description": "Abilities directly trigger the passive."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Ethereal Weapon procs Lux's passive — E into multiple enemies and you can detonate the passive mark on all of them."
+      },
+      {
+        "augmentName": "Slap Around",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Pure AP is squishy and damage-light — go half-tank and stack CDR for faster passive procs. Use R to clear waves."
+      },
+      {
+        "augmentName": "Eureka",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "AP burst. Standard build, any of the listed runes work."
+      }
+    ],
+    "102": [
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 4,
+        "description": "Use Ethereal Weapon — in dragon form, open W then Q for multi-hit damage. Stack HP, main Q for splash damage; clustered enemies = max damage."
+      },
+      {
+        "augmentName": "Ultimate Awakening",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 4,
+        "description": "Ultimate Awakening gives small abilities 300 haste — Shyvana spams E at extreme frequency."
+      },
+      {
+        "augmentName": "Double Tap",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Core hex is Double Tap crit triggering on-hit. First item Wit's End, then Dusk and Dawn."
+      },
+      {
+        "augmentName": "Marksmage",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 9,
+        "description": "Q can't proc Marksmage. Avoid this one."
+      }
+    ],
+    "104": [
+      {
+        "augmentName": "Back To Basics",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 46,
+        "description": "Graves' auto attacks benefit from Back To Basics."
+      },
+      {
+        "augmentName": "Draw Your Sword",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 46,
+        "description": "Pick this and just dominate. One shot per kid."
+      },
+      {
+        "augmentName": "Slow And Steady",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 35,
+        "description": "Attacks fast and hits hard."
+      },
+      {
+        "augmentName": "Marksmage",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Left foot on right foot."
+      },
+      {
+        "augmentName": "Don't Blink",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Graves's autos on the same target don't reset Don't Blink charging — every auto carries the on-hit; Stormrazor extends range."
+      },
+      {
+        "augmentName": "Marksmage",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Convert Graves's massive AP into bonus physical on-hit via Marksmage. His autos fire 4 pellets, each triggering independently — one auto = +300% AP. Late-game with Ruined King pellets become 6 for 4.5x AP scaling. Only viable when first hex is Marksmage; otherwise pure AD outperforms. Bonus damage is physical, so Black Cleaver is core late."
+      },
+      {
+        "augmentName": "Shrink Engine",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Stack Shrink Engine to boost haste, infinite AE, max mobility."
+      },
+      {
+        "augmentName": "Draw Your Sword",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Use Draw Your Sword + Hubris's AD stacking for two-shot squishy executes late. Drop smoke on backline assassins to disrupt their rhythm."
+      }
+    ],
+    "105": [
+      {
+        "augmentName": "Dashing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 15,
+        "description": "Q and E both reduce cooldowns."
+      },
+      {
+        "augmentName": "Infernal Conduit",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 6,
+        "description": "W passive burn stacks multiple layers of Infernal Conduit."
+      },
+      {
+        "augmentName": "Fan The Hammer",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Fan The Hammer currently procs full W active damage, and Fizz can easily change auto direction."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Statikk Shiv's bolts hit multiple enemies and proc Void Rift on each — full-screen Rift bombs. Empowered autos after W also proc Void Rift."
+      },
+      {
+        "augmentName": "Infinite Recursion",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Mystic Punch's CDR + Dusk and Dawn enables infinite Q."
+      },
+      {
+        "augmentName": "Don't Blink",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Fizz E has 65% slow, R has 80% — both last 2s. With QW instant burst, every ability gains ~30%+ stable damage amp from the huge MS gap. Long-range R first for the slow, then full combo for max damage."
+      },
+      {
+        "augmentName": "Bread and Cheese",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Classic Fizz — one-shot low-HP enemies, then Zhonya's or Fey Magic E to bail. Fey Magic is the key tech; haste is your top priority for high uptime."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Void Rift + Statikk Shiv + W = full-screen Void Rifts."
+      }
+    ],
+    "106": [
+      {
+        "augmentName": "Mystic Punch",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "Mystic Punch slashes ability cooldowns hard — pair with Navori Quickblades for effective infinite cast."
+      },
+      {
+        "augmentName": "Master of Duality",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Q and W both register as on-attack effects, so Master of Duality stacks fast — passive converts AP into attack speed, snowballing harder the longer the fight runs. Forge: lethality > MS > resists > HP."
+      },
+      {
+        "augmentName": "Rabble Rousing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Mystic Punch + Navori = infinite QWER. Sweet!"
+      },
+      {
+        "augmentName": "Deft",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Snowball in, delete."
+      }
+    ],
+    "107": [
+      {
+        "augmentName": "Scopiest Weapons",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 7,
+        "description": "Increases passive leap range."
+      },
+      {
+        "augmentName": "Scopier Weapons",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 3,
+        "description": "Increases passive leap range."
+      },
+      {
+        "augmentName": "Scoped Weapons",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 3,
+        "description": "Increases passive leap range."
+      },
+      {
+        "augmentName": "Vampirism",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Hexes are flexible. New boots give more shield; swap Mortal Reminder for Serpent's Fang."
+      },
+      {
+        "augmentName": "Scopier Weapons",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Meme long-jump tiger — jumps farther, fun."
+      },
+      {
+        "augmentName": "Circle of Death",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 1,
+        "description": "Abuses Circle of Death's 5x damage bug on specific champions — Rengar's normal and empowered W both trigger it for instant burst far above tooltip. Lean into trading HP since heal-on-hit ramps with damage taken; empowered W's CC immunity means short of one-shots, you'll heal up and execute full-HP squishies in moments."
+      }
+    ],
+    "110": [
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 22,
+        "description": "Varus W stacks up to 3 layers of passive on enemies for max-HP magic damage — at ~600 AP, 3 stacks = 100% HP magic damage. Need magic pen. Max W, level E and Q evenly with priority on E. Forge: magic pen > AD (w/ Adapt) > AP > MS. Ethereal Weapon + Nashor's lets ability damage proc passive twice. Weave autos: aq, aw, ar, wq. W detonation damage scales with Q charge time (up to +50%). W active adds bonus damage — max damage = R, W, max-charge Q to detonate 3 stacks."
+      },
+      {
+        "augmentName": "ADAPt",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 7,
+        "description": "Master of Duality + Adapt — W's AP scaling enables tank deletes; high AS pairs perfectly with Marksmage stacks, with double-pen Lethal Tempo bonus. Autos benefit from Marksmage's AP scaling; build Runaan's for fast MoD stacks. W passive's AP-scaling on-hit also scales with this build's AS."
+      }
+    ],
+    "111": [
+      {
+        "augmentName": "Courage of the Colossus",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 10,
+        "description": "Pair with Cruelty. Don't even think about how strong it gets."
+      },
+      {
+        "augmentName": "Protein Shake",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Protein Shake makes Nautilus's W shield enormous — extremely tanky, even better with Heartsteel."
+      }
+    ],
+    "112": [
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "E and R are both AoE, perfect for spamming Void Rift procs."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 4,
+        "description": "Abilities can't trigger Q's empowered auto."
+      }
+    ],
+    "113": [
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "B",
+        "tierScore": 40,
+        "upvotes": 0,
+        "description": "Meme build — Sejuani's kit scales hard with AP, full combo deletes squishies. Don't ask what happens when it doesn't kill — it's a meme. Weaker than tank Sej, but fun."
+      },
+      {
+        "augmentName": "Fan The Hammer",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 0,
+        "description": "Instantly stacks the passive."
+      }
+    ],
+    "114": [
+      {
+        "augmentName": "Quest: Steel Your Heart",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "[Hard to assemble] Heartsteel + Tank Engine stack infinite HP, Overlord's Bloodmail converts HP into AD. With Fiora's passive, around 2500 AD a single vital procs 100% max-HP true damage."
+      },
+      {
+        "augmentName": "Mystic Punch",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "Mystic Punch slashes Q's cooldown, opening up Blade Waltz freely. With Slow and Steady you keep E up full uptime + spam Q, soaking up all that converted AD. New Mystic Punch also reduces R — three R's per fight."
+      },
+      {
+        "augmentName": "Blade Waltz",
+        "tier": "B",
+        "tierScore": 40,
+        "upvotes": 0,
+        "description": "One press pops all 4 vitals (if no other targets nearby)."
+      }
+    ],
+    "115": [
+      {
+        "augmentName": "Infinite Recursion",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Ziggs's CDs are already short — stack haste and play it like URF."
+      },
+      {
+        "augmentName": "Cheating",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Recall is core — fits Slap Around and Shrink Engine. Slap Around's adaptive force gives 10 AP per W. Watch recall timing."
+      }
+    ],
+    "119": [
+      {
+        "augmentName": "Spin To Win",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 9,
+        "description": "Q, E, and R all get the Spin To Win bonus."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "Burst. High damage, needs skill."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Jeweled Gauntlet lets R crit — explosive damage."
+      }
+    ],
+    "120": [
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "Classic Ethereal Weapon + Mystic Punch combo — abilities trigger on-hit effects to refresh CDs. Hard to assemble — requires both specific hexes; Mystic Punch alone isn't worth it."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 24,
+        "description": "Pair with Mystic Punch for infinite Q spam."
+      },
+      {
+        "augmentName": "Rabble Rousing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 10,
+        "description": "Abilities come off cooldown so fast you heal infinitely."
+      },
+      {
+        "augmentName": "Ultimate Awakening",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Ultimate Awakening = Ethereal Weapon + Mystic Punch. QQQ."
+      },
+      {
+        "augmentName": "Ultimate Awakening",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Pop ult = go invincible."
+      },
+      {
+        "augmentName": "Critical Healing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Crit chance + Death's Dance — abilities grant shields based on crit, while Death's Dance converts 30% damage into bleed that the shields absorb. Keep ability frequency high and you maintain a permanent 30% damage reduction."
+      },
+      {
+        "augmentName": "Back To Basics",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Back to Basics massively boosts Q damage — paired with other damage amp hexes, Q hits like a truck."
+      },
+      {
+        "augmentName": "Triggered Inferno",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Hecarim W's multi-hit ticks stack Triggered Inferno fast — RW into the pile and a couple Qs hits S-rank. As a frontline diver, his playstyle fits TI perfectly. Use R for the long engage, W to absorb damage and stack, then Q to finish at S-rank."
+      }
+    ],
+    "121": [
+      {
+        "augmentName": "Upgrade Hubris",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Stack Shrink Engine — extreme MS. Don't evolve E — flight is too slow."
+      }
+    ],
+    "122": [
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Darius's Ethereal Weapon and Blade Waltz don't stack bleed."
+      },
+      {
+        "augmentName": "Back To Basics",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Back to Basics gives huge AD — go full armor pen + crit and W deletes squishies."
+      },
+      {
+        "augmentName": "Typhoon",
+        "tier": "B",
+        "tierScore": 40,
+        "upvotes": 2,
+        "description": "Typhoon can stack Darius's bleed on enemies."
+      },
+      {
+        "augmentName": "Fan The Hammer",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 6,
+        "description": "Doesn't stack bleed. Skip."
+      },
+      {
+        "augmentName": "Blade Waltz",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 4,
+        "description": "Doesn't stack bleed. Skip."
+      }
+    ],
+    "126": [
+      {
+        "augmentName": "Slow And Steady",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "Grab Slow and Steady at level 1 and the game has a 3-minute countdown until you delete people. Slow and Steady converts AS to AD; Jayce's cannon W gives a full 2.5 AS that converts. Make sure to cast W in cannon form BEFORE using abilities!"
+      },
+      {
+        "augmentName": "Slow And Steady",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 29,
+        "description": "Jayce's cannon form W gives +360 AD with this augment."
+      },
+      {
+        "augmentName": "Purist - Caster",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 16,
+        "description": "W activation gives 300 ability haste."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Power of long life — feel the thunder. If you don't get it with these, just trade $5."
+      }
+    ],
+    "127": [
+      {
+        "augmentName": "Don't Blink",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "Passive, Q, and R all apply slows — consistent damage amp."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Build around Void Rift — Lissandra's W and R proc Rifts at high frequency; E to engage. Time R engage carefully."
+      }
+    ],
+    "131": [
+      {
+        "augmentName": "Critical Healing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 6,
+        "description": "Tank Diana with W shield. Have fun with that."
+      },
+      {
+        "augmentName": "Purist - Caster",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Diana's post-cast empowered auto gives 105% AS, converted to 68 haste via Purist + Caster. With Nashor's + Lich Bane, permanent 220 haste enables infinite QE bursts. With that haste, QE combos are extremely fast and bursty."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 4,
+        "description": "Abilities auto-proc the passive, but the passive doesn't deal AoE."
+      }
+    ],
+    "133": [
+      {
+        "augmentName": "Quantum Computing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Lethality Quinn with Quantum Computing can dive for massive team damage, heal through the burst, then reposition out."
+      },
+      {
+        "augmentName": "Poro Blaster",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Solves classic build's slow attack-speed problem — improves mobility (though tough vs heavy tank + CC comps). Find windows to hit key targets via passive."
+      },
+      {
+        "augmentName": "Outlaw's Grit",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Quinn E currently fully stacks Outlaw's Grit instantly (+60 resists), likely a bug-level interaction."
+      }
+    ],
+    "134": [
+      {
+        "augmentName": "Cruelty",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 7,
+        "description": "Pairs with E for massive AoE CC into double Cruelty proc. Truly disgusting."
+      },
+      {
+        "augmentName": "Executioner",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 4,
+        "description": "Executioner now resets upgraded Q."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Forge: max crit damage to cap."
+      },
+      {
+        "augmentName": "Slap Around",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Syndra's QE triggers Slap Around twice; hitting multiple enemies stacks it extra fast."
+      }
+    ],
+    "136": [
+      {
+        "augmentName": "Shrink Engine",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "[Hard to scale] Stack passive to boost E's execute threshold — at 3653 stacks, 100% HP execute."
+      },
+      {
+        "augmentName": "Ice Cold",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 33,
+        "description": "E is a drag effect that stacks with slows. With Rylai's, enemies can barely move."
+      },
+      {
+        "augmentName": "Stackosaurus Rex",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 6,
+        "description": "Stacks at light speed."
+      },
+      {
+        "augmentName": "Infernal Conduit",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Burn build. WQ amps Q damage; E kills credited to others still count for stacks."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Q, E, and R are all AoE — high-frequency Void Rift procs."
+      },
+      {
+        "augmentName": "Mind to Matter",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Aurelion Q's CD is 0s at level 9. Repeated taps proc Archmage's 30% CDR refund constantly, slashing E and R cooldowns for full-map damage. Even 0.1s breath procs the effect — quick Q-taps make long-CD abilities feel CD-less."
+      }
+    ],
+    "141": [
+      {
+        "augmentName": "Dashing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 7,
+        "description": "Q, E, and R all benefit from the bonus."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Red Kayn — pure burst."
+      },
+      {
+        "augmentName": "Quantum Computing",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 2,
+        "description": "Triggering Quantum Computing during ult makes the target take 4x inner circle damage."
+      }
+    ],
+    "142": [
+      {
+        "augmentName": "Snowball Upgrade",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Snowballs Zoe W-picks all trigger the snowball hex effects — Biggest Snowball Ever's size bonus and Snowball Upgrade's AoE damage both proc. Hunt snowballs on the map — they hit absurdly hard."
+      },
+      {
+        "augmentName": "Biggest Snowball Ever",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 11,
+        "description": "Zoe's signature combo. Picked-up snowballs are also giant."
+      },
+      {
+        "augmentName": "Snowball Upgrade",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 3,
+        "description": "Same deal — picked-up snowballs also trigger the snow effect."
+      }
+    ],
+    "143": [
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 27,
+        "description": "Ethereal Weapon procs off Zyra plants and creates an extremely high-value damage pattern."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Void Rift deals magic damage, so it fits AP champs with high magic pen — % magic pen amplifies it, and Pridestalker's ability damage procs it many times."
+      }
+    ],
+    "145": [
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 3,
+        "description": "Ethereal Weapon + Duskblade. After upgrading W, one hit procs all plasma stacks."
+      },
+      {
+        "augmentName": "Mystic Punch",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 3,
+        "description": "Use new Mystic Punch's all-ability CDR with Runaan's split shots (also procs the hex), plus Dusk and Dawn double-proc — one auto reduces all CDs by 5s, enabling infinite Icathian Rain. Core is Mystic Punch + Runaan's combo; you have to actually hit."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Use Ethereal Weapon so abilities carry on-hit + Dusk and Dawn's Sheen damage — evolved W detonates 5 plasma stacks at long range. Must evolve W; vs tank teams swap Shadowflame for Void Staff; if you want to evolve E, grab Berserker's Greaves."
+      },
+      {
+        "augmentName": "Critical Healing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Infinite missiles. Tech gun + crit = bloodlust build."
+      },
+      {
+        "augmentName": "Marksmage",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 1,
+        "description": "Use Marksmage + Zealot's AP scaling for mixed damage. A mage-side meme build."
+      }
+    ],
+    "147": [
+      {
+        "augmentName": "Slap Around",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 14,
+        "description": "E rapidly stacks Slap Around."
+      },
+      {
+        "augmentName": "Cruelty",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Build Rylai's so E becomes AoE hard CC, which procs Cruelty."
+      },
+      {
+        "augmentName": "Slap Around",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Always Rylai's — E roots normally and stuns when empowered. Both forms of CC stack Slap Around, and AP piles on fast. Even basic E procs the hex without needing the upgrade."
+      },
+      {
+        "augmentName": "MountainSoul",
+        "tier": "B",
+        "tierScore": 40,
+        "upvotes": 8,
+        "description": "When shielded, W directly triggers the heal."
+      }
+    ],
+    "150": [
+      {
+        "augmentName": "Fan The Hammer",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 1,
+        "description": "Mini Gnar W has 100% AP scaling and 14% max-HP damage. Fan the Hammer applies 5 on-hits per auto + 2 triple-ring procs. With Dual Wield + Tap Dancer + Runaan's, one auto deletes most HP. One auto fills rage bar; mega form is less useful — manage your aggression timing."
+      },
+      {
+        "augmentName": "Fan The Hammer",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "AP Gnar one-shots with a single auto."
+      }
+    ],
+    "154": [
+      {
+        "augmentName": "Circle of Death",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 14,
+        "description": "Zac heals so frequently that Circle of Death procs constantly."
+      },
+      {
+        "augmentName": "Circle of Death",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Use Circle of Death to convert massive heals into magic damage — pair with Zac's huge HP and % HP regen to play laser tower. Higher HP = bigger heal = bigger CoD damage; build HP and healing-boost hexes."
+      },
+      {
+        "augmentName": "Protein Shake",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Use Protein Shake to convert resists into heal amp — at 350 dual resists with Iceborn Gauntlet, heals multiply by 4.6x, ignoring Grievous Wounds."
+      }
+    ],
+    "157": [
+      {
+        "augmentName": "Mystic Punch",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "Mystic Punch autos reduce all CDs by 1.25s; Yasuo's Q counts as an auto, so at 1.33s Q CD, you get infinite Q. Ruined King keeps shields up."
+      },
+      {
+        "augmentName": "Swift and Safe",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 18,
+        "description": "Pair with crit and watch everyone go silent."
+      },
+      {
+        "augmentName": "Critical Healing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 3,
+        "description": "Doubles crit chance via passive — Ruined King alone takes you near max crit. Yasuo's high-frequency Q and E refresh shields constantly, while Death's Dance bleed makes him both tanky and bursty."
+      },
+      {
+        "augmentName": "Mystic Punch",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "Brutal. Just don't whiff Q."
+      },
+      {
+        "augmentName": "Shadow Runner",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Huge MS and heal/shield uptime."
+      },
+      {
+        "augmentName": "Critical Healing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Immortal bloodlust bull."
+      },
+      {
+        "augmentName": "Shadow Runner",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Happiness, period."
+      },
+      {
+        "augmentName": "Courage of the Colossus",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Colossus's Courage + Critical Healing. Always Ruined King; with the wind, stack shields and engage."
+      }
+    ],
+    "166": [
+      {
+        "augmentName": "Dual Wield",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 21,
+        "description": "One auto = four hits."
+      }
+    ],
+    "200": [
+      {
+        "augmentName": "Mystic Punch",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 4,
+        "description": "Q hit directly resets W and E."
+      },
+      {
+        "augmentName": "Slow And Steady",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "E's hit count isn't capped by Slow and Steady — attack-speed items give huge AD, and her passive AS also converts. Main E for damage. Time E around the AS lock; E and R do the heavy lifting."
+      },
+      {
+        "augmentName": "Tap Dancer",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Passive stacks benefit from Shrink Engine — late-game attack speed easily exceeds 6.0."
+      },
+      {
+        "augmentName": "Mystic Punch",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Bel'Veth's Q and W are AoE — multi-hits cut multiple CDs, making QWE basically zero-CD. Infinite QW knockup."
+      }
+    ],
+    "201": [
+      {
+        "augmentName": "Fan The Hammer",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 3,
+        "description": "One auto instantly maxes passive for a stun."
+      },
+      {
+        "augmentName": "Blade Waltz",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Every hit stacks passive. Pair with Typhoon or Runaan's to stack on multiple targets — basically a team-wide stun."
+      },
+      {
+        "augmentName": "Typhoon",
+        "tier": "B",
+        "tierScore": 40,
+        "upvotes": 0,
+        "description": "Autos on minions stack passive on champions."
+      }
+    ],
+    "202": [
+      {
+        "augmentName": "Back To Basics",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 19,
+        "description": "Auto attacks benefit from Back To Basics."
+      }
+    ],
+    "203": [
+      {
+        "augmentName": "Stackosaurus Rex",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 8,
+        "description": "Passive gives 2 stacks instead of 1."
+      },
+      {
+        "augmentName": "Back To Basics",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 6,
+        "description": "Auto attacks benefit from Back To Basics."
+      }
+    ],
+    "221": [
+      {
+        "augmentName": "Rabble Rousing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Use Rabble Rousing with Zeri's passive — autos count as ability casts. Hex heals % max HP, so drop crit items for half-tank build; stack HP. Use Overlord's Bloodmail to convert HP into AD. Passive (not Q) counts as ability — every click heals; also works on minions and turrets."
+      },
+      {
+        "augmentName": "Giant Slayer",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Notice."
+      },
+      {
+        "augmentName": "Upgrade Infinity Edge",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 4,
+        "description": "Crit Q procs bonus damage on every tick. Great value."
+      },
+      {
+        "augmentName": "Fey Magic",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "After R, Q chain lightning also triggers the polymorph."
+      },
+      {
+        "augmentName": "Slow And Steady",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 7,
+        "description": "As of patch 26.1, this locks attack speed. Avoid!"
+      }
+    ],
+    "223": [
+      {
+        "augmentName": "Tank Engine",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Tahm's autos and Q proc bonus damage based on max HP — with hexes you reach absurd resists and HP. He doesn't lack damage; just build 6 tank items."
+      },
+      {
+        "augmentName": "Quest: Steel Your Heart",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Use Mayhem's infinite HP stacking with Rift Maker to convert HP into AP; with Adapt enabled, Overlord's Bloodmail works too."
+      },
+      {
+        "augmentName": "Goliath",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "For Mejai's stack lineups — Heartsteel + Goliath/Tank Engine makes tongue reach across the screen, Q chunks stack-snipers half HP. Since stacks are plentiful, don't aggressively stack HP — Heartsteel is just for size."
+      },
+      {
+        "augmentName": "Fan The Hammer",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Damage is huge but fragile."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 18,
+        "description": "With Duskblade, a single Q stacks 3 passive layers."
+      }
+    ],
+    "233": [
+      {
+        "augmentName": "Dashing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 7,
+        "description": "Q, W, and R all proc Dashing."
+      },
+      {
+        "augmentName": "Executioner",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 4,
+        "description": "Killing in W resets it."
+      },
+      {
+        "augmentName": "Upgrade Infinity Edge",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Crit build deals huge damage — lifesteal heals you to full through Grievous Wounds in two bites."
+      },
+      {
+        "augmentName": "Mystic Punch",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Briar with max crit damage hits hard, which means more lifesteal; stack omnivamp around full-crit goal. Counterintuitive tips: do NOT pick Slow and Steady (Prismatic = Aim); do NOT build boots, Liandry's, or Collector (only build Collector vs full-squishy or full-backline; if there are 2+ bruisers, skip it unless you have Upgrade Collector). Without lifesteal hex, prioritize crit hex — items only give 75% crit cap; otherwise pick Triple-Stack Dragon synergies to amp Hubris. If under crit cap, forge crit. With Mystic Punch, skip Navori; otherwise 99% of matches need it for full uptime W and Q. Master long-range WQ snipes (don't underestimate — range matches J4 EQ)."
+      },
+      {
+        "augmentName": "Upgrade Collector",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Use fast kills to trigger MS — boosts Briar's chain-kill ability. Watch enemy CC; if they have too much, let teammates engage first then clean up."
+      }
+    ],
+    "234": [
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 5,
+        "description": "Q and R can't crit normally, but crit chance gives percent bonus damage. With Jeweled Gauntlet, damage is absurd."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Drop Hubris/Liandry's tradition — go crit + armor pen. Use Collector + IE + Jeweled Gauntlet from Mayhem hexes to max Q/R damage for instant kills. Skip Hubris — Viego doesn't get the kill credit after possessing. Better burst for instant kills vs long-range comps."
+      }
+    ],
+    "235": [
+      {
+        "augmentName": "Dual Wield",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 18,
+        "description": "One auto = one passive stack."
+      },
+      {
+        "augmentName": "Master of Duality",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "New Statikk Shiv's multi-procs. Weak early — pick stat-boosting hexes."
+      },
+      {
+        "augmentName": "Stackosaurus Rex",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Must-pick if offered. Passive stacks skyrocket."
+      },
+      {
+        "augmentName": "Master of Duality",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "As a ranged champ with Runaan's split shots, one auto stacks 3 layers of Master of Duality. High AP means Q damage and ally heals become absurd — you're a mobile fountain. Build Runaan's first to ramp stacks fast, then leverage range for stacking from safety."
+      },
+      {
+        "augmentName": "Protein Shake",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "AS-enchanter Senna — tanky and durable."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 10,
+        "description": "Q and W hitting enemies extract souls."
+      },
+      {
+        "augmentName": "Draw Your Sword",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Attack range grows as passive stacks increase."
+      },
+      {
+        "augmentName": "Scoped Weapons",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Three Scoped Weapons + Senna's passive + Stormrazor → 1000+ auto range, screen-spanning autos."
+      }
+    ],
+    "236": [
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "Use Jeweled Gauntlet so the ult crits; pair with Vulnerable and Infinity Edge for multiplicative damage — full ult clears the screen. Vulnerable, Jeweled Gauntlet, and IE multiply together. If the enemy has lots of mobility, build Serylda's for the slow to land more ult ticks."
+      },
+      {
+        "augmentName": "Vulnerability",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 46,
+        "description": "Ult benefits from Vulnerability. Insane damage."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 24,
+        "description": "Stacks with Vulnerability. Ult touches someone and they're dead."
+      },
+      {
+        "augmentName": "Mystic Punch",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 4,
+        "description": "Lucian gets two autos per cast — Mystic Punch + Navori Quickblades + some CDR enables seamless EA kiting."
+      },
+      {
+        "augmentName": "Mystic Punch",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "On-hit CDR. Once you get Mystic Punch early, this build works."
+      },
+      {
+        "augmentName": "Clown College",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Clown College stealth gun build."
+      },
+      {
+        "augmentName": "Bread And Jam",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "For matchups where the entire enemy team is long-range poke — Hex-enhance W's damage and uptime to play the trading game. Off-meta — only use it when everyone's poking from range."
+      }
+    ],
+    "238": [
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 8,
+        "description": "Ethereal Weapon makes abilities trigger item effects — feels like old-school Zed."
+      },
+      {
+        "augmentName": "Back To Basics",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Looks trap, but Zed's damage actually comes from Q and E — skipping R just means losing a dash (intentional)."
+      },
+      {
+        "augmentName": "Upgrade Collector",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Ability-vamp build. No tricks — just secure kills."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 14,
+        "description": "Abilities trigger the passive. Pair with Ravenous Hydra for old-school vibes."
+      },
+      {
+        "augmentName": "Executioner",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 0,
+        "description": "Executioner only resets cooldowns, not energy. Often you'll get the reset but can't cast anything."
+      }
+    ],
+    "240": [
+      {
+        "augmentName": "Slow And Steady",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Slow and Steady converts W's attack-speed bonus into massive AD — pair with lethality for the one-shot route."
+      },
+      {
+        "augmentName": "Heavy Hitter",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Kled's W's 4th hit deals % max-HP physical damage, scaling with HP and AD. Mayhem allows infinite HP/AD stacking, so end-game 4th hit can crush 100%+ max HP."
+      }
+    ],
+    "245": [
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 9,
+        "description": "Ethereal Weapon + Duskblade. Single ability triggers third-hit passive and W passive."
+      },
+      {
+        "augmentName": "Fan The Hammer",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Trust me on this one. Fully procs W passive. Delete anyone on sight."
+      },
+      {
+        "augmentName": "Fan The Hammer",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Use Fan the Hammer's extra bolts to proc Ekko's W passive (% magic damage to low-HP targets). Each bolt fully triggers it — sub-30% HP targets get nuked by one EA. The combo not only stacks triple-ring but multi-procs the execute."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Ethereal Weapon + Nashor's lets one ability proc the triple-ring."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Void Rift deals magic damage, so it fits AP champs with high magic pen — % magic pen amplifies, and Pridestalker's ability damage procs it many times. Forge: magic pen > AP > MS."
+      },
+      {
+        "augmentName": "Eureka",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "At 500 ability haste, R has only a 12s cooldown."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "E with crit → instant triple-ring. Long CD — pick your engage; vs shield comps, build shield-shred."
+      },
+      {
+        "augmentName": "Executioner",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "High damage, good tolerance, long R cooldown."
+      }
+    ],
+    "246": [
+      {
+        "augmentName": "Juiced",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Stack the Archmage hex, then loop Qiyana W (resets Q + adds an element) with Archmage's CDR returns for infinite QW combos. At 100+ ability haste it becomes a perfect cycle — endless dashes, stealth, or CC. Manamune is critical since infinite QW drains mana fast."
+      }
+    ],
+    "254": [
+      {
+        "augmentName": "Fan The Hammer",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Vi W's % HP scales with AD. Fan the Hammer lets one auto stack two triple-ring procs — with AD items, autos are terrifying. Pure AD; push W to 30%+ HP for best results."
+      },
+      {
+        "augmentName": "Blade Waltz",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Ult + Blade Waltz sends everyone flying."
+      },
+      {
+        "augmentName": "Dashing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Stack armor pen, crit, and ability haste — chain Q + R into autos that quickly proc W's % HP burst for squishy deletes and tank chunks. Q can be flash-extended; R flight has CC immunity for dodging key CCs; E's AoE Excessive Force can snipe low-HP targets through walls."
+      }
+    ],
+    "266": [
+      {
+        "augmentName": "Protein Shake",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 3,
+        "description": "With ~250 dual resists from half-tank items, Protein Shake + Iceborn Gauntlet multiplies heals/shields up to 3.5x — Sundered Sky and Death's Dance benefit hugely."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Jeweled Gauntlet bloodlust build. Don't play without first-hex Jeweled Gauntlet — tanky and damaging."
+      },
+      {
+        "augmentName": "Slap Around",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 10,
+        "description": "Q sweetspot (outer edge) stacks it."
+      }
+    ],
+    "267": [
+      {
+        "augmentName": "Cruelty",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Q and R both proc Cruelty multiple times with their AoE."
+      }
+    ],
+    "268": [
+      {
+        "augmentName": "Magic Missile",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 8,
+        "description": "Each W soldier stab and passive tower shot procs Magic Missile."
+      },
+      {
+        "augmentName": "Marksmage",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Soldiers deal 50% bonus damage — physical + magic. Damage goes through the roof."
+      },
+      {
+        "augmentName": "ADAPt",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Magic."
+      },
+      {
+        "augmentName": "Minionmancer",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 5,
+        "description": "Only increases W size, not damage."
+      },
+      {
+        "augmentName": "Scopiest Weapons",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 4,
+        "description": "Doesn't increase soldier attack range or control range."
+      }
+    ],
+    "350": [
+      {
+        "augmentName": "Circle of Death",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 5,
+        "description": "1. Best in premades with comms. 2. Need a tank teammate who can hold ground. 3. Grab Tank Engine + Circle of Death. 4. Build magic pen if possible — huge late damage. Theoretically die once, recall, buy Conqueror — then ride teammates forever. Yuumi mechanic: attach to a recalling ally at fountain to follow them and skip refunds for the next hex. Watch tower dives — let teammate take aggro first or CoD draws turret aggro and Conqueror heal breaks."
+      },
+      {
+        "augmentName": "Circle of Death",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 15,
+        "description": "Attach to an ally and use Warmog's to deal damage. That's it."
+      },
+      {
+        "augmentName": "Circle of Death",
+        "tier": "B",
+        "tierScore": 40,
+        "upvotes": 0,
+        "description": "Since Conqueror heals at full HP too, Yuumi attached to a teammate constantly procs Conqueror damage on enemies — need an ally that can hold ground. CoD Yuumi stacks HP — regular support items are useless; Moonstone doubles a heal into two heals, mandatory."
+      }
+    ],
+    "360": [
+      {
+        "augmentName": "Draw Your Sword",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 12,
+        "description": "Insane damage. Build Bloodthirster and Death's Dance early for survivability."
+      },
+      {
+        "augmentName": "Blade Waltz",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 11,
+        "description": "Can cast Blade Waltz during ult."
+      },
+      {
+        "augmentName": "Clown College",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 3,
+        "description": "Go invisible during ult for full damage while untargetable."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Q+E+auto instantly fills the style meter."
+      },
+      {
+        "augmentName": "Vulnerability",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 6,
+        "description": "R doesn't proc Vulnerability. Skip."
+      }
+    ],
+    "412": [
+      {
+        "augmentName": "Quest: Steel Your Heart",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Triple-Stack Dragon perma-stacks Thresh passive — great vs melee comps; easy 500 armor."
+      },
+      {
+        "augmentName": "Marksmage",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Use Marksmage to convert Thresh's infinite passive AP (via souls) into 75% bonus physical on autos. Combined with E passive's soul-based bonus magic damage and item on-hits, it's a triple-mixed-damage hit — melts squishies and tanks alike. Thresh's passive permanently gives AP and armor, so Marksmage scales endlessly. Stack souls + AS + AP."
+      },
+      {
+        "augmentName": "Cruelty",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 11,
+        "description": "Q pulls enemies out of Cruelty's area. Bad synergy."
+      }
+    ],
+    "420": [
+      {
+        "augmentName": "Blade Waltz",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Activate W first, then use Blade Waltz. Triggers 8 tentacle attacks."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Ethereal Weapon lets W stay up indefinitely — Q the enemy and tentacles slam infinitely; ult speeds tentacle swings by 50%. Don't use W up."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 11,
+        "description": "Activate W, then hit Q/R or pull a spirit. Tentacles attack endlessly during W."
+      },
+      {
+        "augmentName": "Glass Cannon",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "After pulling the spirit, hitting it makes the original take double damage amp."
+      }
+    ],
+    "421": [
+      {
+        "augmentName": "Scopiest Weapons",
+        "tier": "B",
+        "tierScore": 40,
+        "upvotes": 1,
+        "description": "Right-click a target for an ultra-long-range knockup."
+      },
+      {
+        "augmentName": "Scopier Weapons",
+        "tier": "B",
+        "tierScore": 40,
+        "upvotes": 0,
+        "description": "Right-click a target for an ultra-long-range knockup."
+      },
+      {
+        "augmentName": "Scoped Weapons",
+        "tier": "B",
+        "tierScore": 40,
+        "upvotes": 0,
+        "description": "Right-click a target for an ultra-long-range knockup."
+      }
+    ],
+    "427": [
+      {
+        "augmentName": "Protein Shake",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 1,
+        "description": "Protein Shake + Statikk Shiv — tanky, heal, and shield all in one."
+      }
+    ],
+    "429": [
+      {
+        "augmentName": "Dashing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 16,
+        "description": "Dashing gives Kalista a massive attack speed boost."
+      },
+      {
+        "augmentName": "Fan The Hammer",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 6,
+        "description": "One auto throws 5 spears. Rapid execute."
+      },
+      {
+        "augmentName": "Shadow Runner",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 4,
+        "description": "Move speed rivals Tap Dancer."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "E has high AP ratios — core idea is using E's burst as your damage. Even on AP, rend stays physical, so build armor pen."
+      }
+    ],
+    "432": [
+      {
+        "augmentName": "OrbitalLaser",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 4,
+        "description": "Ult into Orbital Laser into Redemption. Try it once and you'll understand."
+      },
+      {
+        "augmentName": "Droppybara",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Capybara airdrop perfectly times during ult's stasis — pair with Redemption and Killing Time amps for great damage."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Passive AoE procs Void Rift."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 5,
+        "description": "Q doesn't apply the passive."
+      }
+    ],
+    "497": [
+      {
+        "augmentName": "Cruelty",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 4,
+        "description": "Pull enemies in with R, then lift with W for double Comet procs in a small radius — huge damage."
+      }
+    ],
+    "498": [
+      {
+        "augmentName": "Upgrade Infinity Edge",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Forge: omnivamp > AS > armor pen > AD > MS."
+      }
+    ],
+    "516": [
+      {
+        "augmentName": "Fey Magic",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 7,
+        "description": "With Fey Magic, R first cast triggers Vulnerability multiple times. Huge damage."
+      },
+      {
+        "augmentName": "Fey Magic",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Build around Fey Magic + Ornn's first R hit. Fey Magic procs Brittle 4 times on first ult — Brittle's 18% max-HP magic damage stacks four ways for 72% max HP, then magic pen + amp items finish the kill. Forge: ability haste > magic pen. At ~500 haste, Fey Magic is ~15s CD and ult is ~16s — every fight is a nuke. Build straight magic pen + damage amp."
+      }
+    ],
+    "517": [
+      {
+        "augmentName": "Marksmage",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 9,
+        "description": "More units in passive range means more bonus damage on the main target."
+      },
+      {
+        "augmentName": "Dashing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 4,
+        "description": "W and E proc the bonus. If you steal a dash ultimate, R also procs it afterwards."
+      },
+      {
+        "augmentName": "Ultimate Awakening",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "R steal triggers it, then casting the stolen R triggers it again."
+      },
+      {
+        "augmentName": "Juiced",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Sylas's auto is AoE — multi-target procs Juiced multiple times."
+      },
+      {
+        "augmentName": "Purist - Caster",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Sylas's post-cast empowered auto carries 125% AS, converted by Purist + Caster to 81 haste. Pace your auto chain to keep passive stacks up and you maintain 200+ haste permanently. Don't burn through all passive stacks at once — keep haste high."
+      },
+      {
+        "augmentName": "Final Form",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 1,
+        "description": "Same idea as Marksmage."
+      }
+    ],
+    "518": [
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "E, Q, and R all deal AoE damage on short cooldowns — perfect for Void Rift."
+      },
+      {
+        "augmentName": "Cruelty",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Ult lifts enemies up for a guaranteed Cruelty proc."
+      },
+      {
+        "augmentName": "Master of Duality",
+        "tier": "B",
+        "tierScore": 40,
+        "upvotes": 3,
+        "description": "Same trick — disguise as minion, attack the flower for infinite stacks."
+      },
+      {
+        "augmentName": "Tap Dancer",
+        "tier": "B",
+        "tierScore": 40,
+        "upvotes": 2,
+        "description": "On Butcher's Bridge, disguise as a minion and attack the energy flower. It can't die, so you stack forever."
+      },
+      {
+        "augmentName": "From Beginning To End",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 1,
+        "description": "Disguising as a minion or anything else shows the First Strike orb. Gives you away instantly."
+      },
+      {
+        "augmentName": "Poro Blaster",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 0,
+        "description": "Poro Blaster is also a trap on disguise champions like Neeko since poros remain visible."
+      }
+    ],
+    "523": [
+      {
+        "augmentName": "Draw Your Sword",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "Draw Your Sword Aphelios."
+      },
+      {
+        "augmentName": "Back To Basics",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Auto attacks benefit from Back To Basics."
+      },
+      {
+        "augmentName": "Draw Your Sword",
+        "tier": "B",
+        "tierScore": 40,
+        "upvotes": 0,
+        "description": "If first hex is Draw Your Sword and enemy has stack lineup, keep Firecracker chakram (standard ARAM playstyle); core hex after that."
+      }
+    ],
+    "526": [
+      {
+        "augmentName": "Cruelty",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "Centered on Tank Engine + Cruelty. Rell's hex pool is extra clean, and combining them gives extreme CC + huge sustained damage for 1v5 plays. With both hexes, Rell becomes a different champion."
+      },
+      {
+        "augmentName": "Cruelty",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 15,
+        "description": "Rell has tons of AoE CC and grouping. One CC instance hits multiple Cruelty procs on a single target."
+      },
+      {
+        "augmentName": "Courage of the Colossus",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "Courage of the Colossus shields stack. Easy thousands of shield in teamfights."
+      },
+      {
+        "augmentName": "Goliath",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Rell — EQ for kill secures."
+      },
+      {
+        "augmentName": "Courage of the Colossus",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Colossus shield + Devil on Your Shoulder heal + Heavy Hitter for infinite ability spam."
+      }
+    ],
+    "555": [
+      {
+        "augmentName": "Goliath",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Pyke passive converts 14 HP into 1 AD; Goliath gives 35% HP and 15% AD, so 8 HP = 1 AD — late, 1000+ AD easy. R scales with both AD and lethality — full-HP squishies are in execute range."
+      },
+      {
+        "augmentName": "Shrink Engine",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Use Shrink Engine for huge haste + Slap Around's Adaptive Force — perma QE CC stacking permanent AD. Open by searching Slap Around; with Triple-Stack Dragon synergy, 1000+ AD is easy and a single R deletes backliners."
+      },
+      {
+        "augmentName": "Dashing",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 0,
+        "description": "R doesn't proc the bonus. Skip."
+      }
+    ],
+    "777": [
+      {
+        "augmentName": "Mystic Punch",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 1,
+        "description": "Mystic Punch autos reduce all CDs by 1.25s. Yone's Q counts as an auto, so at 1.33s Q cooldown you get infinite Q — pair with Ruined King for permanent shield uptime."
+      },
+      {
+        "augmentName": "Critical Healing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 15,
+        "description": "Pair with crit. Built-in crit scaling plus frequent ability casts = easy full crit. Every ability gives a shield, which then gets amplified, plus bonus healing."
+      },
+      {
+        "augmentName": "Slow And Steady",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Slow and Steady converts attack speed to AD without reducing Q's cooldown — Q's tooltip damage is already huge."
+      },
+      {
+        "augmentName": "Critical Healing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Doubles crit chance via passive — Ruined King alone takes you near full crit. Yone's high-frequency Q refreshes his shield while Death's Dance bleed makes him both tanky and bursty."
+      }
+    ],
+    "799": [
+      {
+        "augmentName": "Back To Basics",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 4,
+        "description": "R passive armor pen still works."
+      },
+      {
+        "augmentName": "Rabble Rousing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "Q triggers healing 3 times, other abilities trigger it twice."
+      },
+      {
+        "augmentName": "Clown College",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "If enemy is squishy, Final City Transit deals more damage than Dive Bomber."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Use Hubris's stacking AD with Bloodthirster's tenacity + omnivamp + Death's Dance's bleed-spread. Ambessa procs shields constantly, mitigating DD bleed — extreme dueler with huge tolerance."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 12,
+        "description": "Passive attacks no longer refund energy. Never take this."
+      },
+      {
+        "augmentName": "Dashing",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 12,
+        "description": "Only R benefits from the bonus. Skip."
+      }
+    ],
+    "800": [
+      {
+        "augmentName": "Skilled Sniper",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 7,
+        "description": "Land Q and W consistently and you can cast endlessly. W especially gives infinite CC."
+      },
+      {
+        "augmentName": "Vulnerability",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Q's multi-hits all benefit from Vulnerable's amp — damage is absurd."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Void Rift deals magic damage, so it fits AP champs with high magic pen — % magic pen amplifies it, and Pridestalker's ability damage procs it many times. Forge: magic pen > AP > MS."
+      },
+      {
+        "augmentName": "Executioner",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Squishy poke duels — without Executioner, take CDR. Save W for assassin/bruiser face-divers."
+      },
+      {
+        "augmentName": "Infernal Conduit",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 0,
+        "description": "Q and E only stack one layer of Infernal Conduit each."
+      }
+    ],
+    "804": [
+      {
+        "augmentName": "Master of Duality",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 28,
+        "description": "With Q active, each auto stacks multiple layers of Master of Duality."
+      },
+      {
+        "augmentName": "Tap Dancer",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 7,
+        "description": "With Q active, each auto stacks multiple layers of Tap Dancer."
+      },
+      {
+        "augmentName": "Juiced",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "On-hit Juiced with Q's splash lets Yunara proc Juiced dozens of times per auto, at the cost of being mana-hungry."
+      },
+      {
+        "augmentName": "Double Tap",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 2,
+        "description": "Crit + on-hit dual cultivation. Silver: Typhoon, Escape Plan. Gold: Conditioning, Lightning Strike, Vampirism. Prismatic: Dual Wield, Tap Dancer, Master of Duality."
+      },
+      {
+        "augmentName": "Master of Duality",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Runaan's plus Q stacks Master of Duality quickly; passive deals bonus magic damage with AP scaling on crit, scaling harder every fight."
+      },
+      {
+        "augmentName": "Critical Missile",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Crit Missile without Vulnerable."
+      }
+    ],
+    "875": [
+      {
+        "augmentName": "Clown College",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 10,
+        "description": "Go invisible, walk up, one-punch squishies."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 8,
+        "description": "Essential for lethality ult Sett. Enemy tanks become your strongest weapon."
+      },
+      {
+        "augmentName": "Back To Basics",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Must-pick in strong games. The damage amp is insane."
+      },
+      {
+        "augmentName": "Goliath",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "In Mayhem, Sett's W stores up to 35% max HP in grit. W damage scales with grit cap and AD, so stack HP and AD — late, you one-shot. Forge: AD > HP > MS. E pulls both sides together; if both sides have at least one unit (minions count), it stuns — wait for full grit, EW guaranteed."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Hit first, talk later — pave the road with fists. Engage timing is critical; one big call decides the nuke."
+      },
+      {
+        "augmentName": "Dropkick",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Dropkick is GOAT — without Dropkick, swap extra defense for tanky physical items."
+      },
+      {
+        "augmentName": "Quantum Computing",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Triggering Quantum Computing during ult makes the target take 4x inner circle damage."
+      }
+    ],
+    "876": [
+      {
+        "augmentName": "Infernal Conduit",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 11,
+        "description": "Passive burn stacks multiple layers of Infernal Conduit."
+      },
+      {
+        "augmentName": "Spin To Win",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Q, W, and E all count as spinning abilities."
+      },
+      {
+        "augmentName": "Don't Blink",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Lillia is a mage with naturally high MS — pair with Rylai's slow and you can open up 500+ MS gaps in fights, pushing Don't Blink near its 50% damage cap. Always build Rylai's — even a grazing skill triggers massive bonus damage."
+      },
+      {
+        "augmentName": "Devil on Your Shoulder",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Lillia's passive burn drops fragments constantly, and her E spawns big piles around her on impact."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Void Rift early bursts squishies, late burns tanks. Build magic pen for damage; flex other hexes for MS or tankiness. Don't rush engages in fights — wait in bush, Q into W and pull back; E for poke, R for engage but not mandatory."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 10,
+        "description": "Pair with Ethereal Weapon to stack Heartsteel fast, converting HP into damage and survivability. Joke build — DPS is weaker than sustained-damage routes; recommend if you like stacking HP."
+      },
+      {
+        "augmentName": "ADAPt",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Liandry's Anguish boosts Lillia's tick rate via ability damage amp, CDR, and HP — full uptime upgrade. If you're mana-hungry, swap to Archangel's."
+      }
+    ],
+    "887": [
+      {
+        "augmentName": "Marksmage",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Gwen is huge in this mode — Gold hexes include Ethereal Weapon and Marksmage, Prismatic includes Giant Slayer. Without Vampirism, take omnivamp items — with tank items you're untouchable in 1v1s."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Autos and Q each trigger an extra hit. Add Duskblade for massive damage."
+      }
+    ],
+    "888": [
+      {
+        "augmentName": "Slap Around",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 8,
+        "description": "One Q stacks at least 2 layers. Throw someone into allies for up to 6 stacks per Q. Pair with Cruelty and it's over."
+      },
+      {
+        "augmentName": "Cruelty",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 4,
+        "description": "Q triggers multiple Cruelty procs. Ult does too."
+      },
+      {
+        "augmentName": "Quest: Wooglet's Witchcap",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Renata's passive marks enemies; ally damage consumes the mark for % max-HP magic damage. At 600 AP, hits 14% max HP. Stack AP for damage and AS for marking frequency. Damage is attributed to Renata, so magic-pen forge works."
+      }
+    ],
+    "893": [
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S+",
+        "tierScore": 100,
+        "upvotes": 0,
+        "description": "Aurora's passive triple-ring deals % max-HP magic damage — at 800 AP it hits 20%+ max HP. Ethereal Weapon multi-procs it for insane burst that pure tanks can't survive. Forge: AP > magic pen. Always grab Ethereal Weapon, then prioritize CDR and MS hexes."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 27,
+        "description": "Q+E landing directly stacks 6 layers, triggering the passive twice."
+      },
+      {
+        "augmentName": "Dashing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 15,
+        "description": "W, E, and R all benefit from Dashing."
+      },
+      {
+        "augmentName": "Snowball Upgrade",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Exploits a special interaction between Aurora's passive triple-ring and Snowball Upgrade. Upgraded Snowball has multiple magic-damage ticks — one hit stacks 8-10 passive layers and instantly detonates % damage multiple times. Pair with Ethereal Weapon or Biggest Snowball for even more frequency and ceiling. QEQ combo with Ethereal Weapon triggers two passive procs. Both Snowball Upgrade + Biggest Snowball cut the snowball cooldown to 1.7s for seamless ranged poke."
+      },
+      {
+        "augmentName": "OrbitalLaser",
+        "tier": "B",
+        "tierScore": 40,
+        "upvotes": 0,
+        "description": "Orbital Laser's follow-up ticks each stack the passive."
+      },
+      {
+        "augmentName": "Snowball Upgrade",
+        "tier": "B",
+        "tierScore": 40,
+        "upvotes": 0,
+        "description": "As of patch 26.2, the multi-passive-stack bug is fixed, but the augment is still solid."
+      }
+    ],
+    "897": [
+      {
+        "augmentName": "Protein Shake",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Late-game 5000-HP shield — insane. Don't cast R — it reduces resists and shrinks the shield."
+      },
+      {
+        "augmentName": "Dashing",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "20-second R cooldown."
+      },
+      {
+        "augmentName": "Fey Magic",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "After R, basic attacks trigger the polymorph."
+      }
+    ],
+    "901": [
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 23,
+        "description": "Q itself doesn't crit, but crit chance gives a percent damage bonus. With Jeweled Gauntlet, damage goes through the roof."
+      },
+      {
+        "augmentName": "Scopiest Weapons",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 14,
+        "description": "Increases Q range."
+      },
+      {
+        "augmentName": "Scopier Weapons",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 11,
+        "description": "Increases Q range."
+      },
+      {
+        "augmentName": "Scoped Weapons",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 10,
+        "description": "Increases Q range."
+      },
+      {
+        "augmentName": "Mystic Punch",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Q is AoE — each enemy hit reduces CD, so once Mystic Punch lands you have infinite Q."
+      },
+      {
+        "augmentName": "Jeweled Gauntlet",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 2,
+        "description": "Based on S16 crit changes — Smolder's Q gains crit chance and crit damage. Build around Essence Reaver + Infinity Edge for huge % damage late. Currently weak early, so farm to 225 stacks safely; pick up defense if needed; with Jeweled Gauntlet etc., quality jumps massively."
+      },
+      {
+        "augmentName": "Draw Your Sword",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 30,
+        "description": "Q also becomes melee range. Be careful!"
+      }
+    ],
+    "902": [
+      {
+        "augmentName": "Eureka",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 4,
+        "description": "Use Q for huge damage. Standard AP build, no heavy hex reliance; with Cruelty, build Stormsurge first."
+      }
+    ],
+    "904": [
+      {
+        "augmentName": "Blade Waltz",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Rapidly stacks passive."
+      },
+      {
+        "augmentName": "Scopiest Weapons",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Zaahen's biggest weakness is his short reach — he gets kited to death. Scope helps cover that; lean into his high AD for brutal executes."
+      },
+      {
+        "augmentName": "Fan The Hammer",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Quickly maxes out passive stacks."
+      },
+      {
+        "augmentName": "OrbitalLaser",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Follow-up ticks (ground burn) stack passive. Stacks incredibly fast — full in 1-2 seconds."
+      },
+      {
+        "augmentName": "Ultimate Revolution",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 0,
+        "description": "Exploits a bug where revival passives reset Ultimate Revolution. Cast R at the start of a teamfight, die, revive, then fire two more ults — three waves of CC and burst per fight thanks to Zaahen's natural mobility. Watch the revive timing so you land safely back in."
+      },
+      {
+        "augmentName": "Snowball Upgrade",
+        "tier": "C",
+        "tierScore": 20,
+        "upvotes": 0,
+        "description": "As of patch 26.2, Snowball Upgrade no longer stacks passive."
+      }
+    ],
+    "910": [
+      {
+        "augmentName": "Cruelty",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Every Hwei E procs Cruelty — EE especially pulls enemies into one spot. Since Cruelty is AoE, grouped enemies eat stacked Comet damage. After EE pulls them in, the more bodies, the more terrifying the damage."
+      },
+      {
+        "augmentName": "Void Rift",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Hwei's QE (magma) and ult are sustained AoE DoTs — every tick triggers Void Rift for instant AoE nukes. Pair with EE's forced reposition and Void Rift's 99% slow — enemies can't escape."
+      },
+      {
+        "augmentName": "Cruelty",
+        "tier": "A",
+        "tierScore": 60,
+        "upvotes": 8,
+        "description": "EE pulling multiple targets makes one enemy take multiple Cruelty procs."
+      }
+    ],
+    "950": [
+      {
+        "augmentName": "Infernal Conduit",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 7,
+        "description": "Q bleed and the dogs each stack Infernal Conduit. Q is basically off cooldown after landing."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 6,
+        "description": "Q bleed and dogs each proc Ethereal Weapon. Pair with Blade of the Ruined King."
+      },
+      {
+        "augmentName": "Triggered Inferno",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 1,
+        "description": "Naafiri's wolves count as separate ability casts — R in, EQ, and you stack S-rank Triggered Inferno instantly. With W invuln + AD bonus, damage is maxed. Open with R, EQ in face, W to mitigate."
+      },
+      {
+        "augmentName": "Ethereal Weapon",
+        "tier": "S",
+        "tierScore": 80,
+        "upvotes": 0,
+        "description": "Q1 has a bleed — Ethereal Weapon procs the whole bleed window. Wolf pack charges in and one-shots."
+      }
+    ]
+  }
+}

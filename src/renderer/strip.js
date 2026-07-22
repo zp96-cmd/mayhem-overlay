@@ -2,16 +2,13 @@
 // build), each minimisable for the rest of the game. Minimised rows shrink
 // to restore chips; the set resets when the game ends.
 const rowsBox = document.getElementById('rows');
-const bisBox = document.getElementById('bis');
 const miniBox = document.getElementById('mini');
 const wrap = document.getElementById('wrap');
 const lockBtn = document.getElementById('lock');
 
 let rows = [];
-let combos = [];
 let hiddenItems = [];
 const minimised = new Set();
-const BIS_ID = '__bis';
 
 /* ---- drag + lock ---- */
 let locked = true;
@@ -114,52 +111,8 @@ function render() {
     rowsBox.append(r);
   }
 
-  // BIS combo tracker: top reachable trios, progress-marked
-  bisBox.innerHTML = '';
-  const showBis = combos.length && !minimised.has(BIS_ID);
-  bisBox.style.display = showBis ? 'flex' : 'none';
-  if (showBis) {
-    combos.forEach((c, ci) => {
-      const r = document.createElement('div');
-      r.className = 'crow';
-      const t = document.createElement('span');
-      t.className = `tch ${c.tier <= 2 ? 't-good' : c.tier >= 4 ? 't-bad' : 't-mid'}`;
-      t.textContent = `T${c.tier}`;
-      t.title = `${c.games.toLocaleString()} games`;
-      r.append(t);
-      for (const a of c.augs) {
-        const img = document.createElement('img');
-        img.src = a.icon;
-        img.className = a.picked ? 'picked' : 'open';
-        img.title = `${a.name}${a.picked ? ' · picked' : ' · still in pool'}`;
-        r.append(img);
-      }
-      const p = document.createElement('span');
-      p.className = `prog${c.have === 3 ? ' done' : ''}`;
-      p.textContent = c.have === 3 ? 'DONE ✓' : `${c.have}/3`;
-      r.append(p);
-      if (ci === 0) {
-        const min = document.createElement('button');
-        min.className = 'min';
-        min.textContent = '−';
-        min.title = 'Hide BIS combos';
-        min.addEventListener('click', () => { minimised.add(BIS_ID); render(); });
-        r.append(min);
-      }
-      bisBox.append(r);
-    });
-  }
-
-  if (hidden.length || hiddenItems.length || (combos.length && minimised.has(BIS_ID))) {
+  if (hidden.length || hiddenItems.length) {
     miniBox.style.display = 'flex';
-    if (combos.length && minimised.has(BIS_ID)) {
-      const chip = document.createElement('span');
-      chip.className = 'chip';
-      chip.textContent = 'BIS';
-      chip.title = 'Show BIS combos';
-      chip.addEventListener('click', () => { minimised.delete(BIS_ID); render(); });
-      miniBox.append(chip);
-    }
     for (const row of hidden) {
       const chip = document.createElement('span');
       chip.className = 'chip';
@@ -188,7 +141,6 @@ let lockInitialised = false;
 window.mayhem.onBuildStrip((data) => {
   rows = data?.rows ?? [];
   hiddenItems = data?.hidden ?? [];
-  combos = data?.combos ?? [];
   if (!lockInitialised && data && 'locked' in data) {
     lockInitialised = true;
     applyLocked(!!data.locked, false);
@@ -200,7 +152,6 @@ window.mayhem.onBuildStrip((data) => {
 window.mayhem.onBuildStripClear(() => {
   rows = [];
   hiddenItems = [];
-  combos = [];
   minimised.clear(); // fresh set of builds next game
   render();
 });

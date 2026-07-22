@@ -9,6 +9,7 @@ const state = {
   history: [], builds: [],
   session: null,           // { myChampionId, bench: [ids], team: [ids] }
   champData: null,         // aramgg per-champion { championId, buildSummary, augments }
+  champCombos: {},         // championId -> [{ augmentName, tier, description, ... }] (arammayhem)
   shownFor: null,
 };
 
@@ -131,41 +132,43 @@ function renderHotList(champId) {
 }
 
 // Best augment trios for this champion (aramgg combo data: tier 1 best .. 5 worst)
+const augByName = (name) => {
+  const key = String(name ?? '').toLowerCase();
+  for (const a of state.augById.values()) {
+    if (a.name && a.name.toLowerCase() === key) return a;
+  }
+  return null;
+};
+const tierCls = (t) => {
+  const k = String(t ?? '').toUpperCase();
+  if (k === 'S+' || k === 'S') return 't-good';
+  if (k === 'A' || k === 'B') return 't-mid';
+  return 't-bad';
+};
+
 function renderCombos(champId) {
   const box = $('#combos');
   box.innerHTML = '';
-  const trios = state.champData?.championId === champId ? state.champData?.trios : null;
-  if (!trios?.length) {
-    box.append(el('div', 'empty', 'Combo data loads with the champion…'));
+  const combos = state.champCombos[champId] || state.champCombos[String(champId)];
+  if (!combos?.length) {
+    box.append(el('div', 'empty', 'No combo data for this champion yet.'));
     return;
   }
-  const rows = trios
-    .filter((t) => t.games >= 100 && t.ids.every((id) => {
-      const a = state.augById.get(id);
-      return a && !a.disabled;
-    }))
-    .sort((a, b) => a.tier - b.tier || b.games - a.games)
-    .slice(0, 10);
-  if (!rows.length) {
-    box.append(el('div', 'empty', 'Not enough combo data for this champion.'));
-    return;
-  }
-  const tCls = (t) => (t <= 2 ? 't-good' : t >= 4 ? 't-bad' : 't-mid');
-  for (const t of rows) {
-    const augs = t.ids.map((id) => state.augById.get(id));
+  for (const c of combos.slice(0, 8)) {
+    const aug = augByName(c.augmentName);
     const row = el('div', 'combo-row');
     const icons = el('div', 'augs');
-    for (const a of augs) {
-      const img = el('img');
-      if (a.icon) img.src = a.icon;
-      img.title = a.name;
-      img.loading = 'lazy';
-      icons.append(img);
-    }
+    const img = el('img');
+    if (aug?.icon) img.src = aug.icon;
+    img.title = c.augmentName;
+    img.loading = 'lazy';
+    icons.append(img);
     row.append(icons);
-    row.append(el('div', 'names', augs.map((a) => esc(a.name)).join(' + ')));
-    row.append(el('span', `tchip ${tCls(t.tier)}`, `T${t.tier}`));
-    row.append(el('div', 'cgames num', `${t.games.toLocaleString()} games`));
+    const body = el('div', 'names');
+    body.append(el('div', 'cname', esc(c.augmentName)));
+    if (c.description) body.append(el('div', 'cdesc', esc(c.description)));
+    row.append(body);
+    row.append(el('span', `tchip ${tierCls(c.tier)}`, esc(String(c.tier ?? '').toUpperCase())));
     box.append(row);
   }
 }
@@ -289,13 +292,14 @@ function render() {
 }
 
 async function init() {
-  const [augData, champData, itemData, champStats, history, builds] = await Promise.all([
+  const [augData, champData, itemData, champStats, history, builds, combos] = await Promise.all([
     window.mayhem.getAugments(),
     window.mayhem.getChampions(),
     window.mayhem.getItems(),
     window.mayhem.getChampionStats(),
     window.mayhem.getHistory(),
     window.mayhem.getBuilds(),
+    window.mayhem.getChampionCombos(),
   ]);
   state.augments = augData?.augments ?? [];
   state.augments.forEach((a) => { if (a.id) state.augById.set(a.id, a); });
@@ -306,6 +310,7 @@ async function init() {
   state.champStats = champStats?.stats ?? {};
   state.history = history ?? [];
   state.builds = builds ?? [];
+  state.champCombos = combos?.byChampion ?? {};
 
   window.mayhem.onPrepSession((s) => { state.session = s; render(); });
   window.mayhem.onPrepChampData((d) => { state.champData = d; render(); });

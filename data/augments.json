@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-07-14T10:55:39.152Z",
+  "fetchedAt": "2026-07-22T11:15:06.440Z",
   "augments": [
     {
       "name": "Adamant",
@@ -214,7 +214,7 @@
     {
       "name": "Combusting Interest",
       "tier": "Gold",
-      "description": "Gain 1 to 3 (+ 0.75% of damage dealt) gold gold for each tick of damage dealt to enemy champions with persistent damage effects as well as damage over time from item effects.",
+      "description": "Gain 1 to 3 (+ 0.75% of damage dealt) gold gold for each tick of damage dealt to enemy champions with damage over time effects.",
       "disabled": false,
       "id": 2128,
       "nameId": "BloodMoneyBurn",
@@ -424,7 +424,7 @@
     {
       "name": "Dropkick",
       "tier": "Prismatic",
-      "description": "Your basic attacks and abilities execute enemy champions below 5% (+ 3.5% per 100 base AD) (+ 2% per 1000 bonus health) of their maximum health, which causes their corpse to be sent flying away in a line. Upon collision with an enemy champion or terrain, the target's corpse explodes to deal 150 to 500 (+ 100% bonus armor) (+ 100% bonus magic resistance) magic damage to nearby enemies. Successful executions heal you for 100 to 300 (+ 25% bonus health).\n\nThe execution may also be triggered by the explosion and ignores shields.",
+      "description": "Your basic attacks and abilities execute enemy champions below 4% (+ 5.5% per 100 base AD) (+ 1% per 1000 bonus health) of their maximum health, which causes their corpse to be sent flying away in a line. Upon collision with an enemy champion or terrain, the target's corpse explodes to deal 150 to 500 (+ 100% bonus armor) (+ 100% bonus magic resistance) magic damage to nearby enemies. Successful executions heal you for 100 to 300 (+ 25% bonus health).\n\nThe execution may also be triggered by the explosion and ignores shields.",
       "disabled": false,
       "id": 2006,
       "nameId": "ARAM_Dropkick",
@@ -1264,7 +1264,7 @@
     {
       "name": "Pin Cushion",
       "tier": "Prismatic",
-      "description": "Upgrades one of your champion's abilities that has a duration-based effect, empowering it to cause basic attacks during the ability's effect to apply stacks against enemy champions. At the end of the ability's duration, the stacks on all targets are consumed to grant you 10 bonus movement speed per stack consumed and deal 20 to 60 physical damage to each affected target.",
+      "description": "Upgrades one of your champion's abilities that has a duration-based effect, empowering it to cause basic attacks during the ability's effect to apply stacks against enemy champions. At the end of the ability's duration, the stacks on all targets are consumed, dealing 20 to 60 physical damage for each stack on the target. If this effect would deal lethal damage to the target, the stacks are consumed immediately. Additionally, gain 10 bonus movement speed per stack consumed from each target.",
       "disabled": false,
       "id": 2135,
       "nameId": "Overkill",
@@ -1304,7 +1304,7 @@
     {
       "name": "Poro Stampede",
       "tier": "Prismatic",
-      "description": "Poro-Snaxes will now randomly appear around you every 35 to 20 seconds. You can pick up a Poro-Snax by moving over it, granting you a Poro-Snax charge. Poro-Snaxes will not spawn while you are at the maximum number of Poro-Snax charges (2). Feeding a Poro with a Poro-Snax generates a stack of Poro Love. At 5 stacks, you are granted the Poro Charge summoner spell and are prompted to replace one of your summoner spells with it. You are then assigned with quests that require you to reach a certain amount of Poro Love stacks. There are nine quest tiers, and each completed tier rewards you with an additional Poro wave for Poro Charge.\n\nPoro Charge: geteffect",
+      "description": "Poro-Snaxes will now randomly appear around you every 25 to 15 seconds. You can pick up a Poro-Snax by moving over it, granting you a Poro-Snax charge. Poro-Snaxes will not spawn while you are at the maximum number of Poro-Snax charges (2). Feeding a Poro with a Poro-Snax generates a stack of Poro Love. At 5 stacks, you are granted the Poro Charge summoner spell and are prompted to replace one of your summoner spells with it. You are then assigned with quests that require you to reach a certain amount of Poro Love stacks. There are nine quest tiers, and each completed tier rewards you with an additional Poro wave for Poro Charge.\n\nPoro Charge: geteffect",
       "disabled": false,
       "id": 2046,
       "nameId": "PoroCharge_Active",
@@ -1744,7 +1744,7 @@
     {
       "name": "Squishy Slappy Grab",
       "tier": "Prismatic",
-      "description": "When an enemy champion is within 450 units of you, after a 1.5-second delay, you send out Squishy Slappy Hands that latch onto all nearby enemy champions within 800 units, forming a tether between yourself and each target for 4 seconds (45 second cooldown). While the tethers persist (950 tether radius), your next basic attack is empowered to pull all tethered enemies toward you, dealing 30 to 100 (+ 10% bonus health) magic damage to affected targets and stunning them for 0.25 seconds after the pull ends. Targets are pulled over 450 units, reduced to 350 for those farther away from you. Additionally, you gain a 25 to 75 (+ 50% bonus armor) (+ 50% bonus magic resistance) shield for each pulled enemy.",
+      "description": "When an enemy champion is within 450 units of you, after a 1.5-second delay, you send out Squishy Slappy Hands that latch onto all nearby enemy champions within 800 units, forming a tether between yourself and each target for 4 seconds (45 second cooldown). While the tethers persist (950 tether radius), your next basic attack is empowered to pull all tethered enemies toward you, dealing 30 to 100 (+ 10% bonus health) magic damage to affected targets and stunning them for 0.25 seconds after the pull ends. Targets are pulled over 450 units, reduced to 350 for those farther away from you. Additionally, you gain a 35 to 150 (+ 50% bonus armor) (+ 50% bonus magic resistance) shield for each pulled enemy.",
       "disabled": false,
       "id": 2115,
       "nameId": "SquishySlappyGrab",
@@ -1754,7 +1754,7 @@
     {
       "name": "Stackosaurus Rex",
       "tier": "Silver",
-      "description": "Increase the number of permanent stacks you gain from abilities, item effects, and augments by 100%.",
+      "description": "Increase the number of permanent stacks you gain from abilities by 100%.",
       "disabled": false,
       "id": 1204,
       "nameId": "ARAM_StackosaurusRex",
@@ -1794,7 +1794,7 @@
     {
       "name": "Stay Resolute",
       "tier": "Silver",
-      "description": "Upgrades one of your champion's abilities, empowering the ability to grant you 4 to 12 for 3 bonus armor or bonus magic resistance for a duration when it damages an enemy champion (5 second cooldown per target per cast instance). This effect can stack up to a number of times.\n\nThe resistance type granted is based on the target's adaptive type: bonus armor for physical and bonus magic resistance for magic.\n\nIf this is not your first augment, gain 20 bonus armor and bonus magic resistance.",
+      "description": "Upgrades one of your champion's abilities, empowering the ability to grant you 1 to 3 for 3 bonus armor or bonus magic resistance permanently when it damages an enemy champion, stacking infinitely (5 second cooldown per target per cast instance).\n\nThe resistance type granted is based on the target's adaptive type: bonus armor for physical and bonus magic resistance for magic.\n\nIf this is not your first augment, gain 20 bonus armor and bonus magic resistance.",
       "disabled": false,
       "id": 2076,
       "nameId": "TitansPulse",
@@ -1914,7 +1914,7 @@
     {
       "name": "Tooth Fairy",
       "tier": "Gold",
-      "description": "When you deal damage to an enemy champion equal to or more than 25% of their maximum health within 2.5 seconds, they drop a Tooth on the ground (4 second cooldown per target). You can pick up this Tooth by moving over it, granting you a Dental Records stack. For each stack, you gain 4 lethality and flat magic penetration.",
+      "description": "When you deal damage to an enemy champion equal to or more than 25% of their maximum health within 2.5 seconds, they drop a Tooth on the ground (4 second cooldown per target). You can pick up this Tooth by moving over it, granting you a Dental Records stack. For each stack, you gain 3 lethality and flat magic penetration.",
       "disabled": false,
       "id": 2083,
       "nameId": "BurstingTeeth",

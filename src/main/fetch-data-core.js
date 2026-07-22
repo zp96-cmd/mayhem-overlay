@@ -121,13 +121,17 @@ async function fetchAllData(dataDir, log = () => {}) {
     fs.writeFileSync(path.join(dataDir, name), JSON.stringify(obj, null, 2));
 
   log('downloading sources...');
-  const [cherry, lua, champs, itemsRaw, augStatsRaw, aramggHome] = await Promise.all([
+  const [cherry, lua, champs, itemsRaw, augStatsRaw, aramggHome, amCombos] = await Promise.all([
     getJson(`${CDRAGON}/v1/cherry-augments.json`),
     getText('https://wiki.leagueoflegends.com/en-us/Module:MayhemAugmentData/data?action=raw'),
     getJson(`${CDRAGON}/v1/champion-summary.json`),
     getJson(`${CDRAGON}/v1/items.json`),
     getJson('https://aramgg.com/data/augments-stats-raw.json').catch(() => null),
     getText('https://aramgg.com/en').catch(() => null),
+    getJson('https://arammayhem.com/combo-index-data.json').catch((e) => {
+      log('arammayhem combos unavailable: ' + e.message);
+      return null;
+    }),
   ]);
 
   const wikiEntries = parseLuaModule(lua);
@@ -216,6 +220,35 @@ async function fetchAllData(dataDir, log = () => {}) {
     } else {
       log('champion stats parse too small, skipped');
     }
+  }
+
+  // arammayhem.com curated champion+augment combo database (tier-ranked)
+  if (amCombos?.cards?.length) {
+    const aliasToId = new Map(champions.map((c) => [c.alias.toLowerCase(), c.id]));
+    const byChampion = {};
+    for (const card of amCombos.cards) {
+      const cid = aliasToId.get(String(card.championId || '').toLowerCase());
+      if (!cid) continue;
+      (byChampion[cid] = byChampion[cid] || []).push({
+        augmentName: card.augmentName,
+        tier: card.tier,
+        tierScore: Number(card.tierScore) || 0,
+        upvotes: Number(card.upvoteCount) || 0,
+        description: (card.comboDescription || '').trim(),
+      });
+    }
+    // best combos first per champion, cap at 8
+    for (const cid of Object.keys(byChampion)) {
+      byChampion[cid] = byChampion[cid]
+        .sort((a, b) => b.tierScore - a.tierScore || b.upvotes - a.upvotes)
+        .slice(0, 8);
+    }
+    write('champion-combos.json', {
+      fetchedAt, source: 'arammayhem.com',
+      total: amCombos.totalCombos ?? amCombos.cards.length,
+      byChampion,
+    });
+    log(`champion combos: ${amCombos.cards.length} across ${Object.keys(byChampion).length} champions`);
   }
 
   return { augments: augments.length, champions: champions.length, items: items.length, statsPatch };

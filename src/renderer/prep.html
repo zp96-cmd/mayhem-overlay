@@ -154,8 +154,13 @@
       background: rgba(4,9,15,0.5); border: 1px solid var(--hairline);
     }
     .combo-row .names {
-      flex: 1; font-size: 11.5px; color: var(--text-dim); line-height: 1.35;
-      overflow: hidden;
+      flex: 1; min-width: 0; overflow: hidden;
+    }
+    .combo-row .cname { font-size: 12.5px; font-weight: 800; color: var(--text); }
+    .combo-row .cdesc {
+      font-size: 10.5px; color: var(--text-dim); line-height: 1.35; margin-top: 2px;
+      font-family: var(--font-body);
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     }
     .combo-row .tchip {
       font-family: var(--font-display);
@@ -243,7 +248,7 @@
         <div>
           <h2>AUGMENT HOT LIST</h2>
           <div id="hotlist"></div>
-          <h2>TOP COMBOS</h2>
+          <h2>TOP COMBOS <span style="font-size:10px;color:var(--text-dim);font-weight:600;letter-spacing:0;">· arammayhem</span></h2>
           <div id="combos"></div>
         </div>
         <div>

@@ -12,6 +12,7 @@ const state = {
   augStats: {},        // augment id -> community stats (aramgg.com)
   augStatsMeta: null,
   champData: null,     // aramgg per-champion data: { championId, buildSummary, augments }
+  champCombos: {},     // arammayhem champion combos: { <champId>: [{augmentName, tier, ...}] }
   history: [],
   builds: [],
   ratings: {},
@@ -343,6 +344,7 @@ function pickAugment(name) {
   window.mayhem.notifyPicked();
   lastStripKey = null;
   updateBuildStrip();
+  updateCombosPanel();
   saveSession();
   $('#offer-banner').classList.add('hidden');
   renderCompare();
@@ -369,7 +371,6 @@ function applyOcrOffer(res) {
   renderAugments();
   showOfferBadges(good);
   showPriorityList(good.map((m) => m.name));
-  // newly-seen augments can kill reachable combos — refresh the BIS tracker
   lastStripKey = null;
   updateBuildStrip();
   saveSession();
@@ -796,35 +797,33 @@ function stripRows() {
   return rows;
 }
 
-// Top best-in-slot trios still REACHABLE this game: a combo is dead the
-// moment any non-picked member has been seen in an offer (no repeats per
-// game). Sorted by how far along I am, then combo tier, then sample size.
-function bisCombos() {
-  const trios = state.champData?.championId === myChampion()?.id ? state.champData?.trios : null;
-  if (!trios?.length) return [];
-  const pickedIds = new Set(state.picked.map((n) => state.augByName.get(n)?.id).filter(Boolean));
-  const seenUnpickedIds = new Set(
-    [...state.seen]
-      .filter((n) => !state.picked.includes(n))
-      .map((n) => state.augByName.get(n)?.id)
-      .filter(Boolean)
-  );
-  return trios
-    .filter((t) => t.games >= 150)
-    .filter((t) => t.ids.every((id) => state.augById.get(id) && !state.augById.get(id).disabled))
-    .filter((t) => !t.ids.some((id) => seenUnpickedIds.has(id))) // still reachable
-    .map((t) => ({ ...t, have: t.ids.filter((id) => pickedIds.has(id)).length }))
-    .sort((a, b) => b.have - a.have || a.tier - b.tier || b.games - a.games)
-    .slice(0, 3)
-    .map((t) => ({
-      tier: t.tier,
-      games: t.games,
-      have: t.have,
-      augs: t.ids.map((id) => {
-        const a = state.augById.get(id);
-        return { name: a.name, icon: a.icon, picked: pickedIds.has(id) };
-      }),
-    }));
+
+// arammayhem champion combos for the in-game side panel: mark which augments
+// you already have, keep tier order, cap the list.
+let lastCombosKey = null;
+function updateCombosPanel() {
+  const champId = myChampion()?.id;
+  const combos = champId ? state.champCombos[champId] : null;
+  if (!combos?.length) {
+    if (lastCombosKey !== null) { lastCombosKey = null; window.mayhem.clearCombos(); }
+    return;
+  }
+  const pickedNames = new Set(state.picked.map((n) => n.toLowerCase()));
+  const rows = combos.slice(0, 6).map((c) => {
+    const aug = state.augByName.get(c.augmentName) ||
+      [...state.augByName.values()].find((a) => a.name.toLowerCase() === c.augmentName.toLowerCase());
+    return {
+      augmentName: c.augmentName,
+      icon: aug?.icon ?? null,
+      tier: c.tier,
+      description: c.description,
+      have: pickedNames.has(c.augmentName.toLowerCase()),
+    };
+  });
+  const key = JSON.stringify([champId, rows.map((r) => [r.augmentName, r.have])]);
+  if (key === lastCombosKey) return;
+  lastCombosKey = key;
+  window.mayhem.showCombos({ champName: myChampion()?.name ?? '', rows });
 }
 
 let lastStripKey = null;
@@ -840,16 +839,14 @@ function updateBuildStrip() {
       return it ? { id, icon: it.icon, name: it.name } : null;
     })
     .filter(Boolean);
-  const combos = bisCombos();
   const key = JSON.stringify([
     rows.map((r) => [r.label, r.items.map((i) => [i.name, i.affordable])]),
     hidden.map((h) => h.id),
     state.showBoots,
-    combos.map((c) => [c.tier, c.have, c.augs.map((a) => a.name)]),
   ]);
   if (key === lastStripKey) return;
   lastStripKey = key;
-  window.mayhem.showBuildStrip({ rows, hidden, combos, showBoots: state.showBoots });
+  window.mayhem.showBuildStrip({ rows, hidden, showBoots: state.showBoots });
 }
 
 function renderBuildTab() {
@@ -1126,7 +1123,7 @@ function switchTab(name) {
 }
 
 async function loadData() {
-  const [augData, champData, itemData, history, builds, ratings, augStats] = await Promise.all([
+  const [augData, champData, itemData, history, builds, ratings, augStats, champCombos] = await Promise.all([
     window.mayhem.getAugments(),
     window.mayhem.getChampions(),
     window.mayhem.getItems(),
@@ -1134,7 +1131,9 @@ async function loadData() {
     window.mayhem.getBuilds(),
     window.mayhem.getRatings(),
     window.mayhem.getAugmentStats(),
+    window.mayhem.getChampionCombos(),
   ]);
+  state.champCombos = champCombos?.byChampion ?? {};
   state.augStats = augStats?.stats ?? {};
   state.augStatsMeta = augStats ? { patch: augStats.patch, updated: augStats.updated, source: augStats.source } : null;
   state.augments = augData?.augments ?? [];
@@ -1255,6 +1254,7 @@ async function init() {
     }
     if ($('#tab-build').classList.contains('active')) renderBuildTab();
     updateBuildStrip();
+    updateCombosPanel();
   });
   window.mayhem.onLiveEnded(() => {
     if (state.live?.players?.length) {
@@ -1265,6 +1265,7 @@ async function init() {
     $('#live-champ').textContent = '';
     $('#status-dot').className = state.phase.connected ? 'dot dot-client' : 'dot dot-off';
     renderBuildTab();
+    window.mayhem.clearCombos();
   });
   window.mayhem.onAugmentBreakpoint(({ level, manual }) => {
     $('#offer-banner').classList.remove('hidden');

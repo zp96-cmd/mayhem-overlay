@@ -1,1046 +1,1046 @@
 {
-  "fetchedAt": "2026-07-14T10:55:39.152Z",
+  "fetchedAt": "2026-07-22T11:15:06.440Z",
   "source": "aramgg.com",
-  "patch": "16.13",
-  "updated": "2026-07-12",
+  "patch": "16.14",
+  "updated": "2026-07-20",
   "stats": {
     "1": {
       "tier": 3,
-      "winRate": 0.494726,
-      "games": 160873,
-      "pickRate": 0.004329
+      "winRate": 0.499126,
+      "games": 94946,
+      "pickRate": 0.00431
     },
     "2": {
       "tier": 3,
-      "winRate": 0.489516,
-      "games": 71636,
-      "pickRate": 0.001928
+      "winRate": 0.489081,
+      "games": 44418,
+      "pickRate": 0.002016
     },
     "3": {
       "tier": 2,
-      "winRate": 0.525102,
-      "games": 270414,
-      "pickRate": 0.007277
+      "winRate": 0.520959,
+      "games": 165825,
+      "pickRate": 0.007527
     },
     "4": {
       "tier": 2,
-      "winRate": 0.522976,
-      "games": 295312,
-      "pickRate": 0.007947
+      "winRate": 0.516531,
+      "games": 181089,
+      "pickRate": 0.00822
     },
     "5": {
       "tier": 3,
-      "winRate": 0.505729,
-      "games": 163028,
-      "pickRate": 0.004387
+      "winRate": 0.509118,
+      "games": 102495,
+      "pickRate": 0.004652
     },
     "6": {
       "tier": 4,
-      "winRate": 0.461032,
-      "games": 118892,
-      "pickRate": 0.003199
+      "winRate": 0.465939,
+      "games": 68026,
+      "pickRate": 0.003088
     },
     "7": {
       "tier": 5,
-      "winRate": 0.418025,
-      "games": 151565,
-      "pickRate": 0.004079
+      "winRate": 0.419096,
+      "games": 89340,
+      "pickRate": 0.004055
     },
     "8": {
-      "tier": 3,
-      "winRate": 0.509772,
-      "games": 162045,
-      "pickRate": 0.004361
+      "tier": 2,
+      "winRate": 0.510145,
+      "games": 93246,
+      "pickRate": 0.004233
     },
     "9": {
       "tier": 3,
-      "winRate": 0.499874,
-      "games": 186057,
-      "pickRate": 0.005007
+      "winRate": 0.498846,
+      "games": 110513,
+      "pickRate": 0.005016
     },
     "10": {
       "tier": 1,
-      "winRate": 0.570679,
-      "games": 274727,
-      "pickRate": 0.007393
+      "winRate": 0.572229,
+      "games": 147649,
+      "pickRate": 0.006702
     },
     "11": {
       "tier": 2,
-      "winRate": 0.521981,
-      "games": 260768,
-      "pickRate": 0.007017
+      "winRate": 0.515739,
+      "games": 155311,
+      "pickRate": 0.00705
     },
     "12": {
       "tier": 3,
-      "winRate": 0.504922,
-      "games": 255495,
-      "pickRate": 0.006875
+      "winRate": 0.506139,
+      "games": 133088,
+      "pickRate": 0.006041
     },
     "13": {
       "tier": 2,
-      "winRate": 0.530341,
-      "games": 237981,
-      "pickRate": 0.006404
+      "winRate": 0.523874,
+      "games": 140049,
+      "pickRate": 0.006357
     },
     "14": {
       "tier": 1,
-      "winRate": 0.588709,
-      "games": 281786,
-      "pickRate": 0.007583
+      "winRate": 0.575198,
+      "games": 168236,
+      "pickRate": 0.007637
     },
     "15": {
       "tier": 2,
-      "winRate": 0.516368,
-      "games": 263754,
-      "pickRate": 0.007098
+      "winRate": 0.517,
+      "games": 158381,
+      "pickRate": 0.007189
     },
     "16": {
       "tier": 2,
-      "winRate": 0.522018,
-      "games": 228431,
-      "pickRate": 0.006147
+      "winRate": 0.519311,
+      "games": 135004,
+      "pickRate": 0.006128
     },
     "17": {
       "tier": 3,
-      "winRate": 0.497673,
-      "games": 354976,
-      "pickRate": 0.009552
+      "winRate": 0.501167,
+      "games": 215890,
+      "pickRate": 0.0098
     },
     "18": {
       "tier": 2,
-      "winRate": 0.510219,
-      "games": 317487,
-      "pickRate": 0.008544
+      "winRate": 0.517075,
+      "games": 188108,
+      "pickRate": 0.008539
     },
     "19": {
-      "tier": 4,
-      "winRate": 0.477754,
-      "games": 108964,
-      "pickRate": 0.002932
+      "tier": 3,
+      "winRate": 0.480288,
+      "games": 64124,
+      "pickRate": 0.002911
     },
     "20": {
       "tier": 5,
-      "winRate": 0.441913,
-      "games": 142304,
-      "pickRate": 0.003829
+      "winRate": 0.443595,
+      "games": 83583,
+      "pickRate": 0.003794
     },
     "21": {
       "tier": 3,
-      "winRate": 0.494182,
-      "games": 473382,
-      "pickRate": 0.012739
+      "winRate": 0.496274,
+      "games": 287815,
+      "pickRate": 0.013065
     },
     "22": {
       "tier": 2,
-      "winRate": 0.515602,
-      "games": 479604,
-      "pickRate": 0.012906
+      "winRate": 0.515414,
+      "games": 287470,
+      "pickRate": 0.013049
     },
     "23": {
-      "tier": 4,
-      "winRate": 0.474851,
-      "games": 125233,
-      "pickRate": 0.00337
+      "tier": 3,
+      "winRate": 0.484683,
+      "games": 63786,
+      "pickRate": 0.002895
     },
     "24": {
       "tier": 2,
-      "winRate": 0.526961,
-      "games": 169134,
-      "pickRate": 0.004551
+      "winRate": 0.524007,
+      "games": 102449,
+      "pickRate": 0.00465
     },
     "25": {
-      "tier": 3,
-      "winRate": 0.507586,
-      "games": 397316,
-      "pickRate": 0.010692
+      "tier": 2,
+      "winRate": 0.510496,
+      "games": 238472,
+      "pickRate": 0.010825
     },
     "26": {
       "tier": 2,
-      "winRate": 0.515128,
-      "games": 233942,
-      "pickRate": 0.006295
+      "winRate": 0.512353,
+      "games": 147289,
+      "pickRate": 0.006686
     },
     "27": {
       "tier": 3,
-      "winRate": 0.499545,
-      "games": 239336,
-      "pickRate": 0.006441
+      "winRate": 0.501095,
+      "games": 122358,
+      "pickRate": 0.005554
     },
     "28": {
       "tier": 4,
-      "winRate": 0.468945,
-      "games": 53631,
-      "pickRate": 0.001443
+      "winRate": 0.465628,
+      "games": 29719,
+      "pickRate": 0.001349
     },
     "29": {
       "tier": 3,
-      "winRate": 0.487429,
-      "games": 352164,
-      "pickRate": 0.009477
+      "winRate": 0.497174,
+      "games": 210212,
+      "pickRate": 0.009542
     },
     "30": {
       "tier": 2,
-      "winRate": 0.510245,
-      "games": 339006,
-      "pickRate": 0.009123
+      "winRate": 0.509856,
+      "games": 205601,
+      "pickRate": 0.009333
     },
     "31": {
       "tier": 4,
-      "winRate": 0.477897,
-      "games": 333513,
-      "pickRate": 0.008975
+      "winRate": 0.472736,
+      "games": 197880,
+      "pickRate": 0.008982
     },
     "32": {
       "tier": 3,
-      "winRate": 0.504315,
-      "games": 213458,
+      "winRate": 0.501822,
+      "games": 126539,
       "pickRate": 0.005744
     },
     "33": {
       "tier": 3,
-      "winRate": 0.502463,
-      "games": 133757,
-      "pickRate": 0.003599
+      "winRate": 0.49602,
+      "games": 73120,
+      "pickRate": 0.003319
     },
     "34": {
       "tier": 4,
-      "winRate": 0.459428,
-      "games": 221090,
-      "pickRate": 0.00595
+      "winRate": 0.460121,
+      "games": 131661,
+      "pickRate": 0.005976
     },
     "35": {
       "tier": 5,
-      "winRate": 0.445485,
-      "games": 354694,
-      "pickRate": 0.009545
+      "winRate": 0.442812,
+      "games": 213131,
+      "pickRate": 0.009674
     },
     "36": {
       "tier": 1,
-      "winRate": 0.55955,
-      "games": 344532,
-      "pickRate": 0.009271
+      "winRate": 0.552845,
+      "games": 208630,
+      "pickRate": 0.00947
     },
     "37": {
       "tier": 1,
-      "winRate": 0.538354,
-      "games": 208114,
-      "pickRate": 0.0056
+      "winRate": 0.540446,
+      "games": 123078,
+      "pickRate": 0.005587
     },
     "38": {
-      "tier": 1,
-      "winRate": 0.535397,
-      "games": 115066,
-      "pickRate": 0.003096
+      "tier": 2,
+      "winRate": 0.529709,
+      "games": 67152,
+      "pickRate": 0.003048
     },
     "39": {
       "tier": 5,
-      "winRate": 0.438439,
-      "games": 70995,
-      "pickRate": 0.00191
+      "winRate": 0.442289,
+      "games": 40885,
+      "pickRate": 0.001856
     },
     "40": {
-      "tier": 2,
-      "winRate": 0.524355,
-      "games": 163847,
-      "pickRate": 0.004409
+      "tier": 1,
+      "winRate": 0.535206,
+      "games": 85199,
+      "pickRate": 0.003867
     },
     "41": {
       "tier": 3,
-      "winRate": 0.488165,
-      "games": 206000,
-      "pickRate": 0.005543
+      "winRate": 0.492532,
+      "games": 124593,
+      "pickRate": 0.005656
     },
     "42": {
       "tier": 3,
-      "winRate": 0.491157,
-      "games": 198409,
-      "pickRate": 0.005339
+      "winRate": 0.503127,
+      "games": 102340,
+      "pickRate": 0.004645
     },
     "43": {
       "tier": 4,
-      "winRate": 0.477113,
-      "games": 235959,
-      "pickRate": 0.00635
+      "winRate": 0.479355,
+      "games": 140422,
+      "pickRate": 0.006374
     },
     "44": {
       "tier": 2,
-      "winRate": 0.511415,
-      "games": 83091,
-      "pickRate": 0.002236
+      "winRate": 0.518148,
+      "games": 48434,
+      "pickRate": 0.002199
     },
     "45": {
-      "tier": 3,
-      "winRate": 0.503665,
-      "games": 349832,
-      "pickRate": 0.009414
+      "tier": 2,
+      "winRate": 0.509771,
+      "games": 210208,
+      "pickRate": 0.009542
     },
     "48": {
       "tier": 3,
-      "winRate": 0.505107,
-      "games": 212153,
-      "pickRate": 0.005709
+      "winRate": 0.482144,
+      "games": 130963,
+      "pickRate": 0.005945
     },
     "50": {
       "tier": 3,
-      "winRate": 0.480111,
-      "games": 342519,
-      "pickRate": 0.009217
+      "winRate": 0.4802,
+      "games": 208111,
+      "pickRate": 0.009447
     },
     "51": {
       "tier": 1,
-      "winRate": 0.540081,
-      "games": 459755,
-      "pickRate": 0.012372
+      "winRate": 0.537804,
+      "games": 279589,
+      "pickRate": 0.012691
     },
     "53": {
       "tier": 5,
-      "winRate": 0.447769,
-      "games": 369081,
-      "pickRate": 0.009932
+      "winRate": 0.450169,
+      "games": 215761,
+      "pickRate": 0.009794
     },
     "54": {
       "tier": 3,
-      "winRate": 0.482995,
-      "games": 337778,
-      "pickRate": 0.00909
+      "winRate": 0.479968,
+      "games": 202330,
+      "pickRate": 0.009184
     },
     "55": {
       "tier": 4,
-      "winRate": 0.462828,
-      "games": 219963,
-      "pickRate": 0.005919
+      "winRate": 0.461094,
+      "games": 132396,
+      "pickRate": 0.00601
     },
     "56": {
       "tier": 4,
-      "winRate": 0.46896,
-      "games": 107120,
-      "pickRate": 0.002883
+      "winRate": 0.466653,
+      "games": 64444,
+      "pickRate": 0.002925
     },
     "57": {
       "tier": 2,
-      "winRate": 0.52282,
-      "games": 289287,
-      "pickRate": 0.007785
+      "winRate": 0.516454,
+      "games": 167349,
+      "pickRate": 0.007596
     },
     "58": {
       "tier": 4,
-      "winRate": 0.461309,
-      "games": 94674,
-      "pickRate": 0.002548
+      "winRate": 0.464145,
+      "games": 59755,
+      "pickRate": 0.002712
     },
     "59": {
       "tier": 4,
-      "winRate": 0.462532,
-      "games": 186906,
-      "pickRate": 0.00503
+      "winRate": 0.467438,
+      "games": 115457,
+      "pickRate": 0.005241
     },
     "60": {
-      "tier": 4,
-      "winRate": 0.457238,
-      "games": 59433,
-      "pickRate": 0.001599
+      "tier": 5,
+      "winRate": 0.45506,
+      "games": 36393,
+      "pickRate": 0.001652
     },
     "61": {
       "tier": 3,
-      "winRate": 0.495439,
-      "games": 182107,
-      "pickRate": 0.0049
+      "winRate": 0.498223,
+      "games": 105513,
+      "pickRate": 0.004789
     },
     "62": {
       "tier": 3,
-      "winRate": 0.496718,
-      "games": 115462,
-      "pickRate": 0.003107
+      "winRate": 0.494977,
+      "games": 67496,
+      "pickRate": 0.003064
     },
     "63": {
       "tier": 1,
-      "winRate": 0.54088,
-      "games": 471315,
-      "pickRate": 0.012683
+      "winRate": 0.535807,
+      "games": 281368,
+      "pickRate": 0.012772
     },
     "64": {
       "tier": 5,
-      "winRate": 0.406695,
-      "games": 185670,
-      "pickRate": 0.004996
+      "winRate": 0.40855,
+      "games": 114899,
+      "pickRate": 0.005216
     },
     "67": {
       "tier": 1,
-      "winRate": 0.575392,
-      "games": 405230,
-      "pickRate": 0.010905
+      "winRate": 0.568766,
+      "games": 229778,
+      "pickRate": 0.01043
     },
     "68": {
       "tier": 3,
-      "winRate": 0.508573,
-      "games": 153508,
-      "pickRate": 0.004131
+      "winRate": 0.508581,
+      "games": 94866,
+      "pickRate": 0.004306
     },
     "69": {
       "tier": 4,
-      "winRate": 0.471634,
-      "games": 135728,
-      "pickRate": 0.003652
+      "winRate": 0.467644,
+      "games": 82798,
+      "pickRate": 0.003758
     },
     "72": {
       "tier": 3,
-      "winRate": 0.497667,
-      "games": 92795,
-      "pickRate": 0.002497
+      "winRate": 0.486485,
+      "games": 56195,
+      "pickRate": 0.002551
     },
     "74": {
       "tier": 2,
-      "winRate": 0.520075,
-      "games": 226029,
-      "pickRate": 0.006082
+      "winRate": 0.516974,
+      "games": 135148,
+      "pickRate": 0.006135
     },
     "75": {
-      "tier": 2,
-      "winRate": 0.51291,
-      "games": 182800,
-      "pickRate": 0.004919
+      "tier": 3,
+      "winRate": 0.491581,
+      "games": 108798,
+      "pickRate": 0.004939
     },
     "76": {
       "tier": 5,
-      "winRate": 0.446719,
-      "games": 294572,
-      "pickRate": 0.007927
+      "winRate": 0.449042,
+      "games": 154685,
+      "pickRate": 0.007021
     },
     "77": {
       "tier": 4,
-      "winRate": 0.457533,
-      "games": 130607,
-      "pickRate": 0.003515
+      "winRate": 0.460022,
+      "games": 80294,
+      "pickRate": 0.003645
     },
     "78": {
       "tier": 3,
-      "winRate": 0.504929,
-      "games": 144135,
-      "pickRate": 0.003879
+      "winRate": 0.500018,
+      "games": 84739,
+      "pickRate": 0.003846
     },
     "79": {
       "tier": 4,
-      "winRate": 0.46438,
-      "games": 175451,
-      "pickRate": 0.004721
+      "winRate": 0.473604,
+      "games": 89011,
+      "pickRate": 0.00404
     },
     "80": {
       "tier": 4,
-      "winRate": 0.462822,
-      "games": 175102,
-      "pickRate": 0.004712
+      "winRate": 0.465674,
+      "games": 104017,
+      "pickRate": 0.004722
     },
     "81": {
       "tier": 4,
-      "winRate": 0.469323,
-      "games": 425568,
-      "pickRate": 0.011452
+      "winRate": 0.467402,
+      "games": 257911,
+      "pickRate": 0.011707
     },
     "82": {
       "tier": 3,
-      "winRate": 0.479922,
-      "games": 239562,
-      "pickRate": 0.006447
+      "winRate": 0.505529,
+      "games": 145780,
+      "pickRate": 0.006617
     },
     "83": {
       "tier": 5,
-      "winRate": 0.452524,
-      "games": 76871,
-      "pickRate": 0.002069
+      "winRate": 0.456254,
+      "games": 44335,
+      "pickRate": 0.002012
     },
     "84": {
       "tier": 5,
-      "winRate": 0.422934,
-      "games": 145162,
-      "pickRate": 0.003906
+      "winRate": 0.426627,
+      "games": 86912,
+      "pickRate": 0.003945
     },
     "85": {
       "tier": 5,
-      "winRate": 0.441632,
-      "games": 125856,
-      "pickRate": 0.003387
+      "winRate": 0.440179,
+      "games": 75133,
+      "pickRate": 0.00341
     },
     "86": {
       "tier": 4,
-      "winRate": 0.459258,
-      "games": 216166,
-      "pickRate": 0.005817
+      "winRate": 0.464005,
+      "games": 127100,
+      "pickRate": 0.005769
     },
     "89": {
-      "tier": 1,
-      "winRate": 0.534708,
-      "games": 275111,
-      "pickRate": 0.007403
+      "tier": 2,
+      "winRate": 0.52444,
+      "games": 162318,
+      "pickRate": 0.007368
     },
     "90": {
       "tier": 2,
-      "winRate": 0.52323,
-      "games": 318187,
-      "pickRate": 0.008562
+      "winRate": 0.520872,
+      "games": 194858,
+      "pickRate": 0.008845
     },
     "91": {
       "tier": 4,
-      "winRate": 0.465828,
-      "games": 133150,
-      "pickRate": 0.003583
+      "winRate": 0.465319,
+      "games": 80663,
+      "pickRate": 0.003661
     },
     "92": {
-      "tier": 3,
-      "winRate": 0.48007,
-      "games": 97740,
-      "pickRate": 0.00263
+      "tier": 4,
+      "winRate": 0.472931,
+      "games": 57188,
+      "pickRate": 0.002596
     },
     "96": {
-      "tier": 2,
-      "winRate": 0.511247,
-      "games": 272512,
-      "pickRate": 0.007333
+      "tier": 3,
+      "winRate": 0.50678,
+      "games": 164168,
+      "pickRate": 0.007452
     },
     "98": {
       "tier": 1,
-      "winRate": 0.554254,
-      "games": 201507,
-      "pickRate": 0.005423
+      "winRate": 0.550351,
+      "games": 118846,
+      "pickRate": 0.005395
     },
     "99": {
       "tier": 3,
-      "winRate": 0.499546,
-      "games": 384595,
-      "pickRate": 0.010349
+      "winRate": 0.498007,
+      "games": 229806,
+      "pickRate": 0.010431
     },
     "101": {
       "tier": 3,
-      "winRate": 0.490579,
-      "games": 329199,
-      "pickRate": 0.008859
+      "winRate": 0.491942,
+      "games": 200971,
+      "pickRate": 0.009123
     },
     "102": {
       "tier": 2,
-      "winRate": 0.514036,
-      "games": 136473,
-      "pickRate": 0.003672
+      "winRate": 0.516357,
+      "games": 79691,
+      "pickRate": 0.003617
     },
     "103": {
       "tier": 2,
-      "winRate": 0.519031,
-      "games": 303036,
-      "pickRate": 0.008155
+      "winRate": 0.521839,
+      "games": 183708,
+      "pickRate": 0.008339
     },
     "104": {
       "tier": 1,
-      "winRate": 0.560071,
-      "games": 293713,
-      "pickRate": 0.007904
+      "winRate": 0.560324,
+      "games": 180285,
+      "pickRate": 0.008184
     },
     "105": {
       "tier": 3,
-      "winRate": 0.499359,
-      "games": 229482,
-      "pickRate": 0.006175
+      "winRate": 0.502645,
+      "games": 139303,
+      "pickRate": 0.006323
     },
     "106": {
       "tier": 3,
-      "winRate": 0.495626,
-      "games": 158763,
-      "pickRate": 0.004272
+      "winRate": 0.495303,
+      "games": 96230,
+      "pickRate": 0.004368
     },
     "107": {
       "tier": 4,
-      "winRate": 0.468113,
-      "games": 152570,
-      "pickRate": 0.004106
+      "winRate": 0.468894,
+      "games": 93759,
+      "pickRate": 0.004256
     },
     "110": {
       "tier": 3,
-      "winRate": 0.490841,
-      "games": 373225,
-      "pickRate": 0.010043
+      "winRate": 0.490338,
+      "games": 225565,
+      "pickRate": 0.010239
     },
     "111": {
-      "tier": 2,
-      "winRate": 0.512802,
-      "games": 324215,
-      "pickRate": 0.008725
+      "tier": 3,
+      "winRate": 0.507969,
+      "games": 199026,
+      "pickRate": 0.009034
     },
     "112": {
       "tier": 1,
-      "winRate": 0.534454,
-      "games": 206422,
-      "pickRate": 0.005555
+      "winRate": 0.536311,
+      "games": 119274,
+      "pickRate": 0.005414
     },
     "113": {
       "tier": 2,
-      "winRate": 0.519006,
-      "games": 149193,
-      "pickRate": 0.004015
+      "winRate": 0.510678,
+      "games": 87889,
+      "pickRate": 0.003989
     },
     "114": {
       "tier": 2,
-      "winRate": 0.525659,
-      "games": 81277,
-      "pickRate": 0.002187
+      "winRate": 0.528403,
+      "games": 50927,
+      "pickRate": 0.002312
     },
     "115": {
       "tier": 3,
-      "winRate": 0.488725,
-      "games": 292199,
-      "pickRate": 0.007863
+      "winRate": 0.488657,
+      "games": 177288,
+      "pickRate": 0.008047
     },
     "117": {
       "tier": 3,
-      "winRate": 0.485332,
-      "games": 150532,
-      "pickRate": 0.004051
+      "winRate": 0.488903,
+      "games": 87635,
+      "pickRate": 0.003978
     },
     "119": {
       "tier": 3,
-      "winRate": 0.492532,
-      "games": 169869,
-      "pickRate": 0.004571
+      "winRate": 0.499434,
+      "games": 106805,
+      "pickRate": 0.004848
     },
     "120": {
       "tier": 3,
-      "winRate": 0.487418,
-      "games": 164912,
-      "pickRate": 0.004438
+      "winRate": 0.49425,
+      "games": 101220,
+      "pickRate": 0.004595
     },
     "121": {
       "tier": 5,
-      "winRate": 0.42855,
-      "games": 135970,
-      "pickRate": 0.003659
+      "winRate": 0.43377,
+      "games": 66828,
+      "pickRate": 0.003033
     },
     "122": {
       "tier": 5,
-      "winRate": 0.446202,
-      "games": 167821,
-      "pickRate": 0.004516
+      "winRate": 0.451319,
+      "games": 100379,
+      "pickRate": 0.004556
     },
     "126": {
       "tier": 5,
-      "winRate": 0.438435,
-      "games": 242873,
-      "pickRate": 0.006536
+      "winRate": 0.437605,
+      "games": 149612,
+      "pickRate": 0.006791
     },
     "127": {
       "tier": 4,
-      "winRate": 0.467162,
-      "games": 160775,
-      "pickRate": 0.004326
+      "winRate": 0.465345,
+      "games": 94560,
+      "pickRate": 0.004292
     },
     "131": {
       "tier": 4,
-      "winRate": 0.472883,
-      "games": 128611,
-      "pickRate": 0.003461
+      "winRate": 0.477137,
+      "games": 75100,
+      "pickRate": 0.003409
     },
     "133": {
       "tier": 4,
-      "winRate": 0.476777,
-      "games": 136439,
-      "pickRate": 0.003672
+      "winRate": 0.472775,
+      "games": 87640,
+      "pickRate": 0.003978
     },
     "134": {
       "tier": 2,
-      "winRate": 0.521694,
-      "games": 199569,
-      "pickRate": 0.00537
+      "winRate": 0.526717,
+      "games": 121849,
+      "pickRate": 0.005531
     },
     "136": {
       "tier": 2,
-      "winRate": 0.530469,
-      "games": 294992,
-      "pickRate": 0.007938
+      "winRate": 0.527827,
+      "games": 167913,
+      "pickRate": 0.007622
     },
     "141": {
       "tier": 2,
-      "winRate": 0.510539,
-      "games": 141995,
-      "pickRate": 0.003821
+      "winRate": 0.509555,
+      "games": 84515,
+      "pickRate": 0.003836
     },
     "142": {
       "tier": 5,
-      "winRate": 0.451107,
-      "games": 169543,
-      "pickRate": 0.004562
+      "winRate": 0.449172,
+      "games": 102533,
+      "pickRate": 0.004654
     },
     "143": {
       "tier": 2,
-      "winRate": 0.526379,
-      "games": 280617,
-      "pickRate": 0.007551
+      "winRate": 0.521792,
+      "games": 166599,
+      "pickRate": 0.007562
     },
     "145": {
       "tier": 3,
-      "winRate": 0.484383,
-      "games": 421369,
-      "pickRate": 0.011339
+      "winRate": 0.486689,
+      "games": 237065,
+      "pickRate": 0.010761
     },
     "147": {
       "tier": 1,
-      "winRate": 0.558592,
-      "games": 367646,
-      "pickRate": 0.009893
+      "winRate": 0.549662,
+      "games": 227207,
+      "pickRate": 0.010313
     },
     "150": {
-      "tier": 3,
-      "winRate": 0.485231,
-      "games": 115883,
-      "pickRate": 0.003118
+      "tier": 4,
+      "winRate": 0.476475,
+      "games": 73284,
+      "pickRate": 0.003327
     },
     "154": {
       "tier": 4,
-      "winRate": 0.462087,
-      "games": 155737,
-      "pickRate": 0.004191
+      "winRate": 0.45926,
+      "games": 90722,
+      "pickRate": 0.004118
     },
     "157": {
       "tier": 2,
-      "winRate": 0.52277,
-      "games": 229531,
-      "pickRate": 0.006177
+      "winRate": 0.522139,
+      "games": 137249,
+      "pickRate": 0.00623
     },
     "161": {
       "tier": 3,
-      "winRate": 0.507806,
-      "games": 279028,
-      "pickRate": 0.007509
+      "winRate": 0.506214,
+      "games": 161892,
+      "pickRate": 0.007349
     },
     "163": {
-      "tier": 4,
-      "winRate": 0.477591,
-      "games": 114060,
-      "pickRate": 0.003069
+      "tier": 3,
+      "winRate": 0.48167,
+      "games": 68387,
+      "pickRate": 0.003104
     },
     "164": {
       "tier": 5,
-      "winRate": 0.425742,
-      "games": 42312,
-      "pickRate": 0.001139
+      "winRate": 0.428303,
+      "games": 26584,
+      "pickRate": 0.001207
     },
     "166": {
       "tier": 1,
-      "winRate": 0.564783,
-      "games": 174134,
-      "pickRate": 0.004686
+      "winRate": 0.554548,
+      "games": 110086,
+      "pickRate": 0.004997
     },
     "200": {
       "tier": 5,
-      "winRate": 0.448685,
-      "games": 79129,
-      "pickRate": 0.002129
+      "winRate": 0.447762,
+      "games": 48394,
+      "pickRate": 0.002197
     },
     "201": {
       "tier": 4,
-      "winRate": 0.466551,
-      "games": 147195,
-      "pickRate": 0.003961
+      "winRate": 0.464051,
+      "games": 86859,
+      "pickRate": 0.003943
     },
     "202": {
       "tier": 3,
-      "winRate": 0.487261,
-      "games": 430147,
-      "pickRate": 0.011575
+      "winRate": 0.486457,
+      "games": 256598,
+      "pickRate": 0.011648
     },
     "203": {
       "tier": 3,
-      "winRate": 0.506271,
-      "games": 180192,
-      "pickRate": 0.004849
+      "winRate": 0.509233,
+      "games": 107709,
+      "pickRate": 0.004889
     },
     "221": {
       "tier": 3,
-      "winRate": 0.488083,
-      "games": 123440,
-      "pickRate": 0.003322
+      "winRate": 0.491157,
+      "games": 68756,
+      "pickRate": 0.003121
     },
     "222": {
       "tier": 1,
-      "winRate": 0.574574,
-      "games": 434757,
-      "pickRate": 0.011699
+      "winRate": 0.5745,
+      "games": 266656,
+      "pickRate": 0.012104
     },
     "223": {
       "tier": 2,
-      "winRate": 0.52402,
-      "games": 313797,
-      "pickRate": 0.008444
+      "winRate": 0.523769,
+      "games": 186563,
+      "pickRate": 0.008469
     },
     "233": {
       "tier": 3,
-      "winRate": 0.495472,
-      "games": 114513,
-      "pickRate": 0.003082
+      "winRate": 0.501295,
+      "games": 69867,
+      "pickRate": 0.003171
     },
     "234": {
-      "tier": 4,
-      "winRate": 0.478405,
-      "games": 137279,
-      "pickRate": 0.003694
+      "tier": 3,
+      "winRate": 0.481403,
+      "games": 78186,
+      "pickRate": 0.003549
     },
     "235": {
       "tier": 3,
-      "winRate": 0.487316,
-      "games": 427704,
-      "pickRate": 0.011509
+      "winRate": 0.481662,
+      "games": 259630,
+      "pickRate": 0.011785
     },
     "236": {
       "tier": 3,
-      "winRate": 0.499886,
-      "games": 370024,
-      "pickRate": 0.009957
+      "winRate": 0.500664,
+      "games": 227458,
+      "pickRate": 0.010325
     },
     "238": {
       "tier": 4,
-      "winRate": 0.462842,
-      "games": 273115,
-      "pickRate": 0.00735
+      "winRate": 0.467155,
+      "games": 163558,
+      "pickRate": 0.007424
     },
     "240": {
       "tier": 3,
-      "winRate": 0.485891,
-      "games": 37033,
-      "pickRate": 0.000997
+      "winRate": 0.493157,
+      "games": 22212,
+      "pickRate": 0.001008
     },
     "245": {
       "tier": 2,
-      "winRate": 0.524884,
-      "games": 194727,
-      "pickRate": 0.00524
+      "winRate": 0.522292,
+      "games": 117264,
+      "pickRate": 0.005323
     },
     "246": {
       "tier": 5,
-      "winRate": 0.437762,
-      "games": 94275,
-      "pickRate": 0.002537
+      "winRate": 0.42465,
+      "games": 55229,
+      "pickRate": 0.002507
     },
     "254": {
       "tier": 3,
-      "winRate": 0.481806,
-      "games": 124326,
-      "pickRate": 0.003346
+      "winRate": 0.487596,
+      "games": 73405,
+      "pickRate": 0.003332
     },
     "266": {
       "tier": 5,
-      "winRate": 0.439841,
-      "games": 119168,
-      "pickRate": 0.003207
+      "winRate": 0.440963,
+      "games": 72734,
+      "pickRate": 0.003302
     },
     "267": {
       "tier": 3,
-      "winRate": 0.498193,
-      "games": 191434,
-      "pickRate": 0.005151
+      "winRate": 0.503664,
+      "games": 114068,
+      "pickRate": 0.005178
     },
     "268": {
       "tier": 3,
-      "winRate": 0.49761,
-      "games": 133247,
-      "pickRate": 0.003586
+      "winRate": 0.505289,
+      "games": 65703,
+      "pickRate": 0.002982
     },
     "350": {
       "tier": 2,
-      "winRate": 0.521086,
-      "games": 174691,
-      "pickRate": 0.004701
+      "winRate": 0.518395,
+      "games": 103670,
+      "pickRate": 0.004706
     },
     "360": {
       "tier": 2,
-      "winRate": 0.519281,
-      "games": 235853,
-      "pickRate": 0.006347
+      "winRate": 0.514823,
+      "games": 143766,
+      "pickRate": 0.006526
     },
     "412": {
       "tier": 5,
-      "winRate": 0.426708,
-      "games": 311037,
-      "pickRate": 0.00837
+      "winRate": 0.430171,
+      "games": 183841,
+      "pickRate": 0.008345
     },
     "420": {
       "tier": 2,
-      "winRate": 0.526725,
-      "games": 192239,
-      "pickRate": 0.005173
+      "winRate": 0.522408,
+      "games": 114778,
+      "pickRate": 0.00521
     },
     "421": {
       "tier": 4,
-      "winRate": 0.468326,
-      "games": 41533,
-      "pickRate": 0.001118
+      "winRate": 0.471872,
+      "games": 24744,
+      "pickRate": 0.001123
     },
     "427": {
-      "tier": 3,
-      "winRate": 0.498843,
-      "games": 90295,
-      "pickRate": 0.00243
+      "tier": 2,
+      "winRate": 0.511768,
+      "games": 40960,
+      "pickRate": 0.001859
     },
     "429": {
       "tier": 3,
-      "winRate": 0.495033,
-      "games": 150699,
-      "pickRate": 0.004055
+      "winRate": 0.496708,
+      "games": 68956,
+      "pickRate": 0.00313
     },
     "432": {
       "tier": 5,
-      "winRate": 0.408362,
-      "games": 130896,
-      "pickRate": 0.003522
+      "winRate": 0.414521,
+      "games": 78563,
+      "pickRate": 0.003566
     },
     "497": {
       "tier": 4,
-      "winRate": 0.471692,
-      "games": 112035,
-      "pickRate": 0.003015
+      "winRate": 0.467981,
+      "games": 69411,
+      "pickRate": 0.003151
     },
     "498": {
       "tier": 2,
-      "winRate": 0.52146,
-      "games": 258551,
-      "pickRate": 0.006958
+      "winRate": 0.523958,
+      "games": 162618,
+      "pickRate": 0.007382
     },
     "516": {
       "tier": 2,
-      "winRate": 0.520344,
-      "games": 246925,
-      "pickRate": 0.006645
+      "winRate": 0.513324,
+      "games": 145826,
+      "pickRate": 0.006619
     },
     "517": {
       "tier": 3,
-      "winRate": 0.483969,
-      "games": 251107,
-      "pickRate": 0.006757
+      "winRate": 0.486232,
+      "games": 160158,
+      "pickRate": 0.00727
     },
     "518": {
       "tier": 4,
-      "winRate": 0.459422,
-      "games": 196745,
-      "pickRate": 0.005294
+      "winRate": 0.46037,
+      "games": 117903,
+      "pickRate": 0.005352
     },
     "523": {
       "tier": 1,
-      "winRate": 0.555431,
-      "games": 154905,
-      "pickRate": 0.004168
+      "winRate": 0.555577,
+      "games": 95364,
+      "pickRate": 0.004329
     },
     "526": {
       "tier": 1,
-      "winRate": 0.564224,
-      "games": 223631,
-      "pickRate": 0.006018
+      "winRate": 0.549572,
+      "games": 132958,
+      "pickRate": 0.006035
     },
     "555": {
       "tier": 5,
-      "winRate": 0.449733,
-      "games": 254549,
-      "pickRate": 0.00685
+      "winRate": 0.450053,
+      "games": 149367,
+      "pickRate": 0.00678
     },
     "711": {
       "tier": 3,
-      "winRate": 0.501905,
-      "games": 137785,
-      "pickRate": 0.003708
+      "winRate": 0.500224,
+      "games": 80264,
+      "pickRate": 0.003643
     },
     "777": {
       "tier": 3,
-      "winRate": 0.506865,
-      "games": 205475,
-      "pickRate": 0.005529
+      "winRate": 0.504401,
+      "games": 119397,
+      "pickRate": 0.00542
     },
     "799": {
       "tier": 3,
-      "winRate": 0.481093,
-      "games": 112708,
-      "pickRate": 0.003033
+      "winRate": 0.483326,
+      "games": 75957,
+      "pickRate": 0.003448
     },
     "800": {
       "tier": 3,
-      "winRate": 0.481822,
-      "games": 351929,
-      "pickRate": 0.00947
+      "winRate": 0.481545,
+      "games": 208421,
+      "pickRate": 0.009461
     },
     "804": {
       "tier": 1,
-      "winRate": 0.555475,
-      "games": 292132,
-      "pickRate": 0.007861
+      "winRate": 0.568645,
+      "games": 187662,
+      "pickRate": 0.008518
     },
     "805": {
       "tier": 5,
-      "winRate": 0.360202,
-      "games": 343219,
-      "pickRate": 0.009236
+      "winRate": 0.365512,
+      "games": 169220,
+      "pickRate": 0.007681
     },
     "875": {
       "tier": 1,
-      "winRate": 0.587922,
-      "games": 302581,
-      "pickRate": 0.008142
+      "winRate": 0.580371,
+      "games": 180357,
+      "pickRate": 0.008187
     },
     "876": {
       "tier": 1,
-      "winRate": 0.56826,
-      "games": 227577,
-      "pickRate": 0.006124
+      "winRate": 0.562915,
+      "games": 135310,
+      "pickRate": 0.006142
     },
     "887": {
       "tier": 1,
-      "winRate": 0.549719,
-      "games": 106407,
-      "pickRate": 0.002863
+      "winRate": 0.545162,
+      "games": 63638,
+      "pickRate": 0.002889
     },
     "888": {
       "tier": 2,
-      "winRate": 0.517586,
-      "games": 158076,
-      "pickRate": 0.004254
+      "winRate": 0.525346,
+      "games": 75594,
+      "pickRate": 0.003431
     },
     "893": {
       "tier": 1,
-      "winRate": 0.535121,
-      "games": 215097,
-      "pickRate": 0.005788
+      "winRate": 0.53536,
+      "games": 130994,
+      "pickRate": 0.005946
     },
     "895": {
       "tier": 3,
-      "winRate": 0.479668,
-      "games": 72790,
+      "winRate": 0.483295,
+      "games": 43162,
       "pickRate": 0.001959
     },
     "897": {
       "tier": 5,
-      "winRate": 0.41523,
-      "games": 72225,
-      "pickRate": 0.001944
+      "winRate": 0.414684,
+      "games": 43257,
+      "pickRate": 0.001964
     },
     "901": {
       "tier": 3,
-      "winRate": 0.482297,
-      "games": 396063,
-      "pickRate": 0.010658
+      "winRate": 0.483765,
+      "games": 235478,
+      "pickRate": 0.010689
     },
     "902": {
       "tier": 2,
-      "winRate": 0.52215,
-      "games": 180207,
-      "pickRate": 0.004849
+      "winRate": 0.523752,
+      "games": 110831,
+      "pickRate": 0.005031
     },
     "904": {
-      "tier": 2,
-      "winRate": 0.530964,
-      "games": 127438,
-      "pickRate": 0.003429
+      "tier": 1,
+      "winRate": 0.536288,
+      "games": 74102,
+      "pickRate": 0.003364
     },
     "910": {
       "tier": 2,
-      "winRate": 0.527859,
-      "games": 238221,
-      "pickRate": 0.006411
+      "winRate": 0.526795,
+      "games": 143179,
+      "pickRate": 0.006499
     },
     "950": {
       "tier": 5,
-      "winRate": 0.432229,
-      "games": 133140,
-      "pickRate": 0.003583
+      "winRate": 0.43355,
+      "games": 65139,
+      "pickRate": 0.002957
     }
   }
 }
