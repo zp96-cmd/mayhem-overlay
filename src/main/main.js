@@ -728,6 +728,43 @@ function closePrepWindow() {
   if (prepWin && !prepWin.isDestroyed()) prepWin.close();
 }
 
+// Combos over the fullscreen loading screen. The prep window isn't
+// always-on-top, so it's hidden behind the game while loading — the badge
+// overlay is the only surface that renders on top. We push the locked-in
+// champion's combos there as soon as loading begins; once the live game
+// starts, app.js takes over the same panel (adding "have" markers).
+let loadingChampId = null;
+let liveCombosOwner = false; // true once the live game (app.js) drives the panel
+function pushLoadingCombos(champId) {
+  if (!badgeWin || badgeWin.isDestroyed() || !champId) return;
+  const byChampion = loadDataFile('champion-combos.json')?.byChampion ?? {};
+  const combos = byChampion[champId] || byChampion[String(champId)];
+  if (!combos?.length) return;
+  const augIcon = new Map(
+    (loadDataFile('augments.json')?.augments ?? []).map((a) => [a.name.toLowerCase(), a.icon])
+  );
+  const champName = (loadDataFile('champions.json')?.champions ?? [])
+    .find((c) => c.id === champId)?.name ?? '';
+  const rows = combos.slice(0, 6).map((c) => ({
+    augmentName: c.augmentName,
+    icon: augIcon.get(c.augmentName.toLowerCase()) ?? null,
+    tier: c.tier,
+    description: c.description,
+    have: false,
+  }));
+  combosActive = true;
+  badgeWin.webContents.send('combos:data', { champName, rows });
+  syncBadgeWinVisibility();
+}
+
+function clearLoadingCombos() {
+  loadingChampId = null;
+  if (!combosActive) return;
+  combosActive = false;
+  badgeWin?.webContents.send('combos:clear');
+  syncBadgeWinVisibility();
+}
+
 let prepChampFor = null;
 async function feedPrep(session) {
   if (!prepWin || prepWin.isDestroyed()) return;
@@ -787,6 +824,11 @@ async function champSelectTick() {
 
   feedPrep(session);
 
+  // remember my champion so we can show its combos on the loading screen
+  const myCell = session.localPlayerCellId;
+  const myChamp = (session.myTeam ?? []).find((p) => p.cellId === myCell)?.championId;
+  if (myChamp > 0) loadingChampId = myChamp;
+
   const display = screen.getPrimaryDisplay();
   const scale = display.scaleFactor;
   const pills = buildChampSelectPills(session, csRect, csStats, settings.get('csLayout') ?? undefined)
@@ -818,6 +860,19 @@ function startPhaseWatcher() {
       prepChampFor = null;
       // prep window intentionally stays open through the game as a reference;
       // the user closes it whenever they like
+    }
+    // Loading screen: surface combos on the always-on-top overlay (the prep
+    // window is hidden behind the fullscreen game here). The loading screen is
+    // usually phase InProgress before the Live Client API comes online, so we
+    // cover both GameStart and InProgress — but back off once the live game
+    // (app.js) takes ownership of the panel and adds "have" markers.
+    if ((phase === 'GameStart' || phase === 'InProgress') && loadingChampId && !liveCombosOwner) {
+      pushLoadingCombos(loadingChampId);
+    }
+    // back to menus / lobby / post-game: tear the loading combos down.
+    if (phase === 'None' || phase === 'Lobby' || phase === 'Matchmaking' || phase === 'EndOfGame') {
+      clearLoadingCombos();
+      liveCombosOwner = false;
     }
     lastPhase = phase;
     maybeAutoInstall();
@@ -911,11 +966,13 @@ ipcMain.on('prio:show', (_e, data) => {
 });
 ipcMain.on('combos:show', (_e, data) => {
   if (!badgeWin) return;
+  liveCombosOwner = true; // live game (app.js) now owns the panel
   combosActive = true;
   badgeWin.webContents.send('combos:data', data);
   syncBadgeWinVisibility();
 });
 ipcMain.on('combos:clear', () => {
+  liveCombosOwner = false;
   combosActive = false;
   badgeWin?.webContents.send('combos:clear');
   syncBadgeWinVisibility();
