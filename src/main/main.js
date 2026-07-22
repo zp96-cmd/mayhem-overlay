@@ -317,6 +317,29 @@ function createCombosWindow() {
   combosWin.loadFile(path.join(__dirname, '..', 'renderer', 'combos.html'));
 }
 
+// Draggable priority panel — same self-contained pattern as the combos window.
+let prioWin = null;
+let prioLocked = true;
+function createPrioWindow() {
+  const d = screen.getPrimaryDisplay();
+  const pos = settings.get('prioPos') ?? { x: 0.80, y: 0.18 };
+  prioWin = new BrowserWindow({
+    width: 320, height: 420,
+    x: Math.round(d.bounds.x + d.bounds.width * pos.x),
+    y: Math.round(d.bounds.y + d.bounds.height * pos.y),
+    frame: false, transparent: true, resizable: false, movable: false,
+    focusable: false, alwaysOnTop: true, skipTaskbar: true, hasShadow: false, show: false,
+    webPreferences: {
+      preload: path.join(__dirname, '..', 'preload.js'),
+      contextIsolation: true,
+      nodeIntegration: false,
+    },
+  });
+  prioWin.setAlwaysOnTop(true, 'screen-saver');
+  prioWin.setIgnoreMouseEvents(true, { forward: true });
+  prioWin.loadFile(path.join(__dirname, '..', 'renderer', 'prio.html'));
+}
+
 let badgeTimeout = null;
 let badgesActive = false;
 let csActive = false;
@@ -353,6 +376,31 @@ function setCombosLocked(locked) {
     });
   }
   syncCombosWinVisibility();
+}
+
+// prioActive = the priority list has content (live game); window also shows
+// while unlocked so it can be repositioned.
+let prioActive = false;
+function syncPrioWinVisibility() {
+  if (!prioWin) return;
+  if (prioActive || !prioLocked) prioWin.showInactive();
+  else prioWin.hide();
+}
+function setPrioLocked(locked) {
+  prioLocked = locked;
+  if (!prioWin) return;
+  if (locked) prioWin.setIgnoreMouseEvents(true, { forward: true });
+  else prioWin.setIgnoreMouseEvents(false);
+  prioWin.webContents.send('prio:lock-state', locked);
+  if (locked) {
+    const b = prioWin.getBounds();
+    const d = screen.getPrimaryDisplay();
+    settings.set('prioPos', {
+      x: (b.x - d.bounds.x) / d.bounds.width,
+      y: (b.y - d.bounds.y) / d.bounds.height,
+    });
+  }
+  syncPrioWinVisibility();
 }
 
 function showBadges(badges) {
@@ -453,7 +501,14 @@ function createTray() {
       label: 'Move combos panel',
       click: () => {
         setCombosLocked(false);
-        notify('Mayhem Overlay', 'Drag the combos panel where you want it, then click LOCK.');
+        notify('Mayhem Overlay', 'Drag the combos panel where you want it, then click the lock.');
+      },
+    },
+    {
+      label: 'Move priority panel',
+      click: () => {
+        setPrioLocked(false);
+        notify('Mayhem Overlay', 'Drag the priority panel where you want it, then click the lock.');
       },
     },
     {
@@ -1030,10 +1085,40 @@ ipcMain.on('celebrate', (_e, name) => {
   setTimeout(syncBadgeWinVisibility, 4600);
 });
 ipcMain.on('prio:show', (_e, data) => {
-  if (!badgeWin) return;
-  badgesActive = true; // priority panel rides the same layer/lifecycle as the pills
-  badgeWin.webContents.send('prio:data', data);
-  syncBadgeWinVisibility();
+  if (!prioWin) return;
+  prioActive = true;
+  prioWin.webContents.send('prio:data', data);
+  syncPrioWinVisibility();
+});
+ipcMain.on('prio:clear', () => {
+  prioActive = false;
+  prioWin?.webContents.send('prio:clear');
+  syncPrioWinVisibility();
+});
+ipcMain.on('prio:resize', (_e, { w, h }) => {
+  if (!prioWin) return;
+  const b = prioWin.getBounds();
+  prioWin.setBounds({ x: b.x, y: b.y, width: Math.max(180, w), height: Math.max(60, h) });
+});
+ipcMain.on('prio:dragby', (_e, { dx, dy }) => {
+  if (!prioWin) return;
+  const [x, y] = prioWin.getPosition();
+  prioWin.setPosition(x + Math.round(dx), y + Math.round(dy));
+});
+ipcMain.on('prio:dragend', () => {
+  if (!prioWin) return;
+  const b = prioWin.getBounds();
+  const d = screen.getPrimaryDisplay();
+  settings.set('prioPos', {
+    x: (b.x - d.bounds.x) / d.bounds.width,
+    y: (b.y - d.bounds.y) / d.bounds.height,
+  });
+});
+ipcMain.on('prio:lock', (_e, v) => setPrioLocked(!!v));
+ipcMain.on('prio:mouse-capture', (_e, on) => {
+  if (!prioWin || !prioLocked) return;
+  if (on) prioWin.setIgnoreMouseEvents(false);
+  else prioWin.setIgnoreMouseEvents(true, { forward: true });
 });
 ipcMain.on('combos:show', (_e, data) => {
   if (!combosWin) return;
@@ -1138,6 +1223,7 @@ app.whenReady().then(async () => {
   createBadgeWindow();
   createStripWindow();
   createCombosWindow();
+  createPrioWindow();
   createScanButton();
   createTray();
   startPhaseWatcher();

@@ -1266,6 +1266,7 @@ async function init() {
     $('#status-dot').className = state.phase.connected ? 'dot dot-client' : 'dot dot-off';
     renderBuildTab();
     window.mayhem.clearCombos();
+    window.mayhem.clearPrio();
   });
   window.mayhem.onAugmentBreakpoint(({ level, manual }) => {
     $('#offer-banner').classList.remove('hidden');

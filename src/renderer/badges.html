@@ -92,61 +92,6 @@
     #verdict.close { border-color: var(--hairline-strong); box-shadow: var(--shadow-3); }
     #verdict.close .act { color: var(--caution); font-size: 22px; }
 
-    /* ---------- priority panel ---------- */
-    #prio {
-      position: absolute;
-      right: 1vw;
-      top: 18vh;
-      display: none;
-      flex-direction: column;
-      gap: 3px;
-      z-index: 160;
-      background:
-        var(--hexweave),
-        linear-gradient(180deg, rgba(16, 26, 40, 0.93), rgba(8, 13, 22, 0.96));
-      background-size: 56px 96px, cover;
-      border: 1px solid var(--hairline-strong);
-      border-radius: var(--r-container);
-      padding: 13px 15px;
-      box-shadow: var(--shadow-3), inset 0 1px 0 rgba(240, 230, 210, 0.08);
-      max-width: 318px;
-      overflow: hidden;
-    }
-    #prio::before {
-      content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-      background: linear-gradient(180deg, var(--gold-bright), var(--gold) 55%, rgba(183,142,60,0.15));
-      box-shadow: 0 0 14px var(--gold-glow);
-    }
-    #prio .title {
-      font-size: 12.5px; font-weight: 900; letter-spacing: 2.5px;
-      padding-bottom: 8px; margin-bottom: 6px; border-bottom: 1px solid var(--hairline);
-      background: linear-gradient(96deg, var(--gold-deep), var(--gold-bright) 42%, var(--gold) 60%, var(--gold-deep));
-      background-size: 200% 100%;
-      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-      animation: goldSheen 6s linear infinite;
-    }
-    #prio .row {
-      display: flex; align-items: center; gap: 9px;
-      color: var(--text); font-size: 14px; font-weight: 700;
-      padding: 4px 5px; border-radius: var(--r-control);
-      border: 1px solid transparent;
-    }
-    #prio .row.top { background: linear-gradient(90deg, rgba(232, 193, 90, 0.12), transparent); }
-    #prio .row img {
-      width: 30px; height: 30px; border-radius: var(--r-control);
-      background: rgba(4, 9, 15, 0.5); border: 1px solid var(--hairline-strong);
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-    }
-    #prio .row .nm { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 175px; }
-    #prio .row .pwr { font-size: 16px; font-weight: 900; font-variant-numeric: tabular-nums; }
-    #prio .row.offered {
-      border-color: rgba(92, 216, 232, 0.5);
-      background: rgba(92, 216, 232, 0.08);
-      box-shadow: inset 0 0 12px rgba(92, 216, 232, 0.12);
-    }
-    #prio .hint { font-size: 10px; color: var(--text-dim); margin-top: 6px; font-family: var(--font-body); opacity: 0.8; }
-
-
     /* ---------- champ select pills ---------- */
     .cs-pill {
       position: absolute;
@@ -174,7 +119,6 @@
   <div id="root"></div>
   <div id="verdict"></div>
   <div id="cs"></div>
-  <div id="prio"></div>
   <script src="badges.js"></script>
 </body>
 </html>
