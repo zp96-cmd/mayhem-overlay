@@ -344,7 +344,7 @@ function pickAugment(name) {
   window.mayhem.notifyPicked();
   lastStripKey = null;
   updateBuildStrip();
-  updateCombosPanel();
+  setOfferOpen(false); // augment chosen — hide the combos + priority panels
   saveSession();
   $('#offer-banner').classList.add('hidden');
   renderCompare();
@@ -370,6 +370,7 @@ function applyOcrOffer(res) {
   renderCompare();
   renderAugments();
   showOfferBadges(good);
+  setOfferOpen(true); // augment time — reveal the combos panel
   showPriorityList(good.map((m) => m.name));
   lastStripKey = null;
   updateBuildStrip();
@@ -804,12 +805,22 @@ function stripRows() {
 }
 
 
+// The combos + priority side panels only show during "augment time" (an offer
+// is open), not for the whole game.
+let offerOpen = false;
+function setOfferOpen(open) {
+  if (offerOpen === open) return;
+  offerOpen = open;
+  updateCombosPanel();          // shows or hides the combos panel
+  if (!open) window.mayhem.clearPrio(); // hide the priority list when the offer ends
+}
+
 // arammayhem champion combos for the in-game side panel: mark which augments
 // you already have, keep tier order, cap the list.
 let lastCombosKey = null;
 function updateCombosPanel() {
   const champId = myChampion()?.id;
-  const combos = champId ? state.champCombos[champId] : null;
+  const combos = offerOpen && champId ? state.champCombos[champId] : null;
   if (!combos?.length) {
     if (lastCombosKey !== null) { lastCombosKey = null; window.mayhem.clearCombos(); }
     return;
@@ -1271,9 +1282,11 @@ async function init() {
     $('#live-champ').textContent = '';
     $('#status-dot').className = state.phase.connected ? 'dot dot-client' : 'dot dot-off';
     renderBuildTab();
+    offerOpen = false;
     window.mayhem.clearCombos();
     window.mayhem.clearPrio();
     lastPrioKey = null;
+    lastCombosKey = null;
   });
   window.mayhem.onAugmentBreakpoint(({ level, manual }) => {
     $('#offer-banner').classList.remove('hidden');
@@ -1285,7 +1298,7 @@ async function init() {
     renderAugments();
     input.focus();
     // show what's worth hoping for right away, before the scan lands
-    if (state.live) showPriorityList();
+    if (state.live) { setOfferOpen(true); showPriorityList(); }
     if (!manual) setTimeout(() => $('#offer-banner').classList.add('hidden'), 45000);
   });
   window.mayhem.onPhase((p) => {
@@ -1337,6 +1350,7 @@ async function init() {
       $('#offer-banner').classList.add('hidden');
       window.mayhem.clearBadges();
     }
+    setOfferOpen(false); // augment time over — hide combos + priority
   });
   window.mayhem.onChampData((d) => {
     state.champData = d;
