@@ -17,33 +17,43 @@
       font-family: var(--font-display); color: var(--text);
       overflow-x: hidden; overflow-y: auto;
       background:
-        radial-gradient(1200px 700px at 50% -10%, rgba(232,193,90,0.12), transparent 60%),
-        radial-gradient(900px 600px at 15% 20%, rgba(92,216,232,0.08), transparent 55%),
+        radial-gradient(1200px 700px at 50% -10%, rgba(232,193,90,0.14), transparent 60%),
+        radial-gradient(900px 600px at 12% 24%, rgba(92,216,232,0.08), transparent 55%),
         var(--hexweave), linear-gradient(180deg, #0b1420, var(--abyss) 70%);
       background-size: auto, auto, 56px 96px, cover;
     }
     body::-webkit-scrollbar { width: 10px; }
     body::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: 5px; }
 
-    @keyframes riseIn { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes glowPulse { 0%,100% { box-shadow: 0 0 30px var(--gold-glow); } 50% { box-shadow: 0 0 50px var(--gold-glow); } }
+    #dust { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+    header, .wrap { position: relative; z-index: 2; }
+
+    @keyframes riseIn { from { opacity: 0; transform: translateY(34px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes dropIn { 0% { opacity: 0; transform: translateY(-26px) scale(0.6); } 70% { transform: translateY(4px) scale(1.08); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes growUp { from { opacity: 0; transform: scaleY(0); } to { opacity: 1; transform: scaleY(1); } }
+    @keyframes glowPulse { 0%,100% { box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 34px var(--gold-glow); } 50% { box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 58px var(--gold-glow); } }
     @keyframes sheen { to { background-position: 200% 0; } }
+    @keyframes spin { to { transform: translateX(-50%) rotate(360deg); } }
+    @keyframes kenburns { 0% { transform: scale(1.06) translate(0,0); } 100% { transform: scale(1.16) translate(-2.5%,-2%); } }
+    @keyframes shine { 0%, 62%, 100% { transform: translateX(-140%) rotate(8deg); } 78% { transform: translateX(140%) rotate(8deg); } }
+    @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+    @keyframes crownSway { 0%,100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
 
     /* ---------- frameless header ---------- */
     header {
       -webkit-app-region: drag;
       display: flex; align-items: center; gap: 12px;
       padding: 14px 18px; position: sticky; top: 0; z-index: 20;
-      background: linear-gradient(180deg, rgba(9,16,24,0.9), rgba(9,16,24,0));
+      background: linear-gradient(180deg, rgba(9,16,24,0.92), rgba(9,16,24,0));
     }
+    header .trophy { font-size: 19px; filter: drop-shadow(0 0 8px var(--gold-glow)); animation: floaty 4s ease-in-out infinite; }
     header .brand { font-size: 15px; font-weight: 900; letter-spacing: 3px; display: flex; align-items: baseline; gap: 9px; }
     header .brand .g {
-      background: linear-gradient(96deg, var(--gold-deep), var(--gold-bright) 42%, var(--gold) 60%, var(--gold-deep));
-      background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-      animation: sheen 6s linear infinite;
+      background: linear-gradient(96deg, var(--gold-deep), #fff3d0 40%, var(--gold-bright) 55%, var(--gold-deep));
+      background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      animation: sheen 5s linear infinite;
     }
     header .brand .sub { font-size: 10.5px; letter-spacing: 2px; color: var(--text-dim); font-weight: 700; }
-    header .trophy { font-size: 19px; filter: drop-shadow(0 0 8px var(--gold-glow)); }
     header .win { margin-left: auto; display: flex; gap: 8px; -webkit-app-region: no-drag; }
     header .win button {
       width: 30px; height: 30px; border-radius: 8px; cursor: pointer; font-size: 13px;
@@ -53,30 +63,50 @@
     header .win button:hover { color: var(--text); border-color: var(--hairline-strong); }
     header .win .close:hover { color: var(--loss); border-color: var(--loss); background: rgba(232,83,110,0.12); }
 
-    .wrap { max-width: 1080px; margin: 0 auto; padding: 6px 30px 60px; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 10px 30px 64px; }
 
     /* ---------- podium ---------- */
-    .stage { display: flex; align-items: flex-end; justify-content: center; gap: 26px; margin-top: 18px; }
-    .col { width: 260px; display: flex; flex-direction: column; align-items: center; animation: riseIn .6s var(--ease) both; }
-    .col.rank-2 { width: 232px; animation-delay: .08s; }
-    .col.rank-3 { width: 232px; animation-delay: .16s; }
-    .col.rank-1 { animation-delay: 0s; }
+    .stage { display: flex; align-items: flex-end; justify-content: center; gap: 26px; margin-top: 22px; perspective: 1400px; }
+    .col { position: relative; z-index: 0; width: 260px; display: flex; flex-direction: column; align-items: center; animation: riseIn .7s var(--ease) both; }
+    .col.rank-2 { width: 232px; animation-delay: .12s; }
+    .col.rank-3 { width: 232px; animation-delay: .22s; }
 
-    .medal { font-size: 30px; margin-bottom: -16px; z-index: 3; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.6)); }
+    /* rotating aura behind #1 */
+    .col.rank-1::before {
+      content: ''; position: absolute; left: 50%; top: 44px; transform: translateX(-50%); z-index: -1;
+      width: 300px; height: 384px; border-radius: 24px;
+      background: conic-gradient(from 0deg, var(--gold), transparent 22%, var(--gold-bright) 50%, transparent 78%, var(--gold));
+      filter: blur(26px); opacity: 0.55; animation: spin 9s linear infinite;
+    }
+
+    .crown { position: absolute; top: -20px; font-size: 34px; z-index: 4; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.7)); animation: crownSway 3.6s ease-in-out infinite; transform-origin: bottom center; }
+    .medal { font-size: 30px; margin-bottom: -16px; z-index: 3; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.6)); animation: dropIn .55s var(--ease) both; }
+    .rank-1 .medal { animation-delay: .5s; } .rank-2 .medal { animation-delay: .6s; } .rank-3 .medal { animation-delay: .7s; }
 
     .card {
-      width: 100%; height: 300px; border-radius: 16px; position: relative; overflow: hidden;
+      width: 100%; height: 300px; border-radius: 16px; position: relative; overflow: hidden; z-index: 1;
       border: 1px solid var(--hairline-strong);
-      background-size: cover; background-position: center 22%;
       box-shadow: 0 24px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
+      transform-style: preserve-3d; transition: transform .18s var(--ease), box-shadow .3s var(--ease);
+      will-change: transform;
     }
     .rank-1 .card { height: 360px; border-color: var(--gold); animation: glowPulse 3.4s var(--ease) infinite; }
     .rank-2 .card { border-color: var(--silver-dp); box-shadow: 0 20px 46px rgba(0,0,0,0.55), 0 0 22px rgba(207,218,232,0.2); }
     .rank-3 .card { border-color: var(--bronze-dp); box-shadow: 0 20px 46px rgba(0,0,0,0.55), 0 0 22px rgba(214,138,78,0.2); }
+
+    .card .splash { position: absolute; inset: -9%; background-size: cover; background-position: center 22%; animation: kenburns 22s ease-in-out infinite alternate; }
+    .card .shine { position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(115deg, transparent 42%, rgba(255,255,255,0.22) 50%, transparent 58%);
+      transform: translateX(-140%) rotate(8deg); animation: shine 7s ease-in-out infinite; }
+    .rank-2 .card .shine { animation-delay: .8s; } .rank-3 .card .shine { animation-delay: 1.6s; }
+    .card .gloss { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .25s var(--ease);
+      background: radial-gradient(circle at var(--mx,50%) var(--my,10%), rgba(255,255,255,0.28), transparent 42%); mix-blend-mode: screen; }
+    .col:hover .card .gloss { opacity: 1; }
+
     .card .scrim {
       position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 16px 16px 15px;
-      background: linear-gradient(180deg, transparent 30%, rgba(6,10,18,0.55) 60%, rgba(6,10,18,0.96) 100%);
+      padding: 16px 16px 15px; z-index: 2;
+      background: linear-gradient(180deg, transparent 28%, rgba(6,10,18,0.55) 58%, rgba(6,10,18,0.96) 100%);
     }
     .card .cname { font-size: 21px; font-weight: 900; letter-spacing: 0.5px; text-shadow: 0 2px 10px rgba(0,0,0,0.9); }
     .rank-1 .card .cname { font-size: 25px; }
@@ -84,14 +114,15 @@
     .card .wr b { font-size: 34px; }
     .rank-1 .card .wr b { font-size: 42px; }
     .card .wr .lbl { font-size: 11px; letter-spacing: 2px; color: var(--text-dim); margin-left: 6px; font-weight: 800; }
-    .wr.good b { color: var(--win); } .wr.mid b { color: var(--caution); } .wr.bad b { color: var(--loss); }
+    .wr.good b { color: var(--win); text-shadow: 0 0 16px var(--win-glow); } .wr.mid b { color: var(--caution); } .wr.bad b { color: var(--loss); }
     .card .games { font-size: 11.5px; color: var(--text-dim); margin-top: 4px; font-weight: 600; font-variant-numeric: tabular-nums; }
     .card .rec { color: var(--text); font-weight: 800; }
 
-    .augs { margin-top: 14px; width: 100%; }
+    .augs { margin-top: 14px; width: 100%; animation: riseIn .6s var(--ease) both; animation-delay: .5s; }
     .augs .h { font-size: 9.5px; letter-spacing: 2px; color: var(--gold); font-weight: 800; text-align: center; margin-bottom: 8px; }
     .augs .row { display: flex; justify-content: center; gap: 8px; }
-    .augs .a { position: relative; }
+    .augs .a { position: relative; transition: transform .18s var(--ease); }
+    .augs .a:hover { transform: translateY(-4px) scale(1.08); }
     .augs .a img {
       width: 40px; height: 40px; border-radius: 9px; display: block;
       background: rgba(4,9,15,0.6); border: 1px solid var(--hairline-strong);
@@ -100,8 +131,7 @@
     .augs .a .ct {
       position: absolute; bottom: -5px; right: -5px; font-size: 9.5px; font-weight: 900;
       background: linear-gradient(180deg, var(--gold-bright), var(--gold)); color: #0a0f14;
-      border-radius: 999px; padding: 1px 5px; box-shadow: 0 2px 6px rgba(0,0,0,0.6);
-      font-variant-numeric: tabular-nums;
+      border-radius: 999px; padding: 1px 5px; box-shadow: 0 2px 6px rgba(0,0,0,0.6); font-variant-numeric: tabular-nums;
     }
     .augs .empty { text-align: center; font-size: 10.5px; color: var(--text-faint); font-family: var(--font-body); }
 
@@ -109,10 +139,11 @@
       width: 100%; margin-top: 16px; border-radius: 10px 10px 4px 4px;
       display: grid; place-items: center; position: relative;
       border: 1px solid rgba(255,255,255,0.08); border-bottom: none;
+      transform-origin: bottom; animation: growUp .6s var(--ease) both;
     }
-    .rank-1 .pedestal { height: 128px; background: linear-gradient(180deg, rgba(232,193,90,0.32), rgba(232,193,90,0.06)); }
-    .rank-2 .pedestal { height: 92px; background: linear-gradient(180deg, rgba(207,218,232,0.28), rgba(207,218,232,0.05)); }
-    .rank-3 .pedestal { height: 68px; background: linear-gradient(180deg, rgba(214,138,78,0.28), rgba(214,138,78,0.05)); }
+    .rank-1 .pedestal { height: 128px; background: linear-gradient(180deg, rgba(232,193,90,0.34), rgba(232,193,90,0.06)); animation-delay: .34s; }
+    .rank-2 .pedestal { height: 92px; background: linear-gradient(180deg, rgba(207,218,232,0.3), rgba(207,218,232,0.05)); animation-delay: .42s; }
+    .rank-3 .pedestal { height: 68px; background: linear-gradient(180deg, rgba(214,138,78,0.3), rgba(214,138,78,0.05)); animation-delay: .5s; }
     .pedestal .rnum { font-size: 46px; font-weight: 900; line-height: 1; }
     .rank-1 .pedestal .rnum { color: var(--gold-bright); text-shadow: 0 0 20px var(--gold-glow); font-size: 58px; }
     .rank-2 .pedestal .rnum { color: var(--silver); }
@@ -120,33 +151,38 @@
 
     /* ---------- highest kill hero ---------- */
     .kill-hero {
-      margin-top: 40px; height: 190px; border-radius: 18px; position: relative; overflow: hidden;
-      border: 1px solid var(--hairline-strong); background-size: cover; background-position: center 28%;
-      box-shadow: 0 26px 64px rgba(0,0,0,0.6);
-      animation: riseIn .7s var(--ease) both; animation-delay: .24s;
+      margin-top: 42px; height: 194px; border-radius: 18px; position: relative; overflow: hidden;
+      border: 1px solid var(--hairline-strong); box-shadow: 0 26px 64px rgba(0,0,0,0.6);
+      animation: riseIn .8s var(--ease) both; animation-delay: .5s;
     }
+    .kill-hero .splash { position: absolute; inset: -8%; background-size: cover; background-position: center 26%; animation: kenburns 26s ease-in-out infinite alternate; }
     .kill-hero .scrim {
-      position: absolute; inset: 0; display: flex; align-items: center; gap: 26px; padding: 0 40px;
-      background: linear-gradient(90deg, rgba(6,10,18,0.95) 30%, rgba(6,10,18,0.55) 65%, rgba(6,10,18,0.2));
+      position: absolute; inset: 0; display: flex; align-items: center; gap: 28px; padding: 0 42px; z-index: 2;
+      background: linear-gradient(90deg, rgba(6,10,18,0.96) 32%, rgba(6,10,18,0.5) 66%, rgba(6,10,18,0.15));
     }
-    .kill-hero .big { font-size: 92px; font-weight: 900; line-height: 0.9; color: var(--loss);
-      text-shadow: 0 0 30px rgba(232,83,110,0.5); font-variant-numeric: tabular-nums; }
-    .kill-hero .meta .k { font-size: 13px; letter-spacing: 4px; font-weight: 900; color: var(--loss); }
+    .kill-hero .big { font-size: 96px; font-weight: 900; line-height: 0.9; color: var(--loss);
+      text-shadow: 0 0 34px rgba(232,83,110,0.55); font-variant-numeric: tabular-nums; }
+    .kill-hero .k { font-size: 13px; letter-spacing: 5px; font-weight: 900; color: var(--loss); text-align: center; margin-top: 2px; }
     .kill-hero .meta .t { font-size: 12px; letter-spacing: 2px; color: var(--gold); font-weight: 800; margin-bottom: 4px; }
-    .kill-hero .meta .c { font-size: 26px; font-weight: 900; }
-    .kill-hero .meta .s { font-size: 12px; color: var(--text-dim); margin-top: 3px; font-variant-numeric: tabular-nums; }
+    .kill-hero .meta .c { font-size: 28px; font-weight: 900; }
+    .kill-hero .meta .s { font-size: 12.5px; color: var(--text-dim); margin-top: 4px; font-variant-numeric: tabular-nums; }
+    .kill-hero .meta .s .win { color: var(--win); font-weight: 800; } .kill-hero .meta .s .loss { color: var(--loss); font-weight: 800; }
 
     .foot { text-align: center; margin-top: 30px; color: var(--text-faint); font-size: 11.5px; font-family: var(--font-body); }
 
-    /* ---------- empty ---------- */
     #empty { display: none; text-align: center; padding: 120px 40px; color: var(--text-dim); }
     #empty .t { font-size: 22px; font-weight: 900; letter-spacing: 2px; margin-bottom: 12px; }
     #empty .g { -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
       background: linear-gradient(180deg, var(--gold-bright), var(--gold)); }
     #empty p { font-size: 13.5px; line-height: 1.7; font-family: var(--font-body); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
   </style>
 </head>
 <body>
+  <canvas id="dust"></canvas>
   <header>
     <span class="trophy">🏆</span>
     <span class="brand"><span class="g">HALL OF FAME</span><span class="sub">ARAM · MAYHEM</span></span>

@@ -1,6 +1,6 @@
 /* Hall of Fame podium: top-3 champions by games played (win rate as tiebreak),
-   their most-picked augments, and your highest-kill game — all from the local
-   match-history store. */
+   their most-picked augments, and your highest-kill game — from the local
+   match-history store. Fully animated (this window isn't over the game). */
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const splash = (id) => `https://cdn.communitydragon.org/latest/champion/${id}/splash-art/centered`;
@@ -13,6 +13,7 @@ $('#close').addEventListener('click', () => window.mayhem.closePodium());
 function colHtml(e, rank, champById, augById) {
   const c = champById.get(e.id);
   const wr = e.wins / e.games;
+  const pct = Math.round(wr * 100);
   const topAugs = [...e.aug.entries()]
     .sort((a, b) => b[1] - a[1])
     .slice(0, 4)
@@ -24,11 +25,14 @@ function colHtml(e, rank, champById, augById) {
       ).join('')}</div>`
     : `<div class="empty">no augment data yet</div>`;
   return `<div class="col rank-${rank}">
+    ${rank === 1 ? '<div class="crown">👑</div>' : ''}
     <div class="medal">${medal(rank)}</div>
-    <div class="card" style="background-image:url('${splash(e.id)}')">
+    <div class="card">
+      <div class="splash" style="background-image:url('${splash(e.id)}')"></div>
+      <div class="shine"></div><div class="gloss"></div>
       <div class="scrim">
         <div class="cname">${esc(c?.name ?? 'Champion ' + e.id)}</div>
-        <div class="wr ${wrCls(wr)}"><b>${(wr * 100).toFixed(0)}%</b><span class="lbl">WIN RATE</span></div>
+        <div class="wr ${wrCls(wr)}"><b data-count="${pct}">0</b><span class="lbl">% WIN RATE</span></div>
         <div class="games"><span class="rec">${e.wins}W ${e.games - e.wins}L</span> · ${e.games} games</div>
       </div>
     </div>
@@ -43,27 +47,98 @@ function renderPodium(ranked, champById, augById) {
   if (ranked[0]) cols.push(colHtml(ranked[0], 1, champById, augById)); // 1st in the centre
   if (ranked[2]) cols.push(colHtml(ranked[2], 3, champById, augById)); // 3rd on the right
   $('#stage').innerHTML = cols.join('');
+  $('#stage').querySelectorAll('.card').forEach(attachTilt);
 }
 
 function renderKillHero(hk, champById) {
   if (!hk) return;
   const c = champById.get(hk.championId);
-  $('#hk').innerHTML = `<div class="kill-hero" style="background-image:url('${splash(hk.championId)}')">
+  $('#hk').innerHTML = `<div class="kill-hero">
+    <div class="splash" style="background-image:url('${splash(hk.championId)}')"></div>
     <div class="scrim">
       <div style="text-align:center">
-        <div class="big">${hk.kills ?? 0}</div>
-        <div class="meta"><div class="k">KILLS</div></div>
+        <div class="big" data-count="${hk.kills ?? 0}">0</div>
+        <div class="k">KILLS</div>
       </div>
       <div class="meta">
         <div class="t">🔥 HIGHEST KILL GAME</div>
         <div class="c">${esc(c?.name ?? 'Champion ' + hk.championId)}</div>
-        <div class="s">${hk.kills ?? 0} / ${hk.deaths ?? 0} / ${hk.assists ?? 0} · ${hk.win ? 'Victory' : 'Defeat'}</div>
+        <div class="s">${hk.kills ?? 0} / ${hk.deaths ?? 0} / ${hk.assists ?? 0} · <span class="${hk.win ? 'win' : 'loss'}">${hk.win ? 'Victory' : 'Defeat'}</span></div>
       </div>
     </div>
   </div>`;
+  attachTilt($('#hk .kill-hero'));
+}
+
+/* ---- flourishes ---- */
+function countUp(el, to, dur = 1200) {
+  const start = performance.now();
+  (function frame(t) {
+    const p = Math.min(1, (t - start) / dur);
+    const e = 1 - Math.pow(1 - p, 3); // easeOutCubic
+    el.textContent = Math.round(to * e);
+    if (p < 1) requestAnimationFrame(frame);
+  })(start);
+}
+function runCounters(delay = 620) {
+  setTimeout(() => {
+    document.querySelectorAll('[data-count]').forEach((el) => countUp(el, Number(el.dataset.count)));
+  }, delay);
+}
+
+// cursor tilt + parallax gloss on a card
+function attachTilt(card) {
+  const splashEl = card.querySelector('.splash');
+  card.addEventListener('mousemove', (ev) => {
+    const r = card.getBoundingClientRect();
+    const px = (ev.clientX - r.left) / r.width;
+    const py = (ev.clientY - r.top) / r.height;
+    const rx = (0.5 - py) * 9;
+    const ry = (px - 0.5) * 12;
+    card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
+    card.style.setProperty('--mx', `${px * 100}%`);
+    card.style.setProperty('--my', `${py * 100}%`);
+    if (splashEl) splashEl.style.transform = `translate(${(px - 0.5) * -14}px, ${(py - 0.5) * -10}px) scale(1.12)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+    if (splashEl) splashEl.style.transform = '';
+  });
+}
+
+// ambient drifting gold motes
+function startDust() {
+  const cv = document.getElementById('dust');
+  const ctx = cv.getContext('2d');
+  let W, H, motes = [];
+  function size() {
+    W = cv.width = window.innerWidth;
+    H = cv.height = window.innerHeight;
+    motes = Array.from({ length: 46 }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      r: Math.random() * 1.8 + 0.4, s: Math.random() * 0.28 + 0.05,
+      tw: Math.random() * Math.PI * 2,
+    }));
+  }
+  size();
+  window.addEventListener('resize', size);
+  (function tick() {
+    ctx.clearRect(0, 0, W, H);
+    for (const m of motes) {
+      m.y -= m.s; m.tw += 0.02;
+      if (m.y < -6) { m.y = H + 6; m.x = Math.random() * W; }
+      const a = 0.18 + 0.22 * Math.sin(m.tw);
+      ctx.beginPath();
+      ctx.arc(m.x, m.y, m.r, 0, 7);
+      ctx.fillStyle = `rgba(232,193,90,${a})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(tick);
+  })();
 }
 
 async function init() {
+  startDust();
   const [games, augData, champData] = await Promise.all([
     window.mayhem.getHistory(),
     window.mayhem.getAugments(),
@@ -98,6 +173,7 @@ async function init() {
 
   renderPodium(ranked, champById, augById);
   renderKillHero(hk, champById);
+  runCounters();
   $('#foot').textContent = `${list.length} games recorded · ${byChamp.size} champions played`;
 }
 
