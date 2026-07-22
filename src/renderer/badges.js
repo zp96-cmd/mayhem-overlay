@@ -69,15 +69,15 @@ const prio = document.getElementById('prio');
 window.mayhem.onPrio((data) => {
   if (!data || !data.items?.length) { prio.style.display = 'none'; return; }
   prio.innerHTML = `<div class="title">PRIORITY${data.tier ? ' · ' + data.tier.toUpperCase() : ''}</div>`;
-  for (const it of data.items) {
+  data.items.forEach((it, i) => {
     const r = document.createElement('div');
-    r.className = `row${it.offered ? ' offered' : ''}`;
+    r.className = `row${i < 2 ? ' top' : ''}${it.offered ? ' offered' : ''}`;
     r.innerHTML =
       (it.icon ? `<img src="${it.icon}">` : '') +
       `<span class="nm">${it.name}</span>` +
       `<span class="pwr ${wrClass(it.wr ?? 0.5)}">${it.wr != null ? pct(it.wr) : '-'}</span>`;
     prio.append(r);
-  }
+  });
   const hint = document.createElement('div');
   hint.className = 'hint';
   hint.textContent = 'still in pool this game · outlined = in current offer';

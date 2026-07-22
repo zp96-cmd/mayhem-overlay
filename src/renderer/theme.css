@@ -16,24 +16,32 @@
   --surface-1: #0d1622;
   --surface-2: #131f2e;
   --surface-3: #1a2a3d;
-  --hairline: rgba(200, 170, 110, 0.14);
-  --hairline-strong: rgba(200, 170, 110, 0.38);
+  --hairline: rgba(210, 180, 120, 0.16);
+  --hairline-strong: rgba(214, 186, 128, 0.40);
 
   /* text */
-  --text: #ece8dc;
-  --text-dim: #8797ab;
-  --text-faint: #5b6a7d;
+  --text: #eef2fb;
+  --text-dim: #93a6c0;
+  --text-faint: #5f7a99;
 
-  /* the one accent */
-  --gold: #c8aa6e;
-  --gold-bright: #f0e6d2;
-  --gold-glow: rgba(200, 170, 110, 0.35);
+  /* the one accent — Hextech Prestige gold, brighter + a deep tone for gradients */
+  --gold: #e8c15a;
+  --gold-bright: #ffe7a3;
+  --gold-deep: #b78e3c;
+  --gold-glow: rgba(232, 193, 90, 0.45);
+
+  /* arcane cyan — the "energy" hue (offered augments, own-champion, prismatic) */
+  --arcane: #5cd8e8;
+  --arcane-deep: #2a9fb0;
+  --arcane-glow: rgba(92, 216, 232, 0.42);
 
   /* semantic (data only, never decoration) */
   --win: #3fd08a;
   --loss: #e8536e;
   --caution: #e2b93b;
-  --info: #63d6e4;
+  --info: #5cd8e8;
+  --win-glow: rgba(63, 208, 138, 0.5);
+  --loss-glow: rgba(232, 83, 110, 0.45);
 
   /* rarity */
   --silver: #a6bdd1;
@@ -51,13 +59,52 @@
   /* navy-tinted elevation, never pure black */
   --shadow-1: 0 2px 10px rgba(4, 9, 15, 0.55);
   --shadow-2: 0 6px 24px rgba(4, 9, 15, 0.65);
+  --shadow-3: 0 18px 44px rgba(3, 7, 13, 0.7);
 
   /* motion */
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --t-fast: 140ms;
+
+  /* faint hextech hex-weave, drop onto any surface via var(--hexweave) */
+  --hexweave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='96' viewBox='0 0 56 96'%3E%3Cpath fill='none' stroke='%23233449' stroke-width='1' d='M28 0l24 14v28L28 56 4 42V14zM28 56l24 14v28M28 56L4 70v28'/%3E%3C/svg%3E");
 }
 
 .num { font-variant-numeric: tabular-nums; }
+
+/* shimmering gilded text — use on headers/labels */
+.goldtext {
+  background: linear-gradient(96deg, var(--gold-deep), var(--gold-bright) 42%, var(--gold) 60%, var(--gold-deep));
+  background-size: 200% 100%;
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  animation: goldSheen 6s linear infinite;
+}
+@keyframes goldSheen { to { background-position: 200% 0; } }
+@keyframes hexPulse {
+  0%, 100% { box-shadow: 0 0 10px var(--gold-glow); }
+  50% { box-shadow: 0 0 20px var(--gold-glow); }
+}
+
+/* hexagonal tier medallion — add a tier class: .t-splus/.t-s/.t-a/.t-b/.t-c */
+.hexmed {
+  display: grid; place-items: center; flex: none;
+  width: 34px; height: 38px; font-weight: 900; font-size: 14px;
+  font-family: var(--font-display); line-height: 1;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+.hexmed.t-splus { color: #0a0f14; background: linear-gradient(160deg, var(--gold-bright), var(--gold-deep)); box-shadow: 0 0 12px var(--gold-glow); }
+.hexmed.t-s { color: var(--win); background: rgba(63, 208, 138, 0.18); box-shadow: inset 0 0 0 1.5px rgba(63, 208, 138, 0.5); }
+.hexmed.t-a { color: var(--arcane); background: rgba(92, 216, 232, 0.15); box-shadow: inset 0 0 0 1.5px rgba(92, 216, 232, 0.45); }
+.hexmed.t-b { color: var(--caution); background: rgba(226, 185, 59, 0.15); box-shadow: inset 0 0 0 1.5px rgba(226, 185, 59, 0.4); }
+.hexmed.t-c { color: var(--text-dim); background: var(--surface-3); }
+
+/* hextech corner brackets on a framed container: add class .brackets */
+.brackets { position: relative; }
+.brackets::before, .brackets::after {
+  content: ""; position: absolute; width: 16px; height: 16px; pointer-events: none;
+  border-color: var(--gold); border-style: solid; opacity: 0.5;
+}
+.brackets::before { top: 7px; left: 7px; border-width: 2px 0 0 2px; border-top-left-radius: 4px; }
+.brackets::after { bottom: 7px; right: 7px; border-width: 0 2px 2px 0; border-bottom-right-radius: 4px; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
