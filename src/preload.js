@@ -15,6 +15,7 @@ contextBridge.exposeInMainWorld('mayhem', {
   combosDragBy: (dx, dy) => ipcRenderer.send('combos:dragby', { dx, dy }),
   combosDragEnd: () => ipcRenderer.send('combos:dragend'),
   combosLock: (v) => ipcRenderer.send('combos:lock', v),
+  combosMouseCapture: (v) => ipcRenderer.send('combos:mouse-capture', v),
   onCombosLock: (cb) => ipcRenderer.on('combos:lock-state', (_e, v) => cb(v)),
   refreshData: () => ipcRenderer.invoke('data:refresh'),
   onDataStatus: (cb) => ipcRenderer.on('data:status', (_e, s) => cb(s)),

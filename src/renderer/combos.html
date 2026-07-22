@@ -46,22 +46,29 @@
     }
     body.unlocked #combos { border-style: dashed; border-color: var(--gold); cursor: move; }
 
-    /* drag header — only visible when unlocked */
-    .draghdr { display: none; align-items: center; gap: 8px; margin-bottom: 2px; }
-    body.unlocked .draghdr { display: flex; }
-    .draghdr .grip { font-size: 10px; letter-spacing: 1px; color: var(--gold); font-weight: 800; }
-    .draghdr #lock {
-      margin-left: auto; background: none; border: 1px solid var(--gold);
-      color: var(--gold); border-radius: 5px; cursor: pointer;
-      font-size: 10px; font-weight: 800; padding: 2px 8px; font-family: var(--font-display);
+    /* on-panel lock button (top-right). Hidden until the cursor is over the
+       panel; always shown while unlocked. */
+    #lock {
+      position: absolute; top: 8px; right: 9px; z-index: 6;
+      width: 24px; height: 24px; padding: 0; line-height: 1;
+      display: grid; place-items: center;
+      background: rgba(9, 14, 23, 0.82); border: 1px solid var(--hairline-strong);
+      color: var(--text-dim); border-radius: 7px; cursor: pointer; font-size: 12px;
+      opacity: 0; transition: opacity 0.15s var(--ease), color 0.15s, border-color 0.15s, box-shadow 0.15s;
     }
-    .draghdr #lock:hover { background: rgba(226,185,59,0.14); }
+    body.hovering #lock, body.unlocked #lock { opacity: 1; }
+    #lock:hover { color: var(--gold); border-color: var(--gold); box-shadow: 0 0 10px var(--gold-glow); }
+
+    /* drag hint — only visible when unlocked */
+    .draghdr { display: none; align-items: center; gap: 8px; margin-bottom: 2px; padding-right: 30px; }
+    body.unlocked .draghdr { display: flex; }
+    .draghdr .grip { font-size: 10px; letter-spacing: 0.6px; color: var(--gold); font-weight: 800; }
 
     .title {
       position: relative;
       font-size: 13px; font-weight: 900; letter-spacing: 2.6px;
       display: flex; align-items: baseline; gap: 7px;
-      padding-bottom: 9px; margin-bottom: 1px;
+      padding-bottom: 9px; margin-bottom: 1px; padding-right: 28px;
       border-bottom: 1px solid var(--hairline);
     }
     .title .lead {
@@ -126,9 +133,9 @@
 </head>
 <body>
   <div id="combos">
+    <button id="lock" title="Move panel">🔒</button>
     <div class="draghdr">
-      <span class="grip">⠿ drag to move</span>
-      <button id="lock">✓ LOCK</button>
+      <span class="grip">⠿ drag to move · click 🔓 to lock</span>
     </div>
     <div id="content"></div>
   </div>

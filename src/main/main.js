@@ -290,8 +290,9 @@ function createStripWindow() {
 }
 
 // Draggable combos panel: its own window so it can catch a mouse. Locked by
-// default → click-through (never blocks game clicks); unlock from the tray to
-// reposition, then it re-locks. Auto-sizes to its content.
+// default → click-through with mouse-move forwarding, so the on-panel lock
+// button is still reachable (the renderer captures the mouse only while the
+// cursor is over that button); unlock to drag freely, then re-lock.
 let combosWin = null;
 let combosLocked = true;
 function createCombosWindow() {
@@ -310,7 +311,9 @@ function createCombosWindow() {
     },
   });
   combosWin.setAlwaysOnTop(true, 'screen-saver');
-  combosWin.setIgnoreMouseEvents(true); // locked by default → click-through
+  // click-through, but forward move events so the renderer can reveal + capture
+  // its lock button on hover
+  combosWin.setIgnoreMouseEvents(true, { forward: true });
   combosWin.loadFile(path.join(__dirname, '..', 'renderer', 'combos.html'));
 }
 
@@ -336,7 +339,10 @@ function syncCombosWinVisibility() {
 function setCombosLocked(locked) {
   combosLocked = locked;
   if (!combosWin) return;
-  combosWin.setIgnoreMouseEvents(locked);
+  // locked → click-through but forwarding moves (for hover-capture of the lock
+  // button); unlocked → fully interactive so the whole panel can be dragged
+  if (locked) combosWin.setIgnoreMouseEvents(true, { forward: true });
+  else combosWin.setIgnoreMouseEvents(false);
   combosWin.webContents.send('combos:lock-state', locked);
   if (locked) {
     const b = combosWin.getBounds();
@@ -1062,6 +1068,13 @@ ipcMain.on('combos:dragend', () => {
   });
 });
 ipcMain.on('combos:lock', (_e, v) => setCombosLocked(!!v));
+// while locked, the renderer captures the mouse only over its lock button so
+// game clicks pass through everywhere else
+ipcMain.on('combos:mouse-capture', (_e, on) => {
+  if (!combosWin || !combosLocked) return;
+  if (on) combosWin.setIgnoreMouseEvents(false);
+  else combosWin.setIgnoreMouseEvents(true, { forward: true });
+});
 ipcMain.on('scanbtn:click', async () => {
   const res = await runOcrScan('button');
   handleScanResult(res, { manual: true });
