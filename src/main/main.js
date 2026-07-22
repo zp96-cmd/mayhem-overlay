@@ -204,6 +204,7 @@ function createWindow() {
 
   win = new BrowserWindow({
     ...bounds,
+    icon: path.join(__dirname, '..', '..', 'assets', 'icon.png'),
     frame: false,
     transparent: true,
     resizable: true,
@@ -375,10 +376,9 @@ function toggleVisibility() {
 }
 
 function createTray() {
-  // 1x1 transparent png fallback; Windows requires some image
-  const icon = nativeImage.createFromDataURL(
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAKUlEQVR42mNgGAWjYBSMglEwCkbBKBgFo2AUjIJRMApGwSgYBaOAAgAAJ8AB/kX7HFsAAAAASUVORK5CYII='
-  );
+  const icon = nativeImage
+    .createFromPath(path.join(__dirname, '..', '..', 'assets', 'icon.png'))
+    .resize({ width: 32, height: 32 });
   tray = new Tray(icon);
   tray.setToolTip('Mayhem Overlay');
   tray.setContextMenu(Menu.buildFromTemplate([

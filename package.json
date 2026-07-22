@@ -15,6 +15,7 @@
   "build": {
     "appId": "gg.zac.mayhem-overlay",
     "productName": "Mayhem Overlay",
+    "icon": "assets/icon.png",
     "publish": {
       "provider": "github",
       "owner": "zp96-cmd",
