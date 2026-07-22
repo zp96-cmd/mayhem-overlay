@@ -113,7 +113,7 @@ function renderWrBars(champWr, champById) {
 
 const MATE_MIN_GAMES = 5; // only show people you've played with at least this many times
 function renderSquad(squad) {
-  if (!squad.length) return;
+  if (!squad.length) { const r = document.getElementById('squadrail'); if (r) r.style.display = 'none'; return; }
   const cards = squad.slice(0, 8).map((m, i) => {
     const wr = m.wins / m.games;
     const pct = Math.round(wr * 100);
@@ -126,9 +126,7 @@ function renderSquad(squad) {
       <div class="mg"><span class="rec">${m.wins}W ${m.games - m.wins}L</span> · ${m.games} together</div>
     </div>`;
   }).join('');
-  $('#squad').innerHTML =
-    `<div class="sec-h"><span class="g">SQUAD</span> · win rate playing together (${MATE_MIN_GAMES}+ games)</div>` +
-    `<div class="mates">${cards}</div>`;
+  $('#squad').innerHTML = cards;
   // animate the bars after paint
   requestAnimationFrame(() => $('#squad').querySelectorAll('.fill').forEach((f) => { f.style.width = `${f.dataset.w}%`; }));
 }
@@ -211,7 +209,12 @@ async function init() {
   const champById = new Map((champData?.champions ?? []).map((c) => [c.id, c]));
   const list = Array.isArray(games) ? games : [];
 
-  if (!list.length) { $('#empty').style.display = 'block'; $('#rail').style.display = 'none'; return; }
+  if (!list.length) {
+    $('#empty').style.display = 'block';
+    $('#rail').style.display = 'none';
+    $('#squadrail').style.display = 'none';
+    return;
+  }
 
   const byChamp = new Map();
   for (const g of list) {

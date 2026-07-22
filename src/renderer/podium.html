@@ -15,7 +15,7 @@
     html, body { height: 100%; background: var(--abyss); }
     body {
       font-family: var(--font-display); color: var(--text);
-      overflow-x: hidden; overflow-y: auto;
+      overflow: hidden;
       background:
         radial-gradient(1200px 700px at 50% -10%, rgba(232,193,90,0.14), transparent 60%),
         radial-gradient(900px 600px at 12% 24%, rgba(92,216,232,0.08), transparent 55%),
@@ -63,12 +63,23 @@
     header .win button:hover { color: var(--text); border-color: var(--hairline-strong); }
     header .win .close:hover { color: var(--loss); border-color: var(--loss); background: rgba(232,83,110,0.12); }
 
-    .layout { max-width: 1240px; margin: 0 auto; display: flex; align-items: flex-start; gap: 28px; padding: 10px 30px 64px; }
-    .wrap { flex: 1; min-width: 0; }
-    @media (max-width: 1060px) { .layout { flex-direction: column; } .rail { width: 100% !important; position: static !important; } }
+    .layout { display: flex; align-items: stretch; gap: 24px; padding: 8px 30px 14px; height: calc(100vh - 56px); }
+    .wrap { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+    @media (max-width: 1180px) {
+      body { overflow-y: auto; } .layout { flex-wrap: wrap; height: auto; }
+      .rail { width: 100% !important; }
+    }
+    /* short screens: allow scrolling rather than clipping the fixed layout */
+    @media (max-height: 920px) {
+      body { overflow-y: auto; } .layout { height: auto; } .rail { overflow: visible; }
+    }
 
-    /* ---------- win-rate rail ---------- */
-    .rail { width: 236px; flex: none; position: sticky; top: 66px; }
+    /* ---------- rails ---------- */
+    .rail { flex: none; overflow-y: auto; overflow-x: hidden; }
+    .rail.left { width: 232px; }
+    .rail.right { width: 306px; }
+    .rail::-webkit-scrollbar { width: 7px; } .rail::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: 4px; }
+    .rail-h .rsub { font-size: 10px; color: var(--text-faint); letter-spacing: 1px; font-weight: 700; }
     .rail-h { font-size: 11px; letter-spacing: 2px; color: var(--text-dim); font-weight: 800; margin-bottom: 15px; }
     .rail-h .g { font-size: 13px; letter-spacing: 2.5px;
       background: linear-gradient(96deg, var(--gold-deep), #fff3d0 40%, var(--gold-bright) 55%, var(--gold-deep));
@@ -89,7 +100,7 @@
     .fill.bad { background: linear-gradient(90deg, var(--loss), #f088a0); }
 
     /* ---------- podium ---------- */
-    .stage { display: flex; align-items: flex-end; justify-content: center; gap: 26px; margin-top: 22px; perspective: 1400px; }
+    .stage { display: flex; align-items: flex-end; justify-content: center; gap: 26px; margin-top: 14px; perspective: 1400px; }
     .col { position: relative; z-index: 0; width: 260px; display: flex; flex-direction: column; align-items: center; animation: riseIn .7s var(--ease) both; }
     .col.rank-2 { width: 232px; animation-delay: .12s; }
     .col.rank-3 { width: 232px; animation-delay: .22s; }
@@ -107,13 +118,13 @@
     .rank-1 .medal { animation-delay: .5s; } .rank-2 .medal { animation-delay: .6s; } .rank-3 .medal { animation-delay: .7s; }
 
     .card {
-      width: 100%; height: 300px; border-radius: 16px; position: relative; overflow: hidden; z-index: 1;
+      width: 100%; height: 258px; border-radius: 16px; position: relative; overflow: hidden; z-index: 1;
       border: 1px solid var(--hairline-strong);
       box-shadow: 0 24px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
       transform-style: preserve-3d; transition: transform .18s var(--ease), box-shadow .3s var(--ease);
       will-change: transform;
     }
-    .rank-1 .card { height: 360px; border-color: var(--gold); animation: glowPulse 3.4s var(--ease) infinite; }
+    .rank-1 .card { height: 300px; border-color: var(--gold); animation: glowPulse 3.4s var(--ease) infinite; }
     .rank-2 .card { border-color: var(--silver-dp); box-shadow: 0 20px 46px rgba(0,0,0,0.55), 0 0 22px rgba(207,218,232,0.2); }
     .rank-3 .card { border-color: var(--bronze-dp); box-shadow: 0 20px 46px rgba(0,0,0,0.55), 0 0 22px rgba(214,138,78,0.2); }
 
@@ -141,16 +152,16 @@
     .card .games { font-size: 11.5px; color: var(--text-dim); margin-top: 4px; font-weight: 600; font-variant-numeric: tabular-nums; }
     .card .rec { color: var(--text); font-weight: 800; }
 
-    .augs { margin-top: 14px; width: 100%; animation: riseIn .6s var(--ease) both; animation-delay: .5s; }
-    .augs .h { font-size: 9.5px; letter-spacing: 2px; color: var(--gold); font-weight: 800; text-align: center; margin-bottom: 9px; }
-    .augs .alist { display: flex; flex-direction: column; gap: 6px; }
+    .augs { margin-top: 11px; width: 100%; animation: riseIn .6s var(--ease) both; animation-delay: .5s; }
+    .augs .h { font-size: 9.5px; letter-spacing: 2px; color: var(--gold); font-weight: 800; text-align: center; margin-bottom: 7px; }
+    .augs .alist { display: flex; flex-direction: column; gap: 5px; }
     .augs .ar {
-      display: flex; align-items: center; gap: 9px; padding: 5px 8px; border-radius: 9px;
+      display: flex; align-items: center; gap: 9px; padding: 4px 8px; border-radius: 9px;
       background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
       border: 1px solid var(--hairline); transition: border-color .16s var(--ease), transform .16s var(--ease);
     }
     .augs .ar:hover { border-color: var(--hairline-strong); transform: translateX(2px); }
-    .augs .ar img { width: 28px; height: 28px; border-radius: 7px; flex: none; background: rgba(4,9,15,0.6); border: 1px solid var(--hairline-strong); }
+    .augs .ar img { width: 26px; height: 26px; border-radius: 7px; flex: none; background: rgba(4,9,15,0.6); border: 1px solid var(--hairline-strong); }
     .augs .ar .an { flex: 1; font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: var(--font-body); }
     .augs .ar .ac { font-size: 11px; font-weight: 900; color: var(--gold); font-variant-numeric: tabular-nums; flex: none; }
     .augs .empty { text-align: center; font-size: 10.5px; color: var(--text-faint); font-family: var(--font-body); }
@@ -161,17 +172,17 @@
       border: 1px solid rgba(255,255,255,0.08); border-bottom: none;
       transform-origin: bottom; animation: growUp .6s var(--ease) both;
     }
-    .rank-1 .pedestal { height: 128px; background: linear-gradient(180deg, rgba(232,193,90,0.34), rgba(232,193,90,0.06)); animation-delay: .34s; }
-    .rank-2 .pedestal { height: 92px; background: linear-gradient(180deg, rgba(207,218,232,0.3), rgba(207,218,232,0.05)); animation-delay: .42s; }
-    .rank-3 .pedestal { height: 68px; background: linear-gradient(180deg, rgba(214,138,78,0.3), rgba(214,138,78,0.05)); animation-delay: .5s; }
-    .pedestal .rnum { font-size: 46px; font-weight: 900; line-height: 1; }
-    .rank-1 .pedestal .rnum { color: var(--gold-bright); text-shadow: 0 0 20px var(--gold-glow); font-size: 58px; }
+    .rank-1 .pedestal { height: 92px; background: linear-gradient(180deg, rgba(232,193,90,0.34), rgba(232,193,90,0.06)); animation-delay: .34s; }
+    .rank-2 .pedestal { height: 70px; background: linear-gradient(180deg, rgba(207,218,232,0.3), rgba(207,218,232,0.05)); animation-delay: .42s; }
+    .rank-3 .pedestal { height: 54px; background: linear-gradient(180deg, rgba(214,138,78,0.3), rgba(214,138,78,0.05)); animation-delay: .5s; }
+    .pedestal .rnum { font-size: 42px; font-weight: 900; line-height: 1; }
+    .rank-1 .pedestal .rnum { color: var(--gold-bright); text-shadow: 0 0 20px var(--gold-glow); font-size: 52px; }
     .rank-2 .pedestal .rnum { color: var(--silver); }
     .rank-3 .pedestal .rnum { color: var(--bronze); }
 
     /* ---------- highest kill hero ---------- */
     .kill-hero {
-      margin-top: 42px; height: 194px; border-radius: 18px; position: relative; overflow: hidden;
+      margin-top: 26px; height: 152px; border-radius: 18px; position: relative; overflow: hidden;
       border: 1px solid var(--hairline-strong); box-shadow: 0 26px 64px rgba(0,0,0,0.6);
       animation: riseIn .8s var(--ease) both; animation-delay: .5s;
     }
@@ -180,7 +191,7 @@
       position: absolute; inset: 0; display: flex; align-items: center; gap: 28px; padding: 0 42px; z-index: 2;
       background: linear-gradient(90deg, rgba(6,10,18,0.96) 32%, rgba(6,10,18,0.5) 66%, rgba(6,10,18,0.15));
     }
-    .kill-hero .big { font-size: 96px; font-weight: 900; line-height: 0.9; color: var(--loss);
+    .kill-hero .big { font-size: 78px; font-weight: 900; line-height: 0.9; color: var(--loss);
       text-shadow: 0 0 34px rgba(232,83,110,0.55); font-variant-numeric: tabular-nums; }
     .kill-hero .k { font-size: 13px; letter-spacing: 5px; font-weight: 900; color: var(--loss); text-align: center; margin-top: 2px; }
     .kill-hero .meta .t { font-size: 12px; letter-spacing: 2px; color: var(--gold); font-weight: 800; margin-bottom: 4px; }
@@ -188,39 +199,31 @@
     .kill-hero .meta .s { font-size: 12.5px; color: var(--text-dim); margin-top: 4px; font-variant-numeric: tabular-nums; }
     .kill-hero .meta .s .win { color: var(--win); font-weight: 800; } .kill-hero .meta .s .loss { color: var(--loss); font-weight: 800; }
 
-    /* ---------- squad (teammate win rates) ---------- */
-    #squad { margin-top: 46px; animation: riseIn .8s var(--ease) both; animation-delay: .6s; }
-    .sec-h { font-size: 11px; letter-spacing: 2px; color: var(--text-dim); font-weight: 800; text-transform: uppercase; margin-bottom: 16px; }
-    .sec-h .g {
-      font-size: 14px; letter-spacing: 3px;
-      background: linear-gradient(96deg, var(--gold-deep), #fff3d0 40%, var(--gold-bright) 55%, var(--gold-deep));
-      background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-      animation: sheen 5s linear infinite;
-    }
-    .mates { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-    @media (max-width: 840px) { .mates { grid-template-columns: repeat(2, 1fr); } }
+    /* ---------- squad (teammate win rates) — right rail ---------- */
+    #squad { display: flex; flex-direction: column; gap: 10px; animation: riseIn .8s var(--ease) both; animation-delay: .6s; }
+    @media (max-width: 1180px) { #squad { display: grid; grid-template-columns: repeat(3, 1fr); } }
     .mate {
       position: relative; background: linear-gradient(180deg, var(--surface-1), rgba(9,14,23,0.9));
-      border: 1px solid var(--hairline); border-radius: 14px; padding: 16px;
-      box-shadow: var(--shadow-2); transition: transform .18s var(--ease), border-color .18s var(--ease);
+      border: 1px solid var(--hairline); border-radius: 13px; padding: 12px 14px;
+      box-shadow: var(--shadow-1); transition: transform .18s var(--ease), border-color .18s var(--ease);
     }
-    .mate:hover { transform: translateY(-4px); border-color: var(--hairline-strong); }
+    .mate:hover { transform: translateX(-3px); border-color: var(--hairline-strong); }
     .mate.best { border-color: var(--gold); box-shadow: 0 0 24px var(--gold-glow); }
     .mate.best::after { content: '★ BEST DUO'; position: absolute; top: 12px; right: 14px; font-size: 8.5px; font-weight: 900; letter-spacing: 1px; color: var(--gold); }
-    .mate .mn { font-weight: 900; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 8px; }
+    .mate .mn { font-weight: 900; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 60px; }
     .mate .mn .tag { color: var(--text-faint); font-size: 11px; font-weight: 700; }
-    .mate .mwr { font-weight: 900; margin-top: 9px; font-variant-numeric: tabular-nums; line-height: 1; }
-    .mate .mwr b { font-size: 32px; } .mate .mwr span { font-size: 14px; color: var(--text-dim); margin-left: 1px; }
+    .mate .mwr { font-weight: 900; margin-top: 6px; font-variant-numeric: tabular-nums; line-height: 1; }
+    .mate .mwr b { font-size: 27px; } .mate .mwr span { font-size: 13px; color: var(--text-dim); margin-left: 1px; }
     .mwr.good b { color: var(--win); } .mwr.mid b { color: var(--caution); } .mwr.bad b { color: var(--loss); }
-    .mate .mbar { height: 6px; border-radius: 999px; background: var(--surface-3); margin-top: 9px; overflow: hidden; }
+    .mate .mbar { height: 6px; border-radius: 999px; background: var(--surface-3); margin-top: 7px; overflow: hidden; }
     .mate .mbar .fill { display: block; height: 100%; width: 0; border-radius: 999px; transition: width 1.1s var(--ease); }
     .mbar .fill.good { background: linear-gradient(90deg, var(--win), #7ef0b8); }
     .mbar .fill.mid { background: linear-gradient(90deg, var(--caution), #f0d675); }
     .mbar .fill.bad { background: linear-gradient(90deg, var(--loss), #f088a0); }
-    .mate .mg { font-size: 11px; color: var(--text-dim); margin-top: 9px; font-variant-numeric: tabular-nums; }
+    .mate .mg { font-size: 11px; color: var(--text-dim); margin-top: 7px; font-variant-numeric: tabular-nums; }
     .mate .mg .rec { color: var(--text); font-weight: 800; }
 
-    .foot { text-align: center; margin-top: 30px; color: var(--text-faint); font-size: 11.5px; font-family: var(--font-body); }
+    .foot { text-align: center; margin-top: 14px; color: var(--text-faint); font-size: 11.5px; font-family: var(--font-body); }
 
     #empty { display: none; text-align: center; padding: 120px 40px; color: var(--text-dim); }
     #empty .t { font-size: 22px; font-weight: 900; letter-spacing: 2px; margin-bottom: 12px; }
@@ -244,20 +247,23 @@
     </span>
   </header>
   <div class="layout">
-    <aside class="rail" id="rail">
+    <aside class="rail left" id="rail">
       <div class="rail-h"><span class="g">WIN RATES</span></div>
       <div id="wrbars"></div>
     </aside>
     <main class="wrap">
       <div id="stage" class="stage"></div>
       <div id="hk"></div>
-      <div id="squad"></div>
       <div id="empty">
         <div class="t"><span class="g">NO GAMES YET</span></div>
         <p>Play some ARAM Mayhem games, then open the overlay and hit<br><b>Sync from client</b> on the History tab to populate your podium.</p>
       </div>
       <div class="foot" id="foot"></div>
     </main>
+    <aside class="rail right" id="squadrail">
+      <div class="rail-h"><span class="g">SQUAD</span> <span class="rsub">win rate · 5+ games</span></div>
+      <div id="squad"></div>
+    </aside>
   </div>
   <script src="podium.js"></script>
 </body>

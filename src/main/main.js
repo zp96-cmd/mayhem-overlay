@@ -857,13 +857,13 @@ function closePrepWindow() {
 // Hall of Fame podium — frameless standalone window (opened from the overlay).
 let podiumWin = null;
 function openPodiumWindow() {
-  if (podiumWin && !podiumWin.isDestroyed()) { podiumWin.show(); podiumWin.focus(); return; }
-  const bounds = settings.get('podiumBounds') ?? { width: 1300, height: 840 };
+  if (podiumWin && !podiumWin.isDestroyed()) { podiumWin.maximize(); podiumWin.show(); podiumWin.focus(); return; }
   podiumWin = new BrowserWindow({
-    ...bounds,
+    width: 1400, height: 880,
     minWidth: 900, minHeight: 640,
     title: 'Mayhem Hall of Fame',
     frame: false,
+    show: false,
     backgroundColor: '#070c14',
     webPreferences: {
       preload: path.join(__dirname, '..', 'preload.js'),
@@ -872,10 +872,8 @@ function openPodiumWindow() {
     },
   });
   podiumWin.setMenuBarVisibility(false);
+  podiumWin.once('ready-to-show', () => { podiumWin.maximize(); podiumWin.show(); });
   podiumWin.loadFile(path.join(__dirname, '..', 'renderer', 'podium.html'));
-  const remember = () => settings.set('podiumBounds', podiumWin.getBounds());
-  podiumWin.on('moved', remember);
-  podiumWin.on('resized', remember);
   podiumWin.on('closed', () => { podiumWin = null; });
 }
 
