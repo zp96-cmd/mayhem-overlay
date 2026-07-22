@@ -104,7 +104,7 @@ function renderWrBars(champWr, champById) {
     const cls = wrCls(wr);
     const c = champById.get(e.id);
     return `<div class="wrbar" style="animation-delay:${(i * 0.04).toFixed(2)}s">
-      <div class="top">${c?.icon ? `<img src="${c.icon}" alt="">` : ''}<span class="nm">${esc(c?.name ?? 'Champ ' + e.id)}</span><span class="pc ${cls}">${pct}%</span></div>
+      <div class="top">${c?.icon ? `<img src="${c.icon}" alt="">` : ''}<span class="nm">${esc(c?.name ?? 'Champ ' + e.id)}</span><span class="gm">${e.games}g</span><span class="pc ${cls}">${pct}%</span></div>
       <div class="track"><span class="fill ${cls}" data-w="${pct}"></span></div>
     </div>`;
   }).join('');
