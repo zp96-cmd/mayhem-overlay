@@ -984,8 +984,8 @@ function startPhaseWatcher() {
     } else if (lastPhase === 'ChampSelect') {
       stopChampSelectWatch();
       prepChampFor = null;
-      // prep window intentionally stays open through the game as a reference;
-      // the user closes it whenever they like
+      // champ select is over → hide the prep screen (it re-opens next lobby)
+      closePrepWindow();
     }
     // Loading screen: surface combos on the always-on-top overlay (the prep
     // window is hidden behind the fullscreen game here). The loading screen is
