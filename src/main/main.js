@@ -781,9 +781,22 @@ function fireMultikill(streak) {
   killCelebrateTimeout = setTimeout(syncBadgeWinVisibility, dur + 100);
 }
 
+// Windows can bump always-on-top windows below a game that grabs the
+// foreground (or when another app briefly goes fullscreen), and they don't come
+// back on their own — that's the usual reason the overlay "sometimes" vanishes.
+// Re-assert screen-saver level on the visible overlay windows periodically.
+function reassertOverlayTop() {
+  for (const w of [badgeWin, stripWin, combosWin, prioWin, scanBtn]) {
+    if (w && !w.isDestroyed() && w.isVisible()) {
+      w.setAlwaysOnTop(true, 'screen-saver');
+    }
+  }
+}
+
 let scanBtnShown = false;
 const poller = new LiveClientPoller(
   (state) => {
+    reassertOverlayTop(); // keep the overlay above the game each poll (~2s)
     win?.webContents.send('live:update', state);
     maybeFetchChampData(state);
     detectMultikills(state);
@@ -1002,6 +1015,7 @@ let phaseTimer = null;
 let lastPhase = null;
 function startPhaseWatcher() {
   phaseTimer = setInterval(async () => {
+    reassertOverlayTop(); // backup keep-on-top for champ select / loading / menus
     const connected = lcu.refresh();
     let phase = 'None';
     if (connected) phase = await lcu.gameflowPhase();
