@@ -6,15 +6,22 @@ const fs = require('fs');
 const path = require('path');
 
 const CDRAGON = 'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default';
-const UA = 'lol-mayhem-overlay/0.2 (personal-use data refresh, one fetch per patch)';
+// aramgg + arammayhem sit behind Cloudflare, which bot-blocks non-browser
+// User-Agents. Their robots.txt allows this (public, cached) data, so send
+// browser-like headers to get through the edge cache. One fetch per patch.
+const REQ_HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+  'Accept': 'application/json, text/html, text/plain, */*',
+  'Accept-Language': 'en-US,en;q=0.9',
+};
 
 async function getJson(url) {
-  const res = await fetch(url, { headers: { 'User-Agent': UA } });
+  const res = await fetch(url, { headers: REQ_HEADERS });
   if (!res.ok) throw new Error(`${res.status} ${url}`);
   return res.json();
 }
 async function getText(url) {
-  const res = await fetch(url, { headers: { 'User-Agent': UA } });
+  const res = await fetch(url, { headers: REQ_HEADERS });
   if (!res.ok) throw new Error(`${res.status} ${url}`);
   return res.text();
 }

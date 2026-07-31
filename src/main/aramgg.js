@@ -5,12 +5,18 @@ const fs = require('fs');
 const path = require('path');
 const { app } = require('electron');
 
-const UA = 'lol-mayhem-overlay/0.1 (personal-use, cached per patch)';
+// aramgg is behind Cloudflare, which bot-blocks non-browser User-Agents; send
+// browser-like headers so the (public, robots-allowed) data comes through.
+const REQ_HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+  'Accept': 'application/json, text/html, text/plain, */*',
+  'Accept-Language': 'en-US,en;q=0.9',
+};
 const TTL_MS = 3 * 24 * 3600 * 1000;
 
 function fetchUrl(url) {
   return new Promise((resolve, reject) => {
-    const req = https.get(url, { headers: { 'User-Agent': UA }, timeout: 15000 }, (res) => {
+    const req = https.get(url, { headers: REQ_HEADERS, timeout: 15000 }, (res) => {
       if (res.statusCode !== 200) { res.resume(); return reject(new Error(`${res.statusCode} ${url}`)); }
       let body = '';
       res.on('data', (c) => (body += c));
