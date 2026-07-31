@@ -178,7 +178,9 @@ async function fetchAllData(dataDir, log = () => {}) {
   augments.sort((a, b) => a.name.localeCompare(b.name));
 
   const champions = champs
-    .filter((c) => c.id > 0)
+    // drop CommunityDragon's "Jade_*" Mayhem variant clones (id 60000+) — they
+    // duplicate real champion names and 404 on aramgg
+    .filter((c) => c.id > 0 && c.id < 30000)
     .map((c) => ({
       id: c.id, name: c.name, alias: c.alias,
       icon: iconUrl(c.squarePortraitPath), roles: c.roles || [],

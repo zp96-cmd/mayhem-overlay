@@ -1065,9 +1065,16 @@ ipcMain.handle('history:get', () => historyStore.get('games', []));
 let champIdByNameCache = null;
 function champIdByName() {
   if (!champIdByNameCache) {
-    champIdByNameCache = new Map(
-      (loadDataFile('champions.json')?.champions ?? []).map((c) => [c.name.toLowerCase(), c.id])
-    );
+    // CommunityDragon lists "Jade_*" Mayhem variant champions (id 60000+) with
+    // duplicate names — keep the real base champion (lowest id) per name so the
+    // live-client champion resolves to a valid aramgg id, not a 404 variant.
+    champIdByNameCache = new Map();
+    for (const c of loadDataFile('champions.json')?.champions ?? []) {
+      if (c.id >= 30000) continue;
+      const key = c.name.toLowerCase();
+      const cur = champIdByNameCache.get(key);
+      if (cur == null || c.id < cur) champIdByNameCache.set(key, c.id);
+    }
   }
   return champIdByNameCache;
 }
