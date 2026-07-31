@@ -1,49 +1,41 @@
 // Cloudflare (in front of aramgg.com + arammayhem.com) fingerprints the TLS
-// handshake, so a plain Node fetch is blocked no matter what headers we send.
-// Fetch through a hidden, never-shown Chromium window instead — it has Chrome's
-// real fingerprint and executes any JS challenge in-page, so the (public,
-// robots-allowed) data comes through. Used only for the once-per-patch refresh
-// and the once-per-game aramgg champion fetch.
-const { BrowserWindow } = require('electron');
+// handshake, so a plain Node https request is blocked no matter the headers.
+// Electron's `net` module issues requests through Chromium's own network stack,
+// which has Chrome's real TLS fingerprint — so it sails past Cloudflare's
+// fingerprint filter while returning the raw body directly (no window, no JS,
+// no hang). Used only for the once-per-patch refresh + once-per-game aramgg
+// fetch of this public, robots-allowed data.
+const { net } = require('electron');
 
-// mode 'text' -> raw text / JSON body (reads the JSON viewer's <pre> or body).
-// mode 'html' -> the hydrated document HTML (for scraping rendered pages).
-async function browserFetch(url, mode = 'text', { settleMs = 1600, timeout = 30000 } = {}) {
-  const win = new BrowserWindow({
-    show: false,
-    width: 1000,
-    height: 800,
-    webPreferences: {
-      contextIsolation: true,
-      nodeIntegration: false,
-      backgroundThrottling: false,
-      offscreen: false,
-    },
+const HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+  'Accept': 'application/json, text/html, text/plain, */*',
+  'Accept-Language': 'en-US,en;q=0.9',
+};
+
+// mode is accepted for call-site compatibility but ignored — always returns the
+// raw response body (JSON string or page HTML).
+function browserFetch(url, _mode = 'text', { timeout = 20000 } = {}) {
+  return new Promise((resolve, reject) => {
+    const req = net.request({ url, redirect: 'follow' });
+    for (const [k, v] of Object.entries(HEADERS)) req.setHeader(k, v);
+
+    const timer = setTimeout(() => { try { req.abort(); } catch {} reject(new Error(`net timeout: ${url}`)); }, timeout);
+
+    req.on('response', (res) => {
+      if (res.statusCode < 200 || res.statusCode >= 300) {
+        res.on('data', () => {});
+        res.on('end', () => { clearTimeout(timer); reject(new Error(`${res.statusCode} ${url}`)); });
+        return;
+      }
+      let body = '';
+      res.on('data', (c) => { body += c.toString('utf8'); });
+      res.on('end', () => { clearTimeout(timer); resolve(body); });
+      res.on('error', (e) => { clearTimeout(timer); reject(e); });
+    });
+    req.on('error', (e) => { clearTimeout(timer); reject(e); });
+    req.end();
   });
-  let timer;
-  const timeoutP = new Promise((_, reject) => {
-    timer = setTimeout(() => reject(new Error(`browserFetch timeout: ${url}`)), timeout);
-  });
-  try {
-    try {
-      await Promise.race([win.loadURL(url), timeoutP]);
-    } catch (e) {
-      // a JSON response can reject loadURL with ERR_ABORTED while still having
-      // rendered the body; only bail on a real timeout
-      if (String(e.message).includes('timeout')) throw e;
-    }
-    // let a Cloudflare challenge / Astro hydration settle, then read the content
-    await new Promise((r) => setTimeout(r, settleMs));
-    const js = mode === 'html'
-      ? 'document.documentElement.outerHTML'
-      : '((document.querySelector("pre") || document.body || {}).innerText || "")';
-    const out = await win.webContents.executeJavaScript(js);
-    if (!out) throw new Error(`browserFetch empty: ${url}`);
-    return out;
-  } finally {
-    clearTimeout(timer);
-    if (!win.isDestroyed()) win.destroy();
-  }
 }
 
 module.exports = { browserFetch };

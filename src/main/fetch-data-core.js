@@ -6,13 +6,12 @@ const fs = require('fs');
 const path = require('path');
 
 const CDRAGON = 'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default';
-// aramgg + arammayhem sit behind Cloudflare, which bot-blocks non-browser
-// User-Agents. Their robots.txt allows this (public, cached) data, so send
-// browser-like headers to get through the edge cache. One fetch per patch.
+// CommunityDragon + the LoL Wiki (MediaWiki) want a DESCRIPTIVE User-Agent and
+// actively 403 browser-spoofing ones. aramgg/arammayhem are the opposite — they
+// sit behind Cloudflare and need a real browser fingerprint, so those go through
+// the injected Chromium fetcher (see browser-fetch.js), not this header set.
 const REQ_HEADERS = {
-  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
-  'Accept': 'application/json, text/html, text/plain, */*',
-  'Accept-Language': 'en-US,en;q=0.9',
+  'User-Agent': 'lol-mayhem-overlay/0.3 (personal ARAM Mayhem overlay; +https://github.com/zp96-cmd/mayhem-overlay)',
 };
 
 // The Electron main process injects a hidden-Chromium fetcher for the
