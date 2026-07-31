@@ -15,12 +15,21 @@ const REQ_HEADERS = {
   'Accept-Language': 'en-US,en;q=0.9',
 };
 
+// The Electron main process injects a hidden-Chromium fetcher for the
+// Cloudflare-protected hosts; the dev CLI runs without it (plain fetch).
+let cfFetch = null;
+function setCloudflareFetcher(fn) { cfFetch = fn; }
+const CF_HOSTS = ['aramgg.com', 'arammayhem.com'];
+const needsCf = (url) => cfFetch && CF_HOSTS.some((h) => url.includes(h));
+
 async function getJson(url) {
+  if (needsCf(url)) return JSON.parse(await cfFetch(url, 'text'));
   const res = await fetch(url, { headers: REQ_HEADERS });
   if (!res.ok) throw new Error(`${res.status} ${url}`);
   return res.json();
 }
-async function getText(url) {
+async function getText(url, mode = 'text') {
+  if (needsCf(url)) return cfFetch(url, mode);
   const res = await fetch(url, { headers: REQ_HEADERS });
   if (!res.ok) throw new Error(`${res.status} ${url}`);
   return res.text();
@@ -128,13 +137,13 @@ async function fetchAllData(dataDir, log = () => {}) {
     fs.writeFileSync(path.join(dataDir, name), JSON.stringify(obj, null, 2));
 
   log('downloading sources...');
-  const [cherry, lua, champs, itemsRaw, augStatsRaw, aramggHome, amCombos] = await Promise.all([
+  const [cherry, lua, champs, itemsRaw, augStatsRaw, champStatsRaw, amCombos] = await Promise.all([
     getJson(`${CDRAGON}/v1/cherry-augments.json`),
     getText('https://wiki.leagueoflegends.com/en-us/Module:MayhemAugmentData/data?action=raw'),
     getJson(`${CDRAGON}/v1/champion-summary.json`),
     getJson(`${CDRAGON}/v1/items.json`),
     getJson('https://aramgg.com/data/augments-stats-raw.json').catch(() => null),
-    getText('https://aramgg.com/en').catch(() => null),
+    getJson('https://aramgg.com/data/champions-stats.json').catch(() => null),
     getJson('https://arammayhem.com/combo-index-data.json').catch((e) => {
       log('arammayhem combos unavailable: ' + e.message);
       return null;
@@ -207,17 +216,20 @@ async function fetchAllData(dataDir, log = () => {}) {
     log(`augment stats: ${Object.keys(augStats.stats).length} (patch ${augStats.patch})`);
   }
 
-  if (aramggHome) {
+  if (champStatsRaw) {
+    // aramgg's clean tier-list JSON: [{ championId, tier, winRate, numGames,
+    // pickRate, version, date }, ...] (replaced the old Next.js homepage scrape
+    // after aramgg migrated to Astro)
     const champStats = {};
     let version = null, updated = null;
-    const re = /\{\\"championId\\":\\"(\d+)\\",\\"tier\\":\\"(\d+)\\",\\"winRate\\":([\d.]+),\\"numWinGames\\":\d+,\\"numGames\\":(\d+),\\"pickRate\\":([\d.]+),\\"version\\":\\"([^\\"]+)\\",\\"date\\":\\"([^\\"]+)\\"/g;
-    let m;
-    while ((m = re.exec(aramggHome)) !== null) {
-      champStats[m[1]] = {
-        tier: Number(m[2]), winRate: Number(m[3]),
-        games: Number(m[4]), pickRate: Number(m[5]),
+    for (const c of champStatsRaw) {
+      if (!c || c.championId == null) continue;
+      champStats[String(c.championId)] = {
+        tier: Number(c.tier), winRate: Number(c.winRate),
+        games: Number(c.numGames), pickRate: Number(c.pickRate),
       };
-      version = m[6]; updated = m[7];
+      version = c.version ?? version;
+      updated = c.date ?? updated;
     }
     if (Object.keys(champStats).length > 50) {
       write('champion-stats.json', {
@@ -261,4 +273,4 @@ async function fetchAllData(dataDir, log = () => {}) {
   return { augments: augments.length, champions: champions.length, items: items.length, statsPatch };
 }
 
-module.exports = { fetchAllData };
+module.exports = { fetchAllData, setCloudflareFetcher };

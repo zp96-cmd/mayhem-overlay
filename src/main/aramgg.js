@@ -1,31 +1,13 @@
 // On-demand per-champion data from aramgg.com, cached on disk (~3 day TTL,
 // one champion page + one stats JSON per game). robots.txt allows AI agents.
-const https = require('https');
+// aramgg is behind Cloudflare (TLS-fingerprint bot filtering), so we fetch
+// through a hidden Chromium window rather than a plain https request.
 const fs = require('fs');
 const path = require('path');
 const { app } = require('electron');
+const { browserFetch } = require('./browser-fetch');
 
-// aramgg is behind Cloudflare, which bot-blocks non-browser User-Agents; send
-// browser-like headers so the (public, robots-allowed) data comes through.
-const REQ_HEADERS = {
-  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
-  'Accept': 'application/json, text/html, text/plain, */*',
-  'Accept-Language': 'en-US,en;q=0.9',
-};
 const TTL_MS = 3 * 24 * 3600 * 1000;
-
-function fetchUrl(url) {
-  return new Promise((resolve, reject) => {
-    const req = https.get(url, { headers: REQ_HEADERS, timeout: 15000 }, (res) => {
-      if (res.statusCode !== 200) { res.resume(); return reject(new Error(`${res.statusCode} ${url}`)); }
-      let body = '';
-      res.on('data', (c) => (body += c));
-      res.on('end', () => resolve(body));
-    });
-    req.on('error', reject);
-    req.on('timeout', () => req.destroy(new Error('timeout')));
-  });
-}
 
 // aramgg migrated Next.js -> Astro (mid-2026): the per-champion item builds are
 // no longer a JSON blob in the page, they're server-rendered as HTML. Parse the
@@ -99,8 +81,8 @@ async function getChampionData(championId) {
   } catch { /* no cache */ }
 
   const [pageHtml, augJson] = await Promise.all([
-    fetchUrl(`https://aramgg.com/en/champion-stats/${championId}`),
-    fetchUrl(`https://aramgg.com/data/champion-augments/${championId}.json`).catch(() => null),
+    browserFetch(`https://aramgg.com/en/champion-stats/${championId}`, 'html'),
+    browserFetch(`https://aramgg.com/data/champion-augments/${championId}.json`, 'text').catch(() => null),
   ]);
 
   const buildSummary = parseChampionBuilds(pageHtml);

@@ -141,7 +141,11 @@ async function checkAppUpdate(manual) {
 }
 
 // ---------- in-app patch data updater ----------
-const { fetchAllData } = require('./fetch-data-core');
+const { fetchAllData, setCloudflareFetcher } = require('./fetch-data-core');
+const { browserFetch } = require('./browser-fetch');
+// route the patch-data pipeline's Cloudflare-gated fetches through a hidden
+// Chromium window (see browser-fetch.js)
+setCloudflareFetcher(browserFetch);
 
 let dataRefreshBusy = false;
 async function refreshPatchData(reason) {
@@ -173,7 +177,9 @@ async function refreshPatchData(reason) {
 
 // Bump when the shape of the generated data files changes (e.g. items.json
 // gaining transform items) so existing installs refresh once after updating.
-const DATA_SCHEMA = 2;
+// v3: refetch through the hidden-Chromium fetcher after aramgg/arammayhem went
+// behind Cloudflare + aramgg migrated to Astro.
+const DATA_SCHEMA = 3;
 
 // On startup: if Riot shipped a new patch since our data was fetched, refresh.
 async function checkPatchOnStartup() {
