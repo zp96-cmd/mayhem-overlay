@@ -794,6 +794,10 @@ function fireMultikill(streak) {
 function reassertOverlayTop() {
   for (const w of [badgeWin, stripWin, combosWin, prioWin, scanBtn]) {
     if (w && !w.isDestroyed() && w.isVisible()) {
+      // toggling forces a real z-order raise above the game — re-asserting the
+      // same topmost state is often a no-op and won't climb back in front (e.g.
+      // when the overlay is (re)started while a borderless game is foreground)
+      w.setAlwaysOnTop(false);
       w.setAlwaysOnTop(true, 'screen-saver');
     }
   }
