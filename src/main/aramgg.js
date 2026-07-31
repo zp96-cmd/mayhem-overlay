@@ -57,10 +57,37 @@ function parseChampionBuilds(html) {
         situationalItems: situNames.slice(0, 12),
       });
     }
-    return builds.length ? { builds } : null;
+    if (builds.length) return { builds };
+    // We fetch the raw (un-hydrated) server HTML, where aramgg renders only ONE
+    // build panel (the archetype tabs are added client-side). Parse that.
+    return parseSingleBuild(html);
   } catch {
     return null;
   }
+}
+
+// Fallback for the server-rendered single build: the "Core Items" section's
+// item ids + the "Situational Items" section's item names, with the champion's
+// overall win rate (from the embedded hydration JSON) for the strip label.
+function parseSingleBuild(html) {
+  const ci = html.indexOf('Core Items');
+  if (ci < 0) return null;
+  const si = html.indexOf('Situational Items');
+  const sti = html.indexOf('Starting Items');
+  const coreChunk = html.slice(ci, si > ci ? si : ci + 6000);
+  const situChunk = si >= 0 ? html.slice(si, sti > si ? sti : si + 6000) : '';
+  const coreIds = [...coreChunk.matchAll(/item-icons\/(\d+)/g)].map((m) => Number(m[1]));
+  const situNames = [...situChunk.matchAll(/title="([^"]+)"/g)].map((m) => m[1]);
+  if (!coreIds.length) return null;
+  const cores = [];
+  for (let i = 0; i < coreIds.length; i += 3) {
+    const ids = coreIds.slice(i, i + 3);
+    if (ids.length) cores.push({ itemIds: ids, games: coreIds.length - i });
+  }
+  let winRate = null;
+  const jm = html.match(/<script[^>]*type="application\/json"[^>]*>([\s\S]*?)<\/script>/);
+  if (jm) { try { winRate = JSON.parse(jm[1])?.stats?.winRate ?? null; } catch { /* ignore */ } }
+  return { builds: [{ tags: ['ARAMGG'], winRate, games: 1, coreItems: cores.slice(0, 4), situationalItems: situNames.slice(0, 12) }] };
 }
 
 function cacheFile(championId) {
