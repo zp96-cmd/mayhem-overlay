@@ -1168,7 +1168,15 @@ async function loadData() {
     if (a.id) state.augById.set(a.id, a);
     state.augByName.set(a.name, a);
   });
-  state.champions.forEach((c) => state.champByName.set(c.name.toLowerCase(), c));
+  // CommunityDragon lists "Jade_*" Mayhem variant clones (id 60000+) with dupe
+  // names — keep the real base champion (lowest id) so myChampion() resolves to
+  // the id aramgg champData was fetched for (else champ win rates + build show empty)
+  state.champions.forEach((c) => {
+    if (c.id >= 30000) return;
+    const key = c.name.toLowerCase();
+    const existing = state.champByName.get(key);
+    if (!existing || c.id < existing.id) state.champByName.set(key, c);
+  });
   state.items.forEach((i) => {
     state.itemById.set(i.id, i);
     state.itemByName.set(i.name.toLowerCase(), i);
