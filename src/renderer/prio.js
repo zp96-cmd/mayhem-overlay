@@ -27,7 +27,7 @@ window.mayhem.onPrio((data) => {
       `<div class="row${i < 2 ? ' top' : ''}${it.offered ? ' offered' : ''}">` +
         (it.icon ? `<img src="${it.icon}">` : '<img>') +
         `<span class="nm">${it.name}</span>` +
-        `<span class="pwr ${wrClass(it.wr ?? 0.5)}">${it.wr != null ? pct(it.wr) : '-'}</span>` +
+        `<span class="pwr ${wrClass(it.wr ?? 0.5)}" title="${it.wrScope === 'global' ? 'global win rate (not champion-specific)' : 'win rate on this champion'}">${it.wr != null ? (it.wrScope === 'global' ? '~' : '') + pct(it.wr) : '-'}</span>` +
       `</div>`;
   });
   html += `<div class="hint">still in pool this game · outlined = in current offer</div>`;

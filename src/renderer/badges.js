@@ -15,11 +15,12 @@ window.mayhem.onBadges((data) => {
     const isRerollTarget = verdict?.action === 'REROLL' && b.name === verdict.target;
     const d = document.createElement('div');
     d.className = `badge${b.best ? ' best' : ''}${isRerollTarget ? ' reroll-mode' : ''}`;
-    // champion-specific win rate only — global % is deliberately not shown
+    // champion-specific win rate when aramgg has the sample; otherwise the
+    // global aramgg win rate, labelled so it's clear it isn't champ-specific
     const wr = b.champWr != null
       ? `<div class="top"><span class="${wrClass(b.champWr)}">${pct(b.champWr)}</span></div>` +
-        `<div class="sub">on ${b.champName}</div>`
-      : `<div class="top"><span class="sub">no ${b.champName || 'champion'} data</span></div>`;
+        `<div class="sub">${b.champWrScope === 'global' ? 'global avg' : 'on ' + b.champName}</div>`
+      : `<div class="top"><span class="sub">no data</span></div>`;
     const combo = b.comboTier != null
       ? `<div class="champ ${comboClass(b.comboTier)}">combo T${b.comboTier.toFixed(1)} with your picks</div>` : '';
     let tag = '';

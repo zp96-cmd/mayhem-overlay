@@ -377,11 +377,22 @@ function applyOcrOffer(res) {
   saveSession();
 }
 
-const CHAMP_WR_MIN_GAMES = 30; // below this the win rate is too noisy to show
+const CHAMP_WR_MIN_GAMES = 30; // below this the champion-specific rate is too noisy
+// Champion-specific win rate when aramgg has enough sample; otherwise fall back
+// to aramgg's GLOBAL augment win rate (still real data, just not champ-specific)
+// so rare champions (e.g. Fizz) still show numbers instead of "-". scope tells
+// callers which one it is so the label can say "on Fizz" vs "global".
 function champWrFor(aug) {
   const champId = myChampion()?.id;
   const champAug = state.champData?.championId === champId ? state.champData?.augments?.[aug.id] : null;
-  return champAug?.games >= CHAMP_WR_MIN_GAMES ? champAug.winRate : null;
+  if (champAug && champAug.games >= CHAMP_WR_MIN_GAMES && Number.isFinite(champAug.winRate)) {
+    return { wr: champAug.winRate, scope: 'champ' };
+  }
+  const g = aug.id ? state.augStats[aug.id] : null;
+  if (g && g.games >= 200 && Number.isFinite(g.winRate)) {
+    return { wr: g.winRate, scope: 'global' };
+  }
+  return { wr: null, scope: null };
 }
 
 // E[best of 3 draws] over a sorted-ascending score array (order statistics)
@@ -458,7 +469,8 @@ function showOfferBadges(matches) {
       name: aug.name,
       x: m.screen.x, y: m.screen.y, w: m.screen.w, h: m.screen.h,
       winRate: cs?.winRate ?? null,
-      champWr: champWrFor(aug),
+      champWr: champWrFor(aug).wr,
+      champWrScope: champWrFor(aug).scope,
       champName: myChampion()?.name ?? '',
       comboTier: combo ? combo.tier : null,
       score,
@@ -493,9 +505,11 @@ function showPriorityList(offerNames = []) {
     .filter((a) => !state.seen.has(a.name) || offerSet.has(a.name))
     .map((a) => {
       const { score } = scoreAugment(a);
+      const cw = champWrFor(a);
       return {
         name: a.name, icon: a.icon,
-        wr: champWrFor(a), // champion-specific only, no global fallback
+        wr: cw.wr, // champ-specific when aramgg has sample, else global aramgg WR
+        wrScope: cw.scope,
         score,
         offered: offerSet.has(a.name),
       };
