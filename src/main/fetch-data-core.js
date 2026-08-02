@@ -250,18 +250,18 @@ async function fetchAllData(dataDir, log = () => {}) {
       const cid = aliasToId.get(String(card.championId || '').toLowerCase());
       if (!cid) continue;
       (byChampion[cid] = byChampion[cid] || []).push({
+        augmentId: card.augmentId || '',
         augmentName: card.augmentName,
-        tier: card.tier,
+        tier: card.tier,               // S+ / S / A / B / C / D (curated, not win rate)
         tierScore: Number(card.tierScore) || 0,
         upvotes: Number(card.upvoteCount) || 0,
         description: (card.comboDescription || '').trim(),
       });
     }
-    // best combos first per champion, cap at 8
+    // best combos first per champion — keep the full curated set (a few per champ)
     for (const cid of Object.keys(byChampion)) {
       byChampion[cid] = byChampion[cid]
-        .sort((a, b) => b.tierScore - a.tierScore || b.upvotes - a.upvotes)
-        .slice(0, 8);
+        .sort((a, b) => b.tierScore - a.tierScore || b.upvotes - a.upvotes);
     }
     write('champion-combos.json', {
       fetchedAt, source: 'arammayhem.com',

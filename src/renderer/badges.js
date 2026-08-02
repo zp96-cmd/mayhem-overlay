@@ -6,6 +6,8 @@ const wrClass = (wr) => (wr >= 0.53 ? 'wr-good' : wr < 0.48 ? 'wr-bad' : 'wr-mid
 const pct = (v) => `${(v * 100).toFixed(1)}%`;
 
 const comboClass = (t) => (t <= 2 ? 'wr-good' : t >= 4 ? 'wr-bad' : 'wr-mid');
+// arammayhem curated tier letter -> colour bucket (S+/S/A good, B mid, C/D bad)
+const tierClass = (t) => (/^(S\+?|A)$/.test(t) ? 'wr-good' : /^(C|D)$/.test(t) ? 'wr-bad' : 'wr-mid');
 
 window.mayhem.onBadges((data) => {
   const badges = Array.isArray(data) ? data : (data?.pills ?? []);
@@ -21,6 +23,8 @@ window.mayhem.onBadges((data) => {
       ? `<div class="top"><span class="${wrClass(b.champWr)}">${pct(b.champWr)}</span></div>` +
         `<div class="sub">${b.champWrScope === 'global' ? 'global avg' : 'on ' + b.champName}</div>`
       : `<div class="top"><span class="sub">no data</span></div>`;
+    const champTier = b.champTier
+      ? `<div class="champ ${tierClass(b.champTier)}">${b.champTier} pick on ${b.champName}</div>` : '';
     const combo = b.comboTier != null
       ? `<div class="champ ${comboClass(b.comboTier)}">combo T${b.comboTier.toFixed(1)} with your picks</div>` : '';
     let tag = '';
@@ -32,7 +36,7 @@ window.mayhem.onBadges((data) => {
       else tag = `<div class="tag">★ BEST OF OFFER</div>`;
     }
     d.innerHTML =
-      wr + combo +
+      wr + champTier + combo +
       `<div class="sub">#${b.rank} of offer · score ${b.score.toFixed(1)}</div>` +
       tag;
     d.style.left = `${b.x + b.w / 2}px`;

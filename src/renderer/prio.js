@@ -8,6 +8,7 @@ const lockBtn = document.getElementById('lock');
 
 const wrClass = (wr) => (wr >= 0.53 ? 'wr-good' : wr < 0.48 ? 'wr-bad' : 'wr-mid');
 const pct = (v) => `${(v * 100).toFixed(1)}%`;
+const tierClass = (t) => (/^(S\+?|A)$/.test(t) ? 'wr-good' : /^(C|D)$/.test(t) ? 'wr-bad' : 'wr-mid');
 
 let lastW = 0, lastH = 0;
 function reportSize() {
@@ -27,6 +28,7 @@ window.mayhem.onPrio((data) => {
       `<div class="row${i < 2 ? ' top' : ''}${it.offered ? ' offered' : ''}">` +
         (it.icon ? `<img src="${it.icon}">` : '<img>') +
         `<span class="nm">${it.name}</span>` +
+        (it.champTier ? `<span class="ptier ${tierClass(it.champTier)}" title="arammayhem curated tier on this champion">${it.champTier}</span>` : '') +
         `<span class="pwr ${wrClass(it.wr ?? 0.5)}" title="${it.wrScope === 'global' ? 'global win rate (not champion-specific)' : 'win rate on this champion'}">${it.wr != null ? (it.wrScope === 'global' ? '~' : '') + pct(it.wr) : '-'}</span>` +
       `</div>`;
   });

@@ -180,6 +180,17 @@ function scoreAugment(aug) {
     }
   }
 
+  // arammayhem curated per-champion tier (S+ best .. D worst) — the main
+  // champion-specific signal now that aramgg's per-champ win rate reads null.
+  // Only ~a handful of augments are curated per champ, so this lifts those to
+  // the top of the priority list for the champion being played.
+  const amTier = champComboTierFor(aug);
+  if (amTier) {
+    const rank = AM_TIER_RANK[amTier.tier] ?? 3; // B = neutral
+    score += (rank - 3) * 0.8; // S+ +2.4, S +1.6, A +0.8, B 0, C -0.8, D -1.6
+    reasons.push(`arammayhem ${amTier.tier} on ${myChampion()?.name ?? 'champ'}`);
+  }
+
   // real combo data with my picked augments (aramgg trios, tier 1 best .. 5 worst)
   const combo = comboStats(aug);
   if (combo) {
@@ -395,6 +406,29 @@ function champWrFor(aug) {
   return { wr: null, scope: null };
 }
 
+// arammayhem's curated per-champion combo tier (S+ best .. D worst). This is a
+// real champion-specific signal (unlike aramgg's now-null per-champ win rate),
+// so it drives both ranking and a badge. Index is memoised per champion.
+const AM_TIER_RANK = { 'S+': 6, S: 5, A: 4, B: 3, C: 2, D: 1 };
+const normAug = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+let champComboIdx = { champId: null, src: null, map: null };
+function champComboTierFor(aug) {
+  const champId = myChampion()?.id;
+  if (!champId) return null;
+  const src = state.champCombos[champId] || null;
+  if (champComboIdx.champId !== champId || champComboIdx.src !== src) {
+    const map = new Map();
+    for (const c of src || []) {
+      const k = normAug(c.augmentName);
+      const prev = map.get(k);
+      if (!prev || (c.tierScore || 0) > (prev.tierScore || 0)) map.set(k, c);
+    }
+    champComboIdx = { champId, src, map };
+  }
+  const c = champComboIdx.map.get(normAug(aug.name));
+  return c ? { tier: c.tier, tierScore: c.tierScore } : null;
+}
+
 // E[best of 3 draws] over a sorted-ascending score array (order statistics)
 function emax3(sorted) {
   const n = sorted.length;
@@ -471,6 +505,7 @@ function showOfferBadges(matches) {
       winRate: cs?.winRate ?? null,
       champWr: champWrFor(aug).wr,
       champWrScope: champWrFor(aug).scope,
+      champTier: champComboTierFor(aug)?.tier ?? null,
       champName: myChampion()?.name ?? '',
       comboTier: combo ? combo.tier : null,
       score,
@@ -510,6 +545,7 @@ function showPriorityList(offerNames = []) {
         name: a.name, icon: a.icon,
         wr: cw.wr, // champ-specific when aramgg has sample, else global aramgg WR
         wrScope: cw.scope,
+        champTier: champComboTierFor(a)?.tier ?? null, // arammayhem curated tier
         score,
         offered: offerSet.has(a.name),
       };
@@ -518,7 +554,7 @@ function showPriorityList(offerNames = []) {
     .slice(0, 8);
   // only push when something actually changed — this runs every live tick and
   // rebuilding the panel + resizing its window each time was causing lag
-  const key = JSON.stringify([tier, rows.map((r) => [r.name, r.offered, Math.round((r.wr ?? 0) * 1000)])]);
+  const key = JSON.stringify([tier, rows.map((r) => [r.name, r.offered, r.champTier, Math.round((r.wr ?? 0) * 1000)])]);
   if (key === lastPrioKey) return;
   lastPrioKey = key;
   window.mayhem.showPrio({ tier, items: rows });

@@ -179,7 +179,7 @@ async function refreshPatchData(reason) {
 // gaining transform items) so existing installs refresh once after updating.
 // v3: refetch through the hidden-Chromium fetcher after aramgg/arammayhem went
 // behind Cloudflare + aramgg migrated to Astro.
-const DATA_SCHEMA = 3;
+const DATA_SCHEMA = 4;
 
 // On startup: if Riot shipped a new patch since our data was fetched, refresh.
 async function checkPatchOnStartup() {
