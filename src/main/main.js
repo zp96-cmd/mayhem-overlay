@@ -7,6 +7,7 @@ const { LiveClientPoller } = require('./liveclient');
 const { ingestRecentMayhemGames, enrichSavedBuilds } = require('./history');
 const { scanForAugments } = require('./ocr');
 const { getChampionData } = require('./aramgg');
+const { getChampionAugments } = require('./aramkit');
 const { getClientRect, buildChampSelectPills } = require('./champselect');
 
 let win = null;
@@ -159,6 +160,7 @@ async function refreshPatchData(reason) {
     champIdByNameCache = null;
     csStats = null;
     try { fs.rmSync(path.join(app.getPath('userData'), 'aramgg-cache'), { recursive: true, force: true }); } catch { /* ignore */ }
+    try { fs.rmSync(path.join(app.getPath('userData'), 'aramkit-cache'), { recursive: true, force: true }); } catch { /* ignore */ }
     win?.webContents.send('data:status', { busy: false, ok: true });
     win?.webContents.send('data:refreshed');
     // remember the game version this data belongs to
@@ -724,7 +726,24 @@ function activateOffer() {
   offerActiveTimeout = setTimeout(() => setOfferActive(false), 90000);
 }
 
-// fetch aramgg champion data once per game when my champion is known
+// aramgg gives builds/trios; aramkit gives real per-champion augment win rates
+// (with sample counts) — merge aramkit's augments over aramgg's now-null ones.
+async function getMergedChampData(id) {
+  const data = await getChampionData(id);
+  try {
+    const ak = await getChampionAugments(id);
+    if (ak?.augments && Object.keys(ak.augments).length) {
+      data.augments = ak.augments;      // real champ-specific winRate + games
+      data.baseline = ak.baseline;      // champion baseline WR (for win lift)
+      if (ak.combos?.length) data.akCombos = ak.combos;
+    }
+  } catch (e) {
+    console.log('aramkit augments failed:', e.message); // keep aramgg data
+  }
+  return data;
+}
+
+// fetch champion data once per game when my champion is known
 let champDataFor = null;
 async function maybeFetchChampData(state) {
   const name = state.me?.championName;
@@ -733,7 +752,7 @@ async function maybeFetchChampData(state) {
   if (!id) return;
   champDataFor = name;
   try {
-    const data = await getChampionData(id);
+    const data = await getMergedChampData(id);
     win?.webContents.send('aramgg:champdata', data);
   } catch (e) {
     console.log('aramgg champ data failed:', e.message);
@@ -955,7 +974,7 @@ async function feedPrep(session) {
   if (payload.myChampionId && prepChampFor !== payload.myChampionId) {
     prepChampFor = payload.myChampionId;
     try {
-      const data = await getChampionData(payload.myChampionId);
+      const data = await getMergedChampData(payload.myChampionId);
       prepWin?.webContents.send('prep:champdata', data);
     } catch (e) {
       console.log('prep champ data failed:', e.message);
