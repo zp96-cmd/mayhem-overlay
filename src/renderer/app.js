@@ -553,7 +553,9 @@ function showPriorityList(offerNames = []) {
         offered: offerSet.has(a.name),
       };
     })
-    .sort((x, y) => y.score - x.score)
+    // sort by win rate (champ-specific or global fallback), highest first;
+    // augments with no WR sink to the bottom, score breaks ties
+    .sort((x, y) => (y.wr ?? -1) - (x.wr ?? -1) || y.score - x.score)
     .slice(0, 8);
   // only push when something actually changed — this runs every live tick and
   // rebuilding the panel + resizing its window each time was causing lag
