@@ -157,7 +157,7 @@ function scoreAugment(aug) {
   // community stats (aramgg.com): champion-specific win rate DOMINATES;
   // the global rate is only a small tiebreak
   const cs = aug.id ? state.augStats[aug.id] : null;
-  if (cs && cs.games >= 1000 && Number.isFinite(cs.winRate)) {
+  if (cs && Number.isFinite(cs.winRate) && cs.winRate > 0) { // games count no longer exposed by aramgg
     const adj = Math.max(-0.6, Math.min(0.6, (cs.winRate - 0.5) * 4));
     score += adj;
     reasons.push(`${(cs.winRate * 100).toFixed(1)}% WR global`);
@@ -399,8 +399,11 @@ function champWrFor(aug) {
   if (champAug && champAug.games >= CHAMP_WR_MIN_GAMES && Number.isFinite(champAug.winRate)) {
     return { wr: champAug.winRate, scope: 'champ' };
   }
+  // aramgg stopped exposing per-augment game counts (games is now 0 for every
+  // augment), but the aggregate winRate is still real — so gate on winRate, not
+  // games, or every non-curated augment falls through to "-".
   const g = aug.id ? state.augStats[aug.id] : null;
-  if (g && g.games >= 200 && Number.isFinite(g.winRate)) {
+  if (g && Number.isFinite(g.winRate) && g.winRate > 0) {
     return { wr: g.winRate, scope: 'global' };
   }
   return { wr: null, scope: null };
