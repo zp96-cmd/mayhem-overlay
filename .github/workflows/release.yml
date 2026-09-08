@@ -1,0 +1,48 @@
+name: Publish Windows release
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [package.json]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: windows-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.ref == 'refs/heads/main'
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Run tests
+        run: node --test tests/companion.test.js tests/layout.test.js
+      - name: Build Windows installer
+        run: npx electron-builder --win --publish never
+      - name: Publish installer and auto-update files
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_COMMIT: ${{ github.sha }}
+        shell: pwsh
+        run: |
+          $version = (Get-Content package.json | ConvertFrom-Json).version
+          $tag = "v$version"
+          $assets = @("dist/Mayhem-Overlay-Setup-$version.exe", "dist/Mayhem-Overlay-Setup-$version.exe.blockmap", "dist/latest.yml")
+          foreach ($asset in $assets) {
+            if (!(Test-Path $asset)) { throw "Missing release asset: $asset" }
+          }
+          gh release create $tag @assets --target $env:RELEASE_COMMIT --title "Mayhem Overlay $version" --generate-notes --draft
+          if ($LASTEXITCODE -ne 0) { throw "Release creation failed; existing releases are never overwritten." }
+          gh release edit $tag --draft=false --latest
+          if ($LASTEXITCODE -ne 0) { throw "Release publishing failed." }
+
