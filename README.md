@@ -3,6 +3,18 @@
 A transparent always-on-top overlay for **ARAM: Mayhem** that suggests augments, tracks
 your augment/build history, and lets you save builds you see from other players.
 
+## Companion and layout editor
+
+Open **Companion / Overlay layout** from the tray, or click **◈** in the overlay title bar.
+
+- **Overview** shows your synced record, saved-build count and most-played champions, even before League is open.
+- **Champion prep** lets you search any champion and inspect community builds, your saved builds and bundled augment combos before queuing. During champ select, it shows your team and bench. **Back to my pick** resumes following your live champion after browsing.
+- **Overlay layout** lets you drag the combos, priority, build and scan panels on a primary-display preview. Arrow keys move one display pixel; Shift + arrow moves ten. **Save positions** applies the draft to the real windows and persists it. **Reset draft** restores defaults without saving until you choose to apply them.
+
+The companion stays available during the game for second-monitor reference. Closing it during champ select keeps it closed until the next champ select or until you reopen it manually. Positions use the existing primary-display coordinate system; the main overlay remains draggable by its title bar. This editor does not change OCR capture regions or champ-select badge alignment.
+
+Layout validation tests: `node --test tests/*.test.js`.
+
 ## Quick start (from source)
 
 ```
