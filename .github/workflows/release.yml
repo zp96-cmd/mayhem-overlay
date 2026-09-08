@@ -26,7 +26,7 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Run tests
-        run: node --test tests/companion.test.js tests/layout.test.js tests/advice.test.js
+        run: node --test tests/companion.test.js tests/layout.test.js
       - name: Build Windows installer
         run: npx electron-builder --win --publish never
       - name: Publish installer and auto-update files

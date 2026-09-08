@@ -39,12 +39,6 @@ window.mayhem.onBadges((data) => {
       wr + champTier + combo +
       `<div class="sub">#${b.rank} of offer · score ${b.score.toFixed(1)}</div>` +
       tag;
-    for (const reason of b.reasons || []) {
-      const explanation = document.createElement('div');
-      explanation.className = 'sub advice-reason';
-      explanation.textContent = reason;
-      d.append(explanation);
-    }
     d.style.left = `${b.x + b.w / 2}px`;
     d.style.top = `${b.y}px`;
     root.append(d);
@@ -68,10 +62,6 @@ window.mayhem.onBadges((data) => {
         `<span class="act">~ CLOSE CALL</span>` +
         `<span class="nums">${verdict.bestName} is best here · reroll ${math}</span>`;
     }
-    const note = document.createElement('span');
-    note.className = 'nums';
-    note.textContent = 'Estimate from known pool · reroll only if available';
-    v.append(note);
     v.style.display = 'flex';
   } else {
     v.style.display = 'none';

@@ -142,21 +142,43 @@ function scoreAugment(aug) {
     }
   }
 
-  const ownedItems = (state.live?.me?.items || []).map(i => state.itemById.get(i.id)).filter(Boolean);
-  const pickedAugments = state.picked.map(n => state.augByName.get(n)).filter(Boolean);
-  const build = MayhemAdvice.buildAdvice(arch, ownedItems, pickedAugments, augmentArchetypes);
-  score += build.bonus;
-  reasons.unshift(...build.reasons);
-
-  // Champion evidence remains available even when the global feed is missing.
-  const cs = aug.id ? state.augStats[aug.id] : null;
-  if (cs && Number.isFinite(cs.winRate) && cs.winRate > 0 && cs.winRate <= 1) {
-    score += Math.max(-0.6, Math.min(0.6, (cs.winRate - 0.5) * 4));
-    reasons.push(`${(cs.winRate * 100).toFixed(1)}% WR global`);
+  // synergy with what I've already picked this game
+  if (state.picked.length && arch.length) {
+    const pickedArch = new Set(state.picked.flatMap((n) => {
+      const a = state.augByName.get(n);
+      return a ? augmentArchetypes(a) : [];
+    }));
+    if (arch.some((a) => pickedArch.has(a))) {
+      score += 0.5;
+      reasons.push('synergy with picks');
+    }
   }
-  const signal = MayhemAdvice.championSignal(state.champData, myChampion()?.id, aug.id);
-  if (signal) { score += signal.bonus; reasons.push(signal.reason); }
-  else reasons.push('Limited champion data · fit estimate');
+
+  // community stats (aramgg.com): champion-specific win rate DOMINATES;
+  // the global rate is only a small tiebreak
+  const cs = aug.id ? state.augStats[aug.id] : null;
+  if (cs && Number.isFinite(cs.winRate) && cs.winRate > 0) { // games count no longer exposed by aramgg
+    const adj = Math.max(-0.6, Math.min(0.6, (cs.winRate - 0.5) * 4));
+    score += adj;
+    reasons.push(`${(cs.winRate * 100).toFixed(1)}% WR global`);
+    const champId = myChampion()?.id;
+    // full per-champion stats (fetched when the game starts) beat the top-5 pairings
+    const champAug = state.champData?.championId === champId ? state.champData?.augments?.[aug.id] : null;
+    if (champAug && champAug.games >= 30) {
+      // weight small samples less: full strength at 300+ games, scaled below
+      const conf = Math.min(1, champAug.games / 300);
+      const padj = Math.max(-2.5, Math.min(2.5, (champAug.winRate - 0.5) * 16)) * conf;
+      score += padj;
+      reasons.push(`${(champAug.winRate * 100).toFixed(1)}% on ${myChampion().name} (${champAug.games} games)`);
+    } else {
+      const pair = champId ? cs.topChampions?.find((c) => c.championId === champId) : null;
+      if (pair && pair.games >= 300) {
+        const padj = Math.max(-2, Math.min(2, (pair.winRate - 0.5) * 12));
+        score += padj;
+        reasons.push(`${(pair.winRate * 100).toFixed(1)}% on ${myChampion().name}`);
+      }
+    }
+  }
 
   // arammayhem curated per-champion tier (S+ best .. D worst) — the main
   // champion-specific signal now that aramgg's per-champ win rate reads null.
@@ -446,9 +468,9 @@ function computeVerdict(scored, offerNames) {
   const pool = state.augments
     .filter((a) => !a.disabled)
     .filter((a) => !tier || a.tier === tier)
-    .filter((a) => !state.seen.has(a.name) && !offerNames.includes(a.name) && !state.picked.includes(a.name))
+    .filter((a) => !state.seen.has(a.name))
     .map((a) => scoreAugment(a).score);
-  if (scored.length !== 3 || !tier || !myChampion() || pool.length < 6) return null; // pool too thin to judge
+  if (pool.length < 6) return null; // pool too thin to judge
   const best = scored.reduce((a, b) => (b.score > a.score ? b : a));
   const worst = scored.reduce((a, b) => (b.score < a.score ? b : a));
   const upside = pool.reduce((s, x) => s + Math.max(0, x - best.score), 0) / pool.length;
@@ -477,12 +499,11 @@ function showOfferBadges(matches) {
   const scored = positioned.map((m) => {
     const aug = state.augByName.get(m.name);
     if (!aug) return null;
-    const { score, reasons } = scoreAugment(aug);
+    const { score } = scoreAugment(aug);
     const cs = aug.id ? state.augStats[aug.id] : null;
     const combo = comboStats(aug);
     return {
       name: aug.name,
-      reasons: reasons.slice(0, 2),
       x: m.screen.x, y: m.screen.y, w: m.screen.w, h: m.screen.h,
       winRate: cs?.winRate ?? null,
       champWr: champWrFor(aug).wr,
@@ -532,12 +553,13 @@ function showPriorityList(offerNames = []) {
         offered: offerSet.has(a.name),
       };
     })
-    // Use the same build-aware ranking as the offer badges.
-    .sort((x, y) => y.score - x.score || (y.wr ?? -1) - (x.wr ?? -1))
+    // sort by win rate (champ-specific or global fallback), highest first;
+    // augments with no WR sink to the bottom, score breaks ties
+    .sort((x, y) => (y.wr ?? -1) - (x.wr ?? -1) || y.score - x.score)
     .slice(0, 8);
   // only push when something actually changed — this runs every live tick and
   // rebuilding the panel + resizing its window each time was causing lag
-  const key = JSON.stringify([tier, rows.map((r) => [r.name, r.offered, r.champTier, Math.round(r.score * 100), Math.round((r.wr ?? 0) * 1000)])]);
+  const key = JSON.stringify([tier, rows.map((r) => [r.name, r.offered, r.champTier, Math.round((r.wr ?? 0) * 1000)])]);
   if (key === lastPrioKey) return;
   lastPrioKey = key;
   window.mayhem.showPrio({ tier, items: rows });

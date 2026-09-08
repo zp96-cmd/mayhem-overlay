@@ -15,12 +15,6 @@ The companion stays available during the game for second-monitor reference. Clos
 
 Layout validation tests: `node --test tests/*.test.js`.
 
-## Bench and augment advice
-
-Bench cards compare each available champion with your live pick, including while you browse another champion. Class coverage considers the four remaining allies; suggestions explain roles gained or lost and let you click through to champion prep. Incomplete teams do not produce team-fit recommendations. These are class-based estimates, not guarantees about damage type, crowd control or win probability.
-
-Augment scores now consider owned item stat categories and named existing augment description tags. Those fit estimates complement sample-weighted champion win rates relative to the champion baseline, curated tiers and combo data. The priority list and offer badges use the same score. Champion statistics work independently of the global feed. Reroll advice requires three recognized cards of the same tier and a known champion; it excludes current, seen and picked augments and reminds you to check reroll availability.
-
 ## Quick start (from source)
 
 ```
