@@ -87,3 +87,8 @@ h2 { background: none; -webkit-text-fill-color: #bfc7d3; font-size: 11px; letter
 .layout-note { font-size: 11px; color: #8994a3; line-height: 1.6; }
 @media (max-width: 1050px) { .edition { display: none; } .companion-bar { gap: 22px; padding: 0 24px; } .companion-main { padding: 24px; } .hero-orbit { right: -60px; opacity: .6; } .team-card { flex-direction: column; align-items: start; } }
 @media (max-width: 800px) { .companion-nav { gap: 15px; } .home-hero { padding: 30px; } .home-hero h1 { font-size: 40px; } .hero-orbit { opacity: .25; } .home-columns { grid-template-columns: 1fr; } .prep-toolbar { align-items: start; } .champ-picker { max-width: 350px; } #head { gap: 12px; } #head .name { font-size: 26px; } #myrec .val { font-size: 20px; } }
+
+.bench-note { width: 100%; font-size: 12px; }
+button.bench-card { text-align: left; color: inherit; font: inherit; cursor: pointer; white-space: normal; }
+.bench-reason { font-size: 11px; line-height: 1.45; color: var(--text-dim); max-width: 250px; }
+button.bench-card:focus-visible { outline: 2px solid var(--gold); }
