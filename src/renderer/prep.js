@@ -67,28 +67,23 @@ function renderBench() {
   const bench = state.session?.bench ?? [];
   if (!bench.length) { wrap.style.display = 'none'; return; }
   wrap.style.display = 'block';
-  const myWr = state.champStats[String(state.session.myChampionId)]?.winRate ?? null;
-
-  const cards = bench.map((id) => {
+  box.append(el('p', 'muted bench-note', 'Compared with your live pick · class-based team fit, not a guaranteed upgrade. Click to inspect.'));
+  const advice = MayhemAdvice.benchAdvice(state.session, state.champById, state.champStats);
+  for (const { id, recommended, reasons, label } of advice) {
     const c = state.champById.get(id);
-    const s = state.champStats[String(id)];
-    const mine = myGamesOn(id);
-    const myWins = mine.filter((g) => g.win).length;
-    return { id, c, s, mine, myWins };
-  }).sort((a, b) => (b.s?.winRate ?? 0) - (a.s?.winRate ?? 0));
-
-  for (const { id, c, s, mine, myWins } of cards) {
-    const better = s && myWr !== null && s.winRate > myWr + 0.005;
-    const card = el('div', `bench-card${better ? ' better' : ''}`);
-    if (c?.icon) { const img = el('img'); img.src = c.icon; card.append(img); }
+    const card = el('button', `bench-card${recommended ? ' better' : ''}`);
+    card.type = 'button';
+    card.onclick = () => browse(id);
+    if (c?.icon) { const img = el('img'); img.src = c.icon; img.alt = ''; card.append(img); }
     const mid = el('div');
-    mid.append(el('div', 'nm', esc(c?.name ?? id)));
-    mid.append(el('div', `wr ${s ? wrCls(s.winRate) : ''}`, s ? pct(s.winRate) : '-'));
-    if (mine.length) mid.append(el('div', 'mine', `me: ${myWins}W ${mine.length - myWins}L`));
-    card.append(mid);
-    if (better) card.append(el('div', 'swap', 'SWAP ▲'));
+    mid.append(el('div', 'nm', esc(c.name)));
+    for (const reason of reasons) mid.append(el('div', 'bench-reason', esc(reason)));
+    const mine = myGamesOn(id);
+    if (mine.length) mid.append(el('div', 'mine', `${mine.length} recorded games on this champion`));
+    card.append(mid, el('div', 'swap', label));
     box.append(card);
   }
+  if (!advice.length) box.append(el('p', 'muted', 'Waiting for your champion and team data…'));
 }
 
 function renderHotList(champId) {
