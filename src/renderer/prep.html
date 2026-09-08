@@ -215,14 +215,39 @@
       border: 1px dashed var(--hairline); border-radius: var(--r-container);
     }
   </style>
+  <link rel="stylesheet" href="companion.css">
 </head>
 <body>
-  <div id="waiting">
-    <b>MAYHEM PREP</b>
-    Waiting for champ select…<br>
-    <span style="font-size:13px">This screen fills in as soon as you hold a champion.<br>
-    Park it on your second monitor. Position is remembered.</span>
-  </div>
+  <header class="companion-bar">
+    <a class="brand" href="#" aria-label="Mayhem home"><span class="brand-mark">M</span> MAYHEM <span class="edition">COMPANION</span></a>
+    <nav class="companion-nav" aria-label="Companion">
+      <button class="selected" data-view="home">Overview</button>
+      <button data-view="champion">Champion prep</button>
+      <button data-view="layout">Overlay layout</button>
+    </nav>
+    <span id="connection" role="status">Connecting…</span>
+  </header>
+  <main class="companion-main">
+  <section id="home-view">
+    <div class="home-hero">
+      <div class="eyebrow">YOUR NEXT GAME STARTS HERE</div>
+      <h1>A little preparation.<br><span>A lot more mayhem.</span></h1>
+      <p>Find your next pick. Know your options.<br>Make the Rift feel like home.</p>
+      <div class="hero-actions"><button class="primary" id="explore">Explore champions <span>↗</span></button><button class="secondary" id="customise">Arrange overlays</button></div>
+      <div class="hero-orbit" aria-hidden="true"><span>M</span><i></i></div>
+    </div>
+    <div class="section-heading"><div><span class="eyebrow">YOUR PLAYBOOK</span><h3>Ready when you are.</h3></div><span class="muted">From your synced Mayhem history</span></div>
+    <div id="session-summary" class="summary-grid"></div>
+    <div class="home-columns">
+      <section class="surface"><div class="section-heading"><h3>Your familiar picks</h3><span class="muted">Most played</span></div><div id="familiar"></div></section>
+      <section class="surface"><div class="eyebrow">SET YOURSELF UP</div><h3>Everything in its place.</h3><p class="muted">Position your combo panel, priority list, build strip and scan button before the game starts.</p><button class="secondary" id="home-layout">Open layout editor ↗</button><div class="shortcut-list"><span>Show / hide overlay <kbd>Ctrl Alt O</kbd></span><span>Scan augment cards <kbd>Ctrl Alt S</kbd></span><span>Click-through <kbd>Ctrl Alt X</kbd></span></div></section>
+    </div>
+  </section>
+  <section id="champion-view" hidden>
+    <div class="prep-toolbar"><div><span class="eyebrow">THE GAME PLAN</span><h3 id="prep-heading">Explore a champion</h3></div><div class="champ-picker"><label for="champ-search" class="muted">Find champion</label><input id="champ-search" type="search" placeholder="Search by name…" autocomplete="off"><select id="champ-select" aria-label="Champion"><option value="">Choose champion</option></select><button class="secondary" id="follow-live" hidden>Back to my pick</button></div></div>
+    <div id="browse-status" class="muted" role="status"></div>
+    <section id="team-wrap" hidden><div class="section-heading"><h3>Your lobby</h3><span class="muted">Champion classes · live from champ select</span></div><div id="team" class="team-grid"></div></section>
+    <div id="waiting" class="surface"><b>Build your game plan</b>Choose any champion to explore builds and augment combos.<br><span class="muted">Your lobby appears automatically during champ select.</span></div>
   <div id="dash">
     <div id="head-wrap">
       <div id="splash"></div>
@@ -264,6 +289,17 @@
       </div>
     </div>
   </div>
+  </section>
+  <section id="layout-view" hidden>
+    <div class="section-heading"><div><span class="eyebrow">YOUR SCREEN. YOUR RULES.</span><h1>Make room for your game.</h1></div><button class="secondary" id="layout-reset">Reset draft</button></div>
+    <p class="muted">Drag a panel to position it. Select a panel and use arrow keys for fine adjustments; hold Shift for larger steps.</p>
+    <div class="layout-toolbar"><span id="display-label"></span><span class="muted">Panel sizes reflect the current windows</span></div>
+    <div id="layout-map" aria-label="Overlay positioning preview"><div class="map-lane" aria-hidden="true"></div><span class="map-label">GAME AREA</span><div class="hud-placeholder" aria-hidden="true">CHAMPION HUD</div><div id="layout-widgets"></div></div>
+    <div class="layout-footer"><span id="layout-status" role="status">Loading layout…</span><button class="primary" id="layout-save">Save positions</button></div>
+    <p class="layout-note">Positions apply to the primary display. The main overlay remains draggable by its title bar. OCR regions and champion-select badges are unchanged.</p>
+  </section>
+  </main>
   <script src="prep.js"></script>
+  <script src="companion.js"></script>
 </body>
 </html>

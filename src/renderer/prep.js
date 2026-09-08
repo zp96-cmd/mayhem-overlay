@@ -11,6 +11,7 @@ const state = {
   champData: null,         // aramgg per-champion { championId, buildSummary, augments }
   champCombos: {},         // championId -> [{ augmentName, tier, description, ... }] (arammayhem)
   shownFor: null,
+  browseId: null, ready: false,
 };
 
 const $ = (s) => document.querySelector(s);
@@ -254,7 +255,7 @@ function renderBuilds(champId) {
       const bar = el('div', 'wrbar');
       const fill = el('div');
       fill.style.width = `${Math.min(100, Math.max(4, (b.winRate - 0.40) / 0.25 * 100))}%`;
-      fill.style.background = b.winRate >= 0.53 ? 'var(--good)' : b.winRate < 0.48 ? 'var(--bad)' : 'var(--mid)';
+      fill.style.background = b.winRate >= 0.53 ? 'var(--win)' : b.winRate < 0.48 ? 'var(--loss)' : 'var(--caution)';
       bar.append(fill);
       v.append(bar);
 
@@ -280,8 +281,12 @@ function renderBuilds(champId) {
 }
 
 function render() {
-  const champId = state.session?.myChampionId;
-  if (!champId) return;
+  const champId = state.browseId || state.session?.myChampionId;
+  if (!champId) {
+    $('#waiting').style.display = 'block';
+    $('#dash').style.display = 'none';
+    return;
+  }
   $('#waiting').style.display = 'none';
   $('#dash').style.display = 'block';
   renderHeader(champId);
@@ -312,8 +317,10 @@ async function init() {
   state.builds = builds ?? [];
   state.champCombos = combos?.byChampion ?? {};
 
-  window.mayhem.onPrepSession((s) => { state.session = s; render(); });
-  window.mayhem.onPrepChampData((d) => { state.champData = d; render(); });
+  state.ready = true;
+  window.dispatchEvent(new Event('prep:ready'));
 }
 
-init();
+init().catch(() => {
+  $('#waiting').textContent = 'Could not load your data. Close and reopen the companion to retry.';
+});

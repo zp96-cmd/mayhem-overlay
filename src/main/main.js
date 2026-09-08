@@ -2,6 +2,7 @@ const { app, BrowserWindow, Tray, Menu, globalShortcut, ipcMain, screen, nativeI
 const path = require('path');
 const fs = require('fs');
 const { Store } = require('./store');
+const { DEFAULT_POSITIONS, validatePositions, positionInDisplay } = require('./layout');
 const { LcuClient } = require('./lcu');
 const { LiveClientPoller } = require('./liveclient');
 const { ingestRecentMayhemGames, enrichSavedBuilds } = require('./history');
@@ -503,7 +504,7 @@ function createTray() {
   tray.setContextMenu(Menu.buildFromTemplate([
     { label: 'Show/Hide (Ctrl+Alt+O)', click: toggleVisibility },
     { label: 'Toggle click-through (Ctrl+Alt+X)', click: () => setClickThrough(!clickThrough) },
-    { label: 'Prep screen', click: openPrepWindow },
+    { label: 'Companion / Overlay layout', click: openPrepWindow },
     { label: 'Hall of Fame', click: openPodiumWindow },
     {
       label: 'Move combos panel',
@@ -870,13 +871,17 @@ const poller = new LiveClientPoller(
 
 // ---------- pre-game prep dashboard ----------
 let prepWin = null;
+let latestPrepSession = null;
+let latestPrepData = null;
+let latestPrepPhase = { connected: false, phase: 'None' };
 
 function openPrepWindow() {
   if (prepWin && !prepWin.isDestroyed()) { prepWin.show(); return; }
   const bounds = settings.get('prepBounds') ?? { width: 1150, height: 850 };
   prepWin = new BrowserWindow({
     ...bounds,
-    title: 'Mayhem Prep',
+    title: 'Mayhem · Companion',
+    minWidth: 760, minHeight: 600,
     backgroundColor: '#0a0e14',
     webPreferences: {
       preload: path.join(__dirname, '..', 'preload.js'),
@@ -970,11 +975,14 @@ async function feedPrep(session) {
     bench: (session.benchChampions ?? []).map((b) => b.championId).filter((id) => id > 0),
     team: (session.myTeam ?? []).map((p) => p.championId).filter((id) => id > 0),
   };
+  latestPrepSession = payload;
   prepWin.webContents.send('prep:session', payload);
   if (payload.myChampionId && prepChampFor !== payload.myChampionId) {
     prepChampFor = payload.myChampionId;
     try {
       const data = await getMergedChampData(payload.myChampionId);
+      if (latestPrepSession?.myChampionId !== payload.myChampionId) return;
+      latestPrepData = data;
       prepWin?.webContents.send('prep:champdata', data);
     } catch (e) {
       console.log('prep champ data failed:', e.message);
@@ -1048,15 +1056,16 @@ function startPhaseWatcher() {
     const connected = lcu.refresh();
     let phase = 'None';
     if (connected) phase = await lcu.gameflowPhase();
-    win?.webContents.send('lcu:phase', { connected, phase });
+    latestPrepPhase = { connected, phase };
+    win?.webContents.send('lcu:phase', latestPrepPhase);
+    prepWin?.webContents.send('lcu:phase', latestPrepPhase);
     if (phase === 'ChampSelect') {
       startChampSelectWatch();
-      if (settings.get('prepAutoOpen', true)) openPrepWindow();
+      if (lastPhase !== 'ChampSelect' && settings.get('prepAutoOpen', true)) openPrepWindow();
     } else if (lastPhase === 'ChampSelect') {
       stopChampSelectWatch();
       prepChampFor = null;
-      // champ select is over → hide the prep screen (it re-opens next lobby)
-      closePrepWindow();
+      // Keep the companion available on the second monitor through the match.
     }
     // Loading screen: surface combos on the always-on-top overlay (the prep
     // window is hidden behind the fullscreen game here). The loading screen is
@@ -1071,12 +1080,65 @@ function startPhaseWatcher() {
       clearLoadingCombos();
       liveCombosOwner = false;
     }
+    if (!['ChampSelect', 'GameStart', 'InProgress', 'Reconnect'].includes(phase)) {
+      latestPrepSession = null;
+      latestPrepData = null;
+      prepWin?.webContents.send('prep:session', null);
+    }
     lastPhase = phase;
     maybeAutoInstall();
   }, 5000);
 }
 
 // ---------- IPC ----------
+ipcMain.on('prep:open', openPrepWindow);
+ipcMain.handle('prep:snapshot', () => ({ session: latestPrepSession, data: latestPrepData, phase: latestPrepPhase }));
+ipcMain.handle('prep:browse', async (_e, id) => {
+  if (!Number.isInteger(id) || id <= 0 || id >= 30000 ||
+      !loadDataFile('champions.json')?.champions?.some((c) => c.id === id)) {
+    throw new Error('Unknown champion');
+  }
+  return getMergedChampData(id);
+});
+function layoutSnapshot() {
+  const display = screen.getPrimaryDisplay();
+  const windows = { combosPos: combosWin, prioPos: prioWin, buildStripPos: stripWin, scanBtnPos: scanBtn };
+  return {
+    display: { width: display.bounds.width, height: display.bounds.height, label: display.label || 'Primary display' },
+    positions: Object.fromEntries(Object.entries(DEFAULT_POSITIONS).map(([k, v]) => {
+      const point = positionInDisplay(settings.get(k) ?? v, windows[k]?.getBounds() ?? { width: 320, height: 100 }, display.bounds);
+      return [k, { x: (point.x - display.bounds.x) / display.bounds.width, y: (point.y - display.bounds.y) / display.bounds.height }];
+    })),
+    sizes: Object.fromEntries(Object.entries(windows).map(([k, w]) => {
+      const b = w?.getBounds();
+      return [k, { width: b?.width ?? 320, height: b?.height ?? 100 }];
+    })),
+    defaults: DEFAULT_POSITIONS,
+  };
+}
+ipcMain.handle('layout:get', layoutSnapshot);
+ipcMain.handle('layout:save', (_e, input) => {
+  const positions = validatePositions(input);
+  const bounds = screen.getPrimaryDisplay().bounds;
+  const windows = { combosPos: combosWin, prioPos: prioWin, buildStripPos: stripWin, scanBtnPos: scanBtn };
+  for (const [key, pos] of Object.entries(positions)) {
+    const target = windows[key];
+    if (!target || target.isDestroyed()) continue;
+    const point = positionInDisplay(pos, target.getBounds(), bounds);
+    positions[key] = { x: (point.x - bounds.x) / bounds.width, y: (point.y - bounds.y) / bounds.height };
+  }
+  const previous = settings.data;
+  settings.data = { ...previous, ...positions };
+  try { settings.save(); } catch (error) { settings.data = previous; throw error; }
+  for (const [key, pos] of Object.entries(positions)) {
+    const target = windows[key];
+    if (!target || target.isDestroyed()) continue;
+    const point = positionInDisplay(pos, target.getBounds(), bounds);
+    target.setPosition(point.x, point.y);
+  }
+  return layoutSnapshot();
+});
+
 ipcMain.handle('data:augments', () => loadDataFile('augments.json'));
 ipcMain.handle('data:champions', () => loadDataFile('champions.json'));
 ipcMain.handle('data:items', () => loadDataFile('items.json'));

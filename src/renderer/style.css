@@ -14,12 +14,8 @@ body {
 .panel {
   display: flex; flex-direction: column;
   height: 100vh;
-  background:
-    var(--hexweave),
-    linear-gradient(180deg, rgba(232, 193, 90, 0.07), transparent 150px),
-    var(--surface-0);
-  background-size: 56px 96px, cover, cover;
-  border: 1px solid var(--hairline-strong);
+  background: linear-gradient(180deg, rgba(26, 31, 39, 0.97), rgba(13, 18, 25, 0.96));
+  border: 1px solid rgba(214, 187, 130, 0.22);
   border-radius: var(--r-container);
   overflow: hidden;
   box-shadow: var(--shadow-3), inset 0 1px 0 rgba(240, 230, 210, 0.08);

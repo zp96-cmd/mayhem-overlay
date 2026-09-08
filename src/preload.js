@@ -1,6 +1,11 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('mayhem', {
+  openPrep: () => ipcRenderer.send('prep:open'),
+  getPrepSnapshot: () => ipcRenderer.invoke('prep:snapshot'),
+  browseChampion: (id) => ipcRenderer.invoke('prep:browse', id),
+  getLayout: () => ipcRenderer.invoke('layout:get'),
+  saveLayout: (positions) => ipcRenderer.invoke('layout:save', positions),
   getAugments: () => ipcRenderer.invoke('data:augments'),
   getChampions: () => ipcRenderer.invoke('data:champions'),
   getItems: () => ipcRenderer.invoke('data:items'),
